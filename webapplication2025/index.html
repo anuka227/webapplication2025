@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="./homePage/home.css">
 	<link rel="stylesheet" href="./global.css">
 	<link rel="stylesheet" href="./orderPage/order.css">
-
+	<link rel="stylesheet" href="./orderPage/order-calendar.css">
 	<script type="module" src="./orderPage/order-inner.js"></script>
 
 	<script type="module" src="../js/special-salon.js"></script>
@@ -394,6 +394,7 @@
 						</ul>
 					</order-inner>
 					<order-inner 
+					id="dateOrderInner"
   						service="Огноо" 
   						svgpath='&lt;path d="M14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C20.1752 21.4816 19.3001 21.7706 18 21.8985" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
 								&lt;path d="M7 4V2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
@@ -405,7 +406,10 @@
 								&lt;path d="M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z" fill="#1C274C"/&gt;
 								&lt;path d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z" fill="#1C274C"/&gt;
 								&lt;path d="M8 13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13C6 12.4477 6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z" fill="#1C274C"/&gt;'>
-						<div id="calendar">
+						<div>
+        <span id="selectedDateText">Сонгоогүй</span>
+    </div>
+								<div id="calendar">
     						<div class="calendar-header">
         						<button class="calendar-nav-btn" onclick="changeMonth(-1)">‹</button>
         						<span id="monthYear"></span>
@@ -425,81 +429,88 @@
 						</div>
 					</order-inner>
 					<script>
-    					let currentDate = new Date();
-    let selectedDate = null;
+					let currentDate = new Date();
+let selectedDate = null;
+
+const months = ['1-р сар', '2-р сар', '3-р сар', '4-р сар', '5-р сар', '6-р сар', 
+                '7-р сар', '8-р сар', '9-р сар', '10-р сар', '11-р сар', '12-р сар'];
+
+const orderInner = document.getElementById('dateOrderInner');
+const calendar = document.getElementById('calendar');
+const selectedDateText = document.getElementById('selectedDateText');
+
+// Order-inner дээр дарахад calendar нээх/хаах
+orderInner.addEventListener('click', function(e) {
+    // Хэрэв calendar дотор дарсан бол юу ч хийхгүй
+    if (calendar.contains(e.target)) {
+        return;
+    }
     
-    const months = ['1-р сар', '2-р сар', '3-р сар', '4-р сар', '5-р сар', '6-р сар', 
-                    '7-р сар', '8-р сар', '9-р сар', '10-р сар', '11-р сар', '12-р сар'];
-    
-    const orderInner = document.getElementById('dateOrderInner');
-    const calendar = document.getElementById('calendar');
-    
-    orderInner.addEventListener('click', function(e) {
-        if (calendar.style.display === 'none' || !calendar.style.display) {
-            const rect = orderInner.getBoundingClientRect();
-            calendar.style.left = rect.left + 'px';
-            calendar.style.top = (rect.bottom + 8) + 'px';
-            calendar.style.display = 'block';
-            renderCalendar();
-        } else {
-            calendar.style.display = 'none';
-        }
-    });
-    
-    document.addEventListener('click', (e) => {
-        if (!calendar.contains(e.target) && !orderInner.contains(e.target)) {
-            calendar.style.display = 'none';
-        }
-    });
-    
-    function changeMonth(delta) {
-        currentDate.setMonth(currentDate.getMonth() + delta);
+    // Calendar-г toggle хийх
+    if (calendar.style.display === 'none' || calendar.style.display === '') {
+        calendar.style.display = 'block';
         renderCalendar();
+    } else {
+        calendar.style.display = 'none';
+    }
+});
+
+// Гаднаа дарахад calendar хаах
+document.addEventListener('click', (e) => {
+    if (!orderInner.contains(e.target)) {
+        calendar.style.display = 'none';
+    }
+});
+
+function changeMonth(delta) {
+    event.stopPropagation();
+    currentDate.setMonth(currentDate.getMonth() + delta);
+    renderCalendar();
+}
+
+function renderCalendar() {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    
+    document.getElementById('monthYear').textContent = `${months[month]} ${year}`;
+    
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const calendarDays = document.getElementById('calendarDays');
+    calendarDays.innerHTML = '';
+    
+    // Empty cells
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        calendarDays.appendChild(emptyDay);
     }
     
-    function renderCalendar() {
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
+    // Days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.textContent = day;
+        dayElement.className = 'day';
         
-        document.getElementById('monthYear').textContent = `${months[month]} ${year}`;
+        const dateValue = new Date(year, month, day);
+        const isSelected = selectedDate && dateValue.toDateString() === selectedDate.toDateString();
         
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        const calendarDays = document.getElementById('calendarDays');
-        calendarDays.innerHTML = '';
-        
-        // Empty cells
-        for (let i = 0; i < firstDay; i++) {
-            const emptyDay = document.createElement('div');
-            calendarDays.appendChild(emptyDay);
+        if (isSelected) {
+            dayElement.classList.add('selected');
         }
         
-        // Days
-        for (let day = 1; day <= daysInMonth; day++) {
-            const dayElement = document.createElement('div');
-            dayElement.textContent = day;
-            dayElement.className = 'day';
-            
-            const dateValue = new Date(year, month, day);
-            const isSelected = selectedDate && dateValue.toDateString() === selectedDate.toDateString();
-            
-            if (isSelected) {
-                dayElement.classList.add('selected');
-            }
-            
-            dayElement.onclick = function(e) {
-                e.stopPropagation();
-                selectedDate = dateValue;
-                const formattedDate = `${year}/${String(month + 1).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-                document.getElementById('selectedDateText').textContent = formattedDate;
-                document.getElementById('selectedDateText').style.color = '#333';
-                calendar.style.display = 'none';
-            };
-            
-            calendarDays.appendChild(dayElement);
-        }
+        dayElement.onclick = function(e) {
+            e.stopPropagation();
+            selectedDate = dateValue;
+            const formattedDate = `${year}/${String(month + 1).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
+            selectedDateText.textContent = formattedDate;
+            selectedDateText.style.color = '#333';
+            calendar.style.display = 'none';
+        };
+        
+        calendarDays.appendChild(dayElement);
     }
+}
 </script>
 					<order-inner 
   						service="Цаг" 
