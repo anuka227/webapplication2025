@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
+:root {
+    --color-bg: #fff8fa;
+    --color-pr: #ffedfb;
+    --color-nav: #0b123e;
+    --color-order: #fc8eac;
+    --color-white: #ffffff;
+    --color-hover-gray: rgba(0, 0, 0, 0.05);
+    --color-border: rgba(236, 64, 122, 0.2);
+
+    --font-home: "Roboto Mono";
+    --font-control: italic 100 0.4rem "Shadows Into Light", cursive ;
+    --font-logo: italic 200 1.8rem "Marck Script", cursive;
+    --font-h2: italic 400 1rem "Shadows Into Light", cursive;
+    --font-order-info: italic 400 1rem "Nunito", sans-serif;
+    --font-special: italic 600 1rem "Edu NSW ACT Hand Pre", cursive;
+
+    --box-shadow: 8px 16px 32px rgba(236, 64, 122, 0.15);
+
+    --animation-main: fadeSlide 0.8s ease-out;
+}
+/* * {
+    background-color: var(--color-bg);
+} */
+aside {
+    background-color: var(--color-order);
+    grid-area: as;
+    height: 100vh;
+    width: 100px;
+    position: fixed;
+    top:0;
+    img {
+        border: 1px var(--color-order) solid;
+        border-radius: 50%;
+        padding: 10px;
+        margin: 0;
+        transition: box-shadow 0.4s ease;
+    }
+    svg{
+        width: 30px;
+        height: 30px;
+        color: var(--color-nav);
+        padding: 10px;
+        border-radius: 50%;
+        margin: 0;
+        transition: box-shadow 0.4s ease;
+        }
+    nav{
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
+            align-items: center;
+        ul{
+            padding: 0;
+            list-style: none;
+            li{
+                padding: 1rem;
+            }  
+        } 
+        .logout {
+            padding: 1rem;        
+        }
+    }
+}
+aside svg:hover {
+    background-color: var(--color-bg);
+    color: var(--color-order);
+    box-shadow: var(--box-shadow);
+    border: 1px var(--color-border) solid;
+}
+aside img:hover {
+    background-color: var(--color-bg);
+}
+footer {
+    grid-area: ft;
+    text-align: center;
+    padding: 1rem;
+    font: var(--font-order-info);
+    color: #666;
+    background: var(--color-bg);
+    border-top: 1px solid rgba(238, 133, 185, 0.2);
+}
+
+::-webkit-scrollbar {
+  width: 8px;      
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-order);  
+  border-radius: 12px;         
+  border: none;              
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;   
+}
+
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

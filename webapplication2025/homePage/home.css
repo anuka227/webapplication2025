@@ -1,0 +1,241 @@
+body {
+    display: grid;
+    margin: 0;
+    grid-template-areas: 
+        "as head"
+        "as main"
+        "as ft";
+    grid-template-columns: 100px auto; 
+    height: 100vh; 
+    background-color: var(--color-bg);
+}
+
+header {
+    grid-area: head;
+    display: flex;
+    height: 48vh;
+    max-width: 100vw;
+    justify-content: center;
+    p {
+        font: var(--font-logo);
+        letter-spacing: 4px;
+    }
+    #paragraph-one {
+        position: absolute;
+        font-size: 4rem;
+        top: 14vh;
+        left: 28vw;
+    }
+    #paragraph-two{
+        font-size: 8rem;
+        position: absolute;
+        top: 14vh;
+        left: 36vw;
+    }
+    .logo {
+        z-index: -1; 
+        .logo-element {
+            filter: drop-shadow(0 0 5px #ee85b9);
+        }
+        :first-child {
+            position: absolute;
+            width: 22rem;
+            height: 24rem;
+            top: 4vh;
+            right: 16vw;
+            animation: moveFade-two 5s infinite;
+        }
+        :nth-child(6) {
+            position: absolute;
+            width: 9rem;
+            height: 9rem;
+            top: 2vh;
+            left: 52vw;
+            animation: moveFade 5s infinite;
+        }
+        :nth-child(4) {
+            position: absolute;
+            width: 7rem;
+            height: 7rem;
+            top: 8vh;
+            left: 42vw;
+            animation: moveFade 5s infinite;
+            animation-delay: 2s;
+        }
+        :nth-child(7) {
+            position: absolute;
+            width: 8rem;
+            height: 8rem;
+            top: 20vh;
+            left: 12vw;
+            animation: moveFade 5s infinite;
+            animation-delay: 4s;
+        }
+        :nth-child(5) {
+            position: absolute;
+            width: 8rem;
+            height: 8rem;
+            top: 4vh;
+            right: 8vw;
+            animation: moveFade 5s infinite;
+            animation-delay: 4s;
+        }
+        :nth-child(2) {
+            position: absolute;
+            width: 8rem;
+            height: 8rem;
+            top: 2vh;
+            left: 32vw;
+            animation: moveFade 5s infinite;
+            animation-delay: 3s;
+        }
+        :nth-child(3) {
+            position: absolute;
+            width: 10rem;
+            height: 10rem;
+            top: 4vh;
+            left: 20vw;
+            animation: moveFade 5s infinite;
+            animation-delay: 1s;
+        }
+    } 
+}
+
+@keyframes moveFade {
+  0%, 100%{
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes moveFade-two {
+  0%, 100%{
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+main {
+    grid-area: main;
+    z-index: 1;
+    animation: var(--animation-main);
+    h2 {
+        margin: 1rem 0 1rem 0;
+        padding:10px 0 10px 160px;
+        font: var(--font-h2);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 24px;
+    }
+}
+
+header #paragraph-one,
+header #paragraph-two {
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.salonsections, .artistsections {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 91vw;
+    margin: 0 auto;
+    gap:10px;
+    animation: fadeSlide 1s ease;
+    .salonsection, .artistsection {
+        display: flex;
+        width: auto;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px 1rem 20px 1rem;
+        flex: 1;
+      h4{
+        font: var(--font-special);
+        margin: 4px;
+        font-size: 16px;
+      }
+  }
+}
+.salonsection {
+    gap: 32px;
+}
+.artistsection {
+    gap: 64px
+}
+.salonsection img {
+    width: 290px;
+    height: 190px;
+    border-radius: 10%;
+    cursor: pointer;
+    transition: 
+        width 0.3s ease,
+        height 0.3s ease,
+        box-shadow 0.4s ease;
+}
+.salonsection img:hover {
+    transform: scale(1.05);
+    box-shadow: var(--box-shadow);
+    border-color: var(--color-border);
+}
+.salonsection::-webkit-scrollbar {
+    display: none;
+}
+
+.artistsection img {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 
+        width 0.3s ease,
+        height 0.3s ease,
+        box-shadow 0.4s ease;
+}
+.artistsection img:hover {
+    transform: scale(1.05);
+    box-shadow: var(--box-shadow);
+    border-color: var(--color-border);
+}
+.artistsection::-webkit-scrollbar {
+    display: none;
+}
+.snav {
+    background-color: var(--color-bg);
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 10px;
+    user-select: none;
+    color: var(--color-order);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.snav:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+.prev, .next {
+    flex-shrink: 0;      
+}
+
+
+
+@media screen and (max-width:600px) {
+    body{
+        grid-template-areas:"head"
+                            "main"
+                            "as";
+    }
+    footer {
+        display: none;
+    }
+}
