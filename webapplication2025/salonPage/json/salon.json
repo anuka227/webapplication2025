@@ -4,29 +4,188 @@
       "id": "salon1",
       "name": "Beauty Paradise",
       "img": "https://picsum.photos/300/200?random=1",
-      "description": "Located at Twin Park's Centre, Lucinda's Hair & Beauty salon provides you a range of highly trendy hair cuts and styling, makeup, hair coloring, waxing services, spray tanning and facials.",
-      "mission": "",
-      "location": "",
-      "schedule": "",
-      "services": ["Manicure", "Pedicure", "Hair drier"],
-      "creative": [],
-      "service" : [
+      "description": "Гоо сайхан гэдэг бүх хүний мэдрэх ёстой аз жаргал юм. Хосоороо, найз нөхдөөрөө үйлчлүүлэхэп хамгийн тухтай орчин байх болно.",
+      "mission": "Хамгийн таатай орчинг бүрдүүлж хэрэглэгч та бүгдийг сэтгэл ханамжтай хүлээн авах болно.",
+      "rating": 4.7,
+      "reviews_count": 342,
+      "branches": [
         {
-            "Manicure" : "70000",
-            "Pedicure" : "72000"
+          "branch_id": "salon1_branch1",
+          "branch_name": "Beauty Paradise - Central",
+          "location": "Twin Park's Centre, 3rd floor, Ulaanbaatar",
+          "schedule": "Mon—Sat 09:00 — 21:00"
+        },
+        {
+          "branch_id": "salon1_branch2",
+          "branch_name": "Beauty Paradise - Zaisan",
+          "location": "Хан-Уул дүүрэг, Зайсан, Sky Mall 2-р давхар",
+          "schedule": "Өдөр бүр 10:00 — 20:00"
+        },
+        {
+          "branch_id": "salon1_branch3",
+          "branch_name": "Beauty Paradise - БЗД",
+          "location": "Баянзүрх дүүрэг, Их Монгол 25-р байр",
+          "schedule": "Даваа—Ням 10:30 — 21:30"
         }
-      ]
-    },
+      ],
+      "service": [
+  {
+    "type": "Manicure",
+    "description": "Хумсны арчилгаа",
+    "subservice": [
+      {
+        "id": "manicure1",
+        "name": "Энгийн маникюр",
+        "price": "40000",
+        "duration": "45 мин"
+      },
+      {
+        "id": "manicure2",
+        "name": "Smart хумс",
+        "price": "55000",
+        "duration": "60 мин"
+      },
+      {
+        "id": "manicure3",
+        "name": "Гел будалт",
+        "price": "65000",
+        "duration": "75 мин"
+      },
+      {
+        "id": "manicure4",
+        "name": "Гоёлын будалт",
+        "price": "80000",
+        "duration": "90 мин"
+      }
+    ]
+  },
+  {
+    "type": "Pedicure",
+    "description": "Хөлний хумс арчилгаа",
+    "subservice": [
+      {
+        "id": "pedicure1",
+        "name": "Энгийн педикюр",
+        "price": "45000",
+        "duration": "50 мин"
+      },
+      {
+        "id": "pedicure2",
+        "name": "Spa педикюр",
+        "price": "65000",
+        "duration": "75 мин"
+      },
+      {
+        "id": "pedicure3",
+        "name": "Гел будалт",
+        "price": "70000",
+        "duration": "80 мин"
+      }
+    ]
+  },
+  {
+    "type": "Haircut",
+    "description": "Үс засалт",
+    "subservice": [
+      {
+        "id": "haircut1",
+        "name": "Эмэгтэй үс засалт",
+        "price": "50000",
+        "duration": "60 мин"
+      },
+      {
+        "id": "haircut2",
+        "name": "Эрэгтэй үс засалт",
+        "price": "35000",
+        "duration": "45 мин"
+      },
+      {
+        "id": "haircut3",
+        "name": "Хүүхдийн үс засалт",
+        "price": "25000",
+        "duration": "30 мин"
+      }
+    ]
+  },
+  {
+    "type": "Hair Treatment",
+    "description": "Үсний эмчилгээ",
+    "subservice": [
+      {
+        "id": "treatment1",
+        "name": "Keratin эмчилгээ",
+        "price": "250000",
+        "duration": "180 мин"
+      },
+      {
+        "id": "treatment2",
+        "name": "Протейн эмчилгээ",
+        "price": "120000",
+        "duration": "120 мин"
+      },
+      {
+        "id": "treatment3",
+        "name": "Арчилгаа mask",
+        "price": "45000",
+        "duration": "45 мин"
+      }
+    ]
+  },
+  {
+    "type": "Coloring",
+    "description": "Үсний будалт",
+    "subcategories": [
+      {
+        "id": "coloring1",
+        "name": "Энгийн будалт",
+        "price": "80000",
+        "duration": "120 мин"
+      },
+      {
+        "id": "coloring2",
+        "name": "Балаяж",
+        "price": "180000",
+        "duration": "180 мин"
+      },
+      {
+        "id": "coloring3",
+        "name": "Омбре",
+        "price": "160000",
+        "duration": "150 мин"
+      },
+      {
+        "id": "coloring4",
+        "name": "Хэрчим будалт",
+        "price": "120000",
+        "duration": "120 мин"
+      }
+    ]
+  }
+]
+},
+
     {
       "id": "salon2",
       "name": "GS Lash & Nail Studio",
       "img": "https://picsum.photos/300/200?random=2",
       "description": "Манайх 2006 оноос хойш үйл ажиллагаагаа явуулж байгаа ба мэргэжлийн артистуудыг сонгон ажиллуулдаг.",
-      "mission": "",
-      "location": "Содон хороолол, 110-р байр, GS lash&nail studio, Ulaanbaatar",
-      "schedule": "Өдөр бүр 10:00 — 20:00",
+      "mission": "Гоо сайхны салбарт тэргүүлэгч байх",
+      "rating": 4.8,
+      "reviews_count": 456,
+      "location": "БЗД, ParkOd Mall 1-р давхар",
+      "schedule": "Мягмар—Ням 09:30 — 20:00",
       "services": ["Lash", "Make Up", "Tattoo", "Wax", "Manicure", "Pedicure"],
-      "creative": []
+      "creative": ["Lash Technician", "Tattoo Artist"],
+      "service": [
+        {
+          "Lash Extension": "85000",
+          "Manicure": "55000",
+          "Tattoo": "150000",
+          "Make up": "85000",
+          "Pedicure": "55000",
+          "Wax": "150000"
+        }
+      ]
     },
     {
       "id": "salon3",
@@ -34,10 +193,20 @@
       "img": "https://picsum.photos/300/200?random=3",
       "description": "Glow Beauty House нь арьс арчилгаа, массаж болон нүүр будалтын тусгай үйлчилгээтэй, тав тухтай орчинг бүрдүүлсэн premium салон юм.",
       "mission": "Хэрэглэгч бүрт өөрийн гэсэн онцгой glow-г бэлэглэх.",
+      "rating": 4.9,
+      "reviews_count": 287,
       "location": "Хан-Уул дүүрэг, Зайсан Hill 208-р тоот",
       "schedule": "Даваа—Баасан 09:00 — 21:00",
       "services": ["Facial", "Full Body Massage", "Hair Style", "Make Up"],
-      "creative": ["Natural Make Up Artist", "Skin Treatment Specialist"]
+      "creative": ["Natural Make Up Artist", "Skin Treatment Specialist"],
+      "service": [
+        {
+          "Facial": "95000",
+          "Full Body Massage": "120000",
+          "Make Up": "80000",
+          "Hair style": "60000"
+        }
+      ]
     },
     {
       "id": "salon4",
@@ -45,10 +214,37 @@
       "img": "https://picsum.photos/300/200?random=4",
       "description": "Luxe Hair Studio нь үс засалт, үсний өнгө засвар, balayage, ombré зэрэг мэргэжлийн үслэг үйлчилгээ үзүүлдэг.",
       "mission": "Үсний гоо үзэсгэлэнг шинжлэх ухаан дээр тулгуурлан сэргээх.",
-      "location": "Сүхбаатар дүүрэг, 1-р хороо, Central Tower 6-р давхар",
-      "schedule": "Өдөр бүр 10:00 — 22:00",
+      "rating": 4.9,
+      "reviews_count": 523,
+      "branches": [
+        {
+          "branch_id": "salon4_branch1",
+          "branch_name": "Luxe Hair Studio - Central",
+          "location": "Сүхбаатар дүүрэг, Central Tower 6-р давхар",
+          "schedule": "Өдөр бүр 10:00 — 22:00"
+        },
+        {
+          "branch_id": "salon4_branch2",
+          "branch_name": "Luxe Hair Studio - Хан-Уул",
+          "location": "Хан-Уул дүүрэг, Энх Тайваны өргөн чөлөө 15",
+          "schedule": "Даваа—Ням 09:00 — 21:00"
+        },
+        {
+          "branch_id": "salon4_branch3",
+          "branch_name": "Luxe Hair Studio - Баянгол",
+          "location": "Баянгол дүүрэг, 3-р хороо, Premium Tower 5-р давхар",
+          "schedule": "Өдөр бүр 10:00 — 20:00"
+        }
+      ],
       "services": ["Haircut", "Balayage", "Color Repair", "Keratin Treatment"],
-      "creative": ["Professional Colorist"]
+      "creative": ["Professional Colorist", "Hair Treatment Specialist"],
+      "service": [
+        {
+          "Haircut": "50000",
+          "Balayage": "180000",
+          "Keratin Treatment": "250000"
+        }
+      ]
     },
     {
       "id": "salon5",
@@ -56,10 +252,19 @@
       "img": "https://picsum.photos/300/200?random=5",
       "description": "Creative nail design, гелин маникюр, педикюрийн төрөлжсөн салон. Trend nail art-уудыг хамгийн түрүүнд хийдэг гэдгээрээ алдартай.",
       "mission": "Өвөрмөц дизайн бүрийг урлагийн бүтээл болгох.",
+      "rating": 4.8,
+      "reviews_count": 398,
       "location": "Баянгол дүүрэг, 4-р хороо, 13-р байр",
       "schedule": "Пүрэв—Ням 10:00 — 19:30",
       "services": ["Gel Manicure", "Acrylic Nails", "Nail Art", "Pedicure"],
-      "creative": ["Nail Artist", "Acrylic Specialist"]
+      "creative": ["Nail Artist", "Acrylic Specialist"],
+      "service": [
+        {
+          "Gel Manicure": "60000",
+          "Acrylic Nails": "75000",
+          "Nail Art": "90000"
+        }
+      ]
     },
     {
       "id": "salon6",
@@ -67,10 +272,253 @@
       "img": "https://picsum.photos/300/200?random=6",
       "description": "Арьсны эмчилгээ, deep cleaning, laser treatment, freckles removal зэрэг үйлчилгээ үзүүлдэг мэргэжлийн клиник салон.",
       "mission": "Илүү эрүүл, гэрэлтсэн арьсыг шинжлэх ухааны аргаар бий болгох.",
+      "rating": 4.9,
+      "reviews_count": 412,
       "location": "БЗД, 26-р хороо, ParkOd Mall 3-р давхар",
       "schedule": "Мягмар—Ням 09:30 — 20:00",
       "services": ["Deep Cleaning", "Laser Treatment", "Freckles Removal", "Acne Care"],
-      "creative": ["Dermatology Specialist", "Laser Technician"]
+      "creative": ["Dermatology Specialist", "Laser Technician"],
+      "service": [
+        {
+          "Deep Cleaning": "110000",
+          "Laser Treatment": "200000",
+          "Freckles Removal": "350000"
+        }
+      ]
+    },
+    {
+      "id": "salon7",
+      "name": "Elegance Spa & Salon",
+      "img": "https://picsum.photos/300/200?random=7",
+      "description": "Spa болон гоо сайхны иж бүрэн үйлчилгээ үзүүлдэг салон. Тайван, амрах орчинд таны сэтгэлийн байдлыг сэргээнэ.",
+      "mission": "Биеийн болон сэтгэлийн тэнцвэрт байдлыг хангах.",
+      "rating": 4.8,
+      "reviews_count": 567,
+      "branches": [
+        {
+          "branch_id": "salon7_branch1",
+          "branch_name": "Elegance Spa & Salon - Sky Tower",
+          "location": "Чингэлтэй дүүрэг, Sky Tower Mall 5-р давхар",
+          "schedule": "Даваа—Ням 08:00 — 22:00"
+        },
+        {
+          "branch_id": "salon7_branch2",
+          "branch_name": "Elegance Spa & Salon - БЗД",
+          "location": "Баянзүрх дүүрэг, 14-р хороо, Peace Avenue 88",
+          "schedule": "Өдөр бүр 09:00 — 21:00"
+        },
+        {
+          "branch_id": "salon7_branch3",
+          "branch_name": "Elegance Spa & Salon - Зайсан",
+          "location": "Хан-Уул дүүрэг, Зайсан Hill Residence Tower B",
+          "schedule": "Мягмар—Ням 08:30 — 21:30"
+        }
+      ],
+      "services": ["Thai Massage", "Hot Stone Therapy", "Aromatherapy", "Body Scrub"],
+      "creative": ["Thai Massage Therapist", "Aromatherapy Specialist"],
+      "service": [
+        {
+          "Thai Massage": "130000",
+          "Hot Stone Therapy": "145000",
+          "Body Scrub": "98000"
+        }
+      ]
+    },
+    {
+      "id": "salon8",
+      "name": "Bloom Hair & Beauty",
+      "img": "https://picsum.photos/300/200?random=8",
+      "description": "Үс арчилгаа, будалт, chemical treatment зэрэг олон төрлийн үйлчилгээ үзүүлдэг. Танд тохирох стайлыг мэргэжлийн зөвлөгөөтэй олох боломжтой.",
+      "mission": "Үс бүрийг эрүүл, гоёмсог болгох.",
+      "rating": 4.6,
+      "reviews_count": 289,
+      "location": "Сүхбаатар дүүрэг, Баруун Селбэ, 14-р байр",
+      "schedule": "Мягмар—Ням 10:00 — 20:00",
+      "services": ["Haircut", "Hair Coloring", "Perm", "Hair Treatment"],
+      "creative": ["Senior Hair Stylist", "Color Specialist"],
+      "service": [
+        {
+          "Haircut": "48000",
+          "Hair Coloring": "120000",
+          "Perm": "160000"
+        }
+      ]
+    },
+    {
+      "id": "salon9",
+      "name": "Crystal Nails Bar",
+      "img": "https://picsum.photos/300/200?random=9",
+      "description": "Хумс арчилгаа болон nail extension-д мэргэшсэн салон. Хамгийн сүүлийн үеийн дизайн, хумсны эрүүл мэндэд анхаардаг.",
+      "mission": "Хумс бүрийг гоёмсог бүтээл болгох.",
+      "rating": 4.7,
+      "reviews_count": 356,
+      "location": "Баянзүрх дүүрэг, 3-р хороо, Grand Plaza 2-р давхар",
+      "schedule": "Даваа—Баасан 09:00 — 19:00",
+      "services": ["Gel Polish", "Nail Extension", "Nail Design", "Spa Pedicure"],
+      "creative": ["Nail Designer", "Gel Extension Specialist"],
+      "service": [
+        {
+          "Gel Polish": "55000",
+          "Nail Extension": "85000",
+          "Spa Pedicure": "68000"
+        }
+      ]
+    },
+    {
+      "id": "salon10",
+      "name": "Radiance Beauty Center",
+      "img": "https://picsum.photos/300/200?random=10",
+      "description": "Нүүр арчилгаа, гоо сайхны эмчилгээ, ботокс, filler зэрэг олон төрлийн үйлчилгээ үзүүлдэг premium салон.",
+      "mission": "Гоо сайхны өндөр технологийг хүртээмжтэй болгох.",
+      "rating": 4.9,
+      "reviews_count": 478,
+      "branches": [
+        {
+          "branch_id": "salon10_branch1",
+          "branch_name": "Radiance Beauty Center - Энх Тайвны",
+          "location": "Хан-Уул дүүрэг, Энх Тайваны өргөн чөлөө, 35-р байр",
+          "schedule": "Өдөр бүр 09:00 — 20:00"
+        },
+        {
+          "branch_id": "salon10_branch2",
+          "branch_name": "Radiance Beauty Center - Central",
+          "location": "Сүхбаатар дүүрэг, Central Tower 4-р давхар",
+          "schedule": "Даваа—Ням 09:00 — 21:00"
+        },
+        {
+          "branch_id": "salon10_branch3",
+          "branch_name": "Radiance Beauty Center - Шангри-Ла",
+          "location": "Чингэлтэй дүүрэг, Шангри-Ла Mall 3-р давхар",
+          "schedule": "Өдөр бүр 10:00 — 20:00"
+        }
+      ],
+      "services": ["Botox", "Filler", "Facial Treatment", "Skin Rejuvenation"],
+      "creative": ["Aesthetic Doctor", "Skin Care Consultant"],
+      "service": [
+        {
+          "Botox": "450000",
+          "Filler": "550000",
+          "Facial Treatment": "135000"
+        }
+      ]
+    },
+    {
+      "id": "salon11",
+      "name": "Velvet Touch Salon",
+      "img": "https://picsum.photos/300/200?random=11",
+      "description": "Waxing, threading, нүүр арчилгаа болон гоо сайхны бусад үйлчилгээг зөөлөн, найрсаг орчинд үзүүлдэг.",
+      "mission": "Амьдралын чанарыг гоо сайхнаар дэмжих.",
+      "rating": 4.7,
+      "reviews_count": 312,
+      "location": "Баянгол дүүрэг, 5-р хороо, 8-р байр",
+      "schedule": "Пүрэв—Ням 10:00 — 19:00",
+      "services": ["Waxing", "Threading", "Facial", "Eyebrow Design"],
+      "creative": ["Waxing Specialist", "Eyebrow Artist"],
+      "service": [
+        {
+          "Full Body Waxing": "95000",
+          "Threading": "15000",
+          "Eyebrow Design": "35000"
+        }
+      ]
+    },
+    {
+      "id": "salon12",
+      "name": "Urban Style Studio",
+      "img": "https://picsum.photos/300/200?random=12",
+      "description": "Залуучуудын дунд алдартай, хувийн загвар стайлд тохирсон үс засалт, будалт, styling үйлчилгээ үзүүлдэг орчин үеийн салон.",
+      "mission": "Хувь хүний style-ийг илэрхийлэх.",
+      "rating": 4.8,
+      "reviews_count": 445,
+      "branches": [
+        {
+          "branch_id": "salon12_branch1",
+          "branch_name": "Urban Style Studio - Seoul Street",
+          "location": "Сүхбаатар дүүрэг, Seoul Street 17",
+          "schedule": "Өдөр бүр 11:00 — 21:00"
+        },
+        {
+          "branch_id": "salon12_branch2",
+          "branch_name": "Urban Style Studio - Shangri-La",
+          "location": "Чингэлтэй дүүрэг, Шангри-Ла Mall 4-р давхар",
+          "schedule": "Даваа—Ням 10:00 — 22:00"
+        },
+        {
+          "branch_id": "salon12_branch3",
+          "branch_name": "Urban Style Studio - Хүннү Mall",
+          "location": "Баянзүрх дүүрэг, Хүннү Mall 2-р давхар",
+          "schedule": "Өдөр бүр 10:30 — 20:30"
+        }
+      ],
+      "services": ["Modern Haircut", "Fashion Color", "Hair Styling", "Beard Trim"],
+      "creative": ["Fashion Stylist", "Barber Specialist"],
+      "service": [
+        {
+          "Modern Haircut": "52000",
+          "Fashion Color": "140000",
+          "Beard Trim": "25000"
+        }
+      ]
+    },
+    {
+      "id": "salon13",
+      "name": "Serenity Wellness Spa",
+      "img": "https://picsum.photos/300/200?random=13",
+      "description": "Эрүүл мэндийн spa төв. Массаж, усан эмчилгээ, detox therapy зэрэг цогц үйлчилгээ үзүүлдэг.",
+      "mission": "Бие махбодын болон сэтгэл санааны эрүүл мэндийг дэмжих.",
+      "rating": 4.9,
+      "reviews_count": 389,
+      "location": "Чингэлтэй дүүрэг, Нарны зам, Wellness Complex",
+      "schedule": "Мягмар—Ням 08:00 — 21:00",
+      "services": ["Swedish Massage", "Lymphatic Drainage", "Sauna", "Detox Therapy"],
+      "creative": ["Massage Therapist", "Wellness Consultant"],
+      "service": [
+        {
+          "Swedish Massage": "115000",
+          "Lymphatic Drainage": "125000",
+          "Detox Therapy": "180000"
+        }
+      ]
+    },
+    {
+      "id": "salon14",
+      "name": "Glamour Makeup Studio",
+      "img": "https://picsum.photos/300/200?random=14",
+      "description": "Мэргэжлийн найруулагч, гэрэл зургийн болон хурим, үдэшлэгийн будалт хийдэг studio. Танд тохирсон будалтыг олно.",
+      "mission": "Амьдралын чухал мөчүүдийг гоёмсог болгох.",
+      "rating": 5.0,
+      "reviews_count": 612,
+      "location": "БЗД, 11-р хороо, Artist Street 22",
+      "schedule": "Даваа—Баасан 10:00 — 18:00",
+      "services": ["Bridal Makeup", "Photo Shoot Makeup", "Evening Makeup", "Makeup Lessons"],
+      "creative": ["Professional Makeup Artist", "Bridal Specialist"],
+      "service": [
+        {
+          "Bridal Makeup": "150000",
+          "Photo Shoot Makeup": "120000",
+          "Evening Makeup": "90000"
+        }
+      ]
+    },
+    {
+      "id": "salon15",
+      "name": "Pure Bliss Beauty Lounge",
+      "img": "https://picsum.photos/300/200?random=15",
+      "description": "VIP үйлчилгээтэй, хувийн танхимтай, иж бүрэн гоо сайхны үйлчилгээ үзүүлдэг. Тав тухтай, нууцлалтай орчин.",
+      "mission": "Хэрэглэгч бүрт онцгой туршлага өгөх.",
+      "rating": 5.0,
+      "reviews_count": 234,
+      "location": "Хан-Уул дүүрэг, Zaisan Hill Residence, Building A",
+      "schedule": "Өдөр бүр 09:00 — 20:00",
+      "services": ["VIP Package", "Full Body Treatment", "Hair & Makeup", "Personal Styling"],
+      "creative": ["VIP Beauty Consultant", "Personal Stylist"],
+      "service": [
+        {
+          "VIP Package": "450000",
+          "Full Body Treatment": "280000",
+          "Personal Styling": "200000"
+        }
+      ]
     }
   ]
 }
