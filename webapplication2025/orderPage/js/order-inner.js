@@ -39,8 +39,7 @@ class OrderInner extends HTMLElement {
     }
     });
 
-    // Үйлчилгээ хэсгийн утгыг солих
-    const serviceList = contentDiv.querySelector('ul.services');
+    const serviceList = contentDiv.querySelector('ul.service');
     if (serviceList) {
         const listItems = serviceList.querySelectorAll('li');
         listItems.forEach(item => {
@@ -53,7 +52,6 @@ class OrderInner extends HTMLElement {
     });
     }
 
-    // Байршил авах код
     const locationLi = this.querySelector('.get-location');
     let mapContainer = this.querySelector('.map-container');
     if (locationLi) {
