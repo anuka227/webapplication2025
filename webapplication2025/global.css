@@ -139,90 +139,97 @@ special-salon {
     }
 }
 
-#detailInfo salon-description {
-    position: fixed;
-    height: 560px;
-    width: 640px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#detailInfo {
+    border: none;
+    border-radius: 16px;
+    padding: 0;
+    max-width: 90%;
+    max-height: 90%;
+    background: transparent;
+}
+
+.salonMedium {
+    position: relative;
     background: var(--color-white);
     border: 2px solid var(--color-order);
     border-radius: 16px;
-    padding: 10px;
-    z-index: 10;
-    overflow-y: scroll;
+    padding: 20px;
+    height: 560px;
+    width: 640px;
+    max-height: 80vh;
+    overflow-y: auto;
 
-    
     .head {
         display: flex;
-        height: 3rem;
+        justify-content: space-between;
         align-items: center;
+        margin-bottom: 20px;
         position: sticky;
+        top: 0;
+        background: var(--color-white);
+        padding: 10px 0;
+        z-index: 10;
 
         h5 {
-            width: 90%;
             font: var(--font-special);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-size: 1.5rem;
+            margin: 0;
         }
 
         svg {
-            width: 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             cursor: pointer;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
         }
     }
 
     .descriptionMain {
-        .section-title {
+        h5 {
             font: var(--font-h2);
             font-weight: 500;
             font-size: 1.2rem;
             letter-spacing: 2.5px;
-            margin: 1.5rem 0 0 0;
-            padding-left: 1rem;
+            margin: 1.5rem 0 0.5rem 0;
         }
 
-        .section-content {
+        p {
             font: var(--font-order-info);
             font-size: 1rem;
-            margin: 4px;
+            margin: 4px 0;
         }
+    }
 
-        .listing {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            list-style: none;
-            flex-wrap: wrap;
+    .salonService {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
 
-            li {
-                text-decoration: uppercase;
-                font: var(--font-order-info);
-                background: var(--color-order);
-                padding: 0.5rem 1rem 0.5rem 1rem;
-                border-radius: 0.5rem;
-            }
+        li {
+            font: var(--font-order-info);
+            background: var(--color-order);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
         }
+    }
 
-        .creative {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-            gap: 2rem;
-            justify-content: center;
+    .creative {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 10px;
 
-            img {
-                width: 10rem;
-                height: 8rem;
-                border-radius: 0.5rem;
-            }
+        img {
+            width: 10rem;
+            height: 8rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
         }
     }
 }
