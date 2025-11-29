@@ -14,6 +14,19 @@ class SalonDescription extends HTMLElement {
         this.schedule = this.getAttribute("schedule");
         this.branch = this.getAttribute("branch");
 
+        let services = [];
+        const serviceAttri = this.getAttribute("services");
+        if(serviceAttri) {
+            services = JSON.parse(serviceAttri);
+        }
+        this.services = services;
+
+        let creative = [];
+        const creativeAttri = this.getAttribute("creative");
+        if(creativeAttri) {
+            creative = JSON.parse(creativeAttri);
+        }
+        this.creative = creative;
         switch (this.type) {
             case "special":
                 console.log("SPECIAL");
@@ -38,9 +51,6 @@ class SalonDescription extends HTMLElement {
                 <img src="${this.img}" alt="${this.name}">
                 <h4>${this.name}</h4>
             </article>
-            <div class="salonInfo" style="display:none;">
-                ${this.originalContent}
-            </div>
         `;
         console.log("/SPECIAL");
     }
@@ -50,6 +60,7 @@ class SalonDescription extends HTMLElement {
     }
 
     salonDetailed() {
+
         this.innerHTML = /*html*/ `
         <div class="salonMedium">
         <div class="head">
@@ -63,19 +74,19 @@ class SalonDescription extends HTMLElement {
             <p>${this.location}</p>
             <h5>Цагийн хуваарь</h5>
             <p>${this.schedule}</p>
+            <h5>Явуулдаг Үйлчилгээ</h5>
             <ul class="salonService">
-                <li>Lash</li>
-			    <li>Make Up</li>
-				<li>Tattoo</li>
-				<li>Wax</li>
-				<li>Manicure</li>
-				<li>Pedicure</li>
+                ${this.services.map(type => `<li>${type}</li>`).join('')}
             </ul>
+            <h5>Бүтээлүүд</h5>
             <div class="creative">
-                <img src="../salon-images/creative/Sodon salon/salon-sale.jpg" alt="sale">
-				<img src="../salon-images/creative/Sodon salon/lash-3D.jpg" alt="lash-3D">
-				<img src="../salon-images/creative/Sodon salon/manicure-red.jpg" alt="lash-3D">
-            </div>
+                    ${this.creative.map(item => {
+                        if (typeof item === 'object') {
+                            return `<img src="${item.img}" alt="${item.alt || 'creative work'}">`;
+                        }
+                        return `<img src="${item}" alt="creative work">`;
+                    }).join('')}
+                </div>
             </div>`;
             console.log("/MIN");
 

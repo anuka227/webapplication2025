@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="./orderPage/order-calendar.css">
 	<script type="module" src="./orderPage/js/order-inner.js"></script>
 	<script type="module" src="./orderPage/js/order-service.js"></script>
-
+	<script type="module" src="./salonPage/salon-list.js"></script>
 	<script type="module" src="../js/special-salon.js"></script>
 	<script type="module" src="./salonPage/salon-description.js"></script>
 	
@@ -270,44 +270,8 @@ function renderCalendar() {
 				<button>Хадгалах</button>
 			</div>
         </section>
-        <section>
-			<h2>Онцлох салон</h2>
-			<div class="salonsections">
-				<button class="snav prev">‹</button>
-				<div class="salonsection">
-					<salon-description type="special" data="1"></salon-description>
-					<salon-description type="special" data="2"></salon-description>
-					<salon-description type="special" data="3"></salon-description>
-					<salon-description type="special" data="4"></salon-description>
-					<salon-description type="special" data="5"></salon-description>
-					<salon-description type="special" data="6"></salon-description>
-					
-				</div>
-				<button class="snav next">›</button>
-			</div>
-			<!-- <salon-description></salon-description> -->
-        </section>
-		<script>
-			document.querySelectorAll('salon-description[type="special"]').forEach(s =>
-			{
-				s.addEventListener('click', ev=>{
-						const dlg = document.querySelector("#detailInfo");
-						dlg.innerHTML = `<salon-description type="detailed" data="${s.getAttribute("data")}"></salon-description>`;
-						dlg.showModal();
-					})
-			}
-		);
-			const salonScroll = document.querySelector(".salonsection");
-			const nextBtn = document.querySelector(".next");
-			const prevBtn = document.querySelector(".prev");
-			nextBtn.addEventListener("click", () => {
-    			salonScroll.scrollBy({ left: 300, behavior: "smooth" });
-			});
-			prevBtn.addEventListener("click", () => {
-    			salonScroll.scrollBy({ left: -300, behavior: "smooth" });
-			});
-		</script>
-		<section>
+		<salon-list></salon-list>
+        	<section>
 			<h2>Онцлох Артист</h2>
 			<div class="artistsections">
 				<button class="snav prev">‹</button>
@@ -350,10 +314,6 @@ function renderCalendar() {
     		});
 		</script>
 
-
-		<salon-description type="maximum"></salon-description>
-		<salon-description type="special"></salon-description>
-		<salon-description ></salon-description>
 		<dialog id="detailInfo"></dialog>
     </main>
     <footer>
