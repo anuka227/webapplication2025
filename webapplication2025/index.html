@@ -12,6 +12,7 @@
 	<script type="module" src="./orderPage/js/order-service.js"></script>
 
 	<script type="module" src="../js/special-salon.js"></script>
+	<script type="module" src="./salonPage/salon-description.js"></script>
 	
 	<script type="module" src="../js/salon-description.js"></script>
 	<script type="module" src="../js/special-artist.js"></script>
@@ -274,49 +275,28 @@ function renderCalendar() {
 			<div class="salonsections">
 				<button class="snav prev">‹</button>
 				<div class="salonsection">
-            		<special-salon salonid="1" name="Beauty Salon" img="../salon-images/bsalon.jpg">
-						<div class="salonInfo">
-							<p slot="description">Located at Twin Park’s Centre, Lucinda’s Hair & Beauty salon provides you a range of highly trendy hair cuts and styling, makeup, hair coloring, waxing services, spray tanning and facials. It was established in the year 2005 and has a team of highly skilled and experienced stylists.</p>
-							<ul slot="salonServices">
-								<li>Manicure</li>
-								<li>Pedicure</li>
-								<li>Hair drier</li>
-							</ul>
-							<p slot="Location"></p>
-						</div>
-					</special-salon>
-            		<special-salon salonid="2" name="Solstice Glow" img="../salon-images/spa.jpg"></special-salon>
-            		<special-salon salonid="3" name="OpalBliss Spa" img="../salon-images/beautysalon.jpg"></special-salon>
-            		<special-salon salonid="4" name="SolsticeGleam Beauty" img="../salon-images/play.jpg"></special-salon>
-					<special-salon salonid="5" name="RoselleMist Studio"></special-salon>
-					<special-salon salonid="6" name="Sweetheart Stunner"></special-salon>
-					<special-salon salonid="7" name="Grandeurity"></special-salon>
-					<special-salon salonid="8" name="Sodon Hair Beauty Salon" img="../salon-images/sodon.jpg">
-						<div class="salonInfo">
-							<p slot="description">Манайх 2006 оноос хойш үйл ажиллагаагаа явуулж байгаа ба мэргэжлийн артистуудыг сонгон ажиллуулдаг.</p>
-							<p slot="schedule">Өдөр бүр 10AM -- 20PM</p>
-							<ul slot="salonServices">
-								<li>Lash</li>
-								<li>Make Up</li>
-								<li>Tattoo</li>
-								<li>Wax</li>
-								<li>Manicure</li>
-								<li>Pedicure</li>
-							</ul>
-							<p slot="location">Содон хороолол 110 байр GS lash&nail studio , Ulaanbaatar, Mongolia</p>
-							<div class="creative" slot="creative">
-								<img src="../salon-images/creative/Sodon salon/salon-sale.jpg" alt="sale">
-								<img src="../salon-images/creative/Sodon salon/lash-3D.jpg" alt="lash-3D">
-								<img src="../salon-images/creative/Sodon salon/manicure-red.jpg" alt="lash-3D">
-							</div>
-						</div>
-					</special-salon>
+					<salon-description type="special" data="1"></salon-description>
+					<salon-description type="special" data="2"></salon-description>
+					<salon-description type="special" data="3"></salon-description>
+					<salon-description type="special" data="4"></salon-description>
+					<salon-description type="special" data="5"></salon-description>
+					<salon-description type="special" data="6"></salon-description>
+					
 				</div>
 				<button class="snav next">›</button>
 			</div>
-			<salon-description></salon-description>
+			<!-- <salon-description></salon-description> -->
         </section>
 		<script>
+			document.querySelectorAll('salon-description[type="special"]').forEach(s =>
+			{
+				s.addEventListener('click', ev=>{
+						const dlg = document.querySelector("#detailInfo");
+						dlg.innerHTML = `<salon-description type="detailed" data="${s.getAttribute("data")}"></salon-description>`;
+						dlg.showModal();
+					})
+			}
+		);
 			const salonScroll = document.querySelector(".salonsection");
 			const nextBtn = document.querySelector(".next");
 			const prevBtn = document.querySelector(".prev");
@@ -369,6 +349,12 @@ function renderCalendar() {
         		artistScroll.scrollBy({ left: -300, behavior: "smooth" });
     		});
 		</script>
+
+
+		<salon-description type="maximum"></salon-description>
+		<salon-description type="special"></salon-description>
+		<salon-description ></salon-description>
+		<dialog id="detailInfo"></dialog>
     </main>
     <footer>
         <p>Created by @WEBAPPLICATIONTEAM</p>

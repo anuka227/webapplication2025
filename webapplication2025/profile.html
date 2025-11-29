@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-	<link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/profile.css">
+	<link rel="stylesheet" href="./global.css">
+    <link rel="stylesheet" href="./profilePage/profle.css">
 </head>
 <body>
     <aside>
@@ -202,28 +202,24 @@
             editDialog.showModal();
         });
 
-        // Close dialog on backdrop click
         editDialog.addEventListener('click', (e) => {
             if (e.target === editDialog) {
                 editDialog.close();
             }
         });
 
-        // Form submit
         editForm.addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Өөрчлөлт хадгалагдлаа!');
             editDialog.close();
         });
 
-        // Order cards click
         document.querySelectorAll('.order-card > div').forEach(card => {
             card.addEventListener('click', () => {
                 alert('Захиалгын дэлгэрэнгүй');
             });
         });
 
-        // History card click
         document.querySelector('.history-cards').addEventListener('click', function() {
             alert('Түүхийн дэлгэрэнгүй');
         });

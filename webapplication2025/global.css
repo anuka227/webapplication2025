@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
+
 :root {
     --color-bg: #fff8fa;
     --color-pr: #ffedfb;
@@ -10,7 +11,7 @@
     --color-border: rgba(236, 64, 122, 0.2);
 
     --font-home: "Roboto Mono";
-    --font-control: italic 100 0.4rem "Shadows Into Light", cursive ;
+    --font-control: italic 100 0.4rem "Shadows Into Light", cursive;
     --font-logo: italic 200 1.8rem "Marck Script", cursive;
     --font-h2: italic 400 1rem "Shadows Into Light", cursive;
     --font-order-info: italic 400 1rem "Nunito", sans-serif;
@@ -20,6 +21,7 @@
 
     --animation-main: fadeSlide 0.8s ease-out;
 }
+
 /* * {
     background-color: var(--color-bg);
 } */
@@ -29,7 +31,8 @@ aside {
     height: 100vh;
     width: 100px;
     position: fixed;
-    top:0;
+    top: 0;
+
     img {
         border: 1px var(--color-order) solid;
         border-radius: 50%;
@@ -37,7 +40,8 @@ aside {
         margin: 0;
         transition: box-shadow 0.4s ease;
     }
-    svg{
+
+    svg {
         width: 30px;
         height: 30px;
         color: var(--color-nav);
@@ -45,34 +49,41 @@ aside {
         border-radius: 50%;
         margin: 0;
         transition: box-shadow 0.4s ease;
-        }
-    nav{
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            justify-content: space-between;
-            align-items: center;
-        ul{
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
+        align-items: center;
+
+        ul {
             padding: 0;
             list-style: none;
-            li{
+
+            li {
                 padding: 1rem;
-            }  
-        } 
+            }
+        }
+
         .logout {
-            padding: 1rem;        
+            padding: 1rem;
         }
     }
 }
+
 aside svg:hover {
     background-color: var(--color-bg);
     color: var(--color-order);
     box-shadow: var(--box-shadow);
     border: 1px var(--color-border) solid;
 }
+
 aside img:hover {
     background-color: var(--color-bg);
 }
+
 footer {
     grid-area: ft;
     text-align: center;
@@ -84,18 +95,18 @@ footer {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;      
+    width: 8px;
 }
 
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-order);  
-  border-radius: 12px;         
-  border: none;              
+    background-color: var(--color-order);
+    border-radius: 12px;
+    border: none;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;   
+    background: transparent;
 }
 
 @keyframes fadeSlide {
@@ -103,8 +114,116 @@ footer {
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
+
+special-salon {
+    .salonsection {
+        display: flex;
+        width: auto;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 20px 1rem 20px 1rem;
+        flex: 1;
+
+        h4 {
+            font: var(--font-special);
+            margin: 4px;
+            font-size: 16px;
+        }
+    }
+}
+
+#detailInfo salon-description {
+    position: fixed;
+    height: 560px;
+    width: 640px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-white);
+    border: 2px solid var(--color-order);
+    border-radius: 16px;
+    padding: 10px;
+    z-index: 10;
+    overflow-y: scroll;
+
+    
+    .head {
+        display: flex;
+        height: 3rem;
+        align-items: center;
+        position: sticky;
+
+        h5 {
+            width: 90%;
+            font: var(--font-special);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        svg {
+            width: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    .descriptionMain {
+        .section-title {
+            font: var(--font-h2);
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 2.5px;
+            margin: 1.5rem 0 0 0;
+            padding-left: 1rem;
+        }
+
+        .section-content {
+            font: var(--font-order-info);
+            font-size: 1rem;
+            margin: 4px;
+        }
+
+        .listing {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            list-style: none;
+            flex-wrap: wrap;
+
+            li {
+                text-decoration: uppercase;
+                font: var(--font-order-info);
+                background: var(--color-order);
+                padding: 0.5rem 1rem 0.5rem 1rem;
+                border-radius: 0.5rem;
+            }
+        }
+
+        .creative {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            gap: 2rem;
+            justify-content: center;
+
+            img {
+                width: 10rem;
+                height: 8rem;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+}
+
