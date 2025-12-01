@@ -25,7 +25,7 @@
 /* * {
     background-color: var(--color-bg);
 } */
-aside {
+aside-nav {
     background-color: var(--color-order);
     grid-area: as;
     height: 100vh;
@@ -122,7 +122,7 @@ footer {
 }
 
 
-special-salon {
+salon-description {
     .salonsection {
         display: flex;
         width: auto;
@@ -233,4 +233,6 @@ special-salon {
         }
     }
 }
+
+
 

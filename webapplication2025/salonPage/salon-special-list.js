@@ -28,7 +28,7 @@ class SalonSpecialList extends HTMLElement {
 
     render() {
         this.innerHTML = /*html*/`
-            <section class="salon-list">
+            <section class="salon-special-list">
                 <h2>Онцлох салон</h2>
                 <div class="salonsections">
                     <button class="snav prev" aria-label="Өмнөх">‹</button>

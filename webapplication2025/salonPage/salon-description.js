@@ -1,7 +1,6 @@
 class SalonDescription extends HTMLElement {
     constructor() {
         super();
-        //implementation
     }
 
     connectedCallback() {
@@ -36,8 +35,11 @@ class SalonDescription extends HTMLElement {
                 console.log("MAX");
                 this.salonMaximum();
                 break;
-            default:
+            case "minimum":
                 console.log("MIN");
+                this.salonMinimum();
+            default:
+                console.log("Detailed");
                 this.salonDetailed();
                 break;
         }
@@ -55,8 +57,37 @@ class SalonDescription extends HTMLElement {
         console.log("/SPECIAL");
     }
 
-    salonMinimum() {
+salonMinimum() {
+        const stars = this.getStarsHTML(parseFloat(this.rating));
         
+        this.innerHTML =`
+            <article>
+                <img src="${this.img}" alt="${this.name}">
+                <div>
+                    <h4>${this.name}</h4>
+                    <div class="rating">
+                        ${stars}
+                        <span style="margin-left: 5px; color: #666;">${this.rating}</span>
+                    </div>
+                </div>
+            </article>
+        `;
+        console.log('/MIN');
+    }
+
+    getStarsHTML(rating) {
+        const fullStars = Math.floor(rating);
+        const emptyStars = 5 - Math.ceil(rating);
+        let html = '';
+        
+        for (let i = 0; i < fullStars; i++) {
+            html += '<span style="color: #ffd700;">★</span>';
+        }
+        for (let i = 0; i < emptyStars; i++) {
+            html += '<span style="color: #ddd;">★</span>';
+        }
+        
+        return html;
     }
 
     salonDetailed() {
@@ -101,66 +132,57 @@ class SalonDescription extends HTMLElement {
             });
         }
     }
-
-    salonMaximum() {
-        this.innerHTML = /*html*/`
+   salonMaximum() {
+    console.log('Branches:', this.branches);
+    console.log('Artists:', this.artists);
+    
+    this.innerHTML = /*html*/`
         <div class="information">
-				<h1>${this.name}</h1>
-			<article>
-				<img src="${this.img}" alt="${this.name}">
-				<address>
-					<h3>Салбар 1</h3><br>
-					<h4>Хаяг</h4>
-                    <p>${this.location}</p>
-					Цагийн хуваарь: Бүх өдөр 10:00-19:00 <br>
-					Холбогдох утасны дугаар: 80808080 <br>
-					<strong>Салбар 2 </strong><br>
-					Хаяг: БЗД 9-р хороо 130-р байр 2 тоот<br>
-					Цагийн хуваарь: Бүх өдөр 10:00-19:00 <br>
-					Холбогдох утасны дугаар: 80808080 <br> 
-				</address>
-			</article>
-			<ul>
-    			<li>Pedicure - 45,000₮ (40min)<button>Book</button></li>
-    			<li>Manicure - 60,000₮<button>Book</button></li>
-    			<li>Wax - 30,000₮ <button>Book</button></li>
-				<li>Uschin - 30,000₮ <button>Book</button></li>
-				<li>Make up - 30,000₮<button>Book</button></li>
-				
-			</ul>
-			<section>
-				<h2>Artist</h2>
-				<div class="artist">
-					<div>
-						<img src="../artist-images/Jiji.jpg">
-            			<h3>Manicurist</h3>
-            			<p>Х. Хулан</p>
-            			
-					</div>
-				
-					<div>
-           				<img src="../artist-images/make-upartist.webp">
-            			<h3>Make up artist</h3>
-          		    	<p>Б. Гүнж</p>
-            			
-					</div>
-					<div>
-            			<img src="../artist-images/Miss.jpg">
-            			<h3>Hairdresser</h3>
-           				<p>Ж. Хүслэн</p>
-            		
-					</div>
-
-					<div>
-            			<img src="../artist-images/Urnaa.webp">
-            			<h3>Spa therapist</h3>
-            			<p>С. Даваагийн</p>
-            			
-					</div>
-			</section>
-		</div>`;
-        console.log("/MAX");
-    }
+            <h1>${this.name}</h1>
+            <article>
+                <img src="${this.img}" alt="${this.name}">
+                <address>
+                    ${this.branches && this.branches.length > 0 ? this.branches.map((branch, index) => `
+                        <h3>${branch.branch_name || `Салбар ${index + 1}`}</h3>
+                        <h4>Хаяг</h4>
+                        <p>${branch.location || 'Байршил тодорхойгүй'}</p>
+                        <p>Цагийн хуваарь: ${branch.schedule || 'Байхгүй'}</p>
+                        <p>Холбогдох утасны дугаар: 80808080</p>
+                        ${index < this.branches.length - 1 ? '<br>' : ''}
+                    `).join('') : `
+                        <h3>Салбар</h3>
+                        <h4>Хаяг</h4>
+                        <p>${this.location || 'Байршил тодорхойгүй'}</p>
+                        <p>Цагийн хуваарь: ${this.schedule || 'Байхгүй'}</p>
+                        <p>Холбогдох утасны дугаар: 80808080</p>
+                    `}
+                </address>
+            </article>
+            
+            ${this.services && this.services.length > 0 ? `
+                <h3>Үйлчилгээнүүд</h3>
+                <ul class="service-list">
+                    ${this.services.map(type => `<li>${type}</li>`).join('')}
+                </ul>
+            ` : ''}
+            
+            ${this.artists && this.artists.length > 0 ? `
+                <section>
+                    <h2>Артистууд</h2>
+                    <div class="artist">
+                        ${this.artists.map(artist => `
+                            <div>
+                                <img src="${artist.img || 'https://picsum.photos/80/80?random=' + Math.random()}">
+                                <h3>${artist.specialty || 'Artist'}</h3>
+                                <p>${artist.name} ${artist.surname || ''}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            ` : ''}
+        </div>
+    `;
+}
     disconnectedCallback() {
         //implementation
     }

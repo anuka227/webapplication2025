@@ -181,20 +181,21 @@
         {
           "id": "artist1",
           "name": "Болормаа",
-          "surname": "Баатар",
+          "surname": "Б",
           "img": "https://picsum.photos/300/300?random=101",
-          "specialty": "Hair Stylist",
+          "profession": "Hair Stylist",
           "experience_years": 8,
           "branch_id": "salon1_branch1",
           "rating": 4.9,
           "reviews_count": 156,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "working_hours": "10:00 — 19:00"
+          "artistschedule": "Даваа-Баасан",
+          "working_hours": "10:00 — 19:00",
+          "experience": "Монголын СУИС-т үсчинээр төгссөн. 8 жилийн туршлагатай."
         },
         {
           "id": "artist2",
           "name": "Алтанцэцэг",
-          "surname": "Нямаа",
+          "surname": "Н",
           "img": "https://picsum.photos/300/300?random=110",
           "specialty": "Manicure & Pedicure Specialist",
           "experience_years": 6,
