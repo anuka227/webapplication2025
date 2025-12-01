@@ -38,6 +38,7 @@ class SalonDescription extends HTMLElement {
             case "minimum":
                 console.log("MIN");
                 this.salonMinimum();
+                break;
             default:
                 console.log("Detailed");
                 this.salonDetailed();

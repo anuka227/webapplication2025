@@ -51,7 +51,27 @@ class OrderInner extends HTMLElement {
         });
     });
     }
-
+    const orderTime = contentDiv.querySelector('order-time');
+        if (orderTime) {
+            orderTime.addEventListener('time-selected', (e) => {
+                const selectedTime = e.detail.time;
+                
+                // Update button text with selected time
+                btnText.textContent = selectedTime;
+                
+                // Close the content
+                contentDiv.classList.remove('show');
+                
+                // Dispatch event from order-inner
+                this.dispatchEvent(new CustomEvent('time-selected', {
+                    detail: { time: selectedTime },
+                    bubbles: true,
+                    composed: true
+                }));
+                
+                console.log('Order-inner: Цаг сонгогдлоо -', selectedTime);
+            });
+        }
     const locationLi = this.querySelector('.get-location');
     let mapContainer = this.querySelector('.map-container');
     if (locationLi) {
