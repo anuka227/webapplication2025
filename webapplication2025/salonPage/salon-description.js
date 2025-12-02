@@ -13,6 +13,28 @@ class SalonDescription extends HTMLElement {
         this.schedule = this.getAttribute("schedule");
         this.branch = this.getAttribute("branch");
 
+        let branches = [];
+    const branchAttri = this.getAttribute("branches");
+    if(branchAttri) {
+        try {
+            branches = JSON.parse(branchAttri);
+        } catch(e) {
+            console.error('Branches parse алдаа:', e);
+        }
+    }
+    this.branches = branches;
+
+    let artists = [];
+    const artistAttri = this.getAttribute("artists");
+    if(artistAttri) {
+        try {
+            artists = JSON.parse(artistAttri);
+        } catch(e) {
+            console.error('Artists parse алдаа:', e);
+        }
+    }
+    this.artists = artists;
+
         let services = [];
         const serviceAttri = this.getAttribute("services");
         if(serviceAttri) {
@@ -38,6 +60,7 @@ class SalonDescription extends HTMLElement {
             case "minimum":
                 console.log("MIN");
                 this.salonMinimum();
+                break;
             default:
                 console.log("Detailed");
                 this.salonDetailed();

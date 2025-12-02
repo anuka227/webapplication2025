@@ -7,11 +7,13 @@ class ArtistDescription extends HTMLElement {
         this.type = this.getAttribute("type") || "special";
         this.name = this.getAttribute("name") || "Unknown Artist";
         this.img = this.getAttribute("img") || "https://picsum.photos/300/200";
-        this.profession = this.getAttribute("profession") || "BEGINNER";
+        this.profession = this.getAttribute("profession") || "";
         this.rating = this.getAttribute("rating") || "0.0";
         this.location = this.getAttribute("location") || "0.0";
-        this.experience = this.getAttribute("experience") || "0.0";
+        this.experience = this.getAttribute("experience") || "4";
+        this.artImg = this.getAttribute("artImg");
         
+
         switch(this.type) {
             case "max": 
                 console.log("MAX");

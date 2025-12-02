@@ -73,14 +73,14 @@ aside-nav {
     }
 }
 
-aside svg:hover {
+aside-nav svg:hover {
     background-color: var(--color-bg);
     color: var(--color-order);
     box-shadow: var(--box-shadow);
     border: 1px var(--color-border) solid;
 }
 
-aside img:hover {
+aside-nav img:hover {
     background-color: var(--color-bg);
 }
 
@@ -235,4 +235,169 @@ salon-description {
 }
 
 
+/* Date Display */
+.date-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 2rem;
 
+    &:hover {
+        border-color: #d1d5db;
+        background: #f9fafb;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+        color: #6b7280;
+    }
+}
+
+#selectedDateText {
+    font-size: 1rem;
+    color: #111827;
+    font-weight: 400;
+}
+
+/* Calendar Dropdown */
+.calendar-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1),
+                0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    min-width: 320px;
+    display: none;
+    z-index: 1000;
+
+    &.active {
+        display: block;
+    }
+}
+
+/* Calendar Header */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    .month-year {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #111827;
+    }
+
+    .calendar-nav {
+        background: none;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background: #f3f4f6;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+            color: #374151;
+        }
+    }
+}
+
+/* Weekdays */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+
+    .weekday {
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #6b7280;
+        padding: 0.5rem;
+    }
+}
+
+/* Calendar Days */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+
+    .day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        color: #111827;
+        transition: all 0.15s;
+
+        &:hover {
+            background: #f3f4f6;
+        }
+
+        &.selected {
+            background: #111827;
+            color: white;
+            font-weight: 500;
+
+            &:hover {
+                background: #374151;
+            }
+        }
+
+        &.today {
+            border: 1px solid #d1d5db;
+        }
+
+        &.disabled {
+            color: #d1d5db;
+            cursor: not-allowed;
+
+            &:hover {
+                background: transparent;
+            }
+        }
+
+        &.other-month {
+            color: #d1d5db;
+
+            &:hover {
+                background: #f9fafb;
+            }
+        }
+    }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .calendar-dropdown {
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100vw - 2rem);
+        max-width: 320px;
+    }
+}

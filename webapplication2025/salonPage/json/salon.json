@@ -216,7 +216,8 @@
       "rating": 4.8,
       "reviews_count": 456,
       "location": "БЗД, ParkOd Mall 1-р давхар",
-      "schedule": "Мягмар—Ням 09:30 — 20:00",
+      "schedule": ["Мягмар", "Лхагва", "Пүрэв"],
+      "time": ["10.00", "11.00", "12.00", "13.00", "14.00"],
       "special": "False",
       "service": [
         {
@@ -2450,7 +2451,7 @@
       ]
     },
     {
-      "id": "i_salon10",
+      "id": "independent",
       "artist_id": "j_artist10",
       "name": "Нарантуяа",
       "surname": "Болд",
