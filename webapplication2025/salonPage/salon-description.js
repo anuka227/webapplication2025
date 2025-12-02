@@ -50,19 +50,15 @@ class SalonDescription extends HTMLElement {
         this.creative = creative;
         switch (this.type) {
             case "special":
-                console.log("SPECIAL");
                 this.specialSalon();
                 break;
             case "maximum":
-                console.log("MAX");
                 this.salonMaximum();
                 break;
             case "minimum":
-                console.log("MIN");
                 this.salonMinimum();
                 break;
             default:
-                console.log("Detailed");
                 this.salonDetailed();
                 break;
         }
@@ -77,7 +73,6 @@ class SalonDescription extends HTMLElement {
                 <h4>${this.name}</h4>
             </article>
         `;
-        console.log("/SPECIAL");
     }
 
 salonMinimum() {
@@ -95,7 +90,6 @@ salonMinimum() {
                 </div>
             </article>
         `;
-        console.log('/MIN');
     }
 
     getStarsHTML(rating) {
@@ -142,7 +136,6 @@ salonMinimum() {
                     }).join('')}
                 </div>
             </div>`;
-            console.log("/MIN");
 
             const closeBtn = this.querySelector('.close-btn');
             if (closeBtn) {

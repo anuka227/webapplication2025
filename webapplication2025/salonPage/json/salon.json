@@ -1,4 +1,4 @@
-  {
+ {
   "salons": [
     {
       "id": "salon1",
@@ -12,15 +12,15 @@
       "creative": [
         {
           "img": "./IMG/salon/creative/SodonSalon/lash-3D.jpg",
-          "alt" : "Eyelash work"
+          "alt": "Eyelash work"
         },
         {
           "img": "./IMG/salon/creative/SodonSalon/manicure-red.jpg",
-          "alt" : "Manicure"
+          "alt": "Manicure"
         },
         {
           "img": "./IMG/salon/creative/SodonSalon/salon-sale.jpg",
-          "alt" : "Sale"
+          "alt": "Sale"
         }
       ],
       "branches": [
@@ -28,19 +28,61 @@
           "branch_id": "salon1_branch1",
           "branch_name": "Beauty Paradise - Central",
           "location": "Twin Park's Centre, 3rd floor, Ulaanbaatar",
-          "schedule": "Mon—Sat 09:00 — 21:00"
+          "schedule": "Өдөр бүр 10:00 — 20:00",
+          "date": ["Monday","Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
         },
         {
           "branch_id": "salon1_branch2",
           "branch_name": "Beauty Paradise - Zaisan",
           "location": "Хан-Уул дүүрэг, Зайсан, Sky Mall 2-р давхар",
-          "schedule": "Өдөр бүр 10:00 — 20:00"
+          "schedule": "Өдөр бүр 10:00 — 20:00",
+          "date": ["Monday","Tuesday","Wednesday", "Thursday","Friday","Saturday","Sunday"],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
         },
         {
           "branch_id": "salon1_branch3",
           "branch_name": "Beauty Paradise - БЗД",
           "location": "Баянзүрх дүүрэг, Их Монгол 25-р байр",
-          "schedule": "Даваа—Ням 10:30 — 21:30"
+          "schedule": "Даваа—Ням 10:30 — 21:30",
+          "date": ["Monday","Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday"],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
         }
       ],
       "service": [
@@ -180,30 +222,150 @@
       "artists": [
         {
           "id": "artist1",
-          "name": "Болормаа",
-          "surname": "Б",
-          "img": "https://picsum.photos/300/300?random=101",
-          "profession": "Hair Stylist",
-          "experience_years": 8,
+          "name": "Б.Болормаа",
+          "img": "./IMG/artist/artist01.jpg",
+          "profession": "Hair Stylist Master",
           "branch_id": "salon1_branch1",
           "rating": 4.9,
           "reviews_count": 156,
-          "artistschedule": "Даваа-Баасан",
-          "working_hours": "10:00 — 19:00",
-          "experience": "Монголын СУИС-т үсчинээр төгссөн. 8 жилийн туршлагатай."
+          "date": ["Monday","Thursday","Sunday","Saturday","Friday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "Монголын СУИС-т үсчинээр төгссөн. 8 жилийн туршлагатай.",
+          "special": "False"
         },
         {
           "id": "artist2",
-          "name": "Алтанцэцэг",
-          "surname": "Н",
-          "img": "https://picsum.photos/300/300?random=110",
-          "specialty": "Manicure & Pedicure Specialist",
-          "experience_years": 6,
+          "name": "Н.Алтанцэцэг",
+          "img": "./IMG/artist/artist02.jpg",
+          "profession": "Manicure & Pedicure Specialist",
           "branch_id": "salon1_branch1",
           "rating": 4.7,
           "reviews_count": 189,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "working_hours": "09:00 — 20:00"
+          "date": ["Monday","Tuesday","Wednesday","Thursday","Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "Тэр салонд гоо заслын артистээр ажилласан арвин туршлагатай, олон төрлийн үйлчлүүлэгчдэд чанартай үйлчилгээ үзүүлж ирсэн.",
+          "special": "True"
+        },
+        {
+          "id": "artist22",
+          "name": "Б.Энхбаяр",
+          "img": "./IMG/artist/artist22.jpg",
+          "profession": "Hair Stylist",
+          "branch_id": "salon1_branch1",
+          "rating": 4.9,
+          "reviews_count": 166,
+          "date": ["Monday","Tuesday","Wednesday","Thursday", "Friday","Saturday","Sunday"],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist23",
+          "name": "Н.Отгонбаяр",
+          "img": "./IMG/artist/artist23.jpg",
+          "profession": "Color Specialist",
+          "branch_id": "salon1_branch2",
+          "rating": 4.7,
+          "reviews_count": 189,
+          "date": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist24",
+          "name": "М.Ууганбаяр",
+          "img": "https://picsum.photos/300/300?random=124",
+          "profession": "Senior Stylist",
+          "branch_id": "salon1_branch3",
+          "rating": 4.9,
+          "reviews_count": 160,
+          "date": ["Monday", "Wednesday","Thursday", "Friday","Saturday","Sunday" ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist25",
+          "name": "Э.Батбаяр",
+          "img": "https://picsum.photos/300/300?random=125",
+          "profession": "Hair Stylist",
+          "branch_id": "salon1_branch1",
+          "rating": 4.8,
+          "reviews_count": 105,
+          "date": ["Monday", "Tuesday","Thursday","Friday","Saturday","Sunday"],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -215,10 +377,31 @@
       "mission": "Гоо сайхны салбарт тэргүүлэгч байх",
       "rating": 4.8,
       "reviews_count": 456,
-      "location": "БЗД, ParkOd Mall 1-р давхар",
-      "schedule": ["Мягмар", "Лхагва", "Пүрэв"],
-      "time": ["10.00", "11.00", "12.00", "13.00", "14.00"],
       "special": "False",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon2_branch1",
+          "branch_name": "Soymbo Beauty - ParkOd Mall",
+          "location": "БЗД, ParkOd Mall 1-р давхар",
+          "schedule": "Мягмар—Ням 09:30 — 20:00",
+          "date": ["Tuesday","Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ],
+          "time": [
+            "09:30",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Lash Extension",
@@ -368,29 +551,146 @@
       "artists": [
         {
           "id": "artist3",
-          "name": "Оюунаа",
-          "surname": "Цэрэн",
-          "img": "https://picsum.photos/300/300?random=105",
-          "specialty": "Lash Technician",
-          "experience_years": 4,
-          "branch_id": null,
+          "name": "Ц.Оюунаа",
+          "img": "./IMG/artist/artist03.jpg",
+          "profession": "Lash Technician",
+          "branch_id": "salon2_branch1",
           "rating": 4.9,
           "reviews_count": 178,
-          "available_days": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "10:00 — 19:00"
+          "date": ["Monday","Wednesday","Thursday","Friday","Saturday"],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
         },
         {
           "id": "artist4",
-          "name": "Ганбаатар",
-          "surname": "Болд",
-          "img": "https://picsum.photos/300/300?random=108",
-          "specialty": "Tattoo Artist",
-          "experience_years": 9,
-          "branch_id": null,
+          "name": "Б.Зулцэцэг",
+          "img": "./IMG/artist/artist04.jpg",
+          "profession": "Tattoo Artist",
+          "branch_id": "salon2_branch1",
           "rating": 4.8,
           "reviews_count": 142,
-          "available_days": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "working_hours": "12:00 — 20:00"
+          "date": [ "Wednesday","Thursday","Friday", "Saturday", "Sunday"],
+          "hours": [
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "True"
+        },
+        {
+          "id": "artist26",
+          "name": "Т.Энхзул",
+          "img": "./IMG/artist/artist26.jpg",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon2_branch1",
+          "rating": 5.0,
+          "reviews_count": 238,
+          "date": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist27",
+          "name": "Г.Болормаа",
+          "img": "https://picsum.photos/300/300?random=127",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon2_branch1",
+          "rating": 4.8,
+          "reviews_count": 126,
+          "date": ["Tuesday","Wednesday","Thursday", "Friday", "Saturday"],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "3 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist28",
+          "name": "О.Алтанцэцэг",
+          "img": "https://picsum.photos/300/300?random=128",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon2_branch1",
+          "rating": 5.0,
+          "reviews_count": 236,
+          "date": ["Monday", "Wednesday","Thursday","Friday","Saturday"],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "3 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist29",
+          "name": "Ц.Наранцэцэг",
+          "img": "https://picsum.photos/300/300?random=129",
+          "profession": "Nail Artist",
+          "branch_id": "salon2_branch1",
+          "rating": 4.9,
+          "reviews_count": 168,
+          "date": ["Monday","Tuesday", "Thursday","Friday","Saturday"],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -402,9 +702,38 @@
       "mission": "Хэрэглэгч бүрт өөрийн гэсэн онцгой glow-г бэлэглэх.",
       "rating": 4.9,
       "reviews_count": 287,
-      "location": "Хан-Уул дүүрэг, Зайсан Hill 208-р тоот",
       "special": "True",
-      "schedule": "Даваа—Баасан 09:00 — 21:00",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon3_branch1",
+          "branch_name": "Herlen Spa - Заisan",
+          "location": "Хан-Уул дүүрэг, Зайсан Hill 208-р тоот",
+          "schedule": "Даваа—Баасан 09:00 — 21:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Facial",
@@ -518,16 +847,185 @@
       "artists": [
         {
           "id": "artist5",
-          "name": "Мөнхтуяа",
-          "surname": "Санжаа",
+          "name": "С.Мөнхтуяа",
           "img": "https://picsum.photos/300/300?random=120",
-          "specialty": "Natural Makeup Artist",
-          "experience_years": 6,
-          "branch_id": null,
+          "profession": "Natural Makeup Artist",
+          "branch_id": "salon3_branch1",
           "rating": 4.8,
           "reviews_count": 203,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday"],
-          "working_hours": "09:00 — 20:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist30",
+          "name": "Д.Сарнай",
+          "img": "https://picsum.photos/300/300?random=130",
+          "profession": "Makeup Artist",
+          "branch_id": "salon3_branch1",
+          "rating": 5.0,
+          "reviews_count": 158,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist31",
+          "name": "Ч.Мөнхтуяа",
+          "img": "https://picsum.photos/300/300?random=131",
+          "profession": "Beauty Consultant",
+          "branch_id": "salon3_branch1",
+          "rating": 4.8,
+          "reviews_count": 125,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist32",
+          "name": "Б.Цэцгээ",
+          "img": "https://picsum.photos/300/300?random=132",
+          "profession": "Makeup Artist",
+          "branch_id": "salon3_branch1",
+          "rating": 4.9,
+          "reviews_count": 187,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist33",
+          "name": "Н.Оюунаа",
+          "img": "https://picsum.photos/300/300?random=133",
+          "profession": "Makeup Artist",
+          "branch_id": "salon3_branch1",
+          "rating": 4.6,
+          "reviews_count": 183,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist34",
+          "name": "М.Номин",
+          "img": "https://picsum.photos/300/300?random=134",
+          "profession": "Makeup Artist",
+          "branch_id": "salon3_branch1",
+          "rating": 4.8,
+          "reviews_count": 171,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -540,24 +1038,95 @@
       "rating": 4.9,
       "reviews_count": 523,
       "special": "False",
+      "creative": [],
       "branches": [
         {
           "branch_id": "salon4_branch1",
           "branch_name": "Luxe Hair Studio - Central",
           "location": "Сүхбаатар дүүрэг, Central Tower 6-р давхар",
-          "schedule": "Өдөр бүр 10:00 — 22:00"
+          "schedule": "Өдөр бүр 10:00 — 22:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00"
+          ]
         },
         {
           "branch_id": "salon4_branch2",
           "branch_name": "Luxe Hair Studio - Хан-Уул",
           "location": "Хан-Уул дүүрэг, Энх Тайваны өргөн чөлөө 15",
-          "schedule": "Даваа—Ням 09:00 — 21:00"
+          "schedule": "Даваа—Ням 09:00 — 21:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ]
         },
         {
           "branch_id": "salon4_branch3",
           "branch_name": "Luxe Hair Studio - Баянгол",
           "location": "Баянгол дүүрэг, 3-р хороо, Premium Tower 5-р давхар",
-          "schedule": "Өдөр бүр 10:00 — 20:00"
+          "schedule": "Өдөр бүр 10:00 — 20:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
         }
       ],
       "service": [
@@ -661,29 +1230,184 @@
       "artists": [
         {
           "id": "artist6",
-          "name": "Цэцгээ",
-          "surname": "Мөнх",
+          "name": "М.Цэцгээ",
           "img": "https://picsum.photos/300/300?random=109",
-          "specialty": "Professional Colorist",
-          "experience_years": 11,
+          "profession": "Professional Colorist",
           "branch_id": "salon4_branch2",
           "rating": 5.0,
           "reviews_count": 221,
-          "available_days": ["Monday", "Tuesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "10:00 — 20:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
         },
         {
           "id": "artist7",
-          "name": "Батбаяр",
-          "surname": "Эрдэнэ",
+          "name": "Э.Батбаяр",
           "img": "https://picsum.photos/300/300?random=111",
-          "specialty": "Hair Treatment Specialist",
-          "experience_years": 5,
+          "profession": "Hair Treatment Specialist",
           "branch_id": "salon4_branch1",
           "rating": 4.8,
           "reviews_count": 143,
-          "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "10:00 — 19:00"
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist35",
+          "name": "Э.Дашням",
+          "img": "https://picsum.photos/300/300?random=135",
+          "profession": "Hair Stylist",
+          "branch_id": "salon4_branch1",
+          "rating": 4.9,
+          "reviews_count": 236,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist36",
+          "name": "Т.Баярмаа",
+          "img": "https://picsum.photos/300/300?random=136",
+          "profession": "Hair Stylist",
+          "branch_id": "salon4_branch2",
+          "rating": 4.7,
+          "reviews_count": 144,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist37",
+          "name": "Г.Ганзориг",
+          "img": "https://picsum.photos/300/300?random=137",
+          "profession": "Hair Stylist",
+          "branch_id": "salon4_branch3",
+          "rating": 4.9,
+          "reviews_count": 234,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist38",
+          "name": "О.Мөнхбат",
+          "img": "https://picsum.photos/300/300?random=138",
+          "profession": "Senior Stylist",
+          "branch_id": "salon4_branch1",
+          "rating": 4.6,
+          "reviews_count": 98,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -695,9 +1419,34 @@
       "mission": "Өвөрмөц дизайн бүрийг урлагийн бүтээл болгох.",
       "rating": 4.8,
       "reviews_count": 398,
-      "location": "Баянгол дүүрэг, 4-р хороо, 13-р байр",
-      "schedule": "Пүрэв—Ням 10:00 — 19:30",
       "special": "True",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon5_branch1",
+          "branch_name": "Gerelt Orchlon - Баянгол",
+          "location": "Баянгол дүүрэг, 4-р хороо, 13-р байр",
+          "schedule": "Пүрэв—Ням 10:00 — 19:30",
+          "date": [
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Manicure",
@@ -763,16 +1512,182 @@
       "artists": [
         {
           "id": "artist8",
-          "name": "Сарнай",
-          "surname": "Ганбат",
+          "name": "Г.Сарнай",
           "img": "https://picsum.photos/300/300?random=102",
-          "specialty": "Nail Artist",
-          "experience_years": 5,
-          "branch_id": null,
+          "profession": "Nail Artist",
+          "branch_id": "salon5_branch1",
           "rating": 4.8,
           "reviews_count": 203,
-          "available_days": ["Thursday", "Friday", "Saturday", "Sunday"],
-          "working_hours": "10:00 — 19:00"
+          "date": [
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist39",
+          "name": "Ц.Батсүх",
+          "img": "https://picsum.photos/300/300?random=139",
+          "profession": "Nail Artist",
+          "branch_id": "salon5_branch1",
+          "rating": 4.8,
+          "reviews_count": 167,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist40",
+          "name": "Д.Эрдэнэ",
+          "img": "https://picsum.photos/300/300?random=140",
+          "profession": "Nail Artist",
+          "branch_id": "salon5_branch1",
+          "rating": 4.9,
+          "reviews_count": 221,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist41",
+          "name": "Ч.Ганбат",
+          "img": "https://picsum.photos/300/300?random=141",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon5_branch1",
+          "rating": 4.9,
+          "reviews_count": 85,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist42",
+          "name": "Б.Энхбаяр",
+          "img": "https://picsum.photos/300/300?random=142",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon5_branch1",
+          "rating": 5.0,
+          "reviews_count": 128,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist43",
+          "name": "Н.Отгонбаяр",
+          "img": "https://picsum.photos/300/300?random=143",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon5_branch1",
+          "rating": 4.8,
+          "reviews_count": 81,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -784,9 +1699,38 @@
       "mission": "Илүү эрүүл, гэрэлтсэн арьсыг шинжлэх ухааны аргаар бий болгох.",
       "rating": 4.9,
       "reviews_count": 412,
-      "location": "БЗД, 26-р хороо, ParkOd Mall 3-р давхар",
-      "special":"False",
-      "schedule": "Мягмар—Ням 09:30 — 20:00",
+      "special": "False",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon6_branch1",
+          "branch_name": "SkinCare Pro Clinic - ParkOd Mall",
+          "location": "БЗД, 26-р хороо, ParkOd Mall 3-р давхар",
+          "schedule": "Мягмар—Ням 09:30 — 20:00",
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "09:30",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Facial Treatment",
@@ -852,29 +1796,183 @@
       "artists": [
         {
           "id": "artist9",
-          "name": "Наранцэцэг",
-          "surname": "Энхбат",
+          "name": "Э.Наранцэцэг",
           "img": "https://picsum.photos/300/300?random=107",
-          "specialty": "Skin Care Specialist",
-          "experience_years": 7,
-          "branch_id": null,
+          "profession": "Skin Care Specialist",
+          "branch_id": "salon6_branch1",
           "rating": 4.9,
           "reviews_count": 165,
-          "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "10:00 — 19:00"
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
         },
         {
           "id": "artist10",
-          "name": "Сайнбаяр",
-          "surname": "Төмөрбаатар",
+          "name": "Т.Сайнбаяр",
           "img": "https://picsum.photos/300/300?random=114",
-          "specialty": "Laser Technician",
-          "experience_years": 6,
-          "branch_id": null,
+          "profession": "Laser Technician",
+          "branch_id": "salon6_branch1",
           "rating": 4.7,
           "reviews_count": 128,
-          "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "10:00 — 19:00"
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist44",
+          "name": "М.Ууганбаяр",
+          "img": "https://picsum.photos/300/300?random=144",
+          "profession": "Facial Specialist",
+          "branch_id": "salon6_branch1",
+          "rating": 5.0,
+          "reviews_count": 159,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist45",
+          "name": "Э.Батбаяр",
+          "img": "https://picsum.photos/300/300?random=145",
+          "profession": "Skin Care Expert",
+          "branch_id": "salon6_branch1",
+          "rating": 4.7,
+          "reviews_count": 229,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist46",
+          "name": "Т.Төмөрбаяр",
+          "img": "https://picsum.photos/300/300?random=146",
+          "profession": "Facial Specialist",
+          "branch_id": "salon6_branch1",
+          "rating": 4.9,
+          "reviews_count": 154,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist47",
+          "name": "Г.Болормаа",
+          "img": "https://picsum.photos/300/300?random=147",
+          "profession": "Skin Care Expert",
+          "branch_id": "salon6_branch1",
+          "rating": 4.8,
+          "reviews_count": 126,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -886,25 +1984,100 @@
       "mission": "Биеийн болон сэтгэлийн тэнцвэрт байдлыг хангах.",
       "rating": 4.8,
       "reviews_count": 567,
-      "special":"False",
+      "special": "False",
+      "creative": [],
       "branches": [
         {
           "branch_id": "salon7_branch1",
           "branch_name": "Elegance Spa & Salon - Sky Tower",
           "location": "Чингэлтэй дүүрэг, Sky Tower Mall 5-р давхар",
-          "schedule": "Даваа—Ням 08:00 — 22:00"
+          "schedule": "Даваа—Ням 08:00 — 22:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00"
+          ]
         },
         {
           "branch_id": "salon7_branch2",
           "branch_name": "Elegance Spa & Salon - БЗД",
           "location": "Баянзүрх дүүрэг, 14-р хороо, Peace Avenue 88",
-          "schedule": "Өдөр бүр 09:00 — 21:00"
+          "schedule": "Өдөр бүр 09:00 — 21:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ]
         },
         {
           "branch_id": "salon7_branch3",
           "branch_name": "Elegance Spa & Salon - Зайсан",
           "location": "Хан-Уул дүүрэг, Зайсан Hill Residence Tower B",
-          "schedule": "Мягмар—Ням 08:30 — 21:30"
+          "schedule": "Мягмар—Ням 08:30 — 21:30",
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "08:30",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ]
         }
       ],
       "service": [
@@ -996,29 +2169,185 @@
       "artists": [
         {
           "id": "artist11",
-          "name": "Ууганбаяр",
-          "surname": "Батсүх",
+          "name": "Б.Ууганбаяр",
           "img": "https://picsum.photos/300/300?random=106",
-          "specialty": "Massage Therapist",
-          "experience_years": 12,
+          "profession": "Massage Therapist",
           "branch_id": "salon7_branch1",
           "rating": 4.8,
           "reviews_count": 198,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "working_hours": "09:00 — 18:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
         },
         {
           "id": "artist12",
-          "name": "Баярмаа",
-          "surname": "Цэнд",
+          "name": "Ц.Баярмаа",
           "img": "https://picsum.photos/300/300?random=118",
-          "specialty": "Aromatherapy Specialist",
-          "experience_years": 8,
+          "profession": "Aromatherapy Specialist",
           "branch_id": "salon7_branch3",
           "rating": 4.9,
           "reviews_count": 145,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "working_hours": "09:00 — 20:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist48",
+          "name": "О.Алтанцэцэг",
+          "img": "https://picsum.photos/300/300?random=148",
+          "profession": "Massage Therapist",
+          "branch_id": "salon7_branch1",
+          "rating": 5.0,
+          "reviews_count": 104,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist49",
+          "name": "Ц.Наранцэцэг",
+          "img": "https://picsum.photos/300/300?random=149",
+          "profession": "Massage Therapist",
+          "branch_id": "salon7_branch2",
+          "rating": 4.8,
+          "reviews_count": 115,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist50",
+          "name": "Д.Сарнай",
+          "img": "https://picsum.photos/300/300?random=150",
+          "profession": "Spa Therapist",
+          "branch_id": "salon7_branch3",
+          "rating": 5.0,
+          "reviews_count": 156,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist51",
+          "name": "Ч.Мөнхтуяа",
+          "img": "https://picsum.photos/300/300?random=151",
+          "profession": "Spa Therapist",
+          "branch_id": "salon7_branch1",
+          "rating": 4.7,
+          "reviews_count": 210,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1030,9 +2359,37 @@
       "mission": "Үс бүрийг эрүүл, гоёмсог болгох.",
       "rating": 4.6,
       "reviews_count": 289,
-      "location": "Сүхбаатар дүүрэг, Баруун Селбэ, 14-р байр",
-      "schedule": "Мягмар—Ням 10:00 — 20:00",
-      "special":"True",
+      "special": "True",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon8_branch1",
+          "branch_name": "Bloom Hair & Beauty - Баруун Селбэ",
+          "location": "Сүхбаатар дүүрэг, Баруун Селбэ, 14-р байр",
+          "schedule": "Мягмар—Ням 10:00 — 20:00",
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Haircut",
@@ -1134,16 +2491,184 @@
       "artists": [
         {
           "id": "artist13",
-          "name": "Ганзориг",
-          "surname": "Бямба",
+          "name": "Б.Ганзориг",
           "img": "https://picsum.photos/300/300?random=113",
-          "specialty": "Senior Hair Stylist",
-          "experience_years": 8,
-          "branch_id": null,
+          "profession": "Senior Hair Stylist",
+          "branch_id": "salon8_branch1",
           "rating": 4.8,
           "reviews_count": 156,
-          "available_days": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "11:00 — 21:00"
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist52",
+          "name": "Б.Цэцгээ",
+          "img": "https://picsum.photos/300/300?random=152",
+          "profession": "Hair Stylist",
+          "branch_id": "salon8_branch1",
+          "rating": 5.0,
+          "reviews_count": 118,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "3 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist53",
+          "name": "Н.Оюунаа",
+          "img": "https://picsum.photos/300/300?random=153",
+          "profession": "Hair Stylist",
+          "branch_id": "salon8_branch1",
+          "rating": 4.8,
+          "reviews_count": 90,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist54",
+          "name": "М.Номин",
+          "img": "https://picsum.photos/300/300?random=154",
+          "profession": "Color Specialist",
+          "branch_id": "salon8_branch1",
+          "rating": 4.9,
+          "reviews_count": 220,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist55",
+          "name": "Э.Дашням",
+          "img": "https://picsum.photos/300/300?random=155",
+          "profession": "Senior Stylist",
+          "branch_id": "salon8_branch1",
+          "rating": 4.7,
+          "reviews_count": 188,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist56",
+          "name": "Т.Баярмаа",
+          "img": "https://picsum.photos/300/300?random=156",
+          "profession": "Senior Stylist",
+          "branch_id": "salon8_branch1",
+          "rating": 4.8,
+          "reviews_count": 182,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1155,9 +2680,36 @@
       "mission": "Хумс бүрийг гоёмсог бүтээл болгох.",
       "rating": 4.7,
       "reviews_count": 356,
-      "location": "Баянзүрх дүүрэг, 3-р хороо, Grand Plaza 2-р давхар",
-      "schedule": "Даваа—Баасан 09:00 — 19:00",
-      "special":"True",
+      "special": "True",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon9_branch1",
+          "branch_name": "Crystal Nails Bar - Grand Plaza",
+          "location": "Баянзүрх дүүрэг, 3-р хороо, Grand Plaza 2-р давхар",
+          "schedule": "Даваа—Баасан 09:00 — 19:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Manicure",
@@ -1217,16 +2769,183 @@
       "artists": [
         {
           "id": "artist14",
-          "name": "Хангай",
-          "surname": "Баяраа",
+          "name": "Б.Хангай",
           "img": "https://picsum.photos/300/300?random=115",
-          "specialty": "Acrylic Specialist",
-          "experience_years": 7,
-          "branch_id": null,
+          "profession": "Acrylic Specialist",
+          "branch_id": "salon9_branch1",
           "rating": 4.9,
           "reviews_count": 194,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "working_hours": "09:00 — 18:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist57",
+          "name": "Г.Ганзориг",
+          "img": "https://picsum.photos/300/300?random=157",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon9_branch1",
+          "rating": 4.8,
+          "reviews_count": 219,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist58",
+          "name": "О.Мөнхбат",
+          "img": "https://picsum.photos/300/300?random=158",
+          "profession": "Nail Artist",
+          "branch_id": "salon9_branch1",
+          "rating": 4.8,
+          "reviews_count": 202,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist59",
+          "name": "Ц.Батсүх",
+          "img": "https://picsum.photos/300/300?random=159",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon9_branch1",
+          "rating": 4.7,
+          "reviews_count": 135,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist60",
+          "name": "Д.Эрдэнэ",
+          "img": "https://picsum.photos/300/300?random=160",
+          "profession": "Manicure Specialist",
+          "branch_id": "salon9_branch1",
+          "rating": 4.9,
+          "reviews_count": 104,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist61",
+          "name": "Ч.Ганбат",
+          "img": "https://picsum.photos/300/300?random=161",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon9_branch1",
+          "rating": 4.7,
+          "reviews_count": 237,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1238,8 +2957,39 @@
       "mission": "Гоо сайхны өндөр технологийг хүртээмжтэй болгох.",
       "rating": 4.9,
       "reviews_count": 478,
-      "location": "Хан-Уул дүүрэг, Энх Тайваны өргөн чөлөө, 35-р байр",
-      "schedule": "Өдөр бүр 09:00 — 20:00",
+      "special": "False",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon10_branch1",
+          "branch_name": "Radiance Beauty Center - Энх Тайван",
+          "location": "Хан-Уул дүүрэг, Энх Тайваны өргөн чөлөө, 35-р байр",
+          "schedule": "Өдөр бүр 09:00 — 20:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Injectable Treatments",
@@ -1323,16 +3073,183 @@
       "artists": [
         {
           "id": "artist15",
-          "name": "Эрдэнэчимэг",
-          "surname": "Баттөр",
+          "name": "Б.Эрдэнэчимэг",
           "img": "https://picsum.photos/300/300?random=116",
-          "specialty": "Aesthetic Doctor",
-          "experience_years": 9,
-          "branch_id": null,
+          "profession": "Aesthetic Doctor",
+          "branch_id": "salon10_branch1",
           "rating": 5.0,
           "reviews_count": 312,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "working_hours": "09:00 — 18:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist62",
+          "name": "Б.Энхбаяр",
+          "img": "https://picsum.photos/300/300?random=162",
+          "profession": "Facial Specialist",
+          "branch_id": "salon10_branch1",
+          "rating": 4.7,
+          "reviews_count": 237,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist63",
+          "name": "Н.Отгонбаяр",
+          "img": "https://picsum.photos/300/300?random=163",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon10_branch1",
+          "rating": 4.9,
+          "reviews_count": 141,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist64",
+          "name": "М.Ууганбаяр",
+          "img": "https://picsum.photos/300/300?random=164",
+          "profession": "Hair Stylist",
+          "branch_id": "salon10_branch1",
+          "rating": 5.0,
+          "reviews_count": 201,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "11 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist65",
+          "name": "Э.Батбаяр",
+          "img": "https://picsum.photos/300/300?random=165",
+          "profession": "Manicure Specialist",
+          "branch_id": "salon10_branch1",
+          "rating": 4.6,
+          "reviews_count": 112,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist66",
+          "name": "Т.Төмөрбаяр",
+          "img": "https://picsum.photos/300/300?random=166",
+          "profession": "Facial Specialist",
+          "branch_id": "salon10_branch1",
+          "rating": 4.7,
+          "reviews_count": 201,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1344,9 +3261,34 @@
       "mission": "Амьдралын чанарыг гоо сайхнаар дэмжих.",
       "rating": 4.7,
       "reviews_count": 312,
-      "location": "Баянгол дүүрэг, 5-р хороо, 8-р байр",
-      "schedule": "Пүрэв—Ням 10:00 — 19:00",
-      "special":"False",
+      "special": "False",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon11_branch1",
+          "branch_name": "Velvet Touch Salon - Баянгол",
+          "location": "Баянгол дүүрэг, 5-р хороо, 8-р байр",
+          "schedule": "Пүрэв—Ням 10:00 — 19:00",
+          "date": [
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Waxing",
@@ -1448,29 +3390,180 @@
       "artists": [
         {
           "id": "artist16",
-          "name": "Дашням",
-          "surname": "Гантөгс",
+          "name": "Г.Дашням",
           "img": "https://picsum.photos/300/300?random=117",
-          "specialty": "Waxing Specialist",
-          "experience_years": 5,
-          "branch_id": null,
+          "profession": "Waxing Specialist",
+          "branch_id": "salon11_branch1",
           "rating": 4.8,
           "reviews_count": 176,
-          "available_days": ["Thursday", "Friday", "Saturday", "Sunday"],
-          "working_hours": "10:00 — 19:00"
+          "date": [
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
         },
         {
           "id": "artist17",
-          "name": "Номин",
-          "surname": "Отгонбаяр",
+          "name": "О.Номин",
           "img": "https://picsum.photos/300/300?random=112",
-          "specialty": "Eyebrow Artist",
-          "experience_years": 4,
-          "branch_id": null,
+          "profession": "Eyebrow Artist",
+          "branch_id": "salon11_branch1",
           "rating": 4.9,
           "reviews_count": 167,
-          "available_days": ["Thursday", "Friday", "Saturday", "Sunday"],
-          "working_hours": "10:00 — 18:00"
+          "date": [
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist67",
+          "name": "Г.Болормаа",
+          "img": "https://picsum.photos/300/300?random=167",
+          "profession": "Facial Specialist",
+          "branch_id": "salon11_branch1",
+          "rating": 5.0,
+          "reviews_count": 218,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist68",
+          "name": "О.Алтанцэцэг",
+          "img": "https://picsum.photos/300/300?random=168",
+          "profession": "Skin Care Expert",
+          "branch_id": "salon11_branch1",
+          "rating": 4.9,
+          "reviews_count": 202,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist69",
+          "name": "Ц.Наранцэцэг",
+          "img": "https://picsum.photos/300/300?random=169",
+          "profession": "Skin Care Expert",
+          "branch_id": "salon11_branch1",
+          "rating": 5.0,
+          "reviews_count": 172,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist70",
+          "name": "Д.Сарнай",
+          "img": "https://picsum.photos/300/300?random=170",
+          "profession": "Facial Specialist",
+          "branch_id": "salon11_branch1",
+          "rating": 4.7,
+          "reviews_count": 130,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1482,25 +3575,94 @@
       "mission": "Хувь хүний style-ийг илэрхийлэх.",
       "rating": 4.8,
       "reviews_count": 445,
-      "special":"False",
+      "special": "False",
+      "creative": [],
       "branches": [
         {
           "branch_id": "salon12_branch1",
           "branch_name": "Urban Style Studio - Seoul Street",
           "location": "Сүхбаатар дүүрэг, Seoul Street 17",
-          "schedule": "Өдөр бүр 11:00 — 21:00"
+          "schedule": "Өдөр бүр 11:00 — 21:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ]
         },
         {
           "branch_id": "salon12_branch2",
           "branch_name": "Urban Style Studio - Shangri-La",
           "location": "Чингэлтэй дүүрэг, Шангри-Ла Mall 4-р давхар",
-          "schedule": "Даваа—Ням 10:00 — 22:00"
+          "schedule": "Даваа—Ням 10:00 — 22:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00"
+          ]
         },
         {
           "branch_id": "salon12_branch3",
           "branch_name": "Urban Style Studio - Хүннү Mall",
           "location": "Баянзүрх дүүрэг, Хүннү Mall 2-р давхар",
-          "schedule": "Өдөр бүр 10:30 — 20:30"
+          "schedule": "Өдөр бүр 10:30 — 20:30",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "10:30",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
         }
       ],
       "service": [
@@ -1598,16 +3760,183 @@
       "artists": [
         {
           "id": "artist18",
-          "name": "Мөнхбат",
-          "surname": "Төмөр",
+          "name": "Т.Мөнхбат",
           "img": "https://picsum.photos/300/300?random=104",
-          "specialty": "Barber Specialist",
-          "experience_years": 6,
+          "profession": "Barber Specialist",
           "branch_id": "salon12_branch1",
           "rating": 4.7,
           "reviews_count": 134,
-          "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "11:00 — 20:00"
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist71",
+          "name": "Ч.Мөнхтуяа",
+          "img": "https://picsum.photos/300/300?random=171",
+          "profession": "Nail Artist",
+          "branch_id": "salon12_branch1",
+          "rating": 4.8,
+          "reviews_count": 125,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist72",
+          "name": "Б.Цэцгээ",
+          "img": "https://picsum.photos/300/300?random=172",
+          "profession": "Makeup Artist",
+          "branch_id": "salon12_branch2",
+          "rating": 4.6,
+          "reviews_count": 199,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist73",
+          "name": "Н.Оюунаа",
+          "img": "https://picsum.photos/300/300?random=173",
+          "profession": "Spa Therapist",
+          "branch_id": "salon12_branch3",
+          "rating": 4.8,
+          "reviews_count": 107,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist74",
+          "name": "М.Номин",
+          "img": "https://picsum.photos/300/300?random=174",
+          "profession": "Facial Specialist",
+          "branch_id": "salon12_branch1",
+          "rating": 4.8,
+          "reviews_count": 235,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist75",
+          "name": "Э.Дашням",
+          "img": "https://picsum.photos/300/300?random=175",
+          "profession": "Color Specialist",
+          "branch_id": "salon12_branch2",
+          "rating": 4.7,
+          "reviews_count": 195,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1619,9 +3948,40 @@
       "mission": "Бие махбодын болон сэтгэл санааны эрүүл мэндийг дэмжих.",
       "rating": 4.9,
       "reviews_count": 389,
-      "location": "Чингэлтэй дүүрэг, Нарны зам, Wellness Complex",
-      "schedule": "Мягмар—Ням 08:00 — 21:00",
-      "special":"False",
+      "special": "False",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon13_branch1",
+          "branch_name": "Serenity Wellness Spa - Нарны зам",
+          "location": "Чингэлтэй дүүрэг, Нарны зам, Wellness Complex",
+          "schedule": "Мягмар—Ням 08:00 — 21:00",
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Massage Therapy",
@@ -1699,17 +4059,184 @@
       "artists": [
         {
           "id": "artist19",
-          "name": "Баатар",
-          "surname": "Чулуун",
+          "name": "Ч.Баатар",
           "img": "https://picsum.photos/300/300?random=121",
-          "specialty": "Wellness Consultant",
-          "experience_years": 10,
-          "branch_id": null,
+          "profession": "Wellness Consultant",
+          "branch_id": "salon13_branch1",
           "rating": 4.9,
           "reviews_count": 210,
-          "special":"False",
-          "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "working_hours": "08:00 — 18:00"
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist76",
+          "name": "Т.Баярмаа",
+          "img": "https://picsum.photos/300/300?random=176",
+          "profession": "Makeup Artist",
+          "branch_id": "salon13_branch1",
+          "rating": 4.9,
+          "reviews_count": 120,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist77",
+          "name": "Г.Ганзориг",
+          "img": "https://picsum.photos/300/300?random=177",
+          "profession": "Pedicure Expert",
+          "branch_id": "salon13_branch1",
+          "rating": 4.8,
+          "reviews_count": 145,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "12 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist78",
+          "name": "О.Мөнхбат",
+          "img": "https://picsum.photos/300/300?random=178",
+          "profession": "Makeup Artist",
+          "branch_id": "salon13_branch1",
+          "rating": 4.7,
+          "reviews_count": 157,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist79",
+          "name": "Ц.Батсүх",
+          "img": "https://picsum.photos/300/300?random=179",
+          "profession": "Makeup Artist",
+          "branch_id": "salon13_branch1",
+          "rating": 4.7,
+          "reviews_count": 171,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist80",
+          "name": "Д.Эрдэнэ",
+          "img": "https://picsum.photos/300/300?random=180",
+          "profession": "Beauty Consultant",
+          "branch_id": "salon13_branch1",
+          "rating": 4.8,
+          "reviews_count": 187,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1721,8 +4248,34 @@
       "mission": "Амьдралын чухал мөчүүдийг гоёмсог болгох.",
       "rating": 5.0,
       "reviews_count": 612,
-      "location": "БЗД, 11-р хороо, Artist Street 22",
-      "schedule": "Даваа—Баасан 10:00 — 18:00",
+      "special": "False",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon14_branch1",
+          "branch_name": "Glamour Makeup Studio - Artist Street",
+          "location": "БЗД, 11-р хороо, Artist Street 22",
+          "schedule": "Даваа—Баасан 10:00 — 18:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "time": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "Bridal Services",
@@ -1800,16 +4353,181 @@
       "artists": [
         {
           "id": "artist20",
-          "name": "Энхжин",
-          "surname": "Дорж",
+          "name": "Д.Энхжин",
           "img": "https://picsum.photos/300/300?random=103",
-          "specialty": "Professional Makeup Artist",
-          "experience_years": 10,
-          "branch_id": null,
+          "profession": "Professional Makeup Artist",
+          "branch_id": "salon14_branch1",
           "rating": 5.0,
           "reviews_count": 287,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday"],
-          "working_hours": "10:00 — 18:00"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist81",
+          "name": "Ч.Ганбат",
+          "img": "https://picsum.photos/300/300?random=181",
+          "profession": "Facial Specialist",
+          "branch_id": "salon14_branch1",
+          "rating": 4.7,
+          "reviews_count": 160,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist82",
+          "name": "Б.Энхбаяр",
+          "img": "https://picsum.photos/300/300?random=182",
+          "profession": "Skin Care Expert",
+          "branch_id": "salon14_branch1",
+          "rating": 4.9,
+          "reviews_count": 132,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist83",
+          "name": "Н.Отгонбаяр",
+          "img": "https://picsum.photos/300/300?random=183",
+          "profession": "Beauty Consultant",
+          "branch_id": "salon14_branch1",
+          "rating": 4.7,
+          "reviews_count": 121,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "6 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist84",
+          "name": "М.Ууганбаяр",
+          "img": "https://picsum.photos/300/300?random=184",
+          "profession": "Lash Technician",
+          "branch_id": "salon14_branch1",
+          "rating": 4.7,
+          "reviews_count": 248,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "8 жилийн туршлагатай",
+          "special": "False"
+        },
+        {
+          "id": "artist85",
+          "name": "Э.Батбаяр",
+          "img": "https://picsum.photos/300/300?random=185",
+          "profession": "Facial Specialist",
+          "branch_id": "salon14_branch1",
+          "rating": 4.7,
+          "reviews_count": 85,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": ["10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "9 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
@@ -1821,9 +4539,39 @@
       "mission": "Хэрэглэгч бүрт онцгой туршлага өгөх.",
       "rating": 5.0,
       "reviews_count": 234,
-      "location": "Хан-Уул дүүрэг, Zaisan Hill Residence, Building A",
-      "schedule": "Өдөр бүр 09:00 — 20:00",
-      "special":"True",
+      "special": "True",
+      "creative": [],
+      "branches": [
+        {
+          "branch_id": "salon15_branch1",
+          "branch_name": "Pure Bliss Beauty Lounge - Zaisan",
+          "location": "Хан-Уул дүүрэг, Zaisan Hill Residence, Building A",
+          "schedule": "Өдөр бүр 09:00 — 20:00",
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "time": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ]
+        }
+      ],
       "service": [
         {
           "type": "VIP Packages",
@@ -1919,868 +4667,719 @@
       "artists": [
         {
           "id": "artist21",
-          "name": "Төмөрхүү",
-          "surname": "Болдбаатар",
+          "name": "Б.Төмөрхүү",
           "img": "https://picsum.photos/300/300?random=119",
-          "specialty": "Personal Stylist",
-          "experience_years": 10,
-          "branch_id": null,
+          "profession": "Personal Stylist",
+          "branch_id": "salon15_branch1",
           "rating": 5.0,
           "reviews_count": 98,
-          "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-          "working_hours": "10:00 — 18:00"
-        }
-      ]
-  }
-],
-"indp_salon": [
-    {
-      "id": "i_salon1",
-      "artist_id": "j_artist1",
-      "name": "Азаа",
-      "surname": "Баттулга",
-      "experience_year": "9 years",
-      "specialty": "Makeup_artist",
-      "rating": "4.8",
-      "review_counts": "568",
-      "location": "БЗД 10-р хороо 297-3 тоот",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=301"
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "10 жилийн туршлагатай",
+          "special": "False"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=302"
+          "id": "artist86",
+          "name": "Т.Төмөрбаяр",
+          "img": "https://picsum.photos/300/300?random=186",
+          "profession": "Skin Care Expert",
+          "branch_id": "salon15_branch1",
+          "rating": 4.7,
+          "reviews_count": 110,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00"
+          ],
+          "experience": "5 жилийн туршлагатай",
+          "special": "False"
         },
         {
-          "img3": "https://picsum.photos/300/300?random=303"
+          "id": "artist87",
+          "name": "Г.Болормаа",
+          "img": "https://picsum.photos/300/300?random=187",
+          "profession": "Color Specialist",
+          "branch_id": "salon15_branch1",
+          "rating": 4.6,
+          "reviews_count": 209,
+          "date": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "3 жилийн туршлагатай",
+          "special": "False"
         },
         {
-          "img4": "https://picsum.photos/300/300?random=304"
+          "id": "artist88",
+          "name": "О.Алтанцэцэг",
+          "img": "https://picsum.photos/300/300?random=188",
+          "profession": "Spa Therapist",
+          "branch_id": "salon15_branch1",
+          "rating": 4.9,
+          "reviews_count": 228,
+          "date": [
+            "Monday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "3 жилийн туршлагатай",
+          "special": "False"
         },
         {
-          "img5": "https://picsum.photos/300/300?random=305"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"],
-      "working_hours": "09:00 — 22:00",
-      "service": [
-        {
-          "type": "Makeup",
-          "description": "Нүүр будалт",
-          "subservice": [
-            {
-              "id": "makeup1",
-              "name": "Daily Makeup",
-              "price": "70000",
-              "duration": "60 мин"
-            },
-            {
-              "id": "makeup2",
-              "name": "Evening Makeup",
-              "price": "90000",
-              "duration": "75 мин"
-            },
-            {
-              "id": "makeup3",
-              "name": "Bridal Makeup",
-              "price": "180000",
-              "duration": "120 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon2",
-      "artist_id": "j_artist2",
-      "name": "Золбаяр",
-      "surname": "Өнөрбаяр",
-      "experience_year": "9 years",
-      "specialty": "Barber",
-      "rating": "4.7",
-      "review_counts": "432",
-      "location": "Сүхбаатар дүүрэг, Seoul Street 25",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=311"
+          "id": "artist89",
+          "name": "Ц.Наранцэцэг",
+          "img": "https://picsum.photos/300/300?random=189",
+          "profession": "Lash Technician",
+          "branch_id": "salon15_branch1",
+          "rating": 4.6,
+          "reviews_count": 94,
+          "date": [
+            "Monday",
+            "Tuesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "hours": [
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00"
+          ],
+          "experience": "4 жилийн туршлагатай",
+          "special": "False"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=312"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=313"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=314"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=315"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "working_hours": "10:00 — 21:00",
-      "service": [
-        {
-          "type": "Haircut",
-          "description": "Үс засалт",
-          "subservice": [
-            {
-              "id": "haircut1",
-              "name": "Classic Haircut",
-              "price": "45000",
-              "duration": "45 мин"
-            },
-            {
-              "id": "haircut2",
-              "name": "Modern Fade",
-              "price": "55000",
-              "duration": "60 мин"
-            }
-          ]
-        },
-        {
-          "type": "Beard Services",
-          "description": "Сахлын үйлчилгээ",
-          "subservice": [
-            {
-              "id": "beard1",
-              "name": "Beard Trim",
-              "price": "30000",
-              "duration": "30 мин"
-            },
-            {
-              "id": "beard2",
-              "name": "Full Grooming",
-              "price": "90000",
-              "duration": "90 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon3",
-      "artist_id": "j_artist3",
-      "name": "Оюунчимэг",
-      "surname": "Ганзориг",
-      "experience_year": "6 years",
-      "specialty": "Nail_artist",
-      "rating": "4.9",
-      "review_counts": "687",
-      "location": "Баянгол дүүрэг, 3-р хороо, 12-р байр",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=321"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=322"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=323"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=324"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=325"
-        }
-      ],
-      "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "working_hours": "11:00 — 20:00",
-      "service": [
-        {
-          "type": "Manicure",
-          "description": "Хумсны арчилгаа",
-          "subservice": [
-            {
-              "id": "manicure1",
-              "name": "Gel Manicure",
-              "price": "60000",
-              "duration": "75 мин"
-            },
-            {
-              "id": "manicure2",
-              "name": "Acrylic Extension",
-              "price": "80000",
-              "duration": "90 мин"
-            },
-            {
-              "id": "manicure3",
-              "name": "Custom Nail Art",
-              "price": "100000",
-              "duration": "120 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon4",
-      "artist_id": "j_artist4",
-      "name": "Бямбасүрэн",
-      "surname": "Цэнд",
-      "experience_year": "11 years",
-      "specialty": "Massage_therapist",
-      "rating": "5.0",
-      "review_counts": "523",
-      "location": "Хан-Уул дүүрэг, Зайсан 45-р байр",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=331"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=332"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=333"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=334"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=335"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "working_hours": "10:00 — 20:00",
-      "service": [
-        {
-          "type": "Massage",
-          "description": "Массаж үйлчилгээ",
-          "subservice": [
-            {
-              "id": "massage1",
-              "name": "Swedish Massage",
-              "price": "120000",
-              "duration": "60 мин"
-            },
-            {
-              "id": "massage2",
-              "name": "Thai Massage",
-              "price": "140000",
-              "duration": "90 мин"
-            },
-            {
-              "id": "massage3",
-              "name": "Deep Tissue",
-              "price": "150000",
-              "duration": "75 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon5",
-      "artist_id": "j_artist5",
-      "name": "Одгэрэл",
-      "surname": "Мөнхбат",
-      "experience_year": "5 years",
-      "specialty": "Lash_technician",
-      "rating": "4.8",
-      "review_counts": "412",
-      "location": "Сүхбаатар дүүрэг, 1-р хороо, 88-р байр",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=341"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=342"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=343"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=344"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=345"
-        }
-      ],
-      "available_days": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "working_hours": "10:00 — 19:00",
-      "service": [
-        {
-          "type": "Lash Extension",
-          "description": "Сормуус өргөтгөл",
-          "subservice": [
-            {
-              "id": "lash1",
-              "name": "Classic Lash",
-              "price": "75000",
-              "duration": "90 мин"
-            },
-            {
-              "id": "lash2",
-              "name": "Volume Lash",
-              "price": "90000",
-              "duration": "120 мин"
-            },
-            {
-              "id": "lash3",
-              "name": "Mega Volume",
-              "price": "110000",
-              "duration": "150 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon6",
-      "artist_id": "j_artist6",
-      "name": "Энхтайван",
-      "surname": "Бат-Эрдэнэ",
-      "experience_year": "12 years",
-      "specialty": "Hair_colorist",
-      "rating": "5.0",
-      "review_counts": "756",
-      "location": "Чингэлтэй дүүрэг, 4-р хороо, Artist Building",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=351"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=352"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=353"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=354"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=355"
-        }
-      ],
-      "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "working_hours": "11:00 — 20:00",
-      "service": [
-        {
-          "type": "Hair Coloring",
-          "description": "Үсний будалт",
-          "subservice": [
-            {
-              "id": "color1",
-              "name": "Балаяж",
-              "price": "200000",
-              "duration": "180 мин"
-            },
-            {
-              "id": "color2",
-              "name": "Омбре",
-              "price": "180000",
-              "duration": "150 мин"
-            },
-            {
-              "id": "color3",
-              "name": "Platinum Blonde",
-              "price": "280000",
-              "duration": "240 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon7",
-      "artist_id": "j_artist7",
-      "name": "Саруул",
-      "surname": "Дорж",
-      "experience_year": "6 years",
-      "specialty": "Eyebrow_microblading",
-      "rating": "4.9",
-      "review_counts": "489",
-      "location": "БЗД, 18-р хороо, Beauty Complex",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=361"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=362"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=363"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=364"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=365"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Thursday", "Friday", "Saturday"],
-      "working_hours": "10:00 — 18:00",
-      "service": [
-        {
-          "type": "Eyebrow Services",
-          "description": "Хөмсөгний үйлчилгээ",
-          "subservice": [
-            {
-              "id": "brow1",
-              "name": "Microblading",
-              "price": "280000",
-              "duration": "150 мин"
-            },
-            {
-              "id": "brow2",
-              "name": "Powder Brows",
-              "price": "300000",
-              "duration": "150 мин"
-            },
-            {
-              "id": "brow3",
-              "name": "Ombré Brows",
-              "price": "320000",
-              "duration": "180 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon8",
-      "artist_id": "j_artist8",
-      "name": "Цолмон",
-      "surname": "Батаа",
-      "experience_year": "7 years",
-      "specialty": "Waxing_specialist",
-      "rating": "4.8",
-      "review_counts": "378",
-      "location": "Хан-Уул дүүрэг, 3-р хороо, Private Studio",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=371"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=372"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=373"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=374"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=375"
-        }
-      ],
-      "available_days": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "working_hours": "11:00 — 19:00",
-      "service": [
-        {
-          "type": "Waxing",
-          "description": "Үс арилгалт",
-          "subservice": [
-            {
-              "id": "wax1",
-              "name": "Brazilian Wax",
-              "price": "90000",
-              "duration": "45 мин"
-            },
-            {
-              "id": "wax2",
-              "name": "Full Body Waxing",
-              "price": "130000",
-              "duration": "120 мин"
-            },
-            {
-              "id": "wax3",
-              "name": "Гарын үс",
-              "price": "50000",
-              "duration": "30 мин"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon9",
-      "artist_id": "j_artist9",
-      "name": "Батжаргал",
-      "surname": "Ганзориг",
-      "experience_year": "9 years",
-      "specialty": "Skin_treatment",
-      "rating": "4.9",
-      "review_counts": "512",
-      "location": "Сүхбаатар дүүрэг, 2-р хороо, Wellness Center",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=381"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=382"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=383"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=384"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=385"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday"],
-      "working_hours": "09:00 — 19:00",
-      "service": [
-        {
-          "type": "Facial Treatment",
-          "description": "Нүүрний эмчилгээ",
-          "subservice": [
-            {
-              "id": "facial1",
-              "name": "Deep Cleansing",
-              "price": "95000",
-              "duration": "60 мин"
-            },
-            {
-              "id": "facial2",
-              "name": "Hydrating Facial",
-              "price": "110000",
-              "duration": "75 мин"
-            },
-            {
-              "id": "facial3",
-              "name": "Anti-aging",
-              "price": "160000",
-              "duration": "90 мин"
-            }
-          ]
+          "id": "artist90",
+          "name": "Д.Сарнай",
+          "img": "https://picsum.photos/300/300?random=190",
+          "profession": "Facial Specialist",
+          "branch_id": "salon15_branch1",
+          "rating": 4.8,
+          "reviews_count": 100,
+          "date": [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "hours": [
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00"
+          ],
+          "experience": "7 жилийн туршлагатай",
+          "special": "False"
         }
       ]
     },
     {
       "id": "independent",
-      "artist_id": "j_artist10",
-      "name": "Нарантуяа",
-      "surname": "Болд",
-      "experience_year": "8 years",
-      "specialty": "Henna_tattoo_artist",
-      "rating": "4.7",
-      "review_counts": "298",
-      "location": "Баянгол дүүрэг, 5-р хороо, 22-р байр",
-      "art_pic": [
+      "artists": [
         {
-          "img1": "https://picsum.photos/300/300?random=391"
-        },
-        {
-          "img2": "https://picsum.photos/300/300?random=392"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=393"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=394"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=395"
-        }
-      ],
-      "available_days": ["Thursday", "Friday", "Saturday", "Sunday"],
-      "working_hours": "12:00 — 21:00",
-      "service": [
-        {
-          "type": "Henna Art",
-          "description": "Хенна урлаг",
-          "subservice": [
+          "id": "j_artist1",
+          "name": "Б.Азаа",
+          "img": "./IMG/artist/j_artist1.jpg",
+          "experience": "Монголын СУИС-т үсчинээр төгссөн. 8 жилийн туршлагатай.",
+          "profession": "Makeup_artist",
+          "rating": "4.8",
+          "reviews_count": "568",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"],
+          "hours": ["09:00", "10:00", "11:00", "12:00", "13:00", "15:00", "17:00", "18:00"],
+          "special": "True",
+          "location": "БЗД 10-р хороо 297-3 тоот",
+          "schedule": "Даваа, Мягмар, Лхагва, Баасан, Бямба, Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=301", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=302", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=303", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=304", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=305", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "henna1",
-              "name": "Гарын henna",
-              "price": "50000",
-              "duration": "60 мин"
-            },
-            {
-              "id": "henna2",
-              "name": "Bridal Henna",
-              "price": "150000",
-              "duration": "180 мин"
-            },
-            {
-              "id": "henna3",
-              "name": "Custom Design",
-              "price": "80000",
-              "duration": "90 мин"
+              "type": "Makeup",
+              "description": "Нүүр будалт",
+              "subservice": [
+                {"id": "makeup1", "name": "Daily Makeup", "price": "70000", "duration": "60 мин"},
+                {"id": "makeup2", "name": "Evening Makeup", "price": "90000", "duration": "75 мин"},
+                {"id": "makeup3", "name": "Bridal Makeup", "price": "180000", "duration": "120 мин"}
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon11",
-      "artist_id": "j_artist11",
-      "name": "Мөнхзул",
-      "surname": "Эрдэнэ",
-      "experience_year": "10 years",
-      "specialty": "Hairstylist",
-      "rating": "4.9",
-      "review_counts": "645",
-      "location": "Чингэлтэй дүүрэг, Seoul Street 33",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=401"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=402"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=403"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=404"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=405"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "working_hours": "10:00 — 20:00",
-      "service": [
-        {
-          "type": "Haircut",
-          "description": "Үс засалт",
-          "subservice": [
+          "id": "j_artist2",
+          "name": "Х.Золбаяр",
+          "img": "./IMG/artist/j_artist02.jpg",
+          "experience": "Олон улсын тэмцээнд түрүүлж мастер зэрэгтэй. 13 жилийн туршлагатай",
+          "profession": "Barber",
+          "rating": "4.7",
+          "reviews_count": "432",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "hours": ["09:00", "10:00", "11:00", "12:00", "13:00", "15:00", "17:00", "18:00"],
+          "special": "False",
+          "location": "Сүхбаатар дүүрэг, Seoul Street 25",
+          "schedule": "Даваа-Бямба",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=311", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=312", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=313", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=314", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=315", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "cut1",
-              "name": "Эмэгтэй үс засалт",
-              "price": "55000",
-              "duration": "60 мин"
+              "type": "Haircut",
+              "description": "Үс засалт",
+              "subservice": [
+                {"id": "haircut1", "name": "Classic Haircut", "price": "45000", "duration": "45 мин"},
+                {"id": "haircut2", "name": "Modern Fade", "price": "55000", "duration": "60 мин"}
+              ]
             },
             {
-              "id": "cut2",
-              "name": "Эрэгтэй үс засалт",
-              "price": "40000",
-              "duration": "45 мин"
-            },
-            {
-              "id": "cut3",
-              "name": "Layered Cut",
-              "price": "70000",
-              "duration": "75 мин"
+              "type": "Beard Services",
+              "description": "Сахлын үйлчилгээ",
+              "subservice": [
+                {"id": "beard1", "name": "Beard Trim", "price": "30000", "duration": "30 мин"},
+                {"id": "beard2", "name": "Full Grooming", "price": "90000", "duration": "90 мин"}
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon12",
-      "artist_id": "j_artist12",
-      "name": "Ганболд",
-      "surname": "Төмөрбаатар",
-      "experience_year": "8 years",
-      "specialty": "Tattoo_artist",
-      "rating": "4.8",
-      "review_counts": "421",
-      "location": "Сүхбаатар дүүрэг, Artist Street 15",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=411"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=412"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=413"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=414"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=415"
-        }
-      ],
-      "available_days": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "working_hours": "13:00 — 21:00",
-      "service": [
-        {
-          "type": "Tattoo",
-          "description": "Шивээс",
-          "subservice": [
+          "id": "j_artist3",
+          "name": "Г.Оюунчимэг",
+          "img": "./IMG/artist/j_artist03.jpg",
+          "experience": "Япон, Солонгосоос сургалт хамтран ажилласан. 6 жилийн туршлагатай.",
+          "profession": "Nail_artist",
+          "rating": "4.9",
+          "reviews_count": "687",
+          "branch_id": "",
+          "date": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "hours": ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+          "special": "True",
+          "location": "Баянгол дүүрэг, 3-р хороо, 12-р байр",
+          "schedule": "Мягмар-Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=321", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=322", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=323", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=324", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=325", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "tattoo1",
-              "name": "Жижиг шивээс",
-              "price": "150000",
-              "duration": "60 мин"
-            },
-            {
-              "id": "tattoo2",
-              "name": "Дунд шивээс",
-              "price": "300000",
-              "duration": "120 мин"
-            },
-            {
-              "id": "tattoo3",
-              "name": "Том шивээс",
-              "price": "500000",
-              "duration": "240 мин"
+              "type": "Manicure",
+              "description": "Хумсны арчилгаа",
+              "subservice": [
+                {"id": "manicure1", "name": "Gel Manicure", "price": "60000", "duration": "75 мин"},
+                {"id": "manicure2", "name": "Acrylic Extension", "price": "80000", "duration": "90 мин"},
+                {"id": "manicure3", "name": "Custom Nail Art", "price": "100000", "duration": "120 мин"}
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon13",
-      "artist_id": "j_artist13",
-      "name": "Эрдэнэцэцэг",
-      "surname": "Баяр",
-      "experience_year": "7 years",
-      "specialty": "Permanent_makeup",
-      "rating": "4.9",
-      "review_counts": "534",
-      "location": "Хан-Уул дүүрэг, Zaisan Premium Tower",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=421"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=422"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=423"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=424"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=425"
-        }
-      ],
-      "available_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "working_hours": "10:00 — 18:00",
-      "service": [
-        {
-          "type": "Permanent Makeup",
-          "description": "Байнгын будалт",
-          "subservice": [
+          "id": "j_artist4",
+          "name": "Б.Цэнд",
+          "img": "./IMG/artist/j_artist04.jpg",
+          "experience": "Тайландад массажны мэргэжил эзэмшсэн. 11 жилийн туршлагатай.",
+          "profession": "Massage_therapist",
+          "rating": "5.0",
+          "reviews_count": "523",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "hours": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+          "special": "False",
+          "location": "Хан-Уул дүүрэг, Зайсан 45-р байр",
+          "schedule": "Даваа-Баасан",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=331", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=332", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=333", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=334", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=335", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "pmu1",
-              "name": "Хөмсөгний microblading",
-              "price": "280000",
-              "duration": "150 мин"
-            },
-            {
-              "id": "pmu2",
-              "name": "Уруулын будалт",
-              "price": "320000",
-              "duration": "120 мин"
-            },
-            {
-              "id": "pmu3",
-              "name": "Eyeliner татуу",
-              "price": "250000",
-              "duration": "90 мин"
+              "type": "Massage",
+              "description": "Массаж үйлчилгээ",
+              "subservice": [
+                {"id": "massage1", "name": "Swedish Massage", "price": "120000", "duration": "60 мин"},
+                {"id": "massage2", "name": "Thai Massage", "price": "140000", "duration": "90 мин"},
+                {"id": "massage3", "name": "Deep Tissue", "price": "150000", "duration": "75 мин"}
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon14",
-      "artist_id": "j_artist14",
-      "name": "Баттөр",
-      "surname": "Ганзориг",
-      "experience_year": "11 years",
-      "specialty": "Hair_extension",
-      "rating": "4.8",
-      "review_counts": "467",
-      "location": "БЗД, 15-р хороо, Hair Studio",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=431"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=432"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=433"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=434"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=435"
-        }
-      ],
-      "available_days": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "working_hours": "11:00 — 20:00",
-      "service": [
-        {
-          "type": "Hair Extension",
-          "description": "Үс залгалт",
-          "subservice": [
+          "id": "j_artist5",
+          "name": "О.Мөнхбат",
+          "img": "./IMG/artist/j_artist05.jpg",
+          "experience": "Сормуусны мэргэжилтэн. 5 жилийн туршлагатай.",
+          "profession": "Lash_technician",
+          "rating": "4.8",
+          "reviews_count": "412",
+          "branch_id": "",
+          "date": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "hours": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+          "special": "False",
+          "location": "Сүхбаатар дүүрэг, 1-р хороо, 88-р байр",
+          "schedule": "Даваа, Лхагва-Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=341", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=342", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=343", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=344", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=345", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "ext1",
-              "name": "Tape-in Extension",
-              "price": "350000",
-              "duration": "180 мин"
-            },
-            {
-              "id": "ext2",
-              "name": "Keratin Bond",
-              "price": "400000",
-              "duration": "240 мин"
-            },
-            {
-              "id": "ext3",
-              "name": "Micro-link",
-              "price": "380000",
-              "duration": "210 мин"
+              "type": "Lash Extension",
+              "description": "Сормуус өргөтгөл",
+              "subservice": [
+                {"id": "lash1", "name": "Classic Lash", "price": "75000", "duration": "90 мин"},
+                {"id": "lash2", "name": "Volume Lash", "price": "90000", "duration": "120 мин"},
+                {"id": "lash3", "name": "Mega Volume", "price": "110000", "duration": "150 мин"}
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "i_salon15",
-      "artist_id": "j_artist15",
-      "name": "Сарантуяа",
-      "surname": "Болдбаатар",
-      "experience_year": "9 years",
-      "specialty": "Bridal_specialist",
-      "rating": "5.0",
-      "review_counts": "612",
-      "location": "Чингэлтэй дүүрэг, Bridal House",
-      "art_pic": [
-        {
-          "img1": "https://picsum.photos/300/300?random=441"
         },
         {
-          "img2": "https://picsum.photos/300/300?random=442"
-        },
-        {
-          "img3": "https://picsum.photos/300/300?random=443"
-        },
-        {
-          "img4": "https://picsum.photos/300/300?random=444"
-        },
-        {
-          "img5": "https://picsum.photos/300/300?random=445"
-        }
-      ],
-      "available_days": ["Friday", "Saturday", "Sunday"],
-      "working_hours": "07:00 — 19:00",
-      "service": [
-        {
-          "type": "Bridal Package",
-          "description": "Хуримын багц",
-          "subservice": [
+          "id": "j_artist6",
+          "name": "Э.Бат-Эрдэнэ",
+          "img": "https://picsum.photos/300/300?random=351",
+          "experience": "Солонгосын сургалтанд хамрагдсан. 12 жилийн туршлагатай.",
+          "profession": "Hair_colorist",
+          "rating": "5.0",
+          "reviews_count": "756",
+          "branch_id": "",
+          "date": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "hours": ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+          "special": "False",
+          "location": "Чингэлтэй дүүрэг, 4-р хороо, Artist Building",
+          "schedule": "Мягмар-Бямба",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=351", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=352", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=353", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=354", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=355", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "bridal1",
-              "name": "Bridal Makeup + Hair",
-              "price": "250000",
-              "duration": "180 мин"
-            },
+              "type": "Hair Coloring",
+              "description": "Үсний будалт",
+              "subservice": [
+                {"id": "color1", "name": "Балаяж", "price": "200000", "duration": "180 мин"},
+                {"id": "color2", "name": "Омбре", "price": "180000", "duration": "150 мин"},
+                {"id": "color3", "name": "Platinum Blonde", "price": "280000", "duration": "240 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist7",
+          "name": "С.Дорж",
+          "img": "https://picsum.photos/300/300?random=361",
+          "experience": "Олон улсын сертификаттай. 6 жилийн туршлагатай.",
+          "profession": "Eyebrow_microblading",
+          "rating": "4.9",
+          "reviews_count": "489",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Thursday", "Friday", "Saturday"],
+          "hours": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+          "special": "True",
+          "location": "БЗД, 18-р хороо, Beauty Complex",
+          "schedule": "Даваа, Мягмар, Пүрэв-Бямба",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=361", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=362", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=363", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=364", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=365", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "bridal2",
-              "name": "Full Bridal Package",
-              "price": "400000",
-              "duration": "240 мин"
-            },
+              "type": "Eyebrow Services",
+              "description": "Хөмсөгний үйлчилгээ",
+              "subservice": [
+                {"id": "brow1", "name": "Microblading", "price": "280000", "duration": "150 мин"},
+                {"id": "brow2", "name": "Powder Brows", "price": "300000", "duration": "150 мин"},
+                {"id": "brow3", "name": "Ombré Brows", "price": "320000", "duration": "180 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist8",
+          "name": "Ц.Батаа",
+          "img": "https://picsum.photos/300/300?random=371",
+          "experience": "Waxing мэргэжилтэн. 7 жилийн туршлагатай.",
+          "profession": "Waxing_specialist",
+          "rating": "4.8",
+          "reviews_count": "378",
+          "branch_id": "",
+          "date": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "hours": ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+          "special": "False",
+          "location": "Хан-Уул дүүрэг, 3-р хороо, Private Studio",
+          "schedule": "Лхагва-Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=371", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=372", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=373", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=374", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=375", "alt": "work5"}
+          ],
+          "service": [
             {
-              "id": "bridal3",
-              "name": "Trial Session",
-              "price": "100000",
-              "duration": "120 мин"
+              "type": "Waxing",
+              "description": "Үс арилгалт",
+              "subservice": [
+                {"id": "wax1", "name": "Brazilian Wax", "price": "90000", "duration": "45 мин"},
+                {"id": "wax2", "name": "Full Body Waxing", "price": "130000", "duration": "120 мин"},
+                {"id": "wax3", "name": "Гарын үс", "price": "50000", "duration": "30 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist9",
+          "name": "Б.Ганзориг",
+          "img": "https://picsum.photos/300/300?random=381",
+          "experience": "Арьс арчилгааны мэргэжилтэн. 9 жилийн туршлагатай.",
+          "profession": "Skin_treatment",
+          "rating": "4.9",
+          "reviews_count": "512",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Friday", "Saturday"],
+          "hours": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+          "special": "True",
+          "location": "Сүхбаатар дүүрэг, 2-р хороо, Wellness Center",
+          "schedule": "Даваа-Лхагва, Баасан-Бямба",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=381", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=382", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=383", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=384", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=385", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Facial Treatment",
+              "description": "Нүүрний эмчилгээ",
+              "subservice": [
+                {"id": "facial1", "name": "Deep Cleansing", "price": "95000", "duration": "60 мин"},
+                {"id": "facial2", "name": "Hydrating Facial", "price": "110000", "duration": "75 мин"},
+                {"id": "facial3", "name": "Anti-aging", "price": "160000", "duration": "90 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist10",
+          "name": "Н.Болд",
+          "img": "https://picsum.photos/300/300?random=391",
+          "experience": "Хенна урлагийн мастер. 8 жилийн туршлагатай.",
+          "profession": "Henna_tattoo_artist",
+          "rating": "4.7",
+          "reviews_count": "298",
+          "branch_id": "",
+          "date": ["Thursday", "Friday", "Saturday", "Sunday"],
+          "hours": ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+          "special": "False",
+          "location": "Баянгол дүүрэг, 5-р хороо, 22-р байр",
+          "schedule": "Пүрэв-Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=391", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=392", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=393", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=394", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=395", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Henna Art",
+              "description": "Хенна урлаг",
+              "subservice": [
+                {"id": "henna1", "name": "Гарын henna", "price": "50000", "duration": "60 мин"},
+                {"id": "henna2", "name": "Bridal Henna", "price": "150000", "duration": "180 мин"},
+                {"id": "henna3", "name": "Custom Design", "price": "80000", "duration": "90 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist11",
+          "name": "М.Эрдэнэ",
+          "img": "https://picsum.photos/300/300?random=401",
+          "experience": "Үс засалтын мэргэжилтэн. 10 жилийн туршлагатай.",
+          "profession": "Hairstylist",
+          "rating": "4.9",
+          "reviews_count": "645",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "hours": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+          "special": "False",
+          "location": "Чингэлтэй дүүрэг, Seoul Street 33",
+          "schedule": "Даваа-Бямба",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=401", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=402", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=403", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=404", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=405", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Haircut",
+              "description": "Үс засалт",
+              "subservice": [
+                {"id": "cut1", "name": "Эмэгтэй үс засалт", "price": "55000", "duration": "60 мин"},
+                {"id": "cut2", "name": "Эрэгтэй үс засалт", "price": "40000", "duration": "45 мин"},
+                {"id": "cut3", "name": "Layered Cut", "price": "70000", "duration": "75 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist12",
+          "name": "Г.Төмөрбаатар",
+          "img": "https://picsum.photos/300/300?random=411",
+          "experience": "Шивээсний уран бүтээлч. 8 жилийн туршлагатай.",
+          "profession": "Tattoo_artist",
+          "rating": "4.8",
+          "reviews_count": "421",
+          "branch_id": "",
+          "date": ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "hours": ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"],
+          "special": "False",
+          "location": "Сүхбаатар дүүрэг, Artist Street 15",
+          "schedule": "Лхагва-Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=411", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=412", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=413", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=414", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=415", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Tattoo",
+              "description": "Шивээс",
+              "subservice": [
+                {"id": "tattoo1", "name": "Жижиг шивээс", "price": "150000", "duration": "60 мин"},
+                {"id": "tattoo2", "name": "Дунд шивээс", "price": "300000", "duration": "120 мин"},
+                {"id": "tattoo3", "name": "Том шивээс", "price": "500000", "duration": "240 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist13",
+          "name": "Э.Баяр",
+          "img": "https://picsum.photos/300/300?random=421",
+          "experience": "Байнгын будалтын мэргэжилтэн. 7 жилийн туршлагатай.",
+          "profession": "Permanent_makeup",
+          "rating": "4.9",
+          "reviews_count": "534",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "hours": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+          "special": "True",
+          "location": "Хан-Уул дүүрэг, Zaisan Premium Tower",
+          "schedule": "Даваа-Баасан",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=421", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=422", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=423", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=424", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=425", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Permanent Makeup",
+              "description": "Байнгын будалт",
+              "subservice": [
+                {"id": "pmu1", "name": "Хөмсөгний microblading", "price": "280000", "duration": "150 мин"},
+                {"id": "pmu2", "name": "Уруулын будалт", "price": "320000", "duration": "120 мин"},
+                {"id": "pmu3", "name": "Eyeliner татуу", "price": "250000", "duration": "90 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist14",
+          "name": "Б.Ганзориг",
+          "img": "https://picsum.photos/300/300?random=431",
+          "experience": "Үс залгалтын мэргэжилтэн. 11 жилийн туршлагатай.",
+          "profession": "Hair_extension",
+          "rating": "4.8",
+          "reviews_count": "467",
+          "branch_id": "",
+          "date": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "hours": ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"],
+          "special": "False",
+          "location": "БЗД, 15-р хороо, Hair Studio",
+          "schedule": "Мягмар-Бямба",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=431", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=432", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=433", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=434", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=435", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Hair Extension",
+              "description": "Үс залгалт",
+              "subservice": [
+                {"id": "ext1", "name": "Tape-in Extension", "price": "350000", "duration": "180 мин"},
+                {"id": "ext2", "name": "Keratin Bond", "price": "400000", "duration": "240 мин"},
+                {"id": "ext3", "name": "Micro-link", "price": "380000", "duration": "210 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist15",
+          "name": "С.Болдбаатар",
+          "img": "https://picsum.photos/300/300?random=441",
+          "experience": "Хуримын будалтын мэргэжилтэн. 9 жилийн туршлагатай.",
+          "profession": "Bridal_specialist",
+          "rating": "5.0",
+          "reviews_count": "612",
+          "branch_id": "",
+          "date": ["Friday", "Saturday", "Sunday"],
+          "hours": ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+          "special": "True",
+          "location": "Чингэлтэй дүүрэг, Bridal House",
+          "schedule": "Баасан-Ням",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=441", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=442", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=443", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=444", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=445", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Bridal Package",
+              "description": "Хуримын багц",
+              "subservice": [
+                {"id": "bridal1", "name": "Bridal Makeup + Hair", "price": "250000", "duration": "180 мин"},
+                {"id": "bridal2", "name": "Full Bridal Package", "price": "400000", "duration": "240 мин"},
+                {"id": "bridal3", "name": "Trial Session", "price": "100000", "duration": "120 мин"}
+              ]
+            }
+          ]
+        },
+        {
+          "id": "j_artist16",
+          "name": "Д.Батжаргал",
+          "img": "https://picsum.photos/300/300?random=451",
+          "experience": "Хумсны дизайнер. 5 жилийн туршлагатай.",
+          "profession": "Nail_artist",
+          "rating": "4.8",
+          "reviews_count": "394",
+          "branch_id": "",
+          "date": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "hours": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+          "special": "False",
+          "location": "Баянгол дүүрэг, 7-р хороо, 18-р байр",
+          "schedule": "Даваа-Баасан",
+          "art_pic": [
+            {"img": "https://picsum.photos/300/300?random=451", "alt": "work1"},
+            {"img": "https://picsum.photos/300/300?random=452", "alt": "work2"},
+            {"img": "https://picsum.photos/300/300?random=453", "alt": "work3"},
+            {"img": "https://picsum.photos/300/300?random=454", "alt": "work4"},
+            {"img": "https://picsum.photos/300/300?random=455", "alt": "work5"}
+          ],
+          "service": [
+            {
+              "type": "Nail Art",
+              "description": "Хумсны урлаг",
+              "subservice": [
+                {"id": "nail1", "name": "3D Nail Art", "price": "95000", "duration": "120 мин"},
+                {"id": "nail2", "name": "Gel Polish", "price": "55000", "duration": "60 мин"},
+                {"id": "nail3", "name": "French Manicure", "price": "65000", "duration": "75 мин"}
+              ]
             }
           ]
         }
