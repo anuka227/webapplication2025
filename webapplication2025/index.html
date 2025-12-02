@@ -12,28 +12,17 @@
 	<script type="module" src="./orderPage/js/order-service.js"></script>
 	<script type="module" src="./orderPage/js/order-time.js"></script>
 	<script type="module" src="./salonPage/salon-special-list.js"></script>
-	<script type="module" src="../js/special-salon.js"></script>
 	<script type="module" src="./aside-nav.js"></script>
 	<script type="module" src="./salonPage/salon-description.js"></script>
 	<script type="module" src="./salonPage/artist-description.js"></script>
-
+	<script type="module" src="./salonPage/artist-special-list.js"></script>
+	<script type="module" src="./salon-header.js"></script>
+	<script type="module" src="./calendar.js"></script>
 	
 </head>
 <body>
 	<aside-nav></aside-nav>
-    <header>
-		<p id="paragraph-one">Гоо Сайхныг </p>
-		<p id="paragraph-two">Мэдэр</p>
-		<div class="logo">
-			<img src="./IMG/logo/woman.png" class="logo-element" alt="woman">
-        	<img src="./IMG/logo/eyelash.png" class="logo-element" alt="eyelash">
-			<img src="./IMG/logo/hair.png" class="logo-element" alt="hair">
-			<img src="./IMG/logo/manicure.png" class="logo-element" alt="manicure">
-			<img src="./IMG/logo/hand.png" class="logo-element" alt="hand">
-			<img src="./IMG/logo/pedicure.png" class="logo-element" alt="pedicure">
-			<img src="./IMG/logo/makeup.png" class="logo-element" alt="makeup">
-		</div>
-    </header>
+	<salon-header></salon-header>
     <main>
         <section>
             <h2>Захиалга</h2>
@@ -63,125 +52,37 @@
 							</li>
 						</ul>
 					</order-inner>
-					<order-inner 
-					id="dateOrderInner"
-  						service="Огноо" 
-  						svgpath='&lt;path d="M14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C20.1752 21.4816 19.3001 21.7706 18 21.8985" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
-								&lt;path d="M7 4V2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
-								&lt;path d="M17 4V2.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/&gt;
-								&lt;path d="M21.5 9H16.625H10.75M2 9H5.875" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/&gt;
-								&lt;path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17C16 16.4477 16.4477 16 17 16C17.5523 16 18 16.4477 18 17Z" fill="#1C274C"/&gt;
-								&lt;path d="M18 13C18 13.5523 17.5523 14 17 14C16.4477 14 16 13.5523 16 13C16 12.4477 16.4477 12 17 12C17.5523 12 18 12.4477 18 13Z" fill="#1C274C"/&gt;
-								&lt;path d="M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z" fill="#1C274C"/&gt;
-								&lt;path d="M13 13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13C11 12.4477 11.4477 12 12 12C12.5523 12 13 12.4477 13 13Z" fill="#1C274C"/&gt;
-								&lt;path d="M8 17C8 17.5523 7.55228 18 7 18C6.44772 18 6 17.5523 6 17C6 16.4477 6.44772 16 7 16C7.55228 16 8 16.4477 8 17Z" fill="#1C274C"/&gt;
-								&lt;path d="M8 13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13C6 12.4477 6.44772 12 7 12C7.55228 12 8 12.4477 8 13Z" fill="#1C274C"/&gt;'>
-						<div>
-        <span id="selectedDateText">Сонгоогүй</span>
+    <order-inner 
+    id="dateOrderInner"
+    service="Огноо" 
+    svgpath='&lt;path d="M14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C20.1752 21.4816 19.3001 21.7706 18 21.8985" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
+    &lt;path d="M7 4V2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/&gt;
+    &lt;path d="M17 4V2.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/&gt;
+    &lt;path d="M21.5 9H16.625H10.75M2 9H5.875" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/&gt;'>
+	<h1>Calendar</h1>
+    <div class="calendar">
+      <header>
+        <h3></h3>
+        <nav>
+          <button id="prev"></button>
+          <button id="next"></button>
+        </nav>
+      </header>
+      <section>
+        <ul class="days">
+          <li>Sun</li>
+          <li>Mon</li>
+          <li>Tue</li>
+          <li>Wed</li>
+          <li>Thu</li>
+          <li>Fri</li>
+          <li>Sat</li>
+        </ul>
+        <ul class="dates"></ul>
+      </section>
     </div>
-								<div id="calendar">
-    						<div class="calendar-header">
-        						<button class="calendar-nav-btn" onclick="changeMonth(-1)">‹</button>
-        						<span id="monthYear"></span>
-        						<button class="calendar-nav-btn" onclick="changeMonth(1)">›</button>
-    						</div>
-    
-    						<div class="weekdays">
-        						<div class="weekday">Ня</div>
-        						<div class="weekday">Да</div>
-        						<div class="weekday">Мя</div>
-        						<div class="weekday">Лх</div>
-        						<div class="weekday">Пү</div>
-        						<div class="weekday">Ба</div>
-        						<div class="weekday">Бя</div>
-    						</div>
-    						<div id="calendarDays"></div>
-						</div>
-					</order-inner>
-					<script>
-					let currentDate = new Date();
-let selectedDate = null;
+</order-inner>
 
-const months = ['1-р сар', '2-р сар', '3-р сар', '4-р сар', '5-р сар', '6-р сар', 
-                '7-р сар', '8-р сар', '9-р сар', '10-р сар', '11-р сар', '12-р сар'];
-
-const orderInner = document.getElementById('dateOrderInner');
-const calendar = document.getElementById('calendar');
-const selectedDateText = document.getElementById('selectedDateText');
-
-// Order-inner дээр дарахад calendar нээх/хаах
-orderInner.addEventListener('click', function(e) {
-    // Хэрэв calendar дотор дарсан бол юу ч хийхгүй
-    if (calendar.contains(e.target)) {
-        return;
-    }
-    
-    // Calendar-г toggle хийх
-    if (calendar.style.display === 'none' || calendar.style.display === '') {
-        calendar.style.display = 'block';
-        renderCalendar();
-    } else {
-        calendar.style.display = 'none';
-    }
-});
-
-// Гаднаа дарахад calendar хаах
-document.addEventListener('click', (e) => {
-    if (!orderInner.contains(e.target)) {
-        calendar.style.display = 'none';
-    }
-});
-
-function changeMonth(delta) {
-    event.stopPropagation();
-    currentDate.setMonth(currentDate.getMonth() + delta);
-    renderCalendar();
-}
-
-function renderCalendar() {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    
-    document.getElementById('monthYear').textContent = `${months[month]} ${year}`;
-    
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
-    const calendarDays = document.getElementById('calendarDays');
-    calendarDays.innerHTML = '';
-    
-    // Empty cells
-    for (let i = 0; i < firstDay; i++) {
-        const emptyDay = document.createElement('div');
-        calendarDays.appendChild(emptyDay);
-    }
-    
-    // Days
-    for (let day = 1; day <= daysInMonth; day++) {
-        const dayElement = document.createElement('div');
-        dayElement.textContent = day;
-        dayElement.className = 'day';
-        
-        const dateValue = new Date(year, month, day);
-        const isSelected = selectedDate && dateValue.toDateString() === selectedDate.toDateString();
-        
-        if (isSelected) {
-            dayElement.classList.add('selected');
-        }
-        
-        dayElement.onclick = function(e) {
-            e.stopPropagation();
-            selectedDate = dateValue;
-            const formattedDate = `${year}/${String(month + 1).padStart(2, '0')}/${String(day).padStart(2, '0')}`;
-            selectedDateText.textContent = formattedDate;
-            selectedDateText.style.color = '#333';
-            calendar.style.display = 'none';
-        };
-        
-        calendarDays.appendChild(dayElement);
-    }
-}
-</script>
 					<order-inner 
   						service="Цаг" 
   						svgpath='&lt;path d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z" fill="#0F0F0F"/&gt;
@@ -196,8 +97,9 @@ function renderCalendar() {
        				 });
     				</script>
 
-                <a href="check.html">Search</a>
+                <a href="order.html">Search</a>
             </div>
+
             <div class="add-2-location">
 				<h4>Хаяг нэмэх</h4>
 				<p>Дүүрэг</p>
@@ -226,63 +128,7 @@ function renderCalendar() {
 			</div>
         </section>
 		<salon-special-list></salon-special-list>
-        	<section>
-			<h2>Онцлох Артист</h2>
-			<div class="artistsections">
-				<button class="snav prev">‹</button>
-				<div class="artistsection">
-            	<special-artist artistid="1" name="James Mary" img="../artist-images/Gvnj.jpg">
-					<div class="artistInfo">
-						<p slot="Experience">10 жил</p>
-						<div class="creative" slot="creative">
-							<img src="../salon-images/creative/Sodon salon/salon-sale.jpg" alt="sale">
-							<img src="../salon-images/creative/Sodon salon/lash-3D.jpg" alt="lash-3D">
-							<img src="../salon-images/creative/Sodon salon/manicure-red.jpg" alt="lash-3D">
-						</div>
-					</div>
-				</special-artist>
-            	<special-artist artistid="2" name="Michael Patricia" img="../artist-images/Jiji.jpg"></special-artist>
-				<special-artist artistid="3" name="John Jennifer" img="../artist-images/make-upartist.webp"></special-artist>
-				<special-artist artistid="4" name="Robert Linda" img="../artist-images/Miss.jpg"></special-artist>
-				<special-artist artistid="5" name="David Elizabeth" img="../artist-images/Saihnaa.jpg"></special-artist>
-				<special-artist artistid="6" name="William Barbara" img="../artist-images/Urnaa.webp"></special-artist>
-				<special-artist artistid="7" name="Richard Susan" img="../artist-images/Gvnj.jpg"></special-artist>
-				<special-artist artistid="8" name="Joseph Jessica" img="../artist-images/Gvnj.jpg"></special-artist>
-				<special-artist artistid="9" name="Thomas Karen" img="../artist-images/Gvnj.jpg"></special-artist>
-				<special-artist artistid="10" name="Charles Lisa" img="../artist-images/Gvnj.jpg"></special-artist>
-
-				<artist-description data="1" name="Michael Patricia" img="../artist-images/Jiji.jpg" type="special"></artist-description>
-			</div>
-			<button class="snav next">›</button>			
-		</div>	
-		<artist-description></artist-description>
-        </section>
-		<script>
-
-			document.querySelectorAll('artist-description[type="special"]').forEach(s =>
-			{
-				s.addEventListener('click', ev=>{
-						const dlg = document.querySelector("#ArtistdetailInfo");
-						dlg.innerHTML = `<artist-description type="medium" data="${s.getAttribute("data")}"></artist-description>`;
-						dlg.showModal();
-					})
-			}
-		);
-
-    		const artistScroll = document.querySelector(".artistsection");
-    		const artistNext = document.querySelector(".artistsections .next");
-    		const artistPrev = document.querySelector(".artistsections .prev");
-
-    		artistNext.addEventListener("click", () => {
-       			artistScroll.scrollBy({ left: 300, behavior: "smooth" });
-    		});
-
-    		artistPrev.addEventListener("click", () => {
-        		artistScroll.scrollBy({ left: -300, behavior: "smooth" });
-    		});
-		</script>
-
-		<dialog id="ArtistdetailInfo"></dialog>
+		<artist-special-list></artist-special-list>
     </main>
     <footer>
         <p>Created by @WEBAPPLICATIONTEAM</p>

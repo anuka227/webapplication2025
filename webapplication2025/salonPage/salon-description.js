@@ -13,6 +13,28 @@ class SalonDescription extends HTMLElement {
         this.schedule = this.getAttribute("schedule");
         this.branch = this.getAttribute("branch");
 
+        let branches = [];
+        const branchAttri = this.getAttribute("branches");
+        if(branchAttri) {
+            try {
+                branches = JSON.parse(branchAttri);
+            } catch(e) {
+                console.error('Branches parse алдаа:', e);
+            }
+        }
+        this.branches = branches;
+
+        let artists = [];
+        const artistAttri = this.getAttribute("artists");
+        if(artistAttri) {
+            try {
+                artists = JSON.parse(artistAttri);
+            } catch(e) {
+                console.error('Artists parse алдаа:', e);
+            }
+        }
+        this.artists = artists;
+
         let services = [];
         const serviceAttri = this.getAttribute("services");
         if(serviceAttri) {
@@ -23,6 +45,7 @@ class SalonDescription extends HTMLElement {
             }
         }
         this.services = services;
+
         let fullServices = [];
         const fullServicesAttri = this.getAttribute("fullservices");
         if(fullServicesAttri) {
@@ -35,26 +58,7 @@ class SalonDescription extends HTMLElement {
             }
         }
         this.fullServices = fullServices;
-        let branches = [];
-        const branchesAttri = this.getAttribute("branches");
-        if(branchesAttri) {
-            try {
-                branches = JSON.parse(branchesAttri);
-            } catch(e) {
-                console.error('Error parsing branches:', e);
-            }
-        }
-        this.branches = branches;
-        let artists = [];
-        const artistsAttri = this.getAttribute("artists");
-        if(artistsAttri) {
-            try {
-                artists = JSON.parse(artistsAttri);
-            } catch(e) {
-                console.error('Error parsing artists:', e);
-            }
-        }
-        this.artists = artists;
+
         let creative = [];
         const creativeAttri = this.getAttribute("creative");
         if(creativeAttri) {
@@ -65,23 +69,20 @@ class SalonDescription extends HTMLElement {
             }
         }
         this.creative = creative;
+
         this.loadFullSalonData();
 
         switch (this.type) {
             case "special":
-                console.log("SPECIAL");
                 this.specialSalon();
                 break;
             case "maximum":
-                console.log("MAX");
                 this.salonMaximum();
                 break;
             case "minimum":
-                console.log("MIN");
                 this.salonMinimum();
                 break;
             default:
-                console.log("Detailed");
                 this.salonDetailed();
                 break;
         }
@@ -115,7 +116,6 @@ class SalonDescription extends HTMLElement {
                 <h4>${this.name}</h4>
             </article>
         `;
-        console.log("/SPECIAL");
     }
 
     salonMinimum() {
@@ -133,7 +133,6 @@ class SalonDescription extends HTMLElement {
                 </div>
             </article>
         `;
-        console.log('/MIN');
     }
 
     getStarsHTML(rating) {
