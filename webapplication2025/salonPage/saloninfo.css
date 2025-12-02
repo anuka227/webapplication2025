@@ -8,6 +8,7 @@ body {
     margin: 0;
     background-color: var(--color-bg);
 }
+
 main {
     grid-area: main;
     display: flex;
@@ -17,17 +18,20 @@ main {
     overflow-y: auto;
     animation: var(--animation-main);
 }
-.main-top{
+
+.main-top {
     display: flex;
     align-items: center;
     gap: 5%;
 }
+
 .tabs {
     display: flex;
     align-items: center;
     background: rgba(236, 64, 122, 0.08);
     border-radius: 25px;
 }
+
 .tab {
     padding: 25px 80px;
     border: none;
@@ -40,25 +44,25 @@ main {
     transition: all 0.3s ease;
     font: var(--font-h2);
 }
+
 .tab.active {
- 
     background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
     color: white;
     box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
 }
+
 .searchbar {
     display: flex;
     align-items: center;
-   
-    background-color:var(--color-order);
+    background-color: var(--color-order);
     border-radius: 25px;
     padding: 10px 70px;
     gap: 10px;
     max-width: 80%;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     font: var(--font-h2);
 }
- 
+
 .searchbar input {
     border: none;
     outline: none;
@@ -67,7 +71,7 @@ main {
     font-size: 15px;
     padding: 8px;
 }
- 
+
 .searchbar button {
     background: var(--color-order);
     border: none;
@@ -76,6 +80,7 @@ main {
     align-items: center;
     gap: 5px;
 }
+
 .salon-content-wrapper,
 salon-all-list .salon-content-wrapper {
     display: flex;
@@ -83,7 +88,7 @@ salon-all-list .salon-content-wrapper {
     flex: 1;
     transition: all 0.3s ease;
 }
- 
+
 .salon-list,
 salon-all-list .salon-list {
     display: flex;
@@ -92,8 +97,7 @@ salon-all-list .salon-list {
     flex: 1;
     transition: all 0.3s ease;
 }
- 
-/* Column mode when detail is active */
+
 .salon-list.column-mode,
 salon-all-list .salon-list.column-mode {
     flex-direction: column;
@@ -102,7 +106,7 @@ salon-all-list .salon-list.column-mode {
     flex-shrink: 0;
     flex: none;
 }
- 
+
 salon-description[type="minimum"] article {
     display: flex;
     align-items: center;
@@ -115,19 +119,18 @@ salon-description[type="minimum"] article {
     flex: 1 1 calc(33.333% - 15px);
     min-width: 300px;
 }
- 
-/* When in column mode, cards take full width */
+
 .salon-list.column-mode salon-description[type="minimum"] article,
 salon-all-list .salon-list.column-mode salon-description[type="minimum"] article {
     flex: 1 1 100%;
     width: 100%;
 }
- 
+
 salon-description[type="minimum"] article:hover {
     box-shadow: var(--box-shadow);
     transform: translateY(-4px);
 }
- 
+
 salon-description[type="minimum"] img {
     width: 80px;
     height: 80px;
@@ -135,21 +138,20 @@ salon-description[type="minimum"] img {
     object-fit: cover;
     flex-shrink: 0;
 }
- 
+
 salon-description[type="minimum"] h4 {
     font-size: 18px;
     color: #333;
     margin-bottom: 5px;
 }
- 
+
 salon-description[type="minimum"] .rating {
     display: flex;
     align-items: center;
     gap: 3px;
     font-size: 14px;
 }
- 
-/* Detail Panel */
+
 .salon-detail,
 salon-all-list .salon-detail {
     display: none;
@@ -158,44 +160,54 @@ salon-all-list .salon-detail {
     transform: translateX(20px);
     transition: all 0.3s ease;
 }
- 
+
 .salon-detail.active,
 salon-all-list .salon-detail.active {
     display: block;
     opacity: 1;
     transform: translateX(0);
 }
- 
+
 .information {
     background: white;
     border-radius: 20px;
     padding: 40px;
+    margin-left: 50px;
     box-shadow: var(--box-shadow);
-    height: fit-content;
+    min-height: 400px;
+    height: auto;
+    position: relative;
 }
- 
+
 .information h1 {
+    position: absolute;
+    top: 40px;
+    right: 40px;
     font-size: 32px;
     letter-spacing: 2px;
-    margin-bottom: 30px;
+    margin: 0;
     color: #333;
+    text-align: right;
 }
- 
+
 .information article {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-bottom: 30px;
 }
- 
+
 .information article img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 400px;
     height: 250px;
-    border-radius: 20px;
+    border-radius: 50px;
     object-fit: cover;
 }
- 
+
 .information address {
     flex: 1;
     background: #fafafa;
@@ -203,40 +215,40 @@ salon-all-list .salon-detail.active {
     border-radius: 15px;
     font-style: normal;
 }
- 
+
 .information address h3 {
     color: #ec407a;
     margin-bottom: 10px;
 }
- 
+
 .information address h4 {
     margin-top: 15px;
     margin-bottom: 5px;
     color: #666;
 }
- 
+
 .information address p {
     color: #666;
     line-height: 1.6;
     margin-bottom: 10px;
 }
- 
+
 .information ul {
     list-style: none;
     margin-bottom: 30px;
     padding: 0;
 }
- 
+
 .information ul li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--color-order);
+    background: white;
     padding: 15px 20px;
-    margin-bottom: 12px;
     border-radius: 15px;
+    border-color: var(--color-order);
 }
- 
+
 .information ul button {
     background: #f5e6f0;
     padding: 8px 25px;
@@ -246,24 +258,149 @@ salon-all-list .salon-detail.active {
     font-weight: 600;
     transition: all 0.3s;
 }
- 
+
 .information ul button:hover {
     background: #ecc2d0;
 }
- 
+
 .information section h2 {
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 20px;
 }
- 
+
+.services-container {
+    margin-top: 20px;
+}
+
+.service-category {
+    margin-bottom: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.service-category-header {
+    padding: 16px 20px;
+    background: var(--color-order);
+    cursor: pointer;
+    display: flex;
+    border-radius: 15px;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.service-category-header:hover {
+    background: var(--color-order);
+}
+
+.service-category-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.service-category-header .description {
+    font-size: 14px;
+    color: #666;
+    margin: 4px 0 0 0;
+}
+
+.service-category-header .arrow {
+    font-size: 20px;
+    transition: transform 0.3s;
+    color: #666;
+}
+
+.service-category.expanded .arrow {
+    transform: rotate(180deg);
+}
+
+.service-category-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.service-category.expanded .service-category-content {
+    max-height: 2000px;
+}
+
+.subservice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subservice-item {
+    padding: 16px 20px;
+    border-top: 1px solid white;
+    display: flex;
+    background: white;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.subservice-item:hover {
+    background: pink;
+}
+
+.subservice-info {
+    flex: 1;
+}
+
+.subservice-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.subservice-duration {
+    font-size: 14px;
+    color: #666;
+}
+
+.subservice-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-left: 20px;
+}
+
+.book-button {
+    padding: 8px 24px;
+    background: white;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    color: #1a1a1a;
+    margin-left: 15px;
+}
+
+.book-button:hover {
+    background: #1a1a1a;
+    color: white;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+}
+
 .artist {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
- 
+
 .artist > div {
     display: flex;
     flex-direction: column;
@@ -275,7 +412,7 @@ salon-all-list .salon-detail.active {
     padding: 20px;
     border-radius: 15px;
 }
- 
+
 .artist img {
     width: 80px;
     height: 80px;
@@ -284,35 +421,44 @@ salon-all-list .salon-detail.active {
     margin-bottom: 10px;
     border: 3px solid var(--color-order);
 }
- 
+
 .artist h3 {
     font-size: 12px;
     text-transform: uppercase;
     color: #ec407a;
     margin-bottom: 5px;
 }
- 
+
 .artist p {
     color: #666;
 }
- 
+
 .back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     padding: 10px 25px;
     border: none;
     border-radius: 20px;
-    background: #f0f0f0;
+    background: rgba(255, 255, 255, 0.9);
     color: #666;
     font-weight: 600;
     cursor: pointer;
-    margin-bottom: 20px;
     transition: all 0.3s;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
- 
+
 .back-btn:hover {
-    background: #e0e0e0;
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
- 
-/* Responsive */
+
+.information article {
+    position: relative;
+}
+
 @media (max-width: 1024px) {
     salon-description[type="minimum"] article {
         flex: 1 1 calc(50% - 15px);
@@ -322,13 +468,13 @@ salon-all-list .salon-detail.active {
         flex: 1 1 calc(33.333% - 15px);
     }
 }
- 
+
 @media (max-width: 768px) {
     .salon-content-wrapper,
     salon-all-list .salon-content-wrapper {
         flex-direction: column;
     }
- 
+
     .salon-list,
     .salon-list.column-mode,
     salon-all-list .salon-list,
@@ -336,16 +482,16 @@ salon-all-list .salon-detail.active {
         width: 100%;
         flex: 1;
     }
- 
+
     salon-description[type="minimum"] article {
         flex: 1 1 100%;
     }
- 
+
     .artist > div {
         flex: 1 1 calc(50% - 10px);
     }
 }
- 
+
 @media screen and (max-width: 600px) {
     body {
         grid-template-areas:
@@ -353,14 +499,13 @@ salon-all-list .salon-detail.active {
             "as";
         grid-template-columns: 1fr;
     }
- 
+
     aside {
         border-right: none;
         border-top: 1px solid #e0e0e0;
     }
- 
+
     footer {
         display: none;
     }
 }
- 

@@ -57,14 +57,8 @@ class OrderInner extends HTMLElement {
         if (orderTime) {
             orderTime.addEventListener('time-selected', (e) => {
                 const selectedTime = e.detail.time;
-                
-                // Update button text with selected time
                 btnText.textContent = selectedTime;
-                
-                // Close the content
                 contentDiv.classList.remove('show');
-                
-                // Dispatch event from order-inner
                 this.dispatchEvent(new CustomEvent('time-selected', {
                     detail: { time: selectedTime },
                     bubbles: true,
