@@ -11,21 +11,22 @@ body {
 main {
    grid-area: main;
   display: grid;
-  grid-template-columns: 420px 1fr;
+  grid-template-columns: 1fr 340px;
   gap: 40px;
   padding: 40px;
-  align-items: flex-start;
+  align-items: start;
   animation: var(--animation-main);
 }
 #profile {
   background: white;
   border: var(--color);
   border-radius: 24px;
-  padding: 25px;
-  width: 340px;
-  min-width: 340px;
+  padding: 20px;
+  width: 300px;
+  min-width: 300px;
   height: fit-content;
   position: relative;
+  margin-top: 60px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -185,6 +186,8 @@ dialog::backdrop{
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  max-width: none;
 }
 .order-header{
   display: flex;
