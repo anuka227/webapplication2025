@@ -51,6 +51,8 @@ class OrderInner extends HTMLElement {
         });
     });
     }
+
+    // Order-time event listener
     const orderTime = contentDiv.querySelector('order-time');
         if (orderTime) {
             orderTime.addEventListener('time-selected', (e) => {
@@ -66,6 +68,33 @@ class OrderInner extends HTMLElement {
                 console.log('Order-inner: Цаг сонгогдлоо -', selectedTime);
             });
         }
+
+    // Calendar date selection event listener
+    const calendarPicker = contentDiv.querySelector('calendar-picker');
+    if (calendarPicker) {
+        calendarPicker.addEventListener('dateSelected', (e) => {
+            const selectedDate = e.detail.formatted;
+            
+            // Update button text with selected date
+            btnText.textContent = selectedDate;
+            
+            // Close the content
+            contentDiv.classList.remove('show');
+            
+            // Dispatch event from order-inner
+            this.dispatchEvent(new CustomEvent('date-selected', {
+                detail: { 
+                    date: e.detail.date,
+                    formatted: selectedDate 
+                },
+                bubbles: true,
+                composed: true
+            }));
+            
+            console.log('Order-inner: Огноо сонгогдлоо -', selectedDate);
+        });
+    }
+
     const locationLi = this.querySelector('.get-location');
     let mapContainer = this.querySelector('.map-container');
     if (locationLi) {
@@ -134,4 +163,3 @@ if (!addLoc.contains(e.target) && !add2Loc.contains(e.target)) {
     add2Loc.classList.remove('show');
     }
 });
-
