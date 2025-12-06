@@ -25,7 +25,7 @@ main {
     gap: 5%;
 }
 
-.tabs {
+/* .tabs {
     display: flex;
     align-items: center;
     background: rgba(236, 64, 122, 0.08);
@@ -49,6 +49,36 @@ main {
     background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
     color: white;
     box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
+} */
+.tabs {
+    display: flex;
+    align-items: center;
+    background: rgba(236, 64, 122, 0.08);
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 25px 80px;
+    border: none;
+    border-radius: 25px;
+    background: transparent;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font: var(--font-h2);
+}
+
+.tab.active {
+    background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
+}
+
+.tab:hover:not(.active) {
+    background: rgba(236, 64, 122, 0.15);
 }
 
 .searchbar {
