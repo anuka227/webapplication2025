@@ -6,7 +6,7 @@ class OrderService extends HTMLElement {
 
     connectedCallback() {
        this.innerHTML = /*html*/ `
-       <ul class="services">
+       <ul class="service">
 						<li>
 							<p>Үйлчилгээ</p>
 						</li>
@@ -285,20 +285,30 @@ class OrderService extends HTMLElement {
 							<p>Нүүр будалт</p>
 						</li>
 					</ul>`
-                    const btn = document.querySelector('.toggle-btn');
-                    const btnText = btn.querySelector('p')
-                    const switchText = this.querySelector('ul.service');
-                    if(switchText) {
-                        const listItem = switchText.querySelectorAll('li');
-                        listItems.forEach(item => {
-                        item.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const selectedText = item.querySelector('p')?.textContent || '';
-                        btnText.textContent = selectedText;
-                        contentDiv.classList.remove('show');
+
+
+					const orderInner = this.closest('order-inner');
+        if (!orderInner) return;
+
+        // order-inner дотрох button болон hidden-content олох
+        const btn = orderInner.querySelector('.toggle-btn');
+        const btnText = btn?.querySelector('p');
+        const contentDiv = orderInner.querySelector('.hidden-content');
+
+        // Энэ component дотрох бүх li элементүүдэд event listener нэмэх
+        const listItems = this.querySelectorAll('li');
+        listItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const selectedText = item.querySelector('p')?.textContent || '';
+                if (btnText) {
+                    btnText.textContent = selectedText;
+                }
+                if (contentDiv) {
+                    contentDiv.classList.remove('show');
+                }
+            });
         });
-    });
-                    }
     }
 
     disconnectedCallback() {
