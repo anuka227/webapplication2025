@@ -4,13 +4,15 @@ class SalonAllList extends HTMLElement {
         this.salons = [];
         this.independentArtists = [];
         this.currentFilter = 'all';
+        this.searchQuery = ''; // Search query хадгалах
     }
 
     async connectedCallback() {
         await this.loadSalons();
-        this.renderTabs(); // Tab-уудыг main-top дотор render хийх
+        this.renderTabs();
         this.render();
         this.attachEvents();
+        this.attachSearchEvent(); // Search event нэмэх
     }
 
     async loadSalons() {
@@ -31,7 +33,6 @@ class SalonAllList extends HTMLElement {
     }
 
     renderTabs() {
-        // HTML дээрх #salonTabs div-д tab button-уудыг нэмэх
         const tabsContainer = document.querySelector('#salonTabs');
         if (tabsContainer) {
             tabsContainer.innerHTML = `
@@ -58,44 +59,90 @@ class SalonAllList extends HTMLElement {
     }
 
     renderItems(filter) {
-        let html = '';
+        let items = [];
         
+        // Filter-ээр салон эсвэл артистуудыг сонгох
         if (filter === 'all' || filter === 'salons') {
-            html += this.salons.map(salon => {
+            items = [...items, ...this.salons.map(salon => ({
+                ...salon,
+                type: 'salon'
+            }))];
+        }
+        
+        if (filter === 'all' || filter === 'artists') {
+            items = [...items, ...this.independentArtists.map(artist => ({
+                ...artist,
+                type: 'artist'
+            }))];
+        }
+        
+        // Search query-гаар шүүх
+        if (this.searchQuery) {
+            items = items.filter(item => {
+                const name = item.name?.toLowerCase() || '';
+                const profession = item.profession?.toLowerCase() || '';
+                const location = item.location?.toLowerCase() || '';
+                const query = this.searchQuery.toLowerCase();
+                
+                return name.includes(query) || 
+                       profession.includes(query) || 
+                       location.includes(query);
+            });
+        }
+        
+        // Хоосон үр дүн
+        if (items.length === 0) {
+            return '<div class="no-results"><p>Илэрц олдсонгүй</p></div>';
+        }
+        
+        // HTML үүсгэх
+        return items.map(item => {
+            if (item.type === 'salon') {
                 return `
                     <salon-description 
                         type="minimum" 
                         data-type="salon"
-                        data="${salon.id}"
-                        name="${salon.name}"
-                        img="${salon.img}"
-                        rating="${salon.rating}">
+                        data="${item.id}"
+                        name="${item.name}"
+                        img="${item.img}"
+                        rating="${item.rating}">
                     </salon-description>
                 `;
-            }).join('');
-        }
-        
-        if (filter === 'all' || filter === 'artists') {
-            html += this.independentArtists.map(artist => {
+            } else {
                 return `
                     <salon-description 
                         type="minimum" 
                         data-type="artist"
-                        data="${artist.id}"
-                        name="${artist.name}"
-                        img="${artist.img}"
-                        rating="${artist.rating}"
-                        profession="${artist.profession}">
+                        data="${item.id}"
+                        name="${item.name}"
+                        img="${item.img}"
+                        rating="${item.rating}"
+                        profession="${item.profession}">
                     </salon-description>
                 `;
-            }).join('');
+            }
+        }).join('');
+    }
+
+    attachSearchEvent() {
+        const searchInput = document.querySelector('.searchbar input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.searchQuery = e.target.value;
+                this.updateList();
+            });
         }
-        
-        return html;
+    }
+
+    updateList() {
+        const salonList = this.querySelector('#salonList');
+        if (salonList) {
+            salonList.innerHTML = this.renderItems(this.currentFilter);
+            this.attachItemEvents();
+        }
     }
 
     attachEvents() {
-        // Tab button-уудын event (HTML дээрх #salonTabs дотор)
         document.querySelectorAll('#salonTabs .tab').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const tab = e.target.dataset.tab;
@@ -127,14 +174,11 @@ class SalonAllList extends HTMLElement {
     switchTab(tab) {
         this.currentFilter = tab;
         
-        // Tab button-уудын active class шинэчлэх
         document.querySelectorAll('#salonTabs .tab').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.tab === tab);
         });
         
-        const salonList = this.querySelector('#salonList');
-        salonList.innerHTML = this.renderItems(tab);
-        this.attachItemEvents();
+        this.updateList();
     }
 
     showSalonDetail(salonCard) {
