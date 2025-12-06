@@ -14,11 +14,7 @@
 	<aside-nav></aside-nav>
     <main>
         <div class="main-top">
-            <div class="tabs">
-                <button class="tab active" onclick="switchTab('salon')">Салон</button>
-                <button class="tab" onclick="switchTab('artist')">Артист</button>
-            </div>
-           
+            <div class="tabs" id="salonTabs"></div>
             <div class="searchbar">
                 <input type="text" placeholder="Хайх" oninput="handleSearch(this.value)">
                 <button>
