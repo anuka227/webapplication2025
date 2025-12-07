@@ -377,7 +377,7 @@ class SalonDescription extends HTMLElement {
         });
     }
 
-    handleBooking(serviceId) {
+handleBooking(serviceId) {
     // Үйлчилгээний мэдээлэл олох
     let selectedService = null;
     let selectedCategory = null;
@@ -392,6 +392,16 @@ class SalonDescription extends HTMLElement {
     
     if (!selectedService) return;
     
+    // Салоны date болон time мэдээлэл
+    let availableDates = [];
+    let availableTimes = [];
+    
+    // salonData-аас мэдээлэл авах
+    if (this.salonData) {
+        availableDates = this.salonData.date || [];
+        availableTimes = this.salonData.time || [];
+    }
+    
     // Booking dialog component үүсгэх
     const bookingDialog = document.createElement('booking-dialog');
     bookingDialog.setAttribute('service-name', selectedService.name);
@@ -399,6 +409,8 @@ class SalonDescription extends HTMLElement {
     bookingDialog.setAttribute('service-duration', selectedService.duration);
     bookingDialog.setAttribute('service-price', this.formatPrice(selectedService.price));
     bookingDialog.setAttribute('salon-name', this.name);
+    bookingDialog.setAttribute('available-dates', JSON.stringify(availableDates));
+    bookingDialog.setAttribute('available-times', JSON.stringify(availableTimes));
     
     document.body.appendChild(bookingDialog);
     

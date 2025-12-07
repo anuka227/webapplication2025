@@ -463,7 +463,6 @@ salon-all-list .salon-detail.active {
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
-    border-bottom: 1px solid #eee;
 }
 
 .booking-header h2 {
@@ -476,8 +475,7 @@ salon-all-list .salon-detail.active {
     border: none;
     font-size: 32px;
     cursor: pointer;
-    color: #999;
-    line-height: 1;
+   
 }
 
 .close-booking-btn:hover {
@@ -486,8 +484,9 @@ salon-all-list .salon-detail.active {
 
 .booking-service-info {
     padding: 20px 30px;
-    background: #f8f8f8;
-    border-bottom: 1px solid #eee;
+    background: var(--color-salon);
+    border-radius: 25px;
+    
 }
 
 .booking-service-info h3 {
@@ -495,11 +494,6 @@ salon-all-list .salon-detail.active {
     font-size: 20px;
 }
 
-.service-category {
-    color: #ec407a;
-    margin: 0 0 10px 0;
-    font-size: 14px;
-}
 
 .service-details {
     display: flex;
@@ -546,7 +540,7 @@ salon-all-list .salon-detail.active {
 }
 
 .quick-date-btn.active {
-    border-color: #6c63ff;
+    border-color: var(--color-salon);
     background: #f5f4ff;
 }
 
@@ -626,12 +620,12 @@ salon-all-list .salon-detail.active {
 }
 
 .calendar-day.today {
-    background: #6c63ff;
+    background: var(--color-order);
     color: white;
 }
 
 .calendar-day.selected {
-    background: #6c63ff;
+    background: var(--color-order);
     color: white;
     font-weight: 600;
 }
@@ -646,56 +640,65 @@ salon-all-list .salon-detail.active {
 }
 
 /* Time Picker */
-.time-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 15px;
+.time-picker-section {
+    display: flex;
+    flex-direction: column;
 }
 
-.time-option-btn {
-    padding: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    background: white;
+.time-picker-section h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.time-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.time-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.time-group-label {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.time-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.time-btn {
+    padding: 12px 20px;
+    background: #fce4ec;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
     cursor: pointer;
-    text-align: center;
     transition: all 0.2s;
 }
 
-.time-option-btn:hover {
-    border-color: #c0c0c0;
+.time-btn:hover {
+    background: #f8bbd0;
+    transform: translateY(-2px);
 }
 
-.time-option-btn.active {
-    border-color: #6c63ff;
-    background: #f5f4ff;
+.time-btn.active {
+    background: #ec407a;
+    color: white;
+    border-color: #ec407a;
 }
 
-.time-range {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-}
-
-.custom-time-inputs {
-    display: flex;
-    gap: 10px;
-}
-
-.time-select {
-    flex: 1;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.time-select:focus {
-    outline: none;
-    border-color: #6c63ff;
-}
 
 /* Footer */
 .booking-footer {
@@ -716,22 +719,15 @@ salon-all-list .salon-detail.active {
     transition: all 0.2s;
 }
 
-.cancel-btn {
-    background: #f5f5f5;
-    color: #666;
-}
 
-.cancel-btn:hover {
-    background: #e0e0e0;
-}
 
 .confirm-booking-btn {
-    background: #6c63ff;
+    background: var(--color-order);
     color: white;
 }
 
 .confirm-booking-btn:hover {
-    background: #5a52d5;
+    background: var(--color-salon);
 }
 
 /* Responsive */

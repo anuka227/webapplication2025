@@ -3,7 +3,9 @@ class BookingDialog extends HTMLElement {
         super();
         this.selectedDate = new Date();
         this.currentDate = new Date();
-        this.selectedTime = 'any';
+        this.selectedTime = null;
+        this.availableDates = [];
+        this.availableTimes = [];
     }
 
     connectedCallback() {
@@ -12,6 +14,27 @@ class BookingDialog extends HTMLElement {
         this.serviceDuration = this.getAttribute('service-duration') || '';
         this.servicePrice = this.getAttribute('service-price') || '';
         this.salonName = this.getAttribute('salon-name') || '';
+        
+        const datesAttr = this.getAttribute('available-dates');
+        const timesAttr = this.getAttribute('available-times');
+        
+        if (datesAttr) {
+            try {
+                this.availableDates = JSON.parse(datesAttr);
+            } catch(e) {
+                console.error('Available dates parse error:', e);
+                this.availableDates = [];
+            }
+        }
+        
+        if (timesAttr) {
+            try {
+                this.availableTimes = JSON.parse(timesAttr);
+            } catch(e) {
+                console.error('Available times parse error:', e);
+                this.availableTimes = [];
+            }
+        }
         
         this.render();
         this.attachEvents();
@@ -28,7 +51,6 @@ class BookingDialog extends HTMLElement {
                     
                     <div class="booking-service-info">
                         <h3>${this.serviceName}</h3>
-                        <p class="service-category">${this.serviceCategory}</p>
                         <div class="service-details">
                             <span class="duration">⏱ ${this.serviceDuration}</span>
                             <span class="price">${this.servicePrice}</span>
@@ -36,19 +58,7 @@ class BookingDialog extends HTMLElement {
                     </div>
                     
                     <div class="booking-content">
-                        <!-- Огноо сонгох хэсэг -->
                         <div class="date-picker-section">
-                            <div class="quick-dates">
-                                <button class="quick-date-btn active" data-offset="0">
-                                    <div class="date-label">Today</div>
-                                    <div class="date-value" id="todayDate"></div>
-                                </button>
-                                <button class="quick-date-btn" data-offset="1">
-                                    <div class="date-label">Tomorrow</div>
-                                    <div class="date-value" id="tomorrowDate"></div>
-                                </button>
-                            </div>
-                            
                             <div class="calendar-container">
                                 <div class="calendar-header">
                                     <button class="calendar-nav prev">‹</button>
@@ -59,41 +69,13 @@ class BookingDialog extends HTMLElement {
                             </div>
                         </div>
                         
-                        <!-- Цаг сонгох хэсэг -->
                         <div class="time-picker-section">
-                            <h3>Select time</h3>
-                            <div class="time-options">
-                                <button class="time-option-btn active" data-time="any">Any time</button>
-                                <button class="time-option-btn" data-time="morning">
-                                    <div>Morning</div>
-                                    <div class="time-range">09 - 12</div>
-                                </button>
-                                <button class="time-option-btn" data-time="afternoon">
-                                    <div>Afternoon</div>
-                                    <div class="time-range">16 - 17</div>
-                                </button>
-                                <button class="time-option-btn" data-time="evening">
-                                    <div>Evening</div>
-                                    <div class="time-range">17 - 23</div>
-                                </button>
-                                <button class="time-option-btn" data-time="custom">Custom</button>
-                            </div>
-                            
-                            <div class="custom-time-inputs" id="customTimeInputs" style="display: none;">
-                                <select class="time-select" id="startTime">
-                                    <option value="">Select start time</option>
-                                    ${this.generateTimeOptions()}
-                                </select>
-                                <select class="time-select" id="endTime">
-                                    <option value="">Select end time</option>
-                                    ${this.generateTimeOptions()}
-                                </select>
-                            </div>
+                            <h3>Цаг сонгох</h3>
+                            <div class="time-groups" id="timeGroups"></div>
                         </div>
                     </div>
                     
                     <div class="booking-footer">
-                        <button class="cancel-btn">Цуцлах</button>
                         <button class="confirm-booking-btn">Захиалах</button>
                     </div>
                 </div>
@@ -101,28 +83,73 @@ class BookingDialog extends HTMLElement {
         `;
     }
 
-    generateTimeOptions() {
-        let options = '';
-        for (let hour = 9; hour <= 20; hour++) {
-            for (let min = 0; min < 60; min += 30) {
-                const time = `${hour.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}`;
-                options += `<option value="${time}">${time}</option>`;
+    renderTimeSlots() {
+        const container = this.querySelector('#timeGroups');
+        
+        const timeGroups = {
+            'Өглөө': [],
+            'Өдөр': [],
+            'Орой': []
+        };
+        
+        const times = this.availableTimes && this.availableTimes.length > 0 
+            ? this.availableTimes 
+            : this.getDefaultTimes();
+        
+        times.forEach(time => {
+            const hour = parseInt(time.split(':')[0]);
+            
+            if (hour >= 6 && hour < 12) {
+                timeGroups['Өглөө'].push(time);
+            } else if (hour >= 12 && hour < 18) {
+                timeGroups['Өдөр'].push(time);
+            } else if (hour >= 18 && hour <= 23) {
+                timeGroups['Орой'].push(time);
             }
+        });
+        
+        let html = '';
+        
+        Object.keys(timeGroups).forEach(groupName => {
+            if (timeGroups[groupName].length > 0) {
+                html += `
+                    <div class="time-group">
+                        <h4 class="time-group-label">${groupName}</h4>
+                        <div class="time-buttons">
+                            ${timeGroups[groupName].map(time => `
+                                <button class="time-btn" data-time="${time}">${time}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+        });
+        
+        container.innerHTML = html;
+        
+        this.querySelectorAll('.time-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.selectedTime = btn.dataset.time;
+            });
+        });
+    }
+
+    getDefaultTimes() {
+        const times = [];
+        for (let hour = 9; hour <= 22; hour++) {
+            times.push(`${hour.toString().padStart(2, '0')}:00`);
         }
-        return options;
+        return times;
     }
 
     attachEvents() {
         const dialog = this.querySelector('.booking-dialog');
-        const today = new Date();
         
-        // Өнөөдөр болон маргааш огноог харуулах
-        this.updateQuickDates();
-        
-        // Calendar үүсгэх
         this.renderCalendar();
+        this.renderTimeSlots();
         
-        // Calendar navigation
         this.querySelector('.calendar-nav.prev').addEventListener('click', () => {
             this.currentDate.setMonth(this.currentDate.getMonth() - 1);
             this.renderCalendar();
@@ -133,53 +160,18 @@ class BookingDialog extends HTMLElement {
             this.renderCalendar();
         });
         
-        // Quick date buttons
-        this.querySelectorAll('.quick-date-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.querySelectorAll('.quick-date-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const offset = parseInt(btn.dataset.offset);
-                this.selectedDate = new Date(today);
-                this.selectedDate.setDate(this.selectedDate.getDate() + offset);
-                this.currentDate = new Date(this.selectedDate);
-                this.renderCalendar();
-            });
-        });
-        
-        // Time options
-        this.querySelectorAll('.time-option-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.querySelectorAll('.time-option-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                this.selectedTime = btn.dataset.time;
-                const customInputs = this.querySelector('#customTimeInputs');
-                
-                if (this.selectedTime === 'custom') {
-                    customInputs.style.display = 'flex';
-                } else {
-                    customInputs.style.display = 'none';
-                }
-            });
-        });
-        
-        // Close button
         this.querySelector('.close-booking-btn').addEventListener('click', () => {
             this.close();
         });
         
-        // Cancel button
         this.querySelector('.cancel-btn').addEventListener('click', () => {
             this.close();
         });
         
-        // Confirm booking button
         this.querySelector('.confirm-booking-btn').addEventListener('click', () => {
             this.confirmBooking();
         });
         
-        // Dialog backdrop click
         dialog.addEventListener('click', (e) => {
             if (e.target === dialog) {
                 this.close();
@@ -187,19 +179,15 @@ class BookingDialog extends HTMLElement {
         });
     }
 
-    updateQuickDates() {
-        const formatDateShort = (date) => {
-            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            return `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}`;
-        };
+    isDayAvailable(date) {
+        if (!this.availableDates || this.availableDates.length === 0) {
+            return true;
+        }
         
-        const today = new Date();
-        this.querySelector('#todayDate').textContent = formatDateShort(today);
+        const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayName = dayNames[date.getDay()];
         
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        this.querySelector('#tomorrowDate').textContent = formatDateShort(tomorrow);
+        return this.availableDates.includes(dayName);
     }
 
     renderCalendar() {
@@ -207,6 +195,7 @@ class BookingDialog extends HTMLElement {
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         const today = new Date();
+        today.setHours(0, 0, 0, 0);
         
         this.querySelector('#calendarMonth').textContent = `${monthNames[month]} ${this.currentDate.getDate()}, ${year}`;
         
@@ -221,20 +210,25 @@ class BookingDialog extends HTMLElement {
         });
         calendarHTML += '</div><div class="calendar-days">';
         
-        // Эхлэх хоосон өдрүүд
         for (let i = 0; i < (startDay === 0 ? 6 : startDay - 1); i++) {
             calendarHTML += '<div class="calendar-day empty"></div>';
         }
         
-        // Өдрүүд
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month, day);
-            const isToday = date.toDateString() === today.toDateString();
+            date.setHours(0, 0, 0, 0);
+            
+            const isToday = date.getTime() === today.getTime();
             const isSelected = date.toDateString() === this.selectedDate.toDateString();
-            const isPast = date < today && !isToday;
+            const isPast = date < today;
+            const isAvailable = this.isDayAvailable(date);
+            const isDisabled = isPast || !isAvailable;
             
             calendarHTML += `
-                <div class="calendar-day ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''} ${isPast ? 'disabled' : ''}" 
+                <div class="calendar-day 
+                    ${isToday ? 'today' : ''} 
+                    ${isSelected ? 'selected' : ''} 
+                    ${isDisabled ? 'disabled' : ''}" 
                      data-date="${date.toISOString()}">
                     ${day}
                 </div>
@@ -244,7 +238,6 @@ class BookingDialog extends HTMLElement {
         calendarHTML += '</div>';
         this.querySelector('#calendarGrid').innerHTML = calendarHTML;
         
-        // Огноо дээр дарах event
         this.querySelectorAll('.calendar-day:not(.disabled):not(.empty)').forEach(dayEl => {
             dayEl.addEventListener('click', () => {
                 this.selectedDate = new Date(dayEl.dataset.date);
@@ -254,18 +247,9 @@ class BookingDialog extends HTMLElement {
     }
 
     confirmBooking() {
-        let timeInfo = this.selectedTime;
-        
-        if (this.selectedTime === 'custom') {
-            const startTime = this.querySelector('#startTime').value;
-            const endTime = this.querySelector('#endTime').value;
-            
-            if (!startTime || !endTime) {
-                alert('Эхлэх болон дуусах цагаа сонгоно уу!');
-                return;
-            }
-            
-            timeInfo = `${startTime} - ${endTime}`;
+        if (!this.selectedTime) {
+            alert('Цагаа сонгоно уу!');
+            return;
         }
         
         const bookingData = {
@@ -274,11 +258,10 @@ class BookingDialog extends HTMLElement {
             duration: this.serviceDuration,
             price: this.servicePrice,
             date: this.selectedDate,
-            time: timeInfo,
+            time: this.selectedTime,
             salon: this.salonName
         };
         
-        // Custom event dispatching
         this.dispatchEvent(new CustomEvent('booking-confirmed', {
             detail: bookingData,
             bubbles: true,
@@ -287,7 +270,7 @@ class BookingDialog extends HTMLElement {
         
         console.log('Booking confirmed:', bookingData);
         
-        alert(`Захиалга баталгаажлаа!\n\nҮйлчилгээ: ${this.serviceName}\nОгноо: ${this.selectedDate.toLocaleDateString('mn-MN')}\nЦаг: ${timeInfo}\nСалон: ${this.salonName}`);
+        alert(`Захиалга баталгаажлаа!\n\nҮйлчилгээ: ${this.serviceName}\nОгноо: ${this.selectedDate.toLocaleDateString('mn-MN')}\nЦаг: ${this.selectedTime}\nСалон: ${this.salonName}`);
         
         this.close();
     }
@@ -301,7 +284,6 @@ class BookingDialog extends HTMLElement {
         const dialog = this.querySelector('.booking-dialog');
         dialog.close();
         
-        // Component-ийг DOM-оос устгах
         setTimeout(() => {
             this.remove();
         }, 300);
