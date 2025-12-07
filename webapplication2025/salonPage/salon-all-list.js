@@ -8,7 +8,7 @@ class SalonAllList extends HTMLElement {
 
     async connectedCallback() {
         await this.loadSalons();
-        this.renderTabs(); // Tab-уудыг main-top дотор render хийх
+        this.renderTabs(); 
         this.render();
         this.attachEvents();
     }
@@ -31,7 +31,6 @@ class SalonAllList extends HTMLElement {
     }
 
     renderTabs() {
-        // HTML дээрх #salonTabs div-д tab button-уудыг нэмэх
         const tabsContainer = document.querySelector('#salonTabs');
         if (tabsContainer) {
             tabsContainer.innerHTML = `
