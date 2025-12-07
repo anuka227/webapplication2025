@@ -196,19 +196,20 @@ class SalonDescription extends HTMLElement {
     salonMaximum() {
         this.innerHTML = /*html*/`
             <div class="information">
-                <h1>${this.name}</h1>
+                <div class="information-header">
+                    <h1>${this.name}</h1>
+                </div>
+                
                 <article>
                     <img src="${this.img}" alt="${this.name}">
                     <address>
-                        ${this.branches ? this.branches.map((branch, index) => `
-                            <h3>${branch.branch_name || `NULL`}</h3>
+                        ${this.branches && this.branches.length > 0 ? this.branches.map((branch) => `
+                            <h3>${branch.branch_name || 'Салбар'}</h3>
                             <h4>Хаяг</h4>
-                            <p>${branch.location || '?'}</p>
-                            <p>Цагийн хуваарь: ${branch.schedule || '?'}</p>
-                            
+                            <p>${branch.location || this.location || '?'}</p>
+                            <p>Цагийн хуваарь: ${branch.schedule || this.schedule || '?'}</p>
                         `).join('') : `
-                            <h3>Салбар</h3>
-                            <h4>Хаяг</h4>
+                            <h3>Хаяг</h3>
                             <p>${this.location || '?'}</p>
                             <p>Цагийн хуваарь: ${this.schedule || '?'}</p>
                         `}
@@ -221,12 +222,12 @@ class SalonDescription extends HTMLElement {
                     </div>
                 </section>
                 
-                ${this.artists ? `
+                ${this.artists && this.artists.length > 0 ? `
                     <section>
                         <h2>Артистууд</h2>
                         <div class="artist">
                             ${this.artists.map(artist => `
-                                <div>
+                                <div class="artist-card" data-artist-id="${artist.id || artist.artist_id}">
                                     <img src="${artist.img || 'https://picsum.photos/80/80?random=' + Math.random()}" alt="${artist.name}">
                                     <h3>${artist.profession || 'Artist'}</h3>
                                     <p>${artist.name}</p>
@@ -236,10 +237,86 @@ class SalonDescription extends HTMLElement {
                     </section>
                 ` : ''}
             </div>
-                
+            <dialog id="artistDetailDialog"></dialog>
         `;
-        setTimeout(() => this.loadAndRenderServices(), 100);
+        setTimeout(() => {
+            this.loadAndRenderServices();
+            this.attachArtistEvents();
+        }, 100);
     }
+
+    attachArtistEvents() {
+        this.querySelectorAll('.artist-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const artistId = card.getAttribute('data-artist-id');
+                this.showArtistDialog(artistId);
+            });
+        });
+    }
+
+    async showArtistDialog(artistId) {
+        const artist = this.artists.find(a => a.id === artistId || a.artist_id === artistId);
+        
+        if (!artist) {
+            console.error('Artist not found:', artistId);
+            return;
+        }
+
+        const dialog = this.querySelector('#artistDetailDialog');
+        
+        // Салоны мэдээллээс artist-ын location болон schedule олох
+        let location = artist.location || this.location || 'Байршил тодорхойгүй';
+        let schedule = artist.schedule || this.schedule || 'Цагийн хуваарь байхгүй';
+        
+        // Хэрэв салбар дээр суурилсан бол
+        if (artist.branch_id && this.branches) {
+            const branch = this.branches.find(b => b.branch_id === artist.branch_id);
+            if (branch) {
+                location = branch.location;
+                schedule = branch.schedule;
+            }
+        }
+        
+        const experience = artist.experience || 'Туршлага тодорхойгүй';
+        const img = artist.img || 'https://picsum.photos/300/300';
+        
+        // Салоны creative зургууд
+        let artImg = [];
+        if (this.creative && Array.isArray(this.creative)) {
+            artImg = this.creative;
+        }
+        
+        dialog.innerHTML = `
+            <artist-description 
+                type="medium" 
+                data="${artistId}"
+                name="${artist.name}"
+                img="${img}"
+                rating="${artist.rating}"
+                profession="${artist.profession}"
+                experience="${experience}"
+                location="${location}"
+                schedule="${schedule}"
+                artImg='${JSON.stringify(artImg)}'>
+            </artist-description>
+        `;
+        
+        dialog.showModal();
+        
+        // Dialog-ын гаднах хэсэг дээр дарахад хаах
+        dialog.addEventListener('click', (e) => {
+            const rect = dialog.getBoundingClientRect();
+            if (
+                e.clientX < rect.left ||
+                e.clientX > rect.right ||
+                e.clientY < rect.top ||
+                e.clientY > rect.bottom
+            ) {
+                dialog.close();
+            }
+        });
+    }
+
     async loadAndRenderServices() {
         const container = this.querySelector('#servicesContainer');
         if (!container) return;
@@ -256,7 +333,6 @@ class SalonDescription extends HTMLElement {
                         <h3>${serviceCategory.type}</h3>
                         ${serviceCategory.description ? `<div class="description">${serviceCategory.description}</div>` : ''}
                     </div>
-                   
                 </div>
                 <div class="service-category-content">
                     <ul class="subservice-list">
@@ -301,10 +377,54 @@ class SalonDescription extends HTMLElement {
         });
     }
 
-    handleBooking(serviceId) {
-        console.log('Booking service:', serviceId);
-        alert(`Үйлчилгээ захиалах: ${serviceId}\nСалон: ${this.name}`);
+handleBooking(serviceId) {
+    // Үйлчилгээний мэдээлэл олох
+    let selectedService = null;
+    let selectedCategory = null;
+    
+    this.fullServices.forEach(category => {
+        const service = category.subservice?.find(s => s.id === serviceId);
+        if (service) {
+            selectedService = service;
+            selectedCategory = category.type;
+        }
+    });
+    
+    if (!selectedService) return;
+    
+    // Салоны date болон time мэдээлэл
+    let availableDates = [];
+    let availableTimes = [];
+    
+    // salonData-аас мэдээлэл авах
+    if (this.salonData) {
+        availableDates = this.salonData.date || [];
+        availableTimes = this.salonData.time || [];
     }
+    
+    // Booking dialog component үүсгэх
+    const bookingDialog = document.createElement('booking-dialog');
+    bookingDialog.setAttribute('service-name', selectedService.name);
+    bookingDialog.setAttribute('service-category', selectedCategory);
+    bookingDialog.setAttribute('service-duration', selectedService.duration);
+    bookingDialog.setAttribute('service-price', this.formatPrice(selectedService.price));
+    bookingDialog.setAttribute('salon-name', this.name);
+    bookingDialog.setAttribute('available-dates', JSON.stringify(availableDates));
+    bookingDialog.setAttribute('available-times', JSON.stringify(availableTimes));
+    
+    document.body.appendChild(bookingDialog);
+    
+    // Dialog харуулах
+    setTimeout(() => {
+        bookingDialog.show();
+    }, 100);
+    
+    // Booking confirmed event сонсох
+    bookingDialog.addEventListener('booking-confirmed', (e) => {
+        console.log('Booking data received:', e.detail);
+        // Энд захиалгын мэдээллийг server рүү илгээх эсвэл бусад үйлдэл хийх
+    });
+}
 
     disconnectedCallback() {
        
