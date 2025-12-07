@@ -1,6 +1,9 @@
 class OrderLocation extends HTMLElement {
     constructor() {
         super();
+        this.selectedCoords = null;
+        this.map = null;
+        this.marker = null;
         //implementation
     }
 
@@ -45,80 +48,118 @@ class OrderLocation extends HTMLElement {
 				</li>
 			</ul>
         `
+        this.setupListeners();
+    }
+    setupListeners() {
         const orderInner = this.closest('order-inner');
         if (!orderInner) return;
 
-        // order-inner дотрох button болон hidden-content олох
-        const btn = orderInner.querySelector('.toggle-btn');
-        const btnText = btn?.querySelector('p');
+        const btnText = orderInner.querySelector('.toggle-btn p');
         const contentDiv = orderInner.querySelector('.hidden-content');
 
-        // Select элемент дээр listener нэмэх
-        const locationSelect = this.querySelector('.add-location select');
-        if (locationSelect) {
-            locationSelect.addEventListener('change', (e) => {
-                e.stopPropagation();
-                const selectedValue = e.target.value;
-                
-                // "Байршил нэмэх" гэсэн анхны option-ыг алгасах
-                if (selectedValue !== 'Байршил нэмэх' && btnText) {
-                    btnText.textContent = selectedValue;
-                    if (contentDiv) {
-                        contentDiv.classList.remove('show');
-                    }
-                }
-            });
-        }
+        // Select listener
+        this.querySelector('.add-location select').addEventListener('change', (e) => {
+            e.stopPropagation();
+            if (e.target.value !== 'Байршил нэмэх') {
+                btnText.textContent = e.target.value;
+                contentDiv?.classList.remove('show');
+            }
+        });
 
-        // "Map" button дээр listener нэмэх
-        const getLocationBtn = this.querySelector('.get-location');
-        if (getLocationBtn) {
-            getLocationBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                
-                if (contentDiv) {
-                    contentDiv.classList.remove('show');
-                }
-                
-                // Map container үүсгэх
-                let mapContainer = orderInner.querySelector('.map-container');
-                if (mapContainer) {
-                    mapContainer.remove();
-                }
-                
-                mapContainer = document.createElement('div');
-                mapContainer.className = 'map-container';
-                mapContainer.style.display = 'block';
-                orderInner.appendChild(mapContainer);
-
-                if ('geolocation' in navigator) {
-                    navigator.geolocation.getCurrentPosition(
-                        (pos) => {
-                            const lat = pos.coords.latitude;
-                            const lon = pos.coords.longitude;
-                            mapContainer.innerHTML = `
-                                <iframe
-                                    width="500"
-                                    height="500"
-                                    style="border-radius:10px; border: 4px solid #eba7ac"
-                                    loading="lazy"
-                                    allowfullscreen
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    src="https://www.google.com/maps?q=${lat},${lon}&hl=mn&z=15&output=embed">
-                                </iframe>
-                            `;
-                        },
-                        (err) => {
-                            mapContainer.innerHTML = `<p style="color:red;">Алдаа гарлаа: ${err.message}</p>`;
-                        }
-                    );
-                } else {
-                    mapContainer.innerHTML = `<p style="color:red;">Таны browser байршил авахыг дэмжихгүй байна.</p>`;
-                }
-            });
-        }
+        // Map button listener
+        this.querySelector('.get-location').addEventListener('click', (e) => {
+            e.stopPropagation();
+            contentDiv?.classList.remove('show');
+            this.openMap(orderInner, btnText);
+        });
     }
 
+    openMap(orderInner, btnText) {
+        orderInner.querySelector('.map-container')?.remove();
+
+        const container = this.createMapContainer();
+        orderInner.appendChild(container);
+
+        this.getUserLocation(container, btnText);
+    }
+
+    createMapContainer() {
+        const container = document.createElement('div');
+        container.className = 'map-container';
+        container.innerHTML = `
+            <svg class="close-btn" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z" fill="currentColor"/>
+                </svg>            
+            <div class="map-view" id="map-${Date.now()}"></div>
+            <div class="coords-box" style="display:none">
+                <p><strong>Одоогийн байршил:</strong></p>
+                <p class="coords-text"></p>
+            </div>
+        `;
+        container.querySelector('.close-btn').onclick = () => container.remove();
+        return container;
+    }
+
+    getUserLocation(container, btnText) {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => this.initMap(container, pos.coords.latitude, pos.coords.longitude, btnText),
+            () => container.querySelector('.map-view').innerHTML = '<p style="text-align:center;padding:50px;color:red">Алдаа гарлаа</p>'
+        );
+    }
+
+    initMap(container, lat, lng, btnText) {
+        const mapDiv = container.querySelector('.map-view');
+        setTimeout(() => {
+            // Map үүсгэх
+            this.map = L.map(mapDiv.id).setView([lat, lng], 16);
+            L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }).addTo(this.map);
+
+            const userIcon = L.divIcon({
+                html: '<div style="width:18px;height:18px;background:#4285F4;border:3px solid white;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.3)"></div>',
+                iconSize: [18, 18],
+                iconAnchor: [9, 9]
+            });
+            L.marker([lat, lng], { icon: userIcon }).addTo(this.map);
+
+            // Координат харуулах
+            this.updateCoords(container, lat, lng);
+            btnText.textContent = 'ОДООГИЙН БАЙРШИЛ';
+            this.map.on('click', (e) => this.onMapClick(e, container));
+        }, 100);
+    }
+
+    onMapClick(e, container) {
+        const { lat, lng } = e.latlng;
+
+        // Хуучин marker устгах
+        if (this.marker) this.map.removeLayer(this.marker);
+
+        // Улаан marker
+        const icon = L.divIcon({
+            html: `<svg width="32" height="45"><ellipse cx="16" cy="42" rx="10" ry="3" fill="rgba(0,0,0,0.2)"/><path d="M16 0C9.373 0 4 5.373 4 12c0 9 12 28 12 28s12-19 12-28c0-6.627-5.373-12-12-12z" fill="#EA4335"/><circle cx="16" cy="12" r="5" fill="white"/><circle cx="16" cy="12" r="3" fill="#EA4335"/></svg>`,
+            iconSize: [32, 45],
+            iconAnchor: [16, 45]
+        });
+        this.marker = L.marker([lat, lng], { icon }).addTo(this.map);
+
+        // Координат шинэчлэх
+        this.selectedCoords = { lat, lng };
+        this.updateCoords(container, lat, lng);
+        console.log('🗺️ Сонгосон:', { lat, lng });
+
+        // OrderManager-т хадгалах
+        window.orderManager?.updateLocation(this.selectedCoords);
+    }
+
+    updateCoords(container, lat, lng) {
+        const box = container.querySelector('.coords-box');
+        const text = container.querySelector('.coords-text');
+        text.innerHTML = `<strong>Өргөрөг:</strong> ${lat.toFixed(6)}<br><strong>Уртраг:</strong> ${lng.toFixed(6)}`;
+        box.style.display = 'block';
+    }
 
     disconnectedCallback() {
         //implementation
