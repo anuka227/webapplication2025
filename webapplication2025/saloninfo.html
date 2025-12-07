@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="./salonPage/saloninfo.css">
     <script type="module" src="./salonPage/salon-all-list.js"></script>
     <script type="module" src="./salonPage/salon-description.js"></script>
+    <script type="module" src="./salonPage/artist-description.js"></script>
+    <script type="module" src="./salonPage/artist-special-list.js"></script>
+    <script type="module" src="./salonPage/booking-dialog.js"></script>
 	<script type="module" src="./aside-nav.js"></script>
 </head>
 <body>
@@ -28,18 +31,6 @@
         <salon-all-list></salon-all-list>
  
     </main>
-    <script>  
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            console.log('Tab switched to:', tab);
-        }
- 
-        function handleSearch(query) {
-            console.log('Searching:', query);
-           
-        }
-    </script>
     <footer>
         <p>Created by @WEBAPPLICATIONTEAM</p>
     </footer>

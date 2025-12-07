@@ -4,7 +4,7 @@ class SalonAllList extends HTMLElement {
         this.salons = [];
         this.independentArtists = [];
         this.currentFilter = 'all';
-        this.searchQuery = ''; // Search query хадгалах
+        this.searchQuery = ''; 
     }
 
     async connectedCallback() {
@@ -12,7 +12,7 @@ class SalonAllList extends HTMLElement {
         this.renderTabs();
         this.render();
         this.attachEvents();
-        this.attachSearchEvent(); // Search event нэмэх
+        this.attachSearchEvent(); 
     }
 
     async loadSalons() {
@@ -26,7 +26,6 @@ class SalonAllList extends HTMLElement {
             this.independentArtists = independentData ? independentData.artists : [];
             
         } catch (error) {
-            console.error('Салон ачаалахад алдаа гарлаа:', error);
             this.salons = [];
             this.independentArtists = [];
         }
@@ -54,8 +53,6 @@ class SalonAllList extends HTMLElement {
                 </div>
             </div>
         `;
-        
-        console.log('Render complete');
     }
 
     renderItems(filter) {
@@ -177,111 +174,108 @@ class SalonAllList extends HTMLElement {
         document.querySelectorAll('#salonTabs .tab').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.tab === tab);
         });
-        
+        this.hideDetail();
         this.updateList();
     }
 
-    showSalonDetail(salonCard) {
-        const salonId = salonCard.getAttribute("data");
-        const salon = this.salons.find(sal => sal.id === salonId);
-        
-        if (!salon) return;
+   showSalonDetail(salonCard) {
+    const salonId = salonCard.getAttribute("data");
+    const salon = this.salons.find(sal => sal.id === salonId);
+    
+    if (!salon) return;
+    
+    const salonList = this.querySelector('#salonList');
+    salonList.classList.add('column-mode');
+    
+    const detailContainer = this.querySelector('#salonDetail');
+    const detailContent = this.querySelector('#detailContent');
 
-        console.log('Showing salon detail for:', salon.name);
-        
-        const salonList = this.querySelector('#salonList');
-        salonList.classList.add('column-mode');
-        
-        const detailContainer = this.querySelector('#salonDetail');
-        const detailContent = this.querySelector('#detailContent');
+    const location = salon.branches ? salon.branches[0].location : salon.location || '?';
+    const schedule = salon.branches ? salon.branches[0].schedule : salon.schedule || '?';
 
-        const location = salon.branches ? salon.branches[0].location : salon.location || '?';
-        const schedule = salon.branches ? salon.branches[0].schedule : salon.schedule || '?';
+    const serviceTypes = salon.service?.map(s => s.type) || [];
+    const branches = salon.branches || [];
+    const artists = salon.artists || [];
+    const services = salon.service || []; 
+    const creative = salon.creative || [];
+    
+    detailContent.innerHTML = `
+        <salon-description 
+            type="maximum" 
+            data="${salon.id}"
+            name="${salon.name}"
+            img="${salon.img}"
+            rating="${salon.rating}"
+            location="${location}"
+            schedule="${schedule}"
+            services='${JSON.stringify(serviceTypes)}'
+            fullservices='${this.escapeJSON(JSON.stringify(services))}'
+            branches='${this.escapeJSON(JSON.stringify(branches))}'
+            artists='${this.escapeJSON(JSON.stringify(artists))}'
+            creative='${this.escapeJSON(JSON.stringify(creative))}'>
+        </salon-description>
+    `;
+    
+    detailContainer.classList.add('active');
+    
+    // Header дотор буцах button нэмэх
+    setTimeout(() => {
+        const infoHeader = detailContent.querySelector('.information-header');
+        if (infoHeader && !infoHeader.querySelector('.back-btn')) {
+            const backBtn = document.createElement('button');
+            backBtn.className = 'back-btn';
+            backBtn.textContent = 'Буцах';
+            backBtn.addEventListener('click', () => this.hideDetail());
+            infoHeader.insertBefore(backBtn, infoHeader.firstChild);
+        }
+    }, 50);
+}
 
-        const serviceTypes = salon.service?.map(s => s.type) || [];
-        const branches = salon.branches || [];
-        const artists = salon.artists || [];
-        const services = salon.service || []; 
-        const creative = salon.creative || [];
-        
-        detailContent.innerHTML = `
-            <salon-description 
-                type="maximum" 
-                data="${salon.id}"
-                name="${salon.name}"
-                img="${salon.img}"
-                rating="${salon.rating}"
-                location="${location}"
-                schedule="${schedule}"
-                services='${JSON.stringify(serviceTypes)}'
-                fullservices='${this.escapeJSON(JSON.stringify(services))}'
-                branches='${this.escapeJSON(JSON.stringify(branches))}'
-                artists='${this.escapeJSON(JSON.stringify(artists))}'
-                creative='${this.escapeJSON(JSON.stringify(creative))}'>
-            </salon-description>
-        `;
-        
-        detailContainer.classList.add('active');
-        
-        setTimeout(() => {
-            const infoSection = detailContent.querySelector('.information article');
-            if (infoSection && !infoSection.querySelector('.back-btn')) {
-                const backBtn = document.createElement('button');
-                backBtn.className = 'back-btn';
-                backBtn.textContent = 'Буцах';
-                backBtn.addEventListener('click', () => this.hideDetail());
-                infoSection.insertBefore(backBtn, infoSection.firstChild);
-            }
-        }, 50);
-    }
+showArtistDetail(artistCard) {
+    const artistId = artistCard.getAttribute("data");
+    const artist = this.independentArtists.find(art => art.id === artistId);
+    
+    if (!artist) return;
+    
+    const salonList = this.querySelector('#salonList');
+    salonList.classList.add('column-mode');
+    
+    const detailContainer = this.querySelector('#salonDetail');
+    const detailContent = this.querySelector('#detailContent');
 
-    showArtistDetail(artistCard) {
-        const artistId = artistCard.getAttribute("data");
-        const artist = this.independentArtists.find(art => art.id === artistId);
-        
-        if (!artist) return;
-
-        console.log('Showing artist detail for:', artist.name);
-        
-        const salonList = this.querySelector('#salonList');
-        salonList.classList.add('column-mode');
-        
-        const detailContainer = this.querySelector('#salonDetail');
-        const detailContent = this.querySelector('#detailContent');
-
-        const services = artist.service || [];
-        const artPics = artist.art_pic || [];
-        
-        detailContent.innerHTML = `
-            <salon-description 
-                type="maximum" 
-                data="${artist.id}"
-                name="${artist.name}"
-                img="${artist.img}"
-                rating="${artist.rating}"
-                location="${artist.location}"
-                schedule="${artist.schedule}"
-                profession="${artist.profession}"
-                experience="${artist.experience}"
-                fullservices='${this.escapeJSON(JSON.stringify(services))}'
-                creative='${this.escapeJSON(JSON.stringify(artPics))}'>
-            </salon-description>
-        `;
-        
-        detailContainer.classList.add('active');
-        
-        setTimeout(() => {
-            const infoSection = detailContent.querySelector('.information article');
-            if (infoSection && !infoSection.querySelector('.back-btn')) {
-                const backBtn = document.createElement('button');
-                backBtn.className = 'back-btn';
-                backBtn.textContent = 'Буцах';
-                backBtn.addEventListener('click', () => this.hideDetail());
-                infoSection.insertBefore(backBtn, infoSection.firstChild);
-            }
-        }, 50);
-    }
-
+    const services = artist.service || [];
+    const artPics = artist.art_pic || [];
+    
+    detailContent.innerHTML = `
+        <salon-description 
+            type="maximum" 
+            data="${artist.id}"
+            name="${artist.name}"
+            img="${artist.img}"
+            rating="${artist.rating}"
+            location="${artist.location}"
+            schedule="${artist.schedule}"
+            profession="${artist.profession}"
+            experience="${artist.experience}"
+            fullservices='${this.escapeJSON(JSON.stringify(services))}'
+            creative='${this.escapeJSON(JSON.stringify(artPics))}'>
+        </salon-description>
+    `;
+    
+    detailContainer.classList.add('active');
+    
+    // Header дотор буцах button нэмэх
+    setTimeout(() => {
+        const infoHeader = detailContent.querySelector('.information-header');
+        if (infoHeader && !infoHeader.querySelector('.back-btn')) {
+            const backBtn = document.createElement('button');
+            backBtn.className = 'back-btn';
+            backBtn.textContent = 'Буцах';
+            backBtn.addEventListener('click', () => this.hideDetail());
+            infoHeader.insertBefore(backBtn, infoHeader.firstChild);
+        }
+    }, 50);
+}
     escapeJSON(jsonString) {
         return jsonString
             .replace(/"/g, '&quot;')
