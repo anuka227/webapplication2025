@@ -16,57 +16,37 @@ class SalonDescription extends HTMLElement {
         let branches = [];
         const branchAttri = this.getAttribute("branches");
         if(branchAttri) {
-            try {
-                branches = JSON.parse(branchAttri);
-            } catch(e) {
-                console.error('Branches parse алдаа:', e);
-            }
+            branches = JSON.parse(branchAttri);
         }
         this.branches = branches;
 
         let artists = [];
         const artistAttri = this.getAttribute("artists");
         if(artistAttri) {
-            try {
-                artists = JSON.parse(artistAttri);
-            } catch(e) {
-                console.error('Artists parse алдаа:', e);
-            }
+            artists = JSON.parse(artistAttri);
         }
         this.artists = artists;
 
         let services = [];
         const serviceAttri = this.getAttribute("services");
         if(serviceAttri) {
-            try {
-                services = JSON.parse(serviceAttri);
-            } catch(e) {
-                console.error('Error parsing services:', e);
-            }
+            services = JSON.parse(serviceAttri);
         }
         this.services = services;
 
         let fullServices = [];
         const fullServicesAttri = this.getAttribute("fullservices");
         if(fullServicesAttri) {
-            try {
-                const decoded = this.decodeHTMLEntities(fullServicesAttri);
-                fullServices = JSON.parse(decoded);
-                console.log('Parsed full services:', fullServices);
-            } catch(e) {
-                console.error('Error parsing full services:', e);
-            }
+            const decoded = this.decodeHTMLEntities(fullServicesAttri);
+            fullServices = JSON.parse(decoded);
+            console.log('Parsed full services:', fullServices);
         }
         this.fullServices = fullServices;
 
         let creative = [];
         const creativeAttri = this.getAttribute("creative");
         if(creativeAttri) {
-            try {
-                creative = JSON.parse(creativeAttri);
-            } catch(e) {
-                console.error('Error parsing creative:', e);
-            }
+            creative = JSON.parse(creativeAttri);
         }
         this.creative = creative;
 
@@ -89,18 +69,11 @@ class SalonDescription extends HTMLElement {
     }
 
     async loadFullSalonData() {
-        try {
-            const salonId = this.getAttribute("data");
-            const response = await fetch('./salonPage/json/salon.json');
-            const data = await response.json();
-            this.salonData = data.salons?.find(s => s.id === salonId);
-            console.log('Loaded full salon data:', this.salonData);
-        } catch (error) {
-            console.error('Error loading salon data:', error);
-        }
-    }
-
-    render() {
+        const salonId = this.getAttribute("data");
+        const response = await fetch('./salonPage/json/salon.json');
+        const data = await response.json();
+        this.salonData = data.salons?.find(s => s.id === salonId);
+        console.log('Loaded full salon data:', this.salonData);
     }
 
     decodeHTMLEntities(text) {
@@ -179,7 +152,6 @@ class SalonDescription extends HTMLElement {
                 </div>
             </div>
         `;
-        console.log("/DETAILED");
 
         const closeBtn = this.querySelector('.close-btn');
         if (closeBtn) {
@@ -239,6 +211,7 @@ class SalonDescription extends HTMLElement {
             </div>
             <dialog id="artistDetailDialog"></dialog>
         `;
+        
         setTimeout(() => {
             this.loadAndRenderServices();
             this.attachArtistEvents();
@@ -264,11 +237,9 @@ class SalonDescription extends HTMLElement {
 
         const dialog = this.querySelector('#artistDetailDialog');
         
-        // Салоны мэдээллээс artist-ын location болон schedule олох
         let location = artist.location || this.location || 'Байршил тодорхойгүй';
         let schedule = artist.schedule || this.schedule || 'Цагийн хуваарь байхгүй';
         
-        // Хэрэв салбар дээр суурилсан бол
         if (artist.branch_id && this.branches) {
             const branch = this.branches.find(b => b.branch_id === artist.branch_id);
             if (branch) {
@@ -280,7 +251,6 @@ class SalonDescription extends HTMLElement {
         const experience = artist.experience || 'Туршлага тодорхойгүй';
         const img = artist.img || 'https://picsum.photos/300/300';
         
-        // Салоны creative зургууд
         let artImg = [];
         if (this.creative && Array.isArray(this.creative)) {
             artImg = this.creative;
@@ -303,7 +273,16 @@ class SalonDescription extends HTMLElement {
         
         dialog.showModal();
         
-        // Dialog-ын гаднах хэсэг дээр дарахад хаах
+        setTimeout(() => {
+            const closeBtn = dialog.querySelector('.close-btn');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dialog.close();
+                });
+            }
+        }, 50);
+
         dialog.addEventListener('click', (e) => {
             const rect = dialog.getBoundingClientRect();
             if (
@@ -320,12 +299,14 @@ class SalonDescription extends HTMLElement {
     async loadAndRenderServices() {
         const container = this.querySelector('#servicesContainer');
         if (!container) return;
+        
         let servicesToRender = this.fullServices;
         
         if (!servicesToRender || servicesToRender.length === 0) {
             container.innerHTML = `<div class="loading-message">Үйлчилгээ байхгүй байна.</div>`;
             return;
         }
+        
         container.innerHTML = servicesToRender.map((serviceCategory, index) => `
             <div class="service-category" data-category-index="${index}">
                 <div class="service-category-header">
@@ -377,57 +358,53 @@ class SalonDescription extends HTMLElement {
         });
     }
 
-handleBooking(serviceId) {
-    // Үйлчилгээний мэдээлэл олох
-    let selectedService = null;
-    let selectedCategory = null;
-    
-    this.fullServices.forEach(category => {
-        const service = category.subservice?.find(s => s.id === serviceId);
-        if (service) {
-            selectedService = service;
-            selectedCategory = category.type;
+    handleBooking(serviceId) {
+        let selectedService = null;
+        let selectedCategory = null;
+        
+        // Үйлчилгээ олох
+        this.fullServices.forEach(category => {
+            const service = category.subservice?.find(s => s.id === serviceId);
+            if (service) {
+                selectedService = service;
+                selectedCategory = category.type;
+            }
+        });
+        
+        if (!selectedService) return;
+        
+        // Боломжит огноо, цаг авах
+        let availableDates = [];
+        let availableTimes = [];
+        
+        if (this.salonData) {
+            availableDates = this.salonData.date || [];
+            availableTimes = this.salonData.time || [];
         }
-    });
-    
-    if (!selectedService) return;
-    
-    // Салоны date болон time мэдээлэл
-    let availableDates = [];
-    let availableTimes = [];
-    
-    // salonData-аас мэдээлэл авах
-    if (this.salonData) {
-        availableDates = this.salonData.date || [];
-        availableTimes = this.salonData.time || [];
+        
+        // Booking dialog үүсгэх
+        const bookingDialog = document.createElement('booking-dialog');
+        bookingDialog.setAttribute('service-name', selectedService.name);
+        bookingDialog.setAttribute('service-category', selectedCategory);
+        bookingDialog.setAttribute('service-duration', selectedService.duration);
+        bookingDialog.setAttribute('service-price', this.formatPrice(selectedService.price));
+        bookingDialog.setAttribute('salon-name', this.name);
+        bookingDialog.setAttribute('available-dates', JSON.stringify(availableDates));
+        bookingDialog.setAttribute('available-times', JSON.stringify(availableTimes));
+        
+        document.body.appendChild(bookingDialog);
+        
+        setTimeout(() => {
+            bookingDialog.show();
+        }, 100);
+        
+        // Dialog хаагдах үед цэвэрлэх
+        bookingDialog.addEventListener('dialog-closed', () => {
+            bookingDialog.remove();
+        });
     }
-    
-    // Booking dialog component үүсгэх
-    const bookingDialog = document.createElement('booking-dialog');
-    bookingDialog.setAttribute('service-name', selectedService.name);
-    bookingDialog.setAttribute('service-category', selectedCategory);
-    bookingDialog.setAttribute('service-duration', selectedService.duration);
-    bookingDialog.setAttribute('service-price', this.formatPrice(selectedService.price));
-    bookingDialog.setAttribute('salon-name', this.name);
-    bookingDialog.setAttribute('available-dates', JSON.stringify(availableDates));
-    bookingDialog.setAttribute('available-times', JSON.stringify(availableTimes));
-    
-    document.body.appendChild(bookingDialog);
-    
-    // Dialog харуулах
-    setTimeout(() => {
-        bookingDialog.show();
-    }, 100);
-    
-    // Booking confirmed event сонсох
-    bookingDialog.addEventListener('booking-confirmed', (e) => {
-        console.log('Booking data received:', e.detail);
-        // Энд захиалгын мэдээллийг server рүү илгээх эсвэл бусад үйлдэл хийх
-    });
-}
 
     disconnectedCallback() {
-       
     }
 
     attributeChangedCallback(name, oldVal, newVal) {

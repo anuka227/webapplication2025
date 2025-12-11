@@ -164,10 +164,6 @@ class BookingDialog extends HTMLElement {
             this.close();
         });
         
-        this.querySelector('.cancel-btn').addEventListener('click', () => {
-            this.close();
-        });
-        
         this.querySelector('.confirm-booking-btn').addEventListener('click', () => {
             this.confirmBooking();
         });
@@ -191,13 +187,13 @@ class BookingDialog extends HTMLElement {
     }
 
     renderCalendar() {
-        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const monthNames = ['1-р сар', '2-р сар', '3-р сар', '4-р сар', '5-р сар', '6-р сар', '7-р сар', '8-р сар', '9-р сар', '10-р сар', '11-р сар', '12-р сар'];
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         
-        this.querySelector('#calendarMonth').textContent = `${monthNames[month]} ${this.currentDate.getDate()}, ${year}`;
+        this.querySelector('#calendarMonth').textContent = `${monthNames[month]} ${year}`;
         
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
@@ -205,7 +201,7 @@ class BookingDialog extends HTMLElement {
         const startDay = firstDay.getDay();
         
         let calendarHTML = '<div class="calendar-weekdays">';
-        ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].forEach(day => {
+        ['Да', 'Мя', 'Лх', 'Пү', 'Ба', 'Бя', 'Ня'].forEach(day => {
             calendarHTML += `<div class="weekday">${day}</div>`;
         });
         calendarHTML += '</div><div class="calendar-days">';
@@ -248,7 +244,7 @@ class BookingDialog extends HTMLElement {
 
     confirmBooking() {
         if (!this.selectedTime) {
-            alert('Цагаа сонгоно уу!');
+            this.showNotification('Цагаа сонгоно уу!', 'error');
             return;
         }
         
@@ -257,11 +253,17 @@ class BookingDialog extends HTMLElement {
             category: this.serviceCategory,
             duration: this.serviceDuration,
             price: this.servicePrice,
-            date: this.selectedDate,
+            date: this.selectedDate.toISOString(),
+            dateFormatted: this.selectedDate.toLocaleDateString('mn-MN'),
             time: this.selectedTime,
-            salon: this.salonName
+            salon: this.salonName,
+            timestamp: new Date().toISOString()
         };
         
+        // LocalStorage-д хадгалах
+        this.saveBooking(bookingData);
+        
+        // Event dispatch
         this.dispatchEvent(new CustomEvent('booking-confirmed', {
             detail: bookingData,
             bubbles: true,
@@ -270,9 +272,113 @@ class BookingDialog extends HTMLElement {
         
         console.log('Booking confirmed:', bookingData);
         
-        alert(`Захиалга баталгаажлаа!\n\nҮйлчилгээ: ${this.serviceName}\nОгноо: ${this.selectedDate.toLocaleDateString('mn-MN')}\nЦаг: ${this.selectedTime}\nСалон: ${this.salonName}`);
-        
+        // Dialog шууд хаах
         this.close();
+        
+        // Dialog хаагдсаны дараа notification үзүүлэх
+        setTimeout(() => {
+            this.showNotification('Таны захиалга амжилттай бүртгэгдлээ! ', 'success');
+        }, 200);
+    }
+
+    saveBooking(bookingData) {
+        try {
+            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            
+            const newBooking = {
+                id: Date.now().toString(),
+                ...bookingData
+            };
+            
+            bookings.push(newBooking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            console.log('Booking saved to localStorage:', newBooking);
+        } catch (error) {
+            console.error('Error saving booking:', error);
+        }
+    }
+confirmBooking() {
+    if (!this.selectedTime) {
+        this.showNotification('Цагаа сонгоно уу!', 'error');
+        return;
+    }
+    
+    const bookingData = {
+        service: this.serviceName,
+        category: this.serviceCategory,
+        duration: this.serviceDuration,
+        price: this.servicePrice,
+        date: this.selectedDate.toISOString(),
+        dateFormatted: this.selectedDate.toLocaleDateString('mn-MN'),
+        time: this.selectedTime,
+        salon: this.salonName,
+        timestamp: new Date().toISOString(),
+        status: 'upcoming' // ШИНЭ: захиалгын төлөв
+    };
+    
+    this.saveBooking(bookingData);
+    
+    this.dispatchEvent(new CustomEvent('booking-confirmed', {
+        detail: bookingData,
+        bubbles: true,
+        composed: true
+    }));
+    
+    window.dispatchEvent(new CustomEvent('booking-added', {
+        detail: bookingData
+    }));
+    
+    console.log('Booking confirmed:', bookingData);
+    
+    this.close();
+    
+    setTimeout(() => {
+        this.showNotification('Таны захиалга амжилттай бүртгэгдлээ! ', 'success');
+    }, 200);
+}
+    showNotification(message, type = 'success') {
+        // Хуучин notification-г устгах
+        const existingNotif = document.querySelector('.booking-notification');
+        if (existingNotif) {
+            existingNotif.remove();
+        }
+        
+        const notification = document.createElement('div');
+        notification.className = `booking-notification notification-${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <span class="notification-icon">${type === 'success' ? '' : '⚠'}</span>
+                <span class="notification-message">${message}</span>
+            </div>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#4CAF50' : '#ff5252'};
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10001;
+            animation: slideInRight 0.3s ease-out;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease-out';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
     }
 
     show() {
@@ -283,6 +389,11 @@ class BookingDialog extends HTMLElement {
     close() {
         const dialog = this.querySelector('.booking-dialog');
         dialog.close();
+        
+        this.dispatchEvent(new CustomEvent('dialog-closed', {
+            bubbles: true,
+            composed: true
+        }));
         
         setTimeout(() => {
             this.remove();
