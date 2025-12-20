@@ -1,4 +1,5 @@
-class OrderManager {
+// orderManager.js
+export class OrderManager {
     constructor() {
         this.orderData = {
             service: null,
@@ -10,22 +11,22 @@ class OrderManager {
     
     updateService(service) {
         this.orderData.service = service;
-        console.log('Service updated:', service);
+        console.log('📋 Service updated:', service);
     }
     
     updateLocation(location) {
         this.orderData.location = location;
-        console.log('Location updated:', location);
+        console.log('📍 Location updated:', location);
     }
     
     updateDate(date) {
         this.orderData.date = date;
-        console.log('Date updated:', date);
+        console.log('📅 Date updated:', date);
     }
     
     updateTime(time) {
         this.orderData.time = time;
-        console.log('Time updated:', time);
+        console.log('⏰ Time updated:', time);
     }
     
     isComplete() {
@@ -38,7 +39,17 @@ class OrderManager {
     getData() {
         return this.orderData;
     }
+
+    reset() {
+        this.orderData = {
+            service: null,
+            location: null,
+            date: null,
+            time: null
+        };
+    }
 }
 
-// Global instance
-window.orderManager = new OrderManager();
+if (!window.orderManager) {
+    window.orderManager = new OrderManager();
+}
