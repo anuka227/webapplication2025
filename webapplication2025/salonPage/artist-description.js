@@ -21,14 +21,8 @@ class ArtistDescription extends HTMLElement {
         this.artImg = Array.isArray(artImg) ? artImg : [];
 
         switch(this.type) {
-            case "max": 
-                this.artistMax();
-                break;
             case "medium":
                 this.artistMedium();
-                break;
-            case "min":
-                this.artistMin();
                 break;
             default:
                 this.artistSpecial();
@@ -40,7 +34,6 @@ class ArtistDescription extends HTMLElement {
             <img src="${this.img}" alt="${this.name}">
             <h4>${this.name}</h4>
         `;
-        console.log("/SpecialArt");
     }
 
     artistMedium() {
