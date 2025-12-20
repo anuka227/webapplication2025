@@ -31,7 +31,7 @@ class OrderLocation extends HTMLElement {
     connectedCallback() {
         this.innerHTML = /*html*/ `
             <ul class="locations">
-                <li><p>Байршил</p></li>
+                <li class="service-header"><p>Байршил</p></li>
                 <li class="get-location">
                     <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5.36328 12.0523C4.01081 11.5711 3.33457 11.3304 3.13309 10.9655C2.95849 10.6492 2.95032 10.2673 3.11124 9.94388C3.29694 9.57063 3.96228 9.30132 5.29295 8.76272L17.8356 3.68594C19.1461 3.15547 19.8014 2.89024 20.2154 3.02623C20.5747 3.14427 20.8565 3.42608 20.9746 3.7854C21.1106 4.19937 20.8453 4.85465 20.3149 6.16521L15.2381 18.7078C14.6995 20.0385 14.4302 20.7039 14.0569 20.8896C13.7335 21.0505 13.3516 21.0423 13.0353 20.8677C12.6704 20.6662 12.4297 19.99 11.9485 18.6375L10.4751 14.4967C10.3815 14.2336 10.3347 14.102 10.2582 13.9922C10.1905 13.8948 10.106 13.8103 10.0086 13.7426C9.89876 13.6661 9.76719 13.6193 9.50407 13.5257L5.36328 12.0523Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -74,28 +74,20 @@ class OrderLocation extends HTMLElement {
     setupListeners() {
         const orderInner = this.closest('order-inner');
         if (!orderInner) return;
-
         const btnText = orderInner.querySelector('.toggle-btn p');
         const contentDiv = orderInner.querySelector('.hidden-content');
-
-        // ========== ЗАСВАРЛАСАН: Select listener ==========
         this.querySelector('.add-location select').addEventListener('change', (e) => {
             e.stopPropagation();
             const locationName = e.target.value;
             
             if (locationName !== 'Байршил нэмэх') {
-                // Button text шинэчлэх
                 btnText.textContent = locationName;
                 contentDiv?.classList.remove('show');
-                
-                // ✅ Координат авах
                 const coords = this.locationsData[locationName];
-                
                 if (coords) {
-                    // ✅ OrderManager-т координаттай хадгалах
                     window.orderManager?.updateLocation({
                         name: locationName,
-                        coordinates: coords  // ← ЭНЭ ЧУХАЛ!
+                        coordinates: coords
                     });
                     
                     console.log('📍 Dropdown-оос сонгосон:', locationName, coords);
@@ -105,7 +97,6 @@ class OrderLocation extends HTMLElement {
             }
         });
 
-        // Map button listener
         this.querySelector('.get-location').addEventListener('click', (e) => {
             e.stopPropagation();
             contentDiv?.classList.remove('show');
@@ -190,18 +181,15 @@ class OrderLocation extends HTMLElement {
             iconAnchor: [16, 45]
         });
         this.marker = L.marker([lat, lng], { icon }).addTo(this.map);
-
-        // Координат шинэчлэх
         this.selectedCoords = { lat, lng };
         this.updateCoords(container, lat, lng);
         btnText.textContent = 'СОНГОСОН БАЙРШИЛ';
         
         console.log('🗺️ Map-аас сонгосон:', { lat, lng });
 
-        // ✅ OrderManager-т координаттай хадгалах
         window.orderManager?.updateLocation({
             name: 'Сонгосон байршил',
-            coordinates: { lat, lng }  // ← ЭНЭ ЧУХАЛ!
+            coordinates: { lat, lng }
         });
     }
 

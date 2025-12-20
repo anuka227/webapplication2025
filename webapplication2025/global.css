@@ -22,6 +22,21 @@
 
     --animation-main: fadeSlide 0.8s ease-out;
 }
+body {
+    margin: 0;
+}
+
+salon-app {
+    display: grid;
+    grid-template-areas:
+        "as main"
+        "as ft";
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 1fr auto;
+    margin: 0;
+    background-color: var(--color-bg);
+    height: 100vh;
+}
 
 aside-nav {
     background-color: var(--color-order);
@@ -82,7 +97,7 @@ aside-nav img:hover {
     background-color: var(--color-bg);
 }
 
-footer {
+salon-footer {
     grid-area: ft;
     text-align: center;
     padding: 1rem;

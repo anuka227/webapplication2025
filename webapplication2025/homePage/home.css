@@ -1,21 +1,9 @@
-body {
-    display: grid;
-    margin: 0;
-    grid-template-areas: 
-        "as head"
-        "as main"
-        "as ft";
-    grid-template-columns: 100px auto; 
-    height: 100vh; 
-    background-color: var(--color-bg);
-}
-
-header {
-    grid-area: head;
+salon-header {
     display: flex;
     height: 48vh;
     max-width: 100vw;
     justify-content: center;
+    position: relative;
     p {
         font: var(--font-logo);
         letter-spacing: 4px;
@@ -117,12 +105,14 @@ header {
   50% {
     transform: scale(1.05);
   }
+}#content {
+    padding: 0;
 }
-
-main {
+salon-home {
     grid-area: main;
     z-index: 1;
     animation: var(--animation-main);
+    margin-left: 40px;
     h2 {
         margin: 1rem 0 1rem 0;
         padding:10px 0 10px 160px;

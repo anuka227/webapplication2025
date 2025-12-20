@@ -76,5 +76,4 @@ class OrderInner extends HTMLElement {
     }
     }
 }
-
 customElements.define('order-inner', OrderInner);

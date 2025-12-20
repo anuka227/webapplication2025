@@ -1,4 +1,4 @@
-class SalonHeader extends HTMLElement {
+export class SalonHeader extends HTMLElement {
     constructor() {
         super();
         //implementation
@@ -6,7 +6,7 @@ class SalonHeader extends HTMLElement {
 
     connectedCallback() {
         this.innerHTML = /*html*/`
-        <header>
+        <div class="header">
 		<p id="paragraph-one">Гоо Сайхныг </p>
 		<p id="paragraph-two">Мэдэр</p>
 		<div class="logo">
@@ -18,7 +18,7 @@ class SalonHeader extends HTMLElement {
 			<img src="./IMG/logo/pedicure.png" class="logo-element" alt="pedicure">
 			<img src="./IMG/logo/makeup.png" class="logo-element" alt="makeup">
 		</div>
-        </header>
+        </div>
         `
     }
 

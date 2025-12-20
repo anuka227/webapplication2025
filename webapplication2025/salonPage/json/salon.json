@@ -21,45 +21,30 @@
       ],
       "service": [
         {
-          "type": "Хумсны арчилгаа",
+          "type": "Хумс",
           "subservice": [
-            {"id": "manicure1", "name": "Энгийн маникюр", "price": "40000", "duration": "45 мин"},
-            {"id": "manicure2", "name": "Smart хумс", "price": "55000", "duration": "60 мин"},
-            {"id": "manicure3", "name": "Гел будалт", "price": "65000", "duration": "75 мин"},
-            {"id": "manicure4", "name": "Гоёлын будалт", "price": "80000", "duration": "90 мин"}
+            {"id": "Manicure", "name": "Энгийн маникюр", "price": "40000", "duration": "45 мин"},
+            {"id": "Manicure", "name": "Smart хумс", "price": "55000", "duration": "60 мин"},
+            {"id": "Manicure", "name": "Гел будалт", "price": "65000", "duration": "75 мин"},
+            {"id": "Manicure", "name": "Гоёлын будалт", "price": "80000", "duration": "90 мин"},
+            {"id": "Pedicure", "name": "Энгийн педикюр", "price": "45000", "duration": "50 мин"},
+            {"id": "Pedicure", "name": "Spa педикюр", "price": "65000", "duration": "75 мин"},
+            {"id": "Pedicure", "name": "Гел будалт", "price": "70000", "duration": "80 мин"}
           ]
         },
         {
-          "type": "Хөлний хумс арчилгаа",
+          "type": "Үс",
           "subservice": [
-            {"id": "pedicure1", "name": "Энгийн педикюр", "price": "45000", "duration": "50 мин"},
-            {"id": "pedicure2", "name": "Spa педикюр", "price": "65000", "duration": "75 мин"},
-            {"id": "pedicure3", "name": "Гел будалт", "price": "70000", "duration": "80 мин"}
-          ]
-        },
-        {
-          "type": "Үс засалт",
-          "subservice": [
-            {"id": "haircut1", "name": "Эмэгтэй үс засалт", "price": "50000", "duration": "60 мин"},
-            {"id": "haircut2", "name": "Эрэгтэй үс засалт", "price": "35000", "duration": "45 мин"},
-            {"id": "haircut3", "name": "Хүүхдийн үс засалт", "price": "25000", "duration": "30 мин"}
-          ]
-        },
-        {
-          "type": "Үсний эмчилгээ",
-          "subservice": [
-            {"id": "treatment1", "name": "Keratin эмчилгээ", "price": "250000", "duration": "180 мин"},
-            {"id": "treatment2", "name": "Протейн эмчилгээ", "price": "120000", "duration": "120 мин"},
-            {"id": "treatment3", "name": "Арчилгаа mask", "price": "45000", "duration": "45 мин"}
-          ]
-        },
-        {
-          "type": "Үсний будалт",
-          "subservice": [
-            {"id": "coloring1", "name": "Энгийн будалт", "price": "80000", "duration": "120 мин"},
-            {"id": "coloring2", "name": "Балаяж", "price": "180000", "duration": "180 мин"},
-            {"id": "coloring3", "name": "Омбре", "price": "160000", "duration": "150 мин"},
-            {"id": "coloring4", "name": "Хэрчим будалт", "price": "120000", "duration": "120 мин"}
+            {"id": "Үсний засалт", "name": "Эмэгтэй үс засалт", "price": "50000", "duration": "60 мин"},
+            {"id": "Үсний засалт", "name": "Эрэгтэй үс засалт", "price": "35000", "duration": "45 мин"},
+            {"id": "Үсний засалт", "name": "Хүүхдийн үс засалт", "price": "25000", "duration": "30 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Keratin эмчилгээ", "price": "250000", "duration": "180 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Протейн эмчилгээ", "price": "120000", "duration": "120 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Арчилгаа mask", "price": "45000", "duration": "45 мин"},
+            {"id": "Үс будалт", "name": "Энгийн будалт", "price": "80000", "duration": "120 мин"},
+            {"id": "Үс будалт", "name": "Балаяж", "price": "180000", "duration": "180 мин"},
+            {"id": "Үс будалт", "name": "Омбре", "price": "160000", "duration": "150 мин"},
+            {"id": "Үс будалт", "name": "Хэрчим будалт", "price": "120000", "duration": "120 мин"}
           ]
         }
       ],
@@ -155,51 +140,38 @@
       "creative": [],
       "service": [
         {
-          "type": "Сормуус өргөтгөл",
+          "type": "Сормуус",
           "subservice": [
-            {"id": "lash1", "name": "Classic Lash", "price": "70000", "duration": "90 мин"},
-            {"id": "lash2", "name": "Volume Lash", "price": "85000", "duration": "120 мин"},
-            {"id": "lash3", "name": "Mega Volume", "price": "95000", "duration": "150 мин"},
-            {"id": "lash4", "name": "Lash Lift", "price": "50000", "duration": "60 мин"}
+            {"id": "Classic Сормуус", "name": "Classic Lash", "price": "70000", "duration": "90 мин"},
+            {"id": "3D Сормуус", "name": "Volume Lash", "price": "85000", "duration": "120 мин"},
+            {"id": "Anime Сормуус", "name": "Mega Volume", "price": "95000", "duration": "150 мин"},
+            {"id": "3D Сормуус", "name": "Lash Lift", "price": "50000", "duration": "60 мин"}
           ]
         },
         {
-          "type": "Хумсны арчилгаа",
+          "type": "Хумс",
           "subservice": [
-            {"id": "manicure1", "name": "Энгийн маникюр", "price": "35000", "duration": "45 мин"},
-            {"id": "manicure2", "name": "Гел маникюр", "price": "55000", "duration": "60 мин"},
-            {"id": "manicure3", "name": "Nail Art", "price": "75000", "duration": "90 мин"}
-          ]
-        },
-        {
-          "type": "Хөлний хумс арчилгаа",
-          "subservice": [
-            {"id": "pedicure1", "name": "Энгийн педикюр", "price": "40000", "duration": "50 мин"},
-            {"id": "pedicure2", "name": "Гел педикюр", "price": "55000", "duration": "70 мин"}
+            {"id": "Manicure", "name": "Энгийн маникюр", "price": "35000", "duration": "45 мин"},
+            {"id": "Manicure", "name": "Гел маникюр", "price": "55000", "duration": "60 мин"},
+            {"id": "Manicure", "name": "Nail Art", "price": "75000", "duration": "90 мин"},
+            {"id": "Pedicure", "name": "Энгийн педикюр", "price": "40000", "duration": "50 мин"},
+            {"id": "Pedicure", "name": "Гел педикюр", "price": "55000", "duration": "70 мин"}
           ]
         },
         {
           "type": "Нүүр будалт",
           "subservice": [
-            {"id": "makeup1", "name": "Daily Makeup", "price": "60000", "duration": "45 мин"},
-            {"id": "makeup2", "name": "Evening Makeup", "price": "85000", "duration": "60 мин"},
-            {"id": "makeup3", "name": "Bridal Makeup", "price": "150000", "duration": "120 мин"}
+            {"id": "Өдөр тутмын", "name": "Daily Makeup", "price": "60000", "duration": "45 мин"},
+            {"id": "Гоёлын", "name": "Evening Makeup", "price": "85000", "duration": "60 мин"},
+            {"id": "Гоёлын", "name": "Bridal Makeup", "price": "150000", "duration": "120 мин"}
           ]
         },
         {
-          "type": "Шивээс",
+          "type": "Вакс",
           "subservice": [
-            {"id": "tattoo1", "name": "Жижиг шивээс", "price": "100000", "duration": "60 мин"},
-            {"id": "tattoo2", "name": "Дунд шивээс", "price": "200000", "duration": "120 мин"},
-            {"id": "tattoo3", "name": "Том шивээс", "price": "350000", "duration": "180 мин"}
-          ]
-        },
-        {
-          "type": "Үс арилгалт",
-          "subservice": [
-            {"id": "wax1", "name": "Гарын үс", "price": "40000", "duration": "30 мин"},
-            {"id": "wax2", "name": "Хөлний үс", "price": "50000", "duration": "45 мин"},
-            {"id": "wax3", "name": "Full body wax", "price": "120000", "duration": "90 мин"}
+            {"id": "Гарын вакс", "name": "Гарын вакс", "price": "40000", "duration": "30 мин"},
+            {"id": "Хөлийн вакс", "name": "Хөлийн вакс", "price": "50000", "duration": "45 мин"},
+            {"id": "Бүтэн биеийн вакс", "name": "Бүтэн биеийн вакс", "price": "120000", "duration": "90 мин"}
           ]
         }
       ],
@@ -295,37 +267,37 @@
       "creative": [],
       "service": [
         {
-          "type": "Нүүр арчилгаа",
+          "type": "Гоо сайхан",
           "subservice": [
-            {"id": "facial1", "name": "Deep Cleansing", "price": "85000", "duration": "60 мин"},
-            {"id": "facial2", "name": "Hydrating Facial", "price": "95000", "duration": "75 мин"},
-            {"id": "facial3", "name": "Anti-aging Treatment", "price": "150000", "duration": "90 мин"},
-            {"id": "facial4", "name": "Acne Treatment", "price": "110000", "duration": "75 мин"}
+            {"id": "Нүүр арчилгаа", "name": "Deep Cleansing", "price": "85000", "duration": "60 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Hydrating Facial", "price": "95000", "duration": "75 мин"},
+            {"id": "Нүүр эмчилгээ", "name": "Anti-aging Treatment", "price": "150000", "duration": "90 мин"},
+            {"id": "Нүүр эмчилгээ", "name": "Acne Treatment", "price": "110000", "duration": "75 мин"}
           ]
         },
         {
-          "type": "Массаж",
+          "type": "Spa",
           "subservice": [
-            {"id": "massage1", "name": "Swedish Massage", "price": "100000", "duration": "60 мин"},
-            {"id": "massage2", "name": "Full Body Massage", "price": "120000", "duration": "90 мин"},
-            {"id": "massage3", "name": "Hot Stone Massage", "price": "145000", "duration": "90 мин"},
-            {"id": "massage4", "name": "Aromatherapy", "price": "130000", "duration": "75 мин"}
+            {"id": "Массаж", "name": "Swedish Massage", "price": "100000", "duration": "60 мин"},
+            {"id": "Массаж", "name": "Full Body Massage", "price": "120000", "duration": "90 мин"},
+            {"id": "Массаж", "name": "Hot Stone Massage", "price": "145000", "duration": "90 мин"},
+            {"id": "Массаж", "name": "Aromatherapy", "price": "130000", "duration": "75 мин"}
           ]
         },
         {
-          "type": "Үс засалт",
+          "type": "Үс",
           "subservice": [
-            {"id": "hairstyle1", "name": "Blowdry", "price": "30000", "duration": "30 мин"},
-            {"id": "hairstyle2", "name": "Styling", "price": "50000", "duration": "45 мин"},
-            {"id": "hairstyle3", "name": "Updo", "price": "80000", "duration": "60 мин"}
+            {"id": "Үсний засалт", "name": "Blowdry", "price": "30000", "duration": "30 мин"},
+            {"id": "Үсний засалт", "name": "Styling", "price": "50000", "duration": "45 мин"},
+            {"id": "Үсний засалт", "name": "Updo", "price": "80000", "duration": "60 мин"}
           ]
         },
         {
           "type": "Нүүр будалт",
           "subservice": [
-            {"id": "makeup1", "name": "Natural Makeup", "price": "70000", "duration": "45 мин"},
-            {"id": "makeup2", "name": "Evening Makeup", "price": "80000", "duration": "60 мин"},
-            {"id": "makeup3", "name": "Bridal Makeup", "price": "120000", "duration": "90 мин"}
+            {"id": "Өдөр тутмын", "name": "Natural Makeup", "price": "70000", "duration": "45 мин"},
+            {"id": "Гоёлын", "name": "Evening Makeup", "price": "80000", "duration": "60 мин"},
+            {"id": "Гоёлын", "name": "Bridal Makeup", "price": "120000", "duration": "90 мин"}
           ]
         }
       ],
@@ -421,31 +393,20 @@
       "creative": [],
       "service": [
         {
-          "type": "Үс засалт",
+          "type": "Үс",
           "subservice": [
-            {"id": "haircut1", "name": "Эмэгтэй үс засалт", "price": "50000", "duration": "60 мин"},
-            {"id": "haircut2", "name": "Эрэгтэй үс засалт", "price": "35000", "duration": "45 мин"},
-            {"id": "haircut3", "name": "Хүүхдийн үс засалт", "price": "25000", "duration": "30 мин"},
-            {"id": "haircut4", "name": "Layered Cut", "price": "65000", "duration": "75 мин"}
-          ]
-        },
-        {
-          "type": "Үсний будалт",
-          "subservice": [
-            {"id": "coloring1", "name": "Энгийн будалт", "price": "90000", "duration": "120 мин"},
-            {"id": "coloring2", "name": "Балаяж", "price": "180000", "duration": "180 мин"},
-            {"id": "coloring3", "name": "Омбре", "price": "160000", "duration": "150 мин"},
-            {"id": "coloring4", "name": "Хэрчим будалт", "price": "120000", "duration": "120 мин"},
-            {"id": "coloring5", "name": "Color Correction", "price": "250000", "duration": "240 мин"}
-          ]
-        },
-        {
-          "type": "Үсний эмчилгээ",
-          "subservice": [
-            {"id": "treatment1", "name": "Keratin Treatment", "price": "250000", "duration": "180 мин"},
-            {"id": "treatment2", "name": "Botox Hair Therapy", "price": "200000", "duration": "150 мин"},
-            {"id": "treatment3", "name": "Protein Treatment", "price": "120000", "duration": "120 мин"},
-            {"id": "treatment4", "name": "Deep Conditioning", "price": "60000", "duration": "60 мин"}
+            {"id": "Үсний засалт", "name": "Эмэгтэй үс засалт", "price": "50000", "duration": "60 мин"},
+            {"id": "Үсний засалт", "name": "Эрэгтэй үс засалт", "price": "35000", "duration": "45 мин"},
+            {"id": "Үсний засалт", "name": "Хүүхдийн үс засалт", "price": "25000", "duration": "30 мин"},
+            {"id": "Үсний засалт", "name": "Layered Cut", "price": "65000", "duration": "75 мин"},
+            {"id": "Үс будалт", "name": "Энгийн будалт", "price": "90000", "duration": "120 мин"},
+            {"id": "Үс будалт", "name": "Балаяж", "price": "180000", "duration": "180 мин"},
+            {"id": "Үс будалт", "name": "Омбре", "price": "160000", "duration": "150 мин"},
+            {"id": "Үс будалт", "name": "Хэрчим будалт", "price": "120000", "duration": "120 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Keratin Treatment", "price": "250000", "duration": "180 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Botox Hair Therapy", "price": "200000", "duration": "150 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Protein Treatment", "price": "120000", "duration": "120 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Deep Conditioning", "price": "60000", "duration": "60 мин"}
           ]
         }
       ],
@@ -541,21 +502,16 @@
       "creative": [],
       "service": [
         {
-          "type": "Хумсны арчилгаа",
+          "type": "Хумс",
           "subservice": [
-            {"id": "manicure1", "name": "Энгийн маникюр", "price": "35000", "duration": "45 мин"},
-            {"id": "manicure2", "name": "Gel Manicure", "price": "60000", "duration": "60 мин"},
-            {"id": "manicure3", "name": "Acrylic Extension", "price": "75000", "duration": "90 мин"},
-            {"id": "manicure4", "name": "Nail Art Design", "price": "90000", "duration": "120 мин"},
-            {"id": "manicure5", "name": "3D Nail Art", "price": "110000", "duration": "150 мин"}
-          ]
-        },
-        {
-          "type": "Хөлний хумс арчилгаа",
-          "subservice": [
-            {"id": "pedicure1", "name": "Энгийн педикюр", "price": "40000", "duration": "50 мин"},
-            {"id": "pedicure2", "name": "Spa Pedicure", "price": "65000", "duration": "75 мин"},
-            {"id": "pedicure3", "name": "Gel Pedicure", "price": "70000", "duration": "80 мин"}
+            {"id": "Manicure", "name": "Энгийн маникюр", "price": "35000", "duration": "45 мин"},
+            {"id": "Manicure", "name": "Gel Manicure", "price": "60000", "duration": "60 мин"},
+            {"id": "Manicure", "name": "Acrylic Extension", "price": "75000", "duration": "90 мин"},
+            {"id": "Manicure", "name": "Nail Art Design", "price": "90000", "duration": "120 мин"},
+            {"id": "Manicure", "name": "3D Nail Art", "price": "110000", "duration": "150 мин"},
+            {"id": "Pedicure", "name": "Энгийн педикюр", "price": "40000", "duration": "50 мин"},
+            {"id": "Pedicure", "name": "Spa Pedicure", "price": "65000", "duration": "75 мин"},
+            {"id": "Pedicure", "name": "Gel Pedicure", "price": "70000", "duration": "80 мин"}
           ]
         }
       ],
@@ -651,21 +607,14 @@
       "creative": [],
       "service": [
         {
-          "type": "Нүүрний эмчилгээ",
+          "type": "Гоо сайхан",
           "subservice": [
-            {"id": "facial1", "name": "Deep Cleaning", "price": "110000", "duration": "60 мин"},
-            {"id": "facial2", "name": "Chemical Peel", "price": "150000", "duration": "75 мин"},
-            {"id": "facial3", "name": "Microdermabrasion", "price": "135000", "duration": "60 мин"},
-            {"id": "facial4", "name": "Acne Care", "price": "120000", "duration": "75 мин"}
-          ]
-        },
-        {
-          "type": "Лазер эмчилгээ",
-          "subservice": [
-            {"id": "laser1", "name": "Laser Hair Removal - Face", "price": "150000", "duration": "45 мин"},
-            {"id": "laser2", "name": "Laser Hair Removal - Full Body", "price": "400000", "duration": "120 мин"},
-            {"id": "laser3", "name": "Freckles Removal", "price": "350000", "duration": "90 мин"},
-            {"id": "laser4", "name": "Skin Rejuvenation", "price": "280000", "duration": "75 мин"}
+            {"id": "Нүүр арчилгаа", "name": "Deep Cleaning", "price": "110000", "duration": "60 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Chemical Peel", "price": "150000", "duration": "75 мин"},
+            {"id": "Нүүр эмчилгээ", "name": "Microdermabrasion", "price": "135000", "duration": "60 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Acne Care", "price": "120000", "duration": "75 мин"},
+            {"id": "Нүүрний лазер", "name": "Laser Hair Removal - Face", "price": "150000", "duration": "45 мин"},
+            {"id": "Нүүрний лазер", "name": "Freckles Removal", "price": "350000", "duration": "90 мин"}
           ]
         }
       ],
@@ -761,29 +710,19 @@
       "creative": [],
       "service": [
         {
-          "type": "Массаж үйлчилгээ",
+          "type": "Spa",
           "subservice": [
-            {"id": "massage1", "name": "Thai Massage", "price": "130000", "duration": "90 мин"},
-            {"id": "massage2", "name": "Swedish Massage", "price": "115000", "duration": "60 мин"},
-            {"id": "massage3", "name": "Hot Stone Therapy", "price": "145000", "duration": "90 мин"},
-            {"id": "massage4", "name": "Deep Tissue Massage", "price": "135000", "duration": "75 мин"},
-            {"id": "massage5", "name": "Aromatherapy", "price": "125000", "duration": "75 мин"}
-          ]
-        },
-        {
-          "type": "Биеийн арчилгаа",
-          "subservice": [
-            {"id": "body1", "name": "Body Scrub", "price": "98000", "duration": "60 мин"},
-            {"id": "body2", "name": "Body Wrap", "price": "110000", "duration": "75 мин"},
-            {"id": "body3", "name": "Detox Treatment", "price": "150000", "duration": "90 мин"}
-          ]
-        },
-        {
-          "type": "Саун болон уурын өрөө",
-          "subservice": [
-            {"id": "sauna1", "name": "Sauna Session", "price": "40000", "duration": "30 мин"},
-            {"id": "sauna2", "name": "Steam Room", "price": "35000", "duration": "30 мин"},
-            {"id": "sauna3", "name": "Sauna + Steam Combo", "price": "65000", "duration": "60 мин"}
+            {"id": "Массаж", "name": "Thai Massage", "price": "130000", "duration": "90 мин"},
+            {"id": "Массаж", "name": "Swedish Massage", "price": "115000", "duration": "60 мин"},
+            {"id": "Массаж", "name": "Hot Stone Therapy", "price": "145000", "duration": "90 мин"},
+            {"id": "Массаж", "name": "Deep Tissue Massage", "price": "135000", "duration": "75 мин"},
+            {"id": "Массаж", "name": "Aromatherapy", "price": "125000", "duration": "75 мин"},
+            {"id": "Бие арчилгаа", "name": "Body Scrub", "price": "98000", "duration": "60 мин"},
+            {"id": "Бие арчилгаа", "name": "Body Wrap", "price": "110000", "duration": "75 мин"},
+            {"id": "Бие арчилгаа", "name": "Detox Treatment", "price": "150000", "duration": "90 мин"},
+            {"id": "Саун", "name": "Sauna Session", "price": "40000", "duration": "30 мин"},
+            {"id": "Саун", "name": "Steam Room", "price": "35000", "duration": "30 мин"},
+            {"id": "Саун", "name": "Sauna + Steam Combo", "price": "65000", "duration": "60 мин"}
           ]
         }
       ],
@@ -879,35 +818,20 @@
       "creative": [],
       "service": [
         {
-          "type": "Үс засалт",
+          "type": "Үс",
           "subservice": [
-            {"id": "haircut1", "name": "Эмэгтэй үс засалт", "price": "48000", "duration": "60 мин"},
-            {"id": "haircut2", "name": "Эрэгтэй үс засалт", "price": "33000", "duration": "45 мин"},
-            {"id": "haircut3", "name": "Хүүхдийн үс засалт", "price": "22000", "duration": "30 мин"}
-          ]
-        },
-        {
-          "type": "Үсний будалт",
-          "subservice": [
-            {"id": "coloring1", "name": "Энгийн будалт", "price": "90000", "duration": "120 мин"},
-            {"id": "coloring2", "name": "Fashion Color", "price": "120000", "duration": "150 мин"},
-            {"id": "coloring3", "name": "Хэрчим будалт", "price": "110000", "duration": "120 мин"}
-          ]
-        },
-        {
-          "type": "Үс буржгаруулах",
-          "subservice": [
-            {"id": "perm1", "name": "Digital Perm", "price": "160000", "duration": "180 мин"},
-            {"id": "perm2", "name": "Cold Perm", "price": "140000", "duration": "150 мин"},
-            {"id": "perm3", "name": "Setting Perm", "price": "120000", "duration": "120 мин"}
-          ]
-        },
-        {
-          "type": "Үсний эмчилгээ",
-          "subservice": [
-            {"id": "treatment1", "name": "Keratin Treatment", "price": "220000", "duration": "180 мин"},
-            {"id": "treatment2", "name": "Protein Treatment", "price": "100000", "duration": "90 мин"},
-            {"id": "treatment3", "name": "Moisture Treatment", "price": "55000", "duration": "60 мин"}
+            {"id": "Үсний засалт", "name": "Эмэгтэй үс засалт", "price": "48000", "duration": "60 мин"},
+            {"id": "Үсний засалт", "name": "Эрэгтэй үс засалт", "price": "33000", "duration": "45 мин"},
+            {"id": "Үсний засалт", "name": "Хүүхдийн үс засалт", "price": "22000", "duration": "30 мин"},
+            {"id": "Үс будалт", "name": "Энгийн будалт", "price": "90000", "duration": "120 мин"},
+            {"id": "Үс будалт", "name": "Fashion Color", "price": "120000", "duration": "150 мин"},
+            {"id": "Үс будалт", "name": "Хэрчим будалт", "price": "110000", "duration": "120 мин"},
+            {"id": "Үсний хими", "name": "Digital Perm", "price": "160000", "duration": "180 мин"},
+            {"id": "Үсний хими", "name": "Cold Perm", "price": "140000", "duration": "150 мин"},
+            {"id": "Үсний хими", "name": "Setting Perm", "price": "120000", "duration": "120 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Keratin Treatment", "price": "220000", "duration": "180 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Protein Treatment", "price": "100000", "duration": "90 мин"},
+            {"id": "Үсний эмчилгээ", "name": "Moisture Treatment", "price": "55000", "duration": "60 мин"}
           ]
         }
       ],
@@ -1003,20 +927,15 @@
       "creative": [],
       "service": [
         {
-          "type": "Хумсны арчилгаа",
+          "type": "Хумс",
           "subservice": [
-            {"id": "manicure1", "name": "Энгийн маникюр", "price": "30000", "duration": "45 мин"},
-            {"id": "manicure2", "name": "Gel Polish", "price": "55000", "duration": "60 мин"},
-            {"id": "manicure3", "name": "Nail Extension", "price": "85000", "duration": "90 мин"},
-            {"id": "manicure4", "name": "Nail Design", "price": "95000", "duration": "120 мин"}
-          ]
-        },
-        {
-          "type": "Хөлний хумс арчилгаа",
-          "subservice": [
-            {"id": "pedicure1", "name": "Энгийн педикюр", "price": "38000", "duration": "50 мин"},
-            {"id": "pedicure2", "name": "Spa Pedicure", "price": "68000", "duration": "75 мин"},
-            {"id": "pedicure3", "name": "Gel Pedicure", "price": "75000", "duration": "80 мин"}
+            {"id": "Manicure", "name": "Энгийн маникюр", "price": "30000", "duration": "45 мин"},
+            {"id": "Manicure", "name": "Gel Polish", "price": "55000", "duration": "60 мин"},
+            {"id": "Manicure", "name": "Nail Extension", "price": "85000", "duration": "90 мин"},
+            {"id": "Manicure", "name": "Nail Design", "price": "95000", "duration": "120 мин"},
+            {"id": "Pedicure", "name": "Энгийн педикюр", "price": "38000", "duration": "50 мин"},
+            {"id": "Pedicure", "name": "Spa Pedicure", "price": "68000", "duration": "75 мин"},
+            {"id": "Pedicure", "name": "Gel Pedicure", "price": "75000", "duration": "80 мин"}
           ]
         }
       ],
@@ -1112,28 +1031,18 @@
       "creative": [],
       "service": [
         {
-          "type": "Тарилгын эмчилгээ",
+          "type": "Гоо сайхан",
           "subservice": [
-            {"id": "inject1", "name": "Botox - 1 Area", "price": "350000", "duration": "30 мин"},
-            {"id": "inject2", "name": "Botox - Full Face", "price": "450000", "duration": "45 мин"},
-            {"id": "inject3", "name": "Filler - Lips", "price": "450000", "duration": "45 мин"},
-            {"id": "inject4", "name": "Filler - Cheeks", "price": "550000", "duration": "60 мин"}
-          ]
-        },
-        {
-          "type": "Нүүрний эмчилгээ",
-          "subservice": [
-            {"id": "facial1", "name": "Hydrating Facial", "price": "135000", "duration": "75 мин"},
-            {"id": "facial2", "name": "Anti-aging Facial", "price": "180000", "duration": "90 мин"},
-            {"id": "facial3", "name": "Brightening Facial", "price": "160000", "duration": "75 мин"}
-          ]
-        },
-        {
-          "type": "Арьс сэргээх",
-          "subservice": [
-            {"id": "rejuv1", "name": "RF Treatment", "price": "200000", "duration": "60 мин"},
-            {"id": "rejuv2", "name": "Microneedling", "price": "250000", "duration": "90 мин"},
-            {"id": "rejuv3", "name": "LED Light Therapy", "price": "120000", "duration": "45 мин"}
+            {"id": "Нүүрний тарилга", "name": "Botox - 1 Area", "price": "350000", "duration": "30 мин"},
+            {"id": "Нүүрний тарилга", "name": "Botox - Full Face", "price": "450000", "duration": "45 мин"},
+            {"id": "Нүүрний тарилга", "name": "Filler - Lips", "price": "450000", "duration": "45 мин"},
+            {"id": "Нүүрний тарилга", "name": "Filler - Cheeks", "price": "550000", "duration": "60 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Hydrating Facial", "price": "135000", "duration": "75 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Anti-aging Facial", "price": "180000", "duration": "90 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Brightening Facial", "price": "160000", "duration": "75 мин"},
+            {"id": "Нүүр эмчилгээ", "name": "RF Treatment", "price": "200000", "duration": "60 мин"},
+            {"id": "Нүүр эмчилгээ", "name": "Microneedling", "price": "250000", "duration": "90 мин"},
+            {"id": "Нүүр эмчилгээ", "name": "LED Light Therapy", "price": "120000", "duration": "45 мин"}
           ]
         }
       ],
@@ -1229,35 +1138,27 @@
       "creative": [],
       "service": [
         {
-          "type": "Үс арилгалт",
+          "type": "Вакс",
           "subservice": [
-            {"id": "wax1", "name": "Гарын үс", "price": "45000", "duration": "30 мин"},
-            {"id": "wax2", "name": "Хөлний үс", "price": "55000", "duration": "45 мин"},
-            {"id": "wax3", "name": "Full Body Waxing", "price": "95000", "duration": "90 мин"},
-            {"id": "wax4", "name": "Brazilian Wax", "price": "80000", "duration": "45 мин"}
+            {"id": "Гарын вакс", "name": "Гарын үс", "price": "45000", "duration": "30 мин"},
+            {"id": "Хөлийн вакс", "name": "Хөлний үс", "price": "55000", "duration": "45 мин"},
+            {"id": "Бүтэн биеийн вакс", "name": "Full Body Waxing", "price": "95000", "duration": "90 мин"},
+            {"id": "Хөмсөгний вакс", "name": "Хөмсөг", "price": "15000", "duration": "15 мин"},
+            {"id": "Нүүрний вакс", "name": "Бүтэн нүүр", "price": "30000", "duration": "30 мин"}
           ]
         },
         {
-          "type": "Үс татах",
+          "type": "Хөмсөг",
           "subservice": [
-            {"id": "thread1", "name": "Хөмсөг", "price": "15000", "duration": "15 мин"},
-            {"id": "thread2", "name": "Дээд уруул", "price": "10000", "duration": "10 мин"},
-            {"id": "thread3", "name": "Бүтэн нүүр", "price": "30000", "duration": "30 мин"}
+            {"id": "Хөмсөг шивээс", "name": "Eyebrow Design", "price": "35000", "duration": "30 мин"},
+            {"id": "Хөмсөг засах", "name": "Eyebrow Tinting", "price": "25000", "duration": "20 мин"}
           ]
         },
         {
-          "type": "Хөмсөгний үйлчилгээ",
+          "type": "Гоо сайхан",
           "subservice": [
-            {"id": "brow1", "name": "Eyebrow Design", "price": "35000", "duration": "30 мин"},
-            {"id": "brow2", "name": "Eyebrow Tinting", "price": "25000", "duration": "20 мин"},
-            {"id": "brow3", "name": "Microblading", "price": "250000", "duration": "120 мин"}
-          ]
-        },
-        {
-          "type": "Нүүр арчилгаа",
-          "subservice": [
-            {"id": "facial1", "name": "Basic Facial", "price": "65000", "duration": "60 мин"},
-            {"id": "facial2", "name": "Deep Cleansing", "price": "85000", "duration": "75 мин"}
+            {"id": "Нүүр арчилгаа", "name": "Basic Facial", "price": "65000", "duration": "60 мин"},
+            {"id": "Нүүр арчилгаа", "name": "Deep Cleansing", "price": "85000", "duration": "75 мин"}
           ]
         }
       ],
@@ -1353,34 +1254,14 @@
       "creative": [],
       "service": [
         {
-          "type": "Эрэгтэй үс засалт",
+          "type": "Үс",
           "subservice": [
-            {"id": "menhair1", "name": "Modern Haircut", "price": "52000", "duration": "45 мин"},
-            {"id": "menhair2", "name": "Fade Cut", "price": "48000", "duration": "45 мин"},
-            {"id": "menhair3", "name": "Classic Cut", "price": "40000", "duration": "40 мин"}
-          ]
-        },
-        {
-          "type": "Сахлын үйлчилгээ",
-          "subservice": [
-            {"id": "beard1", "name": "Beard Trim", "price": "25000", "duration": "20 мин"},
-            {"id": "beard2", "name": "Beard Styling", "price": "35000", "duration": "30 мин"},
-            {"id": "beard3", "name": "Full Grooming", "price": "65000", "duration": "60 мин"}
-          ]
-        },
-        {
-          "type": "Үсний будалт",
-          "subservice": [
-            {"id": "color1", "name": "Fashion Color", "price": "140000", "duration": "120 мин"},
-            {"id": "color2", "name": "Highlights", "price": "120000", "duration": "150 мин"},
-            {"id": "color3", "name": "Color Correction", "price": "200000", "duration": "180 мин"}
-          ]
-        },
-        {
-          "type": "Үсний загвар",
-          "subservice": [
-            {"id": "style1", "name": "Blowdry", "price": "30000", "duration": "30 мин"},
-            {"id": "style2", "name": "Special Event Styling", "price": "60000", "duration": "60 мин"}
+            {"id": "Үсний засалт", "name": "Эрэгтэй Modern Haircut", "price": "52000", "duration": "45 мин"},
+            {"id": "Үсний засалт", "name": "Fade Cut", "price": "48000", "duration": "45 мин"},
+            {"id": "Үсний засалт", "name": "Classic Cut", "price": "40000", "duration": "40 мин"},
+            {"id": "Үс будалт", "name": "Fashion Color", "price": "140000", "duration": "120 мин"},
+            {"id": "Үс будалт", "name": "Highlights", "price": "120000", "duration": "150 мин"},
+            {"id": "Үс будалт", "name": "Color Correction", "price": "200000", "duration": "180 мин"}
           ]
         }
       ],
@@ -1459,42 +1340,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     {
       "id": "independent",
@@ -1523,12 +1368,11 @@
           ],
           "service": [
             {
-              "type": "Makeup",
-              "description": "Нүүр будалт",
+              "type": "Нүүр будалт",
               "subservice": [
-                {"id": "makeup1", "name": "Daily Makeup", "price": "70000", "duration": "60 мин"},
-                {"id": "makeup2", "name": "Evening Makeup", "price": "90000", "duration": "75 мин"},
-                {"id": "makeup3", "name": "Bridal Makeup", "price": "180000", "duration": "120 мин"}
+                {"id": "Өдөр тутмын", "name": "Daily Makeup", "price": "70000", "duration": "60 мин"},
+                {"id": "Энгийн", "name": "Evening Makeup", "price": "90000", "duration": "75 мин"},
+                {"id": "Хуримын", "name": "Bridal Makeup", "price": "180000", "duration": "120 мин"}
               ]
             }
           ]
@@ -1557,19 +1401,10 @@
           ],
           "service": [
             {
-              "type": "Haircut",
-              "description": "Үс засалт",
+              "type": "Үс",
               "subservice": [
-                {"id": "haircut1", "name": "Classic Haircut", "price": "45000", "duration": "45 мин"},
-                {"id": "haircut2", "name": "Modern Fade", "price": "55000", "duration": "60 мин"}
-              ]
-            },
-            {
-              "type": "Beard Services",
-              "description": "Сахлын үйлчилгээ",
-              "subservice": [
-                {"id": "beard1", "name": "Beard Trim", "price": "30000", "duration": "30 мин"},
-                {"id": "beard2", "name": "Full Grooming", "price": "90000", "duration": "90 мин"}
+                {"id": "Үсний засалт", "name": "Classic Haircut", "price": "45000", "duration": "45 мин"},
+                {"id": "Үсний засалт", "name": "Modern Fade", "price": "55000", "duration": "60 мин"}
               ]
             }
           ]
@@ -1598,12 +1433,12 @@
           ],
           "service": [
             {
-              "type": "Manicure",
+              "type": "Хумс",
               "description": "Хумсны арчилгаа",
               "subservice": [
-                {"id": "manicure1", "name": "Gel Manicure", "price": "60000", "duration": "75 мин"},
-                {"id": "manicure2", "name": "Acrylic Extension", "price": "80000", "duration": "90 мин"},
-                {"id": "manicure3", "name": "Custom Nail Art", "price": "100000", "duration": "120 мин"}
+                {"id": "Manicure", "name": "Гелэн будалт", "price": "60000", "duration": "75 мин"},
+                {"id": "Manicure", "name": "Acrylic Extension", "price": "80000", "duration": "90 мин"},
+                {"id": "Manicure", "name": "Custom Nail Art", "price": "100000", "duration": "120 мин"}
               ]
             }
           ]
@@ -1632,12 +1467,12 @@
           ],
           "service": [
             {
-              "type": "Massage",
+              "type": "Spa",
               "description": "Массаж үйлчилгээ",
               "subservice": [
-                {"id": "massage1", "name": "Swedish Massage", "price": "120000", "duration": "60 мин"},
-                {"id": "massage2", "name": "Thai Massage", "price": "140000", "duration": "90 мин"},
-                {"id": "massage3", "name": "Deep Tissue", "price": "150000", "duration": "75 мин"}
+                {"id": "Массаж", "name": "Swedish Massage", "price": "120000", "duration": "60 мин"},
+                {"id": "Массаж", "name": "Thai Massage", "price": "140000", "duration": "90 мин"},
+                {"id": "Массаж", "name": "Deep Tissue", "price": "150000", "duration": "75 мин"}
               ]
             }
           ]
@@ -1666,12 +1501,12 @@
           ],
           "service": [
             {
-              "type": "Lash Extension",
+              "type": "Сормуус",
               "description": "Сормуус өргөтгөл",
               "subservice": [
-                {"id": "lash1", "name": "Classic Lash", "price": "75000", "duration": "90 мин"},
-                {"id": "lash2", "name": "Volume Lash", "price": "90000", "duration": "120 мин"},
-                {"id": "lash3", "name": "Mega Volume", "price": "110000", "duration": "150 мин"}
+                {"id": "Classic Сормуус", "name": "Classic Lash", "price": "75000", "duration": "90 мин"},
+                {"id": "3D Сормуус", "name": "Volume Lash", "price": "90000", "duration": "120 мин"},
+                {"id": "Mega Сормуус", "name": "Mega Volume", "price": "110000", "duration": "150 мин"}
               ]
             }
           ]
@@ -1700,12 +1535,12 @@
           ],
           "service": [
             {
-              "type": "Hair Coloring",
+              "type": "Үс",
               "description": "Үсний будалт",
               "subservice": [
-                {"id": "color1", "name": "Балаяж", "price": "200000", "duration": "180 мин"},
-                {"id": "color2", "name": "Омбре", "price": "180000", "duration": "150 мин"},
-                {"id": "color3", "name": "Platinum Blonde", "price": "280000", "duration": "240 мин"}
+                {"id": "Үс будалт", "name": "Балаяж", "price": "200000", "duration": "180 мин"},
+                {"id": "Үс будалт", "name": "Омбре", "price": "180000", "duration": "150 мин"},
+                {"id": "Үс будалт", "name": "Platinum Blonde", "price": "280000", "duration": "240 мин"}
               ]
             }
           ]
@@ -1734,12 +1569,12 @@
           ],
           "service": [
             {
-              "type": "Eyebrow Services",
+              "type": "Хөмсөг",
               "description": "Хөмсөгний үйлчилгээ",
               "subservice": [
-                {"id": "brow1", "name": "Microblading", "price": "280000", "duration": "150 мин"},
-                {"id": "brow2", "name": "Powder Brows", "price": "300000", "duration": "150 мин"},
-                {"id": "brow3", "name": "Ombré Brows", "price": "320000", "duration": "180 мин"}
+                {"id": "Хөмсөг шивээс", "name": "Microblading", "price": "280000", "duration": "150 мин"},
+                {"id": "Хөмсөг засах", "name": "Powder Brows", "price": "300000", "duration": "150 мин"},
+                {"id": "Хөмсөг засах", "name": "Ombré Brows", "price": "320000", "duration": "180 мин"}
               ]
             }
           ]
@@ -1768,12 +1603,12 @@
           ],
           "service": [
             {
-              "type": "Waxing",
+              "type": "Вакс",
               "description": "Үс арилгалт",
               "subservice": [
-                {"id": "wax1", "name": "Brazilian Wax", "price": "90000", "duration": "45 мин"},
-                {"id": "wax2", "name": "Full Body Waxing", "price": "130000", "duration": "120 мин"},
-                {"id": "wax3", "name": "Гарын үс", "price": "50000", "duration": "30 мин"}
+                {"id": "Бүтэн биеийн вакс", "name": "Brazilian Wax", "price": "90000", "duration": "45 мин"},
+                {"id": "Бүтэн биеийн вакс", "name": "Full Body Waxing", "price": "130000", "duration": "120 мин"},
+                {"id": "Гарын вакс", "name": "Гарын үс", "price": "50000", "duration": "30 мин"}
               ]
             }
           ]
@@ -1802,12 +1637,12 @@
           ],
           "service": [
             {
-              "type": "Facial Treatment",
+              "type": "Гоо сайхан",
               "description": "Нүүрний эмчилгээ",
               "subservice": [
-                {"id": "facial1", "name": "Deep Cleansing", "price": "95000", "duration": "60 мин"},
-                {"id": "facial2", "name": "Hydrating Facial", "price": "110000", "duration": "75 мин"},
-                {"id": "facial3", "name": "Anti-aging", "price": "160000", "duration": "90 мин"}
+                {"id": "Нүүр арчилгаа", "name": "Deep Cleansing", "price": "95000", "duration": "60 мин"},
+                {"id": "Нүүр арчилгаа", "name": "Hydrating Facial", "price": "110000", "duration": "75 мин"},
+                {"id": "Нүүрний тарилга", "name": "Anti-aging", "price": "160000", "duration": "90 мин"}
               ]
             }
           ]
@@ -1836,12 +1671,12 @@
           ],
           "service": [
             {
-              "type": "Henna Art",
+              "type": "Хумс",
               "description": "Хенна урлаг",
               "subservice": [
-                {"id": "henna1", "name": "Гарын henna", "price": "50000", "duration": "60 мин"},
-                {"id": "henna2", "name": "Bridal Henna", "price": "150000", "duration": "180 мин"},
-                {"id": "henna3", "name": "Custom Design", "price": "80000", "duration": "90 мин"}
+                {"id": "Manicure", "name": "Гарын henna", "price": "50000", "duration": "60 мин"},
+                {"id": "Manicure", "name": "Bridal Henna", "price": "150000", "duration": "180 мин"},
+                {"id": "Manicure", "name": "Custom Design", "price": "80000", "duration": "90 мин"}
               ]
             }
           ]
@@ -1870,12 +1705,12 @@
           ],
           "service": [
             {
-              "type": "Haircut",
+              "type": "Үс",
               "description": "Үс засалт",
               "subservice": [
-                {"id": "cut1", "name": "Эмэгтэй үс засалт", "price": "55000", "duration": "60 мин"},
-                {"id": "cut2", "name": "Эрэгтэй үс засалт", "price": "40000", "duration": "45 мин"},
-                {"id": "cut3", "name": "Layered Cut", "price": "70000", "duration": "75 мин"}
+                {"id": "Үсний засалт", "name": "Эмэгтэй үс засалт", "price": "55000", "duration": "60 мин"},
+                {"id": "Үсний засалт", "name": "Эрэгтэй үс засалт", "price": "40000", "duration": "45 мин"},
+                {"id": "Үсний засалт", "name": "Layered Cut", "price": "70000", "duration": "75 мин"}
               ]
             }
           ]
@@ -1904,12 +1739,12 @@
           ],
           "service": [
             {
-              "type": "Tattoo",
+              "type": "Шивээс",
               "description": "Шивээс",
               "subservice": [
-                {"id": "tattoo1", "name": "Жижиг шивээс", "price": "150000", "duration": "60 мин"},
-                {"id": "tattoo2", "name": "Дунд шивээс", "price": "300000", "duration": "120 мин"},
-                {"id": "tattoo3", "name": "Том шивээс", "price": "500000", "duration": "240 мин"}
+                {"id": "Жижиг шивээс", "name": "Жижиг шивээс", "price": "150000", "duration": "60 мин"},
+                {"id": "Дунд шивээс", "name": "Дунд шивээс", "price": "300000", "duration": "120 мин"},
+                {"id": "Том шивээс", "name": "Том шивээс", "price": "500000", "duration": "240 мин"}
               ]
             }
           ]
@@ -1938,12 +1773,11 @@
           ],
           "service": [
             {
-              "type": "Permanent Makeup",
+              "type": "Нүүр будалт",
               "description": "Байнгын будалт",
               "subservice": [
-                {"id": "pmu1", "name": "Хөмсөгний microblading", "price": "280000", "duration": "150 мин"},
-                {"id": "pmu2", "name": "Уруулын будалт", "price": "320000", "duration": "120 мин"},
-                {"id": "pmu3", "name": "Eyeliner татуу", "price": "250000", "duration": "90 мин"}
+                {"id": "Өдөр тутмын", "name": "Уруулын будалт", "price": "320000", "duration": "120 мин"},
+                {"id": "Өдөр тутмын", "name": "Eyeliner татуу", "price": "250000", "duration": "90 мин"}
               ]
             }
           ]
@@ -1972,12 +1806,12 @@
           ],
           "service": [
             {
-              "type": "Hair Extension",
+              "type": "Үс",
               "description": "Үс залгалт",
               "subservice": [
-                {"id": "ext1", "name": "Tape-in Extension", "price": "350000", "duration": "180 мин"},
-                {"id": "ext2", "name": "Keratin Bond", "price": "400000", "duration": "240 мин"},
-                {"id": "ext3", "name": "Micro-link", "price": "380000", "duration": "210 мин"}
+                {"id": "Үс залгалт", "name": "Tape-in Extension", "price": "350000", "duration": "180 мин"},
+                {"id": "Үс залгалт", "name": "Keratin Bond", "price": "400000", "duration": "240 мин"},
+                {"id": "Үс залгалт", "name": "Micro-link", "price": "380000", "duration": "210 мин"}
               ]
             }
           ]
@@ -2006,12 +1840,12 @@
           ],
           "service": [
             {
-              "type": "Bridal Package",
-              "description": "Хуримын багц",
+              "type": "Үс",
+              "description": "Үс залгалт",
               "subservice": [
-                {"id": "bridal1", "name": "Bridal Makeup + Hair", "price": "250000", "duration": "180 мин"},
-                {"id": "bridal2", "name": "Full Bridal Package", "price": "400000", "duration": "240 мин"},
-                {"id": "bridal3", "name": "Trial Session", "price": "100000", "duration": "120 мин"}
+                {"id": "Үс залгалт", "name": "Tape-in Extension", "price": "350000", "duration": "180 мин"},
+                {"id": "Үс залгалт", "name": "Keratin Bond", "price": "400000", "duration": "240 мин"},
+                {"id": "Үс залгалт", "name": "Micro-link", "price": "380000", "duration": "210 мин"}
               ]
             }
           ]
@@ -2040,12 +1874,12 @@
           ],
           "service": [
             {
-              "type": "Nail",
+              "type": "Хумс",
               "description": "Хумсны урлаг",
               "subservice": [
-                {"id": "nail1", "name": "3D Nail Art Manicure", "price": "95000", "duration": "120 мин"},
-                {"id": "nail2", "name": "Gel Polish Pedicure", "price": "55000", "duration": "60 мин"},
-                {"id": "nail3", "name": "French Manicure", "price": "65000", "duration": "75 мин"}
+                {"id": "Manicure", "name": "3D Nail Art Manicure", "price": 95000, "duration": 120},
+                {"id": "Manicure", "name": "Gel Polish Pedicure", "price": 55000, "duration": 60},
+                {"id": "Pedicure", "name": "French Manicure", "price": 65000, "duration": 75}
               ]
             }
           ]

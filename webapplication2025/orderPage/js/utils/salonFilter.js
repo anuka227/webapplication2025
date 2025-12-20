@@ -7,27 +7,13 @@ export class SalonFilter {
     }
 
     filterByLocation(salons, userLocation, maxDistance = 2) {
-    if (!userLocation) {
-        console.log('⚠️ Байршил байхгүй');
-        return salons;
-    }
 
     const userCoords = userLocation.coordinates;
-    
-    if (!userCoords || !userCoords.lat || !userCoords.lng) {
-        console.log('⚠️ Координат байхгүй:', userLocation);
-        return salons;
-    }
-
-    console.log('📍 Хэрэглэгчийн байршил:', userCoords);
-    console.log('📏 Хайх зай:', maxDistance + 'км');
-
     return salons.map(salon => {
         if (salon.id === 'independent') {
             const filteredArtists = salon.artists.filter(artist => {
                 if (!artist.coordinates) return false;
                 
-                // ✅ ЗАСВАРЛАСАН: window.DistanceCalculator
                 const distance = window.DistanceCalculator.calculateDistance(
                     userCoords.lat, 
                     userCoords.lng,
@@ -69,38 +55,61 @@ export class SalonFilter {
     });
 }
 
-    filterByService(salons, serviceName) {
-        if (!serviceName || serviceName === 'Үйлчилгээ') return salons;
+filterByService(salons, serviceType) {
+        if (!serviceType || serviceType === 'Үйлчилгээ') {
+            console.log('⚠️ Үйлчилгээ сонгоогүй');
+            return salons;
+        }
 
-        console.log('📋 Үйлчилгээ:', serviceName);
+        console.log('📋 Үйлчилгээгээр шүүж байна:', serviceType);
 
-        const serviceMap = {
-            'Үсчин': ['Үс засалт', 'Үсний будалт', 'Үсний эмчилгээ'],
-            'Хумс': ['Хумсны арчилгаа', 'Хөлний хумс', 'Manicure', 'Pedicure'],
-            'Гоо сайхан': ['Нүүр арчилгаа', 'Нүүрний эмчилгээ', 'Facial'],
-            'Вакс': ['Үс арилгалт', 'Waxing'],
-            'Хөмсөг шивээс': ['Хөмсөгний үйлчилгээ', 'Eyebrow'],
-            'Сормуус': ['Сормуус өргөтгөл', 'Lash'],
-            'Нүүр будалт': ['Нүүр будалт', 'Makeup']
-        };
-
-        const keywords = serviceMap[serviceName] || [serviceName];
-
+        // Subservice type-ийг шууд ашиглах (жишээ: "Hair Style", "Manicure")
         return salons.map(salon => {
             if (salon.id === 'independent') {
                 const filteredArtists = salon.artists.filter(artist => {
-                    if (!artist.service) return false;
-                    return artist.service.some(s => 
-                        keywords.some(keyword => s.type.includes(keyword))
-                    );
+                    if (!artist.service) {
+                        return false;
+                    }
+                    
+                    const hasService = artist.service.some(s => {
+                        // Subservice type-тэй шууд харьцуулах
+                        const match = s.type === serviceType;
+                        if (match) {
+                            console.log(`  ✅ ${artist.name}: ${s.type} тохирлоо`);
+                        }
+                        return match;
+                    });
+                    
+                    return hasService;
                 });
+                
+                console.log(`  📊 Бие даасан артист: ${filteredArtists.length} олдлоо`);
                 return { ...salon, artists: filteredArtists };
-            } else {
-                if (!salon.service) return null;
-                const hasService = salon.service.some(s => 
-                    keywords.some(keyword => s.type.includes(keyword))
-                );
-                return hasService ? salon : null;
+            } 
+            
+            // ========== САЛОНУУД ==========
+            else {
+                if (!salon.service) {
+                    console.log(`  ⚠️ ${salon.name}: service байхгүй`);
+                    return null;
+                }
+                
+                const hasService = salon.service.some(s => {
+                    // Subservice type-тэй шууд харьцуулах
+                    const match = s.type === serviceType;
+                    if (match) {
+                        console.log(`  ✅ ${salon.name}: ${s.type} тохирлоо`);
+                    }
+                    return match;
+                });
+                
+                if (hasService) {
+                    console.log(`  🏢 ${salon.name} - Үйлчилгээ ОЛДЛОО`);
+                    return salon;
+                } else {
+                    console.log(`  ❌ ${salon.name} - Үйлчилгээ олдсонгүй`);
+                    return null;
+                }
             }
         }).filter(salon => {
             if (!salon) return false;
@@ -108,6 +117,7 @@ export class SalonFilter {
             return true;
         });
     }
+
 
     filterByDate(salons, selectedDate) {
         if (!selectedDate) return salons;
@@ -198,4 +208,3 @@ export class SalonFilter {
 }
 
 window.SalonFilter = SalonFilter;
-console.log('✅ SalonFilter ready');

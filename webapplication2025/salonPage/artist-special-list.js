@@ -16,6 +16,7 @@ class ArtistSpecialList extends HTMLElement {
     async loadArtists() {
         try {
             const response = await fetch('http://localhost:3000/api/salons');
+            // ./json/salon.json
             const data = await response.json();
             this.salons = data.salons || [];
             

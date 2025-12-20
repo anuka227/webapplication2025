@@ -1,17 +1,18 @@
 class OrderService extends HTMLElement {
     constructor() {
         super();
-        //implementation
     }
 
     connectedCallback() {
        this.innerHTML = /*html*/ `
        <ul class="service">
-						<li>
-							<p>Үйлчилгээ</p>
-						</li>
-						<li>
-							<svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+            <li class="service-header">
+                <p>Үйлчилгээ</p>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 512.001 512.001" xml:space="preserve">
 <g>
 	<g>
@@ -111,10 +112,19 @@ class OrderService extends HTMLElement {
 	</g>
 </g>
 							</svg>
-							<p>Үсчин</p>
-						</li>
-						<li>
-							<svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.063 511.063" xml:space="preserve">
+                    <p class="category-name">Үсчин</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="Hair Style">Үс засалт</li>
+                    <li data-service="Hair Coloring">Үс будалт</li>
+                    <li data-service="Hair Treatment">Үсний эмчилгээ</li>
+                    <li data-service="Hair Chemistry">Үсний хими</li>
+                </ul>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.063 511.063" xml:space="preserve">
 								<g>
 									<g>
 										<g>
@@ -156,10 +166,17 @@ class OrderService extends HTMLElement {
 									</g>
 								</g>
 							</svg>
-							<p>Хумс</p>
-						</li>
-						<li>
-							<svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    <p class="category-name">Хумс</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="Manicure">Маникюр</li>
+                    <li data-service="Pedicure">Педикюр</li>
+                </ul>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 							width="25px" height="25px" viewBox="0 0 172.687 172.687"
 	 							xml:space="preserve">
 							<g>
@@ -209,10 +226,17 @@ class OrderService extends HTMLElement {
 									</g>
 								</g>
 							</svg>
-							<p>Гоо сайхан</p>
-						</li>
-						<li>
-							<svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    <p class="category-name">Гоо сайхан</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="Facial Care">Нүүр арчилгаа</li>
+                    <li data-service="Facial Treatment">Нүүрний эмчилгээ</li>
+                </ul>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 								 viewBox="0 0 496 496" xml:space="preserve">
 							<g>
 								<g>
@@ -235,10 +259,19 @@ class OrderService extends HTMLElement {
 								</g>
 							</g>
 							</svg>
-							<p>Вакс</p>
-						</li>
-						<li>
-							<svg width="25px" height="25px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <p class="category-name">Вакс</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="Foot Waxing">Хөлний Вакс</li>
+                    <li data-service="Underarm Waxing">Суганы Вакс</li>
+                    <li data-service="Arm Waxing">Гарны Вакс</li>
+                    <li data-service="Bikini Waxing">Бикини Вакс</li>
+                </ul>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg width="25px" height="25px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     							<title>eyebrow_fill</title>
     								<g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         								<g id="Part" transform="translate(-192.000000, -48.000000)" fill-rule="nonzero">
@@ -251,10 +284,17 @@ class OrderService extends HTMLElement {
         						</g>
     						</g>
 							</svg>
-							<p>Хөмсөг шивээс</p>
-						</li>
-						<li>
-							<svg height="25px" width="25px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    <p class="category-name">Хөмсөг</p>
+                </div>
+                    <ul class="subservice">
+                        <li data-service="Eyebrow Chemistry">Хөмсөгний хими</li>
+                        <li data-service="Eyebrow Tattoo">Хөмсөгний шивээс</li>
+                        </ul>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg height="25px" width="25px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 								viewBox="0 0 512 512"  xml:space="preserve">
 							<style type="text/css">
 									.st0{fill: currentColor;}
@@ -271,10 +311,18 @@ class OrderService extends HTMLElement {
 									C393.68,237.087,399.352,233.932,404.946,230.669z"/>
 							</g>
 							</svg>
-							<p>Сормуус</p>
-						</li>
-						<li>
-							<svg fill="currentColor" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    <p class="category-name">Сормуус</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="3D Eyelash">3D сормуус</li>
+                    <li data-service="Anime Eyelash">Аниме сормуус</li>
+                    <li data-service="Eyelash Chemistry">Сормуусны хими</li>
+                </ul>
+            </li>
+            
+            <li class="service-category">
+                <div class="category-row">
+                    <svg fill="currentColor" height="25px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 								 viewBox="0 0 219.992 219.992" xml:space="preserve">
 							<path d="M147.206,102.657l-33.167,30.359l-27.075-27.075l30.359-33.167L147.206,102.657z M81.557,111.848L3.435,197.195
 								c-4.793,5.416-4.541,13.664,0.572,18.777c2.589,2.589,6.031,4.015,9.694,4.015c3.349,0,6.574-1.223,9.133-3.487l85.297-78.077
@@ -282,47 +330,121 @@ class OrderService extends HTMLElement {
 								l-8.979,50.214l31.884,31.884l50.214-8.979c7.306-1.306,12.746-6.039,14.927-12.985C221.649,67.612,218.892,57.978,211.809,50.894z"
 								/>
 							</svg>
-							<p>Нүүр будалт</p>
-						</li>
-					</ul>`
+                    <p class="category-name">Нүүр будалт</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="Day Make Up">Өдөр тутмын будалт</li>
+                    <li data-service="Glam Make Up">Гоёлын будалт</li>
+                </ul>
+            </li>
+            <li class="service-category">
+                <div class="category-row">
+                    <svg fill="currentColor" height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 511.999 511.999" xml:space="preserve">
+<g>
+	<g>
+		<path d="M511.505,390.084c-1.954-6.81-9.071-10.624-15.821-8.798l-83.908,23.979L339.9,357.35c-2.099-1.399-4.574-2.15-7.1-2.15
+			H38.4c-7.074,0-12.8,5.726-12.8,12.8c0,7.074,5.726,12.8,12.8,12.8h290.517l73.574,49.05c2.125,1.417,4.599,2.15,7.1,2.15
+			c1.178,0,2.364-0.162,3.516-0.486l89.6-25.6C509.508,403.959,513.442,396.876,511.505,390.084z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M422.391,252.799c-35.285,0-64,28.706-64,64c0,35.285,28.715,64,64,64c35.294,0,64-28.715,64-64
+			C486.391,281.506,457.685,252.799,422.391,252.799z M422.391,355.199c-21.205,0-38.4-17.195-38.4-38.4
+			c0-21.205,17.195-38.4,38.4-38.4c21.205,0,38.4,17.195,38.4,38.4C460.792,338.005,443.597,355.199,422.391,355.199z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M217.6,79.999c-35.285,0-64,28.706-64,64s28.706,64,64,64c35.294,0,64-28.715,64-64
+			C281.6,108.706,252.894,79.999,217.6,79.999z M217.6,182.399c-21.205,0-38.4-17.195-38.4-38.4s17.186-38.4,38.4-38.4
+			c21.205,0,38.4,17.195,38.4,38.4S238.805,182.399,217.6,182.399z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M288.179,280.226l-128-76.8c-3.063-1.826-6.758-2.347-10.163-1.314c-3.422,0.998-6.272,3.379-7.876,6.562l-51.2,102.4
+			c-3.157,6.323-0.589,14.012,5.734,17.178c1.835,0.913,3.789,1.348,5.709,1.348c4.702,0,9.216-2.586,11.46-7.074l45.013-90.035
+			l116.147,69.683c6.076,3.635,13.926,1.673,17.562-4.386S294.238,283.861,288.179,280.226z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<path d="M332.8,406.399h-320c-7.074,0-12.8,5.726-12.8,12.8c0,7.074,5.726,12.8,12.8,12.8h320c7.074,0,12.8-5.726,12.8-12.8
+			C345.6,412.125,339.874,406.399,332.8,406.399z"/>
+	</g>
+</g>
+</svg>
+                    <p class="category-name">Спа</p>
+                </div>
+                <ul class="subservice">
+                    <li data-service="Massage">Бүтэн биеийн массаж</li>
+                    <li data-service="Sauna">Саун</li>
+                </ul>
+            </li>
+        </ul>`;
 
-
-					const orderInner = this.closest('order-inner');
+        const orderInner = this.closest('order-inner');
         if (!orderInner) return;
 
-        // order-inner дотрох button болон hidden-content олох
         const btn = orderInner.querySelector('.toggle-btn');
         const btnText = btn?.querySelector('p');
         const contentDiv = orderInner.querySelector('.hidden-content');
 
-        // Энэ component дотрох бүх li элементүүдэд event listener нэмэх
-        const listItems = this.querySelectorAll('li');
-        listItems.forEach(item => {
-            item.addEventListener('click', (e) => {
+        // Category дарахад subservice харуулах
+        const categories = this.querySelectorAll('.service-category');
+        categories.forEach(category => {
+            const categoryRow = category.querySelector('.category-row');
+            const categoryName = category.querySelector('.category-name');
+            const subList = category.querySelector('.subservice');
+
+            // Category row дээр дарах
+            categoryRow.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const selectedText = item.querySelector('p')?.textContent || '';
-                if (btnText) {
-                    btnText.textContent = selectedText;
-                }
-                if (contentDiv) {
-                    contentDiv.classList.remove('show');
-                }
+                
+                // Бусад subservice-үүдийг хаах
+                categories.forEach(otherCategory => {
+                    if (otherCategory !== category) {
+                        const otherSubList = otherCategory.querySelector('.subservice');
+                        otherSubList?.classList.remove('show');
+                    }
+                });
+                
+                // Toggle
+                subList.classList.toggle('show');
+            });
+
+            // Subservice сонгох
+            const subItems = subList.querySelectorAll('li');
+            subItems.forEach(subItem => {
+                subItem.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    
+                    const selectedCategory = categoryName.textContent;
+                    const selectedSubService = subItem.textContent;
+                    const serviceType = subItem.dataset.service; // ← "Hair Style", "Manicure" гэх мэт
+                    
+                    if (btnText) {
+                        btnText.textContent = `${selectedSubService}`;
+                    }
+                    
+                    // ✅ ЗАСВАРЛАСАН: serviceType-ийг OrderManager-т дамжуулах
+                    if (window.orderManager) {
+                        window.orderManager.updateService(serviceType); // ← Энэ чухал!
+                        console.log('✅ Категори:', selectedCategory);
+                        console.log('✅ Дэд үйлчилгээ:', selectedSubService);
+                        console.log('✅ Service Type (JSON-д хайх):', serviceType);
+                    }
+                    
+                    subList.classList.remove('show');
+                    if (contentDiv) {
+                        contentDiv.classList.remove('show');
+                    }
+                });
             });
         });
     }
-
-    disconnectedCallback() {
-        //implementation
-    }
-
-    attributeChangedCallback(name, oldVal, newVal) {
-        //implementation
-    }
-
-    adoptedCallback() {
-        //implementation
-    }
-
 }
 
 window.customElements.define('order-service', OrderService);

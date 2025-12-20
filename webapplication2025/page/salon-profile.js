@@ -1,0 +1,188 @@
+class SalonProfile extends HTMLElement {
+    constructor() {
+        super();
+        //implementation
+    }
+
+    connectedCallback() {
+        //implementation
+        this.innerHTML = /* html */`
+            <main>
+    <section id="orders">
+		<div class="order-header">
+			<h1>Захиалга</h1>
+			<p>Баталгаажуулсан</p>
+		</div>			
+	<div class="order-list">
+  		<div class="order-card">
+    		<h3>Beauty salon</h3>
+   			<p><strong>Үйлчилгээ:</strong> Үс засалт</p>
+    		<p><strong>Байршил:</strong> Улаанбаатар</p>
+    		<p><strong>Цаг:</strong> 14:00</p>
+  		</div>
+
+  		<div class="order-card">
+   			<h3>Beauty salon</h3>
+			<p><strong>Үйлчилгээ:</strong> Маникюр</p>
+    		<p><strong>Байршил:</strong> Улаанбаатар</p>
+    		<p><strong>Цаг:</strong> 15:00</p>
+ 		 </div>
+
+  		<div class="order-card">
+    		<h3>Beauty salon</h3>
+    		<p><strong>Үйлчилгээ:</strong> Массаж</p>
+    		<p><strong>Байршил:</strong> Улаанбаатар</p>
+    		<p><strong>Цаг:</strong> 16:00</p>
+  		</div>
+	
+	</div>
+    <div class="history-header">
+			<h1>Захиалгын түүх</h1>
+	</div>
+      <div class="history-cards">
+		
+		<h3>Halo salon</h3>
+			<div class="rating">
+				<span class="star">★</span>
+				<span class="star">★</span>
+				<span class="star">★</span>                        
+				<span class="star">★</span>
+				<span class="star ">★</span>
+				<span class="rating-number">4.5</span>
+            </div>
+      </div>
+    </section>
+    <section id="profile">
+		<button id="editBtn">✏️</button>
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Profile">
+        <p><b>Amina</b></p>
+      <ul>
+        <li>Нэр: Амин-Эрдэнэ</li>
+        <li>Утас: 99887766</li>
+        <li>Хаяг: УБ хот</li>
+        <li>Email Хаяг: Amina234@gmail.com</li>
+        <li>Түүх: 5 удаа</li>
+      </ul>
+    </section>
+  </main> 
+  <booking-list></booking-list>
+  <dialog id="editDialog">
+        <div class="dialog-content">
+            <h2>Edit profile details</h2>
+            <form id="editForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="lastName">Овог</label>
+                        <input type="text" id="firstName" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Нэр</label>
+                        <input type="text" id="lastName" value="">
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="mobile">Утасны дугаар</label>
+                    <div class="phone-group">
+                        <select id="countryCode">
+                            <option value="+976" selected>+976</option>
+                            <option value="+1">+1</option>
+                            <option value="+86">+86</option>
+                            <option value="+82">+82</option>
+                        </select>
+                        <input type="tel" id="mobile" value="99887766">
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" value="namuundari1003@gmail.com">
+                </div>
+
+                <div class="form-group full">
+                    <label>Date of birth</label>
+                    <div class="date-group">
+                        <input type="number" placeholder="Day" min="1" max="31">
+                        <select>
+                            <option value="">Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <input type="number" placeholder="Year" min="1900" max="2024">
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="location">Байршил</label>
+                    <select id="gender">
+                        <option value="">Select Option</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="save-btn">Save Changes</button>
+            </form>
+        </div>
+  </dialog>
+
+    <script>
+        const editDialog = document.getElementById('editDialog');
+        const editForm = document.getElementById('editForm');
+		const editBtn = document.getElementById('editBtn');
+
+        editBtn.addEventListener('click', () => {
+            editDialog.showModal();
+        });
+
+        editDialog.addEventListener('click', (e) => {
+            if (e.target === editDialog) {
+                editDialog.close();
+            }
+        });
+
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Өөрчлөлт хадгалагдлаа!');
+            editDialog.close();
+        });
+
+        document.querySelectorAll('.order-card > div').forEach(card => {
+            card.addEventListener('click', () => {
+                alert('Захиалгын дэлгэрэнгүй');
+            });
+        });
+
+        document.querySelector('.history-cards').addEventListener('click', function() {
+            alert('Түүхийн дэлгэрэнгүй');
+        });
+    </script>
+        `;
+    }
+
+    disconnectedCallback() {
+        //implementation
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+        //implementation
+    }
+
+    adoptedCallback() {
+        //implementation
+    }
+
+}
+
+window.customElements.define('salon-profile', SalonProfile);

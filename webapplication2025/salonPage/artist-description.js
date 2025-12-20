@@ -16,34 +16,25 @@ class ArtistDescription extends HTMLElement {
         let artImg = [];
         const creativeAttri = this.getAttribute("artImg");
         if(creativeAttri) {
-            try {
-                artImg = JSON.parse(creativeAttri);
-            } catch(e) {
-                console.error('artImg parse алдаа:', e);
-            }
+            artImg = JSON.parse(creativeAttri);
         }
         this.artImg = Array.isArray(artImg) ? artImg : [];
 
         switch(this.type) {
             case "max": 
-                console.log("MAX");
                 this.artistMax();
                 break;
             case "medium":
-                console.log("Med");
                 this.artistMedium();
                 break;
             case "min":
-                console.log("MIN");
                 this.artistMin();
                 break;
             default:
-                console.log("Spec");
                 this.artistSpecial();
                 break;
         }
     }
-
     artistSpecial() {
         this.innerHTML = /*html */`
             <img src="${this.img}" alt="${this.name}">

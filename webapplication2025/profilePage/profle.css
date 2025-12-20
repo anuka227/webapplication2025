@@ -1,14 +1,5 @@
-body {
-    display: grid;
+#content {
     margin: 0;
-    grid-template-areas: 
-        "as main"
-        "as ft";
-    grid-template-columns: 100px auto; 
-    height: 100vh; 
-    background-color: var(--color-bg);
-}
-main {
    grid-area: main;
   display: grid;
   grid-template-columns: 1fr 340px;
