@@ -105,14 +105,9 @@ salon-header {
   50% {
     transform: scale(1.05);
   }
-}#content {
-    padding: 0;
 }
 salon-home {
-    grid-area: main;
     z-index: 1;
-    animation: var(--animation-main);
-    margin-left: 40px;
     h2 {
         margin: 1rem 0 1rem 0;
         padding:10px 0 10px 160px;

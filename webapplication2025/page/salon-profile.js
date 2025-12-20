@@ -7,7 +7,7 @@ class SalonProfile extends HTMLElement {
     connectedCallback() {
         //implementation
         this.innerHTML = /* html */`
-            <main>
+            <div class="profile-container">
     <section id="orders">
 		<div class="order-header">
 			<h1>Захиалга</h1>
@@ -64,7 +64,7 @@ class SalonProfile extends HTMLElement {
         <li>Түүх: 5 удаа</li>
       </ul>
     </section>
-  </main> 
+  </div> 
   <booking-list></booking-list>
   <dialog id="editDialog">
         <div class="dialog-content">
