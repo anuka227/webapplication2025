@@ -17,44 +17,15 @@
 		<div class="order-header">
 			<h1>Захиалга</h1>
 			<p>Баталгаажуулсан</p>
+            <booking-list></booking-list>
 		</div>			
-	<div class="order-list">
-  		<div class="order-card">
-    		<h3>Beauty salon</h3>
-   			<p><strong>Үйлчилгээ:</strong> Үс засалт</p>
-    		<p><strong>Байршил:</strong> Улаанбаатар</p>
-    		<p><strong>Цаг:</strong> 14:00</p>
-  		</div>
-
-  		<div class="order-card">
-   			<h3>Beauty salon</h3>
-			<p><strong>Үйлчилгээ:</strong> Маникюр</p>
-    		<p><strong>Байршил:</strong> Улаанбаатар</p>
-    		<p><strong>Цаг:</strong> 15:00</p>
- 		 </div>
-
-  		<div class="order-card">
-    		<h3>Beauty salon</h3>
-    		<p><strong>Үйлчилгээ:</strong> Массаж</p>
-    		<p><strong>Байршил:</strong> Улаанбаатар</p>
-    		<p><strong>Цаг:</strong> 16:00</p>
-  		</div>
-	
-	</div>
+        <div class="order-cards">
     <div class="history-header">
 			<h1>Захиалгын түүх</h1>
 	</div>
       <div class="history-cards">
-		
 		<h3>Halo salon</h3>
-			<div class="rating">
-				<span class="star">★</span>
-				<span class="star">★</span>
-				<span class="star">★</span>                        
-				<span class="star">★</span>
-				<span class="star ">★</span>
-				<span class="rating-number">4.5</span>
-            </div>
+		
       </div>
     </section>
     <section id="profile">
@@ -70,7 +41,6 @@
       </ul>
     </section>
   </main> 
-  <booking-list></booking-list>
   <dialog id="editDialog">
         <div class="dialog-content">
             <h2>Edit profile details</h2>
@@ -173,5 +143,20 @@
             alert('Түүхийн дэлгэрэнгүй');
         });
     </script>
+    <style>
+    /* Section visibility control */
+    main > section {
+        display: none;
+    }
+    
+    main > section.active,
+    main > section#orders {
+        display: block;
+    }
+    booking-list {
+        display: block;
+        margin: 30px 0;
+    }
+</style>
 </body>
 </html>

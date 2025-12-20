@@ -27,31 +27,6 @@ main {
     margin-bottom: 30px;
 }
 
-/* .tabs {
-    display: flex;
-    align-items: center;
-    background: rgba(236, 64, 122, 0.08);
-    border-radius: 25px;
-}
-
-.tab {
-    padding: 25px 80px;
-    border: none;
-    border-radius: 25px;
-    background: transparent;
-    color: black;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font: var(--font-h2);
-}
-
-.tab.active {
-    background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
-    color: white;
-    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
-} */
 .tabs {
     display: flex;
     align-items: center;
@@ -116,6 +91,8 @@ main {
     gap: 5px;
     padding: 0;
 }
+
+/* ==================== SALON LIST - 4 БАГАНА ==================== */
 .salon-content-wrapper,
 salon-all-list .salon-content-wrapper {
     display: flex;
@@ -128,7 +105,7 @@ salon-all-list .salon-content-wrapper {
 salon-all-list .salon-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start; /* Changed from center */
     align-items: start;
     gap: 20px;
     flex: 1;
@@ -144,6 +121,7 @@ salon-all-list .salon-list.column-mode {
     flex: none;
 }
 
+/* 4 БАГАНА - 25% each */
 salon-description[type="minimum"] article {
     display: flex;
     align-items: center;
@@ -153,14 +131,16 @@ salon-description[type="minimum"] article {
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex: 1 1 calc(33.333% - 15px);
-    min-width: 300px;
+    flex: 0 0 calc(25% - 15px); /* Fixed 25% width */
+    min-width: 250px;
+    max-width: calc(25% - 15px);
 }
 
 .salon-list.column-mode salon-description[type="minimum"] article,
 salon-all-list .salon-list.column-mode salon-description[type="minimum"] article {
     flex: 1 1 100%;
     width: 100%;
+    max-width: 100%;
 }
 
 salon-description[type="minimum"] article:hover {
@@ -204,6 +184,7 @@ salon-all-list .salon-detail.active {
     opacity: 1;
     transform: translateX(0);
 }
+
 .information {
     background: white;
     border-radius: 20px;
@@ -214,7 +195,6 @@ salon-all-list .salon-detail.active {
     height: auto;
 }
 
-/* Header хэсэг */
 .information-header {
     display: flex;
     justify-content: space-between;
@@ -243,7 +223,6 @@ salon-all-list .salon-detail.active {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 .information-header h1 {
     font-size: 32px;
@@ -300,7 +279,6 @@ salon-all-list .salon-detail.active {
     font-size: 15px;
 }
 
-/* Үйлчилгээний хэсэг */
 .information section {
     margin-top: 40px;
 }
@@ -322,6 +300,7 @@ salon-all-list .salon-detail.active {
     margin-bottom: 30px;
     padding: 0;
 }
+
 .service-category {
     margin-bottom: 15px;
     overflow: hidden;
@@ -437,12 +416,13 @@ salon-all-list .salon-detail.active {
     background: var(--color-order);
     color: white;
 }
+
 .booking-dialog {
     border: none;
     border-radius: 20px;
     padding: 0;
     max-width: 900px;
-    width: 90vw;
+    width: 80vw;
     max-height: 90vh;
     overflow: hidden;
 }
@@ -462,7 +442,7 @@ salon-all-list .salon-detail.active {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 10px 20px;
 }
 
 .booking-header h2 {
@@ -475,7 +455,6 @@ salon-all-list .salon-detail.active {
     border: none;
     font-size: 32px;
     cursor: pointer;
-   
 }
 
 .close-booking-btn:hover {
@@ -483,17 +462,15 @@ salon-all-list .salon-detail.active {
 }
 
 .booking-service-info {
-    padding: 20px 30px;
+    padding: 10px 20px;
     background: var(--color-salon);
     border-radius: 25px;
-    
 }
 
 .booking-service-info h3 {
     margin: 0 0 5px 0;
     font-size: 20px;
 }
-
 
 .service-details {
     display: flex;
@@ -506,52 +483,15 @@ salon-all-list .salon-detail.active {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    padding: 30px;
+    padding: 20px;
     flex: 1;
     overflow-y: auto;
 }
 
-/* Date Picker */
 .date-picker-section h3,
 .time-picker-section h3 {
     margin: 0 0 15px 0;
     font-size: 18px;
-}
-
-.quick-dates {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.quick-date-btn {
-    padding: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    background: white;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
-}
-
-.quick-date-btn:hover {
-    border-color: #c0c0c0;
-}
-
-.quick-date-btn.active {
-    border-color: var(--color-salon);
-    background: #f5f4ff;
-}
-
-.date-label {
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.date-value {
-    color: #666;
-    font-size: 14px;
 }
 
 .calendar-container {
@@ -639,7 +579,6 @@ salon-all-list .salon-detail.active {
     cursor: default;
 }
 
-/* Time Picker */
 .time-picker-section {
     display: flex;
     flex-direction: column;
@@ -699,17 +638,14 @@ salon-all-list .salon-detail.active {
     border-color: #ec407a;
 }
 
-
-/* Footer */
 .booking-footer {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-    padding: 20px 30px;
+    padding: 8px 15px;
     border-top: 1px solid #eee;
 }
 
-.cancel-btn,
 .confirm-booking-btn {
     padding: 12px 30px;
     border: none;
@@ -717,11 +653,6 @@ salon-all-list .salon-detail.active {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s;
-}
-
-
-
-.confirm-booking-btn {
     background: var(--color-order);
     color: white;
 }
@@ -730,17 +661,6 @@ salon-all-list .salon-detail.active {
     background: var(--color-salon);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .booking-content {
-        grid-template-columns: 1fr;
-    }
-    
-    .booking-dialog {
-        width: 95vw;
-        max-height: 95vh;
-    }
-}
 .loading-message {
     text-align: center;
     padding: 40px;
@@ -785,10 +705,29 @@ salon-all-list .salon-detail.active {
     color: #666;
 }
 
+/* ==================== RESPONSIVE ==================== */
 
+/* Large screens: 4 columns */
+@media (min-width: 1400px) {
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc(25% - 15px);
+        max-width: calc(25% - 15px);
+    }
+}
+
+/* Medium-large screens: 3 columns */
+@media (max-width: 1399px) and (min-width: 1025px) {
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc(33.333% - 15px);
+        max-width: calc(33.333% - 15px);
+    }
+}
+
+/* Tablets: 2 columns */
 @media (max-width: 1024px) {
     salon-description[type="minimum"] article {
-        flex: 1 1 calc(50% - 15px);
+        flex: 0 0 calc(50% - 15px);
+        max-width: calc(50% - 15px);
     }
    
     .artist > div {
@@ -796,6 +735,7 @@ salon-all-list .salon-detail.active {
     }
 }
 
+/* Mobile: 1 column */
 @media (max-width: 768px) {
     .salon-content-wrapper,
     salon-all-list .salon-content-wrapper {
@@ -812,10 +752,20 @@ salon-all-list .salon-detail.active {
 
     salon-description[type="minimum"] article {
         flex: 1 1 100%;
+        max-width: 100%;
     }
 
     .artist > div {
         flex: 1 1 calc(50% - 10px);
+    }
+    
+    .booking-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .booking-dialog {
+        width: 95vw;
+        max-height: 95vh;
     }
 }
 
