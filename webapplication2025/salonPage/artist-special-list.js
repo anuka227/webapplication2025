@@ -79,7 +79,7 @@ class ArtistSpecialList extends HTMLElement {
     render() {
         this.innerHTML = /*html*/`
             <section class="artist-special-list">
-                <h2>Онцлох Артист</h2>
+                <h2>Онцлох Бие Даасан Артист</h2>
                 <div class="artistsections">
                     <button class="snav prev" aria-label="Өмнөх">‹</button>
                     <div class="artistsection">

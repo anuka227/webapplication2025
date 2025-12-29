@@ -44,14 +44,60 @@ class AsideNav extends HTMLElement {
                 </li>   
                   
             </ul>
-			<div class="logout">
-				<svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-					<path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-				</svg>
-			</div>
+			<div class="logout" id="logoutBtn" style="cursor: pointer">
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
         </nav>
-        `
+        `;
+		this.attachEventListeners();
+	}
+
+		attachEventListeners() {
+        const logoutBtn = this.querySelector('#logoutBtn');
+        
+        if (logoutBtn) {            
+            logoutBtn.addEventListener('click', (event) => {
+                this.handleLogout();
+            });
+        } else {
+            console.error('❌ Logout товч олдсонгүй!');
+        }
+    }
+    
+    async handleLogout() {
+        console.log('🚪 handleLogout функц дуудагдлаа');
+        
+        const confirmed = confirm('Та гарахдаа итгэлтэй байна уу?');
+        
+        if (!confirmed) {
+            console.log('❌ Logout цуцлагдлаа');
+            return;
+        }
+
+        try {
+            console.log('📡 Logout API дуудаж байна...');
+            
+            const response = await fetch('http://localhost:3000/api/auth/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+            
+            console.log('📥 Response:', response);
+
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+
+            console.log('✅ localStorage цэвэрлэгдлээ');
+            console.log('🔄 Login page руу шилжиж байна...');
+
+            window.location.hash = '#/login';
+        } catch (error) {
+            console.error('❌ Logout error:', error);
+            alert('❌ Гарахад алдаа гарлаа');
+        }
     }
     disconnectedCallback() {
         //implementation

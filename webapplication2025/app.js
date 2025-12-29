@@ -10,6 +10,8 @@ import './orderPage/js/components/order-service.js';
 import './orderPage/js/components/order-time.js';
 import './orderPage/js/components/order-date.js';
 import './orderPage/js/components/order-location.js';
+import './calendar-picker.js'
+import './time-picker.js'
 
 // Salon Components
 import './salonPage/salon-all-list.js';
@@ -38,3 +40,8 @@ import './salon-link.js';
 import './salon-route.js';
 import './salon-router.js';
 import './salon-routes.js';
+
+
+//login
+import './loginPage/salon-login.js';
+import './profilePage/profile-info.js';

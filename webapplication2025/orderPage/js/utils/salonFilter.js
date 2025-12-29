@@ -20,20 +20,15 @@ export class SalonFilter {
                     artist.coordinates.lat, 
                     artist.coordinates.lng
                 );
-                
-                artist.distance = distance;
-                console.log(`  👤 ${artist.name}: ${distance.toFixed(2)}км`);
-                
+                artist.distance = distance;                
                 return distance <= maxDistance;
             });
             return { ...salon, artists: filteredArtists };
         } else {
             if (!salon.coordinates) {
-                console.log(`  ⚠️ ${salon.name}: Координат байхгүй`);
                 return null;
             }
             
-            // ✅ ЗАСВАРЛАСАН: window.DistanceCalculator
             const distance = window.DistanceCalculator.calculateDistance(
                 userCoords.lat, 
                 userCoords.lng,
@@ -55,68 +50,69 @@ export class SalonFilter {
     });
 }
 
-filterByService(salons, serviceType) {
-        if (!serviceType || serviceType === 'Үйлчилгээ') {
-            console.log('⚠️ Үйлчилгээ сонгоогүй');
-            return salons;
-        }
+filterByService(salons, serviceId) {
+    if (!serviceId || serviceId === 'Үйлчилгээ') {
+        console.log('⚠️ Үйлчилгээ сонгоогүй');
+        return salons;
+    }
 
-        console.log('📋 Үйлчилгээгээр шүүж байна:', serviceType);
+    console.log('📋 Үйлчилгээгээр шүүж байна:', serviceId);
 
-        // Subservice type-ийг шууд ашиглах (жишээ: "Hair Style", "Manicure")
-        return salons.map(salon => {
-            if (salon.id === 'independent') {
-                const filteredArtists = salon.artists.filter(artist => {
-                    if (!artist.service) {
-                        return false;
-                    }
+    return salons.map(salon => {
+        if (salon.id === 'independent') {
+            const filteredArtists = salon.artists.filter(artist => {
+                if (!artist.service) {
+                    return false;
+                }
+                const hasService = artist.service.some(serviceGroup => {
+                    if (!serviceGroup.subservice) return false;
                     
-                    const hasService = artist.service.some(s => {
-                        // Subservice type-тэй шууд харьцуулах
-                        const match = s.type === serviceType;
+                    return serviceGroup.subservice.some(sub => {
+                        const match = sub.id === serviceId;
                         if (match) {
-                            console.log(`  ✅ ${artist.name}: ${s.type} тохирлоо`);
+                            console.log(`  ✅ ${artist.name}: ${sub.id} тохирлоо`);
                         }
                         return match;
                     });
-                    
-                    return hasService;
                 });
                 
-                console.log(`  📊 Бие даасан артист: ${filteredArtists.length} олдлоо`);
-                return { ...salon, artists: filteredArtists };
-            } 
+                return hasService;
+            });
             
-            // ========== САЛОНУУД ==========
-            else {
-                if (!salon.service) {
-                    console.log(`  ⚠️ ${salon.name}: service байхгүй`);
-                    return null;
-                }
+            console.log(`  📊 Бие даасан артист: ${filteredArtists.length} олдлоо`);
+            return { ...salon, artists: filteredArtists };
+        } 
+        
+        else {
+            if (!salon.service) {
+                console.log(`  ⚠️ ${salon.name}: service байхгүй`);
+                return null;
+            }
+            
+            const hasService = salon.service.some(serviceGroup => {
+                if (!serviceGroup.subservice) return false;
                 
-                const hasService = salon.service.some(s => {
-                    // Subservice type-тэй шууд харьцуулах
-                    const match = s.type === serviceType;
+                return serviceGroup.subservice.some(sub => {
+                    const match = sub.id === serviceId;
                     if (match) {
-                        console.log(`  ✅ ${salon.name}: ${s.type} тохирлоо`);
+                        console.log(`  ✅ ${salon.name}: ${sub.id} тохирлоо`);
                     }
                     return match;
                 });
-                
-                if (hasService) {
-                    console.log(`  🏢 ${salon.name} - Үйлчилгээ ОЛДЛОО`);
-                    return salon;
-                } else {
-                    console.log(`  ❌ ${salon.name} - Үйлчилгээ олдсонгүй`);
-                    return null;
-                }
+            });
+            
+            if (hasService) {
+                return salon;
+            } else {
+                return null;
             }
-        }).filter(salon => {
-            if (!salon) return false;
-            if (salon.id === 'independent') return salon.artists.length > 0;
-            return true;
-        });
-    }
+        }
+    }).filter(salon => {
+        if (!salon) return false;
+        if (salon.id === 'independent') return salon.artists.length > 0;
+        return true;
+    });
+}
 
 
     filterByDate(salons, selectedDate) {
@@ -143,68 +139,50 @@ filterByService(salons, serviceType) {
         });
     }
 
-    filterByTime(salons, selectedTime) {
-        if (!selectedTime) return salons;
-        
-        console.log('⏰ Цаг:', selectedTime);
-
-        return salons.map(salon => {
-            if (salon.id === 'independent') {
-                const filteredArtists = salon.artists.filter(artist => 
-                    artist.hours && artist.hours.includes(selectedTime)
-                );
-                return { ...salon, artists: filteredArtists };
-            } else {
-                return salon.time && salon.time.includes(selectedTime) ? salon : null;
-            }
-        }).filter(salon => {
-            if (!salon) return false;
-            if (salon.id === 'independent') return salon.artists.length > 0;
-            return true;
-        });
-    }
+filterByTime(salons, selectedTime) {
+    return salons.map(salon => {
+        if (salon.id === 'independent') {
+            const filteredArtists = salon.artists.filter(artist => {
+                const hasTime = artist.hours && artist.hours.includes(selectedTime);
+                if (artist.hours) {
+                    console.log(`  👤 ${artist.name}: ${artist.hours} → includes "${selectedTime}"? ${hasTime}`);
+                }
+                return hasTime;
+            });
+            return { ...salon, artists: filteredArtists };
+        } else {
+            const hasTime = salon.time && salon.time.includes(selectedTime);
+            return hasTime ? salon : null;
+        }
+    }).filter(salon => {
+        if (!salon) return false;
+        if (salon.id === 'independent') return salon.artists.length > 0;
+        return true;
+    });
+}
 
     applyFilters(filters) {
         let results = JSON.parse(JSON.stringify(this.allData));
-
-        console.log('🔧 Эхлэх өгөгдөл:', results.length);
-
-        // 1. Үйлчилгээгээр
         if (filters.service) {
             results = this.filterByService(results, filters.service);
-            console.log('📋 Үйлчилгээгээр шүүлсний дараа:', results.length);
         }
-
-        // 2. Огноогоор
         if (filters.date) {
             results = this.filterByDate(results, filters.date);
-            console.log('📅 Огноогоор шүүлсний дараа:', results.length);
         }
-
-        // 3. Цагаар
         if (filters.time) {
             results = this.filterByTime(results, filters.time);
-            console.log('⏰ Цагаар шүүлсний дараа:', results.length);
         }
-
-        // 4. Байршлаар (хамгийн сүүлд)
         if (filters.location) {
             results = this.filterByLocation(results, filters.location, filters.maxDistance);
-            console.log('📍 Байршлаар шүүлсний дараа:', results.length);
         }
-
-        // Зайгаар эрэмбэлэх
-        if (filters.location && filters.location.coordinates) {
-            results.sort((a, b) => {
-                const distA = a.distance || (a.id === 'independent' ? 999 : 0);
-                const distB = b.distance || (b.id === 'independent' ? 999 : 0);
-                return distA - distB;
-            });
-            console.log('📊 Зайгаар эрэмбэлэгдлээ');
-        }
-
+        // if (filters.location && filters.location.coordinates) {
+        //     results.sort((a, b) => {
+        //         const distA = a.distance || (a.id === 'independent' ? 999 : 0);
+        //         const distB = b.distance || (b.id === 'independent' ? 999 : 0);
+        //         return distA - distB;
+        //     });
+        // }
         return results;
     }
 }
-
 window.SalonFilter = SalonFilter;

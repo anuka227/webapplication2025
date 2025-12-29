@@ -1,4 +1,3 @@
-// orderManager.js
 export class OrderManager {
     constructor() {
         this.orderData = {
@@ -11,22 +10,25 @@ export class OrderManager {
     
     updateService(service) {
         this.orderData.service = service;
-        console.log('📋 Service updated:', service);
     }
     
     updateLocation(location) {
         this.orderData.location = location;
-        console.log('📍 Location updated:', location);
     }
     
     updateDate(date) {
         this.orderData.date = date;
-        console.log('📅 Date updated:', date);
     }
     
     updateTime(time) {
         this.orderData.time = time;
-        console.log('⏰ Time updated:', time);
+        if (typeof time === 'string' && time.length > 0) {
+        this.filters.time = time;
+        console.log('✅ Time saved:', this.filters.time);
+        this.applyFilters();
+    } else {
+        console.error('❌ Invalid time:', time);
+    }
     }
     
     isComplete() {

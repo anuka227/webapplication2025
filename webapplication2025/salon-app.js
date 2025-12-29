@@ -13,6 +13,7 @@ class SalonApp extends HTMLElement {
         <salon-router>
             <salon-routes>
                 <salon-route zam="/" com="salon-home"></salon-route>
+                <salon-route zam="/login" com="salon-login"></salon-route>
                 <salon-route zam="/info" com="salon-info"></salon-route>
                 <salon-route zam="/profile" com="salon-profile"></salon-route>
             </salon-routes>

@@ -89,10 +89,6 @@ class OrderLocation extends HTMLElement {
                         name: locationName,
                         coordinates: coords
                     });
-                    
-                    console.log('📍 Dropdown-оос сонгосон:', locationName, coords);
-                } else {
-                    console.warn('⚠️ Байршил олдсонгүй:', locationName);
                 }
             }
         });
@@ -158,7 +154,6 @@ class OrderLocation extends HTMLElement {
             this.updateCoords(container, lat, lng);
             btnText.textContent = 'ОДООГИЙН БАЙРШИЛ';
             
-            // ✅ Map нээгдэхэд ч координатыг хадгалах
             window.orderManager?.updateLocation({
                 name: 'Одоогийн байршил',
                 coordinates: { lat, lng }
@@ -171,10 +166,8 @@ class OrderLocation extends HTMLElement {
     onMapClick(e, container, btnText) {
         const { lat, lng } = e.latlng;
 
-        // Хуучин marker устгах
         if (this.marker) this.map.removeLayer(this.marker);
 
-        // Улаан marker
         const icon = L.divIcon({
             html: `<svg width="32" height="45"><ellipse cx="16" cy="42" rx="10" ry="3" fill="rgba(0,0,0,0.2)"/><path d="M16 0C9.373 0 4 5.373 4 12c0 9 12 28 12 28s12-19 12-28c0-6.627-5.373-12-12-12z" fill="#EA4335"/><circle cx="16" cy="12" r="5" fill="white"/><circle cx="16" cy="12" r="3" fill="#EA4335"/></svg>`,
             iconSize: [32, 45],

@@ -15,8 +15,8 @@ class SalonRoutes extends HTMLElement {
             .forEach(r => { 
                 const path = r.getAttribute('zam') ?? "/";
                 const page = r.getAttribute('com') ?? "salon-app";
-                // this.parentElement.routes.set(path, page); //muu arga
-                this.parentElement.urlBurtguul({path, page});
+                const isProtected = r.hasAttribute('protected');
+                this.parentElement.urlBurtguul({path, page, protected: isProtected});
             });
         
         

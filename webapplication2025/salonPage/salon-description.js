@@ -200,7 +200,7 @@ class SalonDescription extends HTMLElement {
                         <div class="artist">
                             ${this.artists.map(artist => `
                                 <div class="artist-card" data-artist-id="${artist.id || artist.artist_id}">
-                                    <img src="${artist.img || 'https://picsum.photos/80/80?random=' + Math.random()}" alt="${artist.name}">
+                                    <img src="${artist.img || 'https://picsum.photos/80/80?random='}" alt="${artist.name}">
                                     <h3>${artist.profession || 'Artist'}</h3>
                                     <p>${artist.name}</p>
                                 </div>

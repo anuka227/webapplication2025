@@ -105,41 +105,111 @@ class OrderOuter extends HTMLElement {
 }
 
 renderSalonCard(salon) {
-    // Үйлчилгээний үнэ авах
-    const firstService = salon.service?.[0];
-    const firstSubservice = firstService?.subservice?.[0];
+const selectedServiceId = window.orderManager?.getData().service || null;
+    
+    // Шүүлтэд тохирох subservice-үүдийг цуглуулах
+    let filteredSubservices = [];
+    
+    if (salon.service && Array.isArray(salon.service)) {
+        salon.service.forEach(serviceGroup => {
+            if (serviceGroup.subservice && Array.isArray(serviceGroup.subservice)) {
+                serviceGroup.subservice.forEach(sub => {
+                    // Хэрэв шүүлт байгаа бол зөвхөн тохирох subservice-ийг нэмнэ
+                    if (!selectedServiceId || sub.id === selectedServiceId) {
+                        filteredSubservices.push(sub);
+                    }
+                });
+            }
+        });
+    }
+    
+    // Subservice HTML үүсгэх
+    const subservicesHTML = filteredSubservices.length > 0 
+        ? filteredSubservices.map(sub => `
+            <li class="subservice-row">
+                <div class="subservice-left">
+                    <p class="subservice-name">${sub.name || sub.id}</p>
+                    <p class="subservice-duration">${sub.duration || ''}</p>
+                </div>
+                <div class="subservice-right">
+                    <p class="subservice-price">${sub.price}₮</p>
+                    <button class="subservice-book-btn">></button>
+                </div>
+            </li>
+        `).join('')
+        : '<li class="no-service">Үйлчилгээ байхгүй</li>';
     
     return /*html*/`
-        <div class="Salon">
+        <div class="salon-card">
+        <div class="selected-information">
             <img src="${salon.img || 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500'}" 
                  alt="${salon.name}">
-            <div>
-                <p><strong>${salon.name || 'Салон'}</strong></p>
-                <p>⭐ ${salon.rating || '0.0'} (${salon.reviews_count || 0})</p>
+            <div class="info-text">
+            <div class="top">
+                <p class="name"><strong>${salon.name || 'Салон'}</strong></p>
+                <p> ${salon.rating || '0.0'} (${salon.reviews_count || 0})</p>
             </div>
-            <p>📍 ${salon.location || ''}</p>
-            ${firstSubservice ? `<p>💰 ${firstSubservice.price}₮</p>` : ''}
-            <button>Захиалах</button>
+            <p> ${salon.location || ''}</p>
+            </div>
+        </div>
+            <ul class="subservices-list">
+                ${subservicesHTML}
+            </ul>
         </div>
     `;
 }
 
 renderArtistCard(artist) {
-    // Үйлчилгээний үнэ авах
-    const firstService = artist.service?.[0];
-    const firstSubservice = firstService?.subservice?.[0];
+const selectedServiceId = window.orderManager?.getData().service || null;
+    
+    // Шүүлтэд тохирох subservice-үүдийг цуглуулах
+    let filteredSubservices = [];
+    
+    if (artist.service && Array.isArray(artist.service)) {
+        artist.service.forEach(serviceGroup => {
+            if (serviceGroup.subservice && Array.isArray(serviceGroup.subservice)) {
+                serviceGroup.subservice.forEach(sub => {
+                    // Хэрэв шүүлт байгаа бол зөвхөн тохирох subservice-ийг нэмнэ
+                    if (!selectedServiceId || sub.id === selectedServiceId) {
+                        filteredSubservices.push(sub);
+                    }
+                });
+            }
+        });
+    }
+    
+    // Subservice HTML үүсгэх
+    const subservicesHTML = filteredSubservices.length > 0 
+        ? filteredSubservices.map(sub => `
+            <li class="subservice-row">
+                <div class="subservice-left">
+                    <p class="subservice-name">${sub.name || sub.id}</p>
+                    <p class="subservice-duration">${sub.duration || ''}</p>
+                </div>
+                <div class="subservice-right">
+                    <p class="subservice-price">${sub.price}₮</p>
+                    <button class="subservice-book-btn">></button>
+                </div>
+            </li>
+        `).join('')
+        : '<li class="no-service">Үйлчилгээ байхгүй</li>';
     
     return /*html*/`
-        <div class="Artist">
+        <div class="artist-card">
+        <div class="selected-information">
             <img src="${artist.img || 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500'}" 
                  alt="${artist.name}">
-            <div>
+                 <div class="info-text">
+            <div class="top">
                 <p><strong>${artist.name || 'Артист'}</strong></p>
-                <p>⭐ ${artist.rating || '0.0'} (${artist.reviews_count || 0})</p>
+                <p> ${artist.rating || '0.0'} (${artist.reviews_count || 0})</p>
             </div>
-            <p>📍 ${artist.location || ''}</p>
-            ${firstSubservice ? `<p>💰 ${firstSubservice.price}₮</p>` : ''}
-            <button>Захиалах</button>
+                <p>${artist.location || ''}</p>
+        </div>
+        </div>
+        <ul class="subservices-list">
+            ${subservicesHTML}
+        </ul>
         </div>
     `;
 }
