@@ -11,7 +11,6 @@ class BookingList extends HTMLElement {
         this.render();
         this.attachEvents();
         
-        // Listen for new bookings
         window.addEventListener('booking-added', () => {
             console.log('🎉 Booking added event received');
             this.loadBookings();
@@ -19,19 +18,18 @@ class BookingList extends HTMLElement {
             this.attachEvents();
         });
 
-        // Listen for booking actions from cards
         this.addEventListener('booking-action', (e) => {
             const { action, bookingId } = e.detail;
-            if (action === 'cancel') {
-                this.cancelBooking(bookingId);
+            if (action === 'delete') {
+                this.deleteBooking(bookingId);
             } else if (action === 'complete') {
                 this.completeBooking(bookingId);
             }
         });
     }
 
-    disconnectedCallback() {
-        // Cleanup
+    static get observedAttributes() {
+        return ['filter'];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
@@ -42,22 +40,11 @@ class BookingList extends HTMLElement {
         }
     }
 
-    adoptedCallback() {
-        // Called when moved to new document
-    }
-
-    static get observedAttributes() {
-        return ['filter'];
-    }
-
     loadBookings() {
         try {
             const stored = localStorage.getItem('bookings');
             this.bookings = stored ? JSON.parse(stored) : [];
-            
-            // Sort by timestamp (newest first)
             this.bookings.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            
             console.log('📊 Loaded', this.bookings.length, 'bookings');
         } catch (error) {
             console.error('❌ Error loading bookings:', error);
@@ -85,7 +72,6 @@ class BookingList extends HTMLElement {
             bookings = bookings.map(booking => {
                 if ((booking.status === 'upcoming' || !booking.status) && this.isBookingPast(booking)) {
                     hasChanges = true;
-                    console.log('⏰ Auto-completing expired booking:', booking.id);
                     return {
                         ...booking,
                         status: 'completed',
@@ -97,7 +83,6 @@ class BookingList extends HTMLElement {
             
             if (hasChanges) {
                 localStorage.setItem('bookings', JSON.stringify(bookings));
-                console.log('✅ Expired bookings auto-completed');
             }
         } catch (error) {
             console.error('❌ Error auto-completing:', error);
@@ -105,10 +90,7 @@ class BookingList extends HTMLElement {
     }
 
     getFilteredBookings() {
-        // Auto-complete expired bookings first
         this.autoCompleteExpiredBookings();
-        
-        // Reload bookings after auto-complete
         this.loadBookings();
         
         switch(this.filter) {
@@ -116,10 +98,10 @@ class BookingList extends HTMLElement {
                 return this.bookings.filter(b => 
                     (b.status === 'upcoming' || !b.status) && !this.isBookingPast(b)
                 );
-            case 'completed':
-                return this.bookings.filter(b => b.status === 'completed');
-            case 'cancelled':
-                return this.bookings.filter(b => b.status === 'cancelled');
+            case 'history':
+                return this.bookings.filter(b => 
+                    b.status === 'completed' || b.status === 'cancelled' || this.isBookingPast(b)
+                );
             default:
                 return this.bookings;
         }
@@ -130,28 +112,22 @@ class BookingList extends HTMLElement {
         const upcomingCount = this.bookings.filter(b => 
             (b.status === 'upcoming' || !b.status) && !this.isBookingPast(b)
         ).length;
-        const completedCount = this.bookings.filter(b => b.status === 'completed').length;
-        const cancelledCount = this.bookings.filter(b => b.status === 'cancelled').length;
+        const historyCount = this.bookings.filter(b => 
+            b.status === 'completed' || b.status === 'cancelled' || this.isBookingPast(b)
+        ).length;
         
         this.innerHTML = `
             <div class="booking-list-container">
                 <div class="booking-list-header">
                     <h2 class="booking-list-title">Миний захиалгууд</h2>
-                    <div class="booking-count">${filteredBookings.length} захиалга</div>
                 </div>
 
-                <div class="filter-tabs">
-                    <button class="filter-tab ${this.filter === 'all' ? 'active' : ''}" data-filter="all">
-                        Бүгд (${this.bookings.length})
+                <div id="bookingTabs" class="filter-tabs">
+                    <button class="tab ${this.filter === 'all' ? 'active' : ''}" data-tab="all">
+                        Захиалга 
                     </button>
-                    <button class="filter-tab ${this.filter === 'upcoming' ? 'active' : ''}" data-filter="upcoming">
-                        Удахгүй (${upcomingCount})
-                    </button>
-                    <button class="filter-tab ${this.filter === 'completed' ? 'active' : ''}" data-filter="completed">
-                        Дууссан (${completedCount})
-                    </button>
-                    <button class="filter-tab ${this.filter === 'cancelled' ? 'active' : ''}" data-filter="cancelled">
-                        Цуцлагдсан (${cancelledCount})
+                    <button class="tab ${this.filter === 'history' ? 'active' : ''}" data-tab="history">
+                        Захиалгын түүх 
                     </button>
                 </div>
 
@@ -162,25 +138,173 @@ class BookingList extends HTMLElement {
                     }
                 </div>
             </div>
+
+            <style>
+                :host {
+                    --color-order: #fc8eac;
+                    --color-pink-default: #fce4ec;
+                    --color-pink-selected: #f594b6;
+                    --color-white: #ffffff;
+                    --color-hover-gray: rgba(0, 0, 0, 0.05);
+                    --color-border: rgba(236, 64, 122, 0.2);
+                    --color-salon: rgba(236, 64, 122, 0.08);
+                }
+
+                .booking-list-container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 25px;
+                }
+
+                .booking-list-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 24px;
+                    padding-bottom: 16px;
+                    border-bottom: 2px solid var(--color-border);
+                }
+
+                .booking-list-title {
+                    font-size: 28px;
+                    font-weight: 700;
+                    color: #2c3e50;
+                    margin: 0;
+                }
+
+                .booking-count {
+                    background: var(--color-order);
+                    color: var(--color-white);
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                .filter-tabs {
+                    display: flex;
+                    gap: 12px;
+                    margin-bottom: 24px;
+                    overflow-x: auto;
+                    padding-bottom: 8px;
+                }
+
+                .tab {
+                    flex: 1;
+                    min-width: 150px;
+                    padding: 14px 24px;
+                    background: var(--color-white);
+                    border: 2px solid var(--color-border);
+                    border-radius: 20px;
+                    cursor: pointer;
+                    transition: all 0.3s;
+                    font-family: inherit;
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #2c3e50;
+                }
+
+                .tab:hover {
+                    background: var(--color-hover-gray);
+                    border-color: var(--color-pink-selected);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.2);
+                }
+
+                .tab.active {
+                    background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
+                    border-color: transparent;
+                    color: white;
+                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
+                }
+
+                .bookings-grid {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                    animation: fadeIn 0.5s ease-in;
+                }
+
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .empty-state {
+                    text-align: center;
+                    padding: 60px 20px;
+                    background: var(--color-pink-default);
+                    border-radius: 16px;
+                    border: 2px dashed var(--color-border);
+                }
+
+                .empty-icon {
+                    font-size: 80px;
+                    margin-bottom: 20px;
+                    opacity: 0.5;
+                }
+
+                .empty-title {
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #2c3e50;
+                    margin-bottom: 12px;
+                }
+
+                .empty-message {
+                    font-size: 16px;
+                    color: #7f8c8d;
+                }
+
+                @media (max-width: 768px) {
+                    .booking-list-container {
+                        padding: 16px;
+                    }
+
+                    .booking-list-title {
+                        font-size: 22px;
+                    }
+
+                    .filter-tabs {
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                    }
+
+                    .tab {
+                        min-width: 120px;
+                        flex: 0 0 auto;
+                        padding: 12px 20px;
+                        font-size: 14px;
+                    }
+                }
+            </style>
         `;
     }
 
     renderBookingCard(booking) {
-        // Use booking-card component
         return `<booking-card booking-data='${JSON.stringify(booking)}'></booking-card>`;
     }
 
     renderEmptyState() {
         const messages = {
             'all': 'Танд одоогоор захиалга байхгүй байна',
-            'upcoming': 'Удахгүй болох захиалга байхгүй байна',
-            'completed': 'Дууссан захиалга байхгүй байна',
-            'cancelled': 'Цуцлагдсан захиалга байхгүй байна'
+            'history': 'Захиалгын түүх байхгүй байна'
+        };
+
+        const icons = {
+            'all': '',
+            'history': ''
         };
 
         return `
             <div class="empty-state">
-                <div class="empty-icon">📅</div>
+                <div class="empty-icon">${icons[this.filter]}</div>
                 <div class="empty-title">Захиалга олдсонгүй</div>
                 <div class="empty-message">${messages[this.filter]}</div>
             </div>
@@ -188,42 +312,46 @@ class BookingList extends HTMLElement {
     }
 
     attachEvents() {
-        // Filter tabs
-        this.querySelectorAll('.filter-tab').forEach(tab => {
+        this.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', (e) => {
-                this.filter = e.target.dataset.filter;
+                // Remove active from all tabs
+                this.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                
+                // Add active to clicked tab
+                e.currentTarget.classList.add('active');
+                
+                // Update filter
+                const tabValue = e.currentTarget.dataset.tab;
+                this.filter = tabValue;
+                
+                // Re-render
                 this.render();
                 this.attachEvents();
             });
         });
     }
 
-    cancelBooking(bookingId) {
-        if (!confirm('Та энэ захиалгыг цуцлахдаа итгэлтэй байна уу?')) {
+    deleteBooking(bookingId) {
+        if (!confirm('Та энэ захиалгыг устгахдаа итгэлтэй байна уу?')) {
             return;
         }
 
         try {
-            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-            const bookingIndex = bookings.findIndex(b => b.id === bookingId);
+            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            bookings = bookings.filter(b => b.id !== bookingId);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
             
-            if (bookingIndex !== -1) {
-                bookings[bookingIndex].status = 'cancelled';
-                bookings[bookingIndex].cancelledAt = new Date().toISOString();
-                localStorage.setItem('bookings', JSON.stringify(bookings));
-                
-                this.loadBookings();
-                this.render();
-                this.attachEvents();
-                
-                this.showNotification('Захиалга амжилттай цуцлагдлаа', 'success');
-                
-                window.dispatchEvent(new CustomEvent('booking-cancelled', {
-                    detail: { bookingId }
-                }));
-            }
+            this.loadBookings();
+            this.render();
+            this.attachEvents();
+            
+            this.showNotification('Захиалга амжилттай устгагдлаа', 'success');
+            
+            window.dispatchEvent(new CustomEvent('booking-deleted', {
+                detail: { bookingId }
+            }));
         } catch (error) {
-            console.error('Error cancelling booking:', error);
+            console.error('Error deleting booking:', error);
             this.showNotification('Алдаа гарлаа', 'error');
         }
     }
@@ -271,11 +399,11 @@ class BookingList extends HTMLElement {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: ${type === 'success' ? '#4CAF50' : '#ff5252'};
+            background: ${type === 'success' ? '#fc8eac' : '#ff5252'};
             color: white;
             padding: 16px 24px;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(252, 142, 172, 0.4);
             z-index: 10001;
             font-family: system-ui;
             font-size: 14px;

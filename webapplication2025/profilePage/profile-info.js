@@ -242,6 +242,20 @@ class ProfileInfo extends HTMLElement {
                 .save-btn:hover {
                     opacity: 0.9;
                 }
+
+                @media (max-width: 768px) {
+                    .profile-container {
+                        flex-direction: column;
+                    }
+
+                    #orders {
+                        order: 1;
+                    }
+
+                    #profile {
+                        order: 2;
+                    }
+                }
             </style>
 
             <div class="profile-container">
@@ -288,7 +302,7 @@ class ProfileInfo extends HTMLElement {
                         </div>
                     </div>
                 </section>
-                
+
                 <section id="profile">
                     <button id="editBtn">✏️</button>
                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" alt="Profile">
@@ -353,75 +367,40 @@ class ProfileInfo extends HTMLElement {
         });
 
         editForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const name = this.querySelector('#firstName').value;
-    const phone = this.querySelector('#mobile').value;
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    
-    
-    try {
-        const response = await fetch('http://localhost:3000/api/auth/update', {
-            method: 'PUT',
-            headers: { 
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({ 
-                name, 
-                phone,
-                userId: user.id  
-            })
+            e.preventDefault();
+            
+            const name = this.querySelector('#firstName').value;
+            const phone = this.querySelector('#mobile').value;
+            const token = localStorage.getItem('token');  
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/update', {
+                    method: 'PUT',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`  
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ name, phone })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    alert('✅ Өөрчлөлт хадгалагдлаа!');
+                    editDialog.close();
+                    this.user = data.user;
+                    this.render();
+                    this.attachEventListeners();
+                } else {
+                    alert('❌ Алдаа: ' + data.error);
+                }
+            } catch (error) {
+                alert('❌ Серверт холбогдож чадсангүй');
+                console.error('Update error:', error);
+            }
         });
-        
-        const data = await response.json();
-        
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify(data.user));
-            alert('✅ Өөрчлөлт хадгалагдлаа!');
-            editDialog.close();
-            this.user = data.user;
-            this.render();
-            this.attachEventListeners();
-        } else {
-            alert('❌ Алдаа: ' + data.error);
-        }
-    } catch (error) {
-        alert('❌ Серверт холбогдож чадсангүй');
-        console.error('Update error:', error);
-    }
-});
-
-
-    editForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const name = this.querySelector('#firstName').value;
-    const phone = this.querySelector('#mobile').value;
-    const token = localStorage.getItem('token');  
-    
-        const response = await fetch('http://localhost:3000/api/auth/update', {
-            method: 'PUT',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`  
-            },
-            credentials: 'include',
-            body: JSON.stringify({ name, phone })
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify(data.user));
-            editDialog.close();
-            this.user = data.user;
-            this.render();
-            this.attachEventListeners();
-        } else {
-            alert('❌ Алдаа: ' + data.error);
-        }
-});
     }
 
     disconnectedCallback() {
