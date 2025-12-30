@@ -59,6 +59,85 @@ class OrderOuter extends HTMLElement {
     setupEventListeners() {
         const searchBtn = this.querySelector('.search');
         searchBtn?.addEventListener('click', () => this.handleSearch());
+        
+        // ✅ Subservice booking button event listener
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('subservice-book-btn')) {
+                this.handleBookingClick(e);
+            }
+        });
+    }
+
+    handleBookingClick(e) {
+        const row = e.target.closest('.subservice-row');
+        const card = e.target.closest('.salon-card, .artist-card');
+        
+        if (!row || !card) return;
+        
+        const serviceName = row.querySelector('.subservice-name')?.textContent || '';
+        const duration = row.querySelector('.subservice-duration')?.textContent || '';
+        const price = row.querySelector('.subservice-price')?.textContent.replace('₮', '') || '';
+        
+        const nameElement = card.querySelector('.name strong, .top p strong');
+        const salonName = nameElement?.textContent || '';
+        
+        // Get salon/artist full data
+        let fullData = null;
+        let serviceCategory = null;
+        
+        if (card.classList.contains('salon-card')) {
+            // Salon
+            fullData = this.salonsData.salons.find(s => s.name === salonName);
+        } else {
+            // Independent Artist
+            const independent = this.salonsData.salons.find(s => s.id === 'independent');
+            fullData = independent?.artists.find(a => a.name === salonName);
+        }
+        
+        // ✅ Find the service category from JSON
+        if (fullData && fullData.service) {
+            fullData.service.forEach(serviceGroup => {
+                if (serviceGroup.subservice) {
+                    const foundSub = serviceGroup.subservice.find(sub => 
+                        sub.name === serviceName || sub.id === serviceName
+                    );
+                    if (foundSub) {
+                        serviceCategory = serviceGroup.type; // ✅ "Хумс", "Үс" гэх мэт
+                    }
+                }
+            });
+        }
+        
+        if (fullData) {
+            this.openBookingDialog({
+                serviceName: serviceName,
+                serviceCategory: serviceCategory || 'Үйлчилгээ',
+                duration: duration,
+                price: price,
+                salonName: salonName,
+                salonId: fullData.id,
+                availableDates: fullData.date || [],
+                availableTimes: fullData.time || fullData.hours || []
+            });
+        } else {
+            console.error('❌ Salon/Artist not found:', salonName);
+        }
+    }
+
+    openBookingDialog(data) {
+        console.log('🎫 Opening booking dialog:', data);
+        
+        const dialog = document.createElement('booking-dialog');
+        dialog.setAttribute('service-name', data.serviceName);
+        dialog.setAttribute('service-category', data.serviceCategory);
+        dialog.setAttribute('service-duration', data.duration);
+        dialog.setAttribute('service-price', data.price);
+        dialog.setAttribute('salon-name', data.salonName);
+        dialog.setAttribute('salon-id', data.salonId);
+        dialog.setAttribute('available-dates', JSON.stringify(data.availableDates));
+        dialog.setAttribute('available-times', JSON.stringify(data.availableTimes));
+        
+        document.body.appendChild(dialog);
     }
 
     handleSearch() {
@@ -75,144 +154,138 @@ class OrderOuter extends HTMLElement {
     }
 
     showResults(results) {
-    const container = this.querySelector('.detailedContainer');
-    if (results.length === 0) {
-        container.innerHTML = `
-            <div class="no-results">
-                <p style="text-align:center;padding:40px;font-size:18px;">
-                    Таны шүүлтэд тохирох салон олдсонгүй.
-                </p>
+        const container = this.querySelector('.detailedContainer');
+        if (results.length === 0) {
+            container.innerHTML = `
+                <div class="no-results">
+                    <p style="text-align:center;padding:40px;font-size:18px;">
+                        Таны шүүлтэд тохирох салон олдсонгүй.
+                    </p>
+                </div>
+            `;
+            return;
+        }
+
+        const salons = results.filter(r => r.id !== 'independent');
+        const independentArtists = results.find(r => r.id === 'independent')?.artists || [];
+
+        container.innerHTML = /*html*/`
+            <div class="availableData">
+                <div class="leftSalons">
+                    <h2>Салон (${salons.length})</h2>
+                    ${salons.map(salon => this.renderSalonCard(salon)).join('')}
+                </div>
+                <div class="rightArtist">
+                    <h2>Бие даасан артист (${independentArtists.length})</h2>
+                    ${independentArtists.map(artist => this.renderArtistCard(artist)).join('')}
+                </div>
             </div>
         `;
-        return;
     }
 
-    const salons = results.filter(r => r.id !== 'independent');
-    const independentArtists = results.find(r => r.id === 'independent')?.artists || [];
-
-    container.innerHTML = /*html*/`
-        <div class="availableData">
-            <div class="leftSalons">
-                <h2>Салон (${salons.length})</h2>
-                ${salons.map(salon => this.renderSalonCard(salon)).join('')}
+    renderSalonCard(salon) {
+        const selectedServiceId = window.orderManager?.getData().service || null;
+        
+        let filteredSubservices = [];
+        
+        if (salon.service && Array.isArray(salon.service)) {
+            salon.service.forEach(serviceGroup => {
+                if (serviceGroup.subservice && Array.isArray(serviceGroup.subservice)) {
+                    serviceGroup.subservice.forEach(sub => {
+                        if (!selectedServiceId || sub.id === selectedServiceId) {
+                            filteredSubservices.push(sub);
+                        }
+                    });
+                }
+            });
+        }
+        
+        const subservicesHTML = filteredSubservices.length > 0 
+            ? filteredSubservices.map(sub => `
+                <li class="subservice-row">
+                    <div class="subservice-left">
+                        <p class="subservice-name">${sub.name || sub.id}</p>
+                        <p class="subservice-duration">${sub.duration || ''}</p>
+                    </div>
+                    <div class="subservice-right">
+                        <p class="subservice-price">${sub.price}₮</p>
+                        <button class="subservice-book-btn">></button>
+                    </div>
+                </li>
+            `).join('')
+            : '<li class="no-service">Үйлчилгээ байхгүй</li>';
+        
+        return /*html*/`
+            <div class="salon-card">
+                <div class="selected-information">
+                    <img src="${salon.img || 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500'}" 
+                         alt="${salon.name}">
+                    <div class="info-text">
+                        <div class="top">
+                            <p class="name"><strong>${salon.name || 'Салон'}</strong></p>
+                            <p>${salon.rating || '0.0'} (${salon.reviews_count || 0})</p>
+                        </div>
+                        <p>${salon.location || ''}</p>
+                    </div>
+                </div>
+                <ul class="subservices-list">
+                    ${subservicesHTML}
+                </ul>
             </div>
-            <div class="rightArtist">
-                <h2>Бие даасан артист (${independentArtists.length})</h2>
-                ${independentArtists.map(artist => this.renderArtistCard(artist)).join('')}
-            </div>
-        </div>
-    `;
-}
-
-renderSalonCard(salon) {
-const selectedServiceId = window.orderManager?.getData().service || null;
-    
-    // Шүүлтэд тохирох subservice-үүдийг цуглуулах
-    let filteredSubservices = [];
-    
-    if (salon.service && Array.isArray(salon.service)) {
-        salon.service.forEach(serviceGroup => {
-            if (serviceGroup.subservice && Array.isArray(serviceGroup.subservice)) {
-                serviceGroup.subservice.forEach(sub => {
-                    // Хэрэв шүүлт байгаа бол зөвхөн тохирох subservice-ийг нэмнэ
-                    if (!selectedServiceId || sub.id === selectedServiceId) {
-                        filteredSubservices.push(sub);
-                    }
-                });
-            }
-        });
+        `;
     }
-    
-    // Subservice HTML үүсгэх
-    const subservicesHTML = filteredSubservices.length > 0 
-        ? filteredSubservices.map(sub => `
-            <li class="subservice-row">
-                <div class="subservice-left">
-                    <p class="subservice-name">${sub.name || sub.id}</p>
-                    <p class="subservice-duration">${sub.duration || ''}</p>
-                </div>
-                <div class="subservice-right">
-                    <p class="subservice-price">${sub.price}₮</p>
-                    <button class="subservice-book-btn">></button>
-                </div>
-            </li>
-        `).join('')
-        : '<li class="no-service">Үйлчилгээ байхгүй</li>';
-    
-    return /*html*/`
-        <div class="salon-card">
-        <div class="selected-information">
-            <img src="${salon.img || 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=500'}" 
-                 alt="${salon.name}">
-            <div class="info-text">
-            <div class="top">
-                <p class="name"><strong>${salon.name || 'Салон'}</strong></p>
-                <p> ${salon.rating || '0.0'} (${salon.reviews_count || 0})</p>
-            </div>
-            <p> ${salon.location || ''}</p>
-            </div>
-        </div>
-            <ul class="subservices-list">
-                ${subservicesHTML}
-            </ul>
-        </div>
-    `;
-}
 
-renderArtistCard(artist) {
-const selectedServiceId = window.orderManager?.getData().service || null;
-    
-    // Шүүлтэд тохирох subservice-үүдийг цуглуулах
-    let filteredSubservices = [];
-    
-    if (artist.service && Array.isArray(artist.service)) {
-        artist.service.forEach(serviceGroup => {
-            if (serviceGroup.subservice && Array.isArray(serviceGroup.subservice)) {
-                serviceGroup.subservice.forEach(sub => {
-                    // Хэрэв шүүлт байгаа бол зөвхөн тохирох subservice-ийг нэмнэ
-                    if (!selectedServiceId || sub.id === selectedServiceId) {
-                        filteredSubservices.push(sub);
-                    }
-                });
-            }
-        });
-    }
-    
-    // Subservice HTML үүсгэх
-    const subservicesHTML = filteredSubservices.length > 0 
-        ? filteredSubservices.map(sub => `
-            <li class="subservice-row">
-                <div class="subservice-left">
-                    <p class="subservice-name">${sub.name || sub.id}</p>
-                    <p class="subservice-duration">${sub.duration || ''}</p>
+    renderArtistCard(artist) {
+        const selectedServiceId = window.orderManager?.getData().service || null;
+        
+        let filteredSubservices = [];
+        
+        if (artist.service && Array.isArray(artist.service)) {
+            artist.service.forEach(serviceGroup => {
+                if (serviceGroup.subservice && Array.isArray(serviceGroup.subservice)) {
+                    serviceGroup.subservice.forEach(sub => {
+                        if (!selectedServiceId || sub.id === selectedServiceId) {
+                            filteredSubservices.push(sub);
+                        }
+                    });
+                }
+            });
+        }
+        
+        const subservicesHTML = filteredSubservices.length > 0 
+            ? filteredSubservices.map(sub => `
+                <li class="subservice-row">
+                    <div class="subservice-left">
+                        <p class="subservice-name">${sub.name || sub.id}</p>
+                        <p class="subservice-duration">${sub.duration || ''}</p>
+                    </div>
+                    <div class="subservice-right">
+                        <p class="subservice-price">${sub.price}₮</p>
+                        <button class="subservice-book-btn">></button>
+                    </div>
+                </li>
+            `).join('')
+            : '<li class="no-service">Үйлчилгээ байхгүй</li>';
+        
+        return /*html*/`
+            <div class="artist-card">
+                <div class="selected-information">
+                    <img src="${artist.img || 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500'}" 
+                         alt="${artist.name}">
+                    <div class="info-text">
+                        <div class="top">
+                            <p><strong>${artist.name || 'Артист'}</strong></p>
+                            <p>${artist.rating || '0.0'} (${artist.reviews_count || 0})</p>
+                        </div>
+                        <p>${artist.location || ''}</p>
+                    </div>
                 </div>
-                <div class="subservice-right">
-                    <p class="subservice-price">${sub.price}₮</p>
-                    <button class="subservice-book-btn">></button>
-                </div>
-            </li>
-        `).join('')
-        : '<li class="no-service">Үйлчилгээ байхгүй</li>';
-    
-    return /*html*/`
-        <div class="artist-card">
-        <div class="selected-information">
-            <img src="${artist.img || 'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500'}" 
-                 alt="${artist.name}">
-                 <div class="info-text">
-            <div class="top">
-                <p><strong>${artist.name || 'Артист'}</strong></p>
-                <p> ${artist.rating || '0.0'} (${artist.reviews_count || 0})</p>
+                <ul class="subservices-list">
+                    ${subservicesHTML}
+                </ul>
             </div>
-                <p>${artist.location || ''}</p>
-        </div>
-        </div>
-        <ul class="subservices-list">
-            ${subservicesHTML}
-        </ul>
-        </div>
-    `;
-}
+        `;
+    }
 }
 
 window.customElements.define('order-outer', OrderOuter);

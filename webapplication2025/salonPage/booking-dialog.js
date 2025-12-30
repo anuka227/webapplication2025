@@ -209,22 +209,11 @@ confirmBooking() {
 }
 
 // ... (navigateToProfile, showNotification, saveBooking, show, close нь өмнөх шигээ)
-
-    navigateToProfile() {
-        window.location.hash = '#orders';
-        
-        const ordersSection = document.querySelector('#orders');
-        if (ordersSection) {
-            document.querySelectorAll('main > section').forEach(s => {
-                s.style.display = 'none';
-                s.classList.remove('active');
-            });
-            
-            ordersSection.style.display = 'block';
-            ordersSection.classList.add('active');
-            ordersSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
+navigateToProfile() {
+    // ✅ Router-based navigation
+    window.location.hash = '#/profile';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
     showNotification(message, type = 'success') {
         const existingNotif = document.querySelector('.booking-notification');

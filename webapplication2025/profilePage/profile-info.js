@@ -58,7 +58,7 @@ class ProfileInfo extends HTMLElement {
                     border-radius: 50%;
                     object-fit: cover;
                     margin-bottom: 15px;
-                    border: 4px solid #667eea;
+                    border: 4px solid #ea66ddff;
                 }
 
                 #profile p b {
@@ -297,7 +297,6 @@ class ProfileInfo extends HTMLElement {
                         <li>Нэр: ${this.user.name || '-'}</li>
                         <li>Утас: ${this.user.phone || '-'}</li>
                         <li>Email: ${this.user.email || '-'}</li>
-                        <li>Түүх: 5 удаа</li>
                     </ul>
                 </section>
             </div>
@@ -358,25 +357,20 @@ class ProfileInfo extends HTMLElement {
     
     const name = this.querySelector('#firstName').value;
     const phone = this.querySelector('#mobile').value;
-    
-    // ✅ localStorage-аас user авах
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     
-    // ✅ Token үүсгэх (жинхэнэ token байхгүй учраас user ID ашиглана)
-    // Эсвэл cookie-той байвал cookie ажиллана
     
     try {
         const response = await fetch('http://localhost:3000/api/auth/update', {
             method: 'PUT',
             headers: { 
                 'Content-Type': 'application/json',
-                // ✅ Cookie ажиллахгүй бол, user ID илгээх
             },
             credentials: 'include',
             body: JSON.stringify({ 
                 name, 
                 phone,
-                userId: user.id  // ✅ User ID нэмэх
+                userId: user.id  
             })
         });
         
@@ -420,7 +414,6 @@ class ProfileInfo extends HTMLElement {
         
         if (response.ok) {
             localStorage.setItem('user', JSON.stringify(data.user));
-            alert('✅ Өөрчлөлт хадгалагдлаа!');
             editDialog.close();
             this.user = data.user;
             this.render();

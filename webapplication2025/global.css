@@ -2602,6 +2602,101 @@ artist-description .artistsection img {
 
 
 
+/* ==================== BOOKING LIST STYLES ==================== */
+
+.booking-list-container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.booking-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.booking-list-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.booking-count {
+    font-size: 14px;
+    color: #999;
+    background: #fce4ec;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    padding: 12px 24px;
+    background: #f5f5f5;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-tab:hover {
+    background: #fce4ec;
+    color: #ec407a;
+}
+
+.filter-tab.active {
+    background: #ec407a;
+    color: white;
+    border-color: #ec407a;
+}
+
+/* Bookings Grid */
+.bookings-grid {
+    display: grid;
+    gap: 20px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f9f9f9;
+    border-radius: 16px;
+}
+
+.empty-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.empty-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.empty-message {
+    font-size: 14px;
+    color: #999;
+}
+
+
 @media (max-width: 768px) {
     salon-app {
         grid-template-areas: 

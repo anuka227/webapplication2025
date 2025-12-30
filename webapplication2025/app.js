@@ -45,3 +45,7 @@ import './salon-routes.js';
 //login
 import './loginPage/salon-login.js';
 import './profilePage/profile-info.js';
+
+
+import './profilePage/booking-list.js';
+import './profilePage/booking-card.js';
