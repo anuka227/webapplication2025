@@ -205,9 +205,6 @@ confirmBooking() {
         alert('❌ Систем ачааллаж байна. Түр хүлээнэ үү.');
     }
 }
-
-
-// ... (navigateToProfile, showNotification, saveBooking, show, close нь өмнөх шигээ)
 navigateToProfile() {
     // ✅ Router-based navigation
     window.location.hash = '#/profile';

@@ -114,7 +114,6 @@ class TimePicker extends HTMLElement {
         
         html += '</div>';
         
-        // ✅ Styles
         html += `
             <style>
                 .time-picker-container {
