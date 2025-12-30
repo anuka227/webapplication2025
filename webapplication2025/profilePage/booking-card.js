@@ -46,20 +46,20 @@ class BookingCard extends HTMLElement {
                 <div class="card-right">
                     <div class="booking-info">
                         <div class="info-row">
-                            <span class="label">Location:</span>
+                            <span class="label">Байршил:</span>
                             <span class="value">${location}</span>
                         </div>
                         <div class="info-row">
-                            <span class="label">Service:</span>
+                            <span class="label">Үйлчилгээ:</span>
                             <span class="value">${serviceName}</span>
                         </div>
                         <div class="info-row">
-                            <span class="label">Time:</span>
+                            <span class="label">Он сар, цаг:</span>
                             <span class="value">${this.booking.dateFormatted || ''} ${timeDisplay}</span>
                         </div>
                         ${this.booking.price ? `
                         <div class="info-row price-row">
-                            <span class="label">Price:</span>
+                            <span class="label">Үнэ:</span>
                             <span class="value price-value">${this.booking.price}</span>
                         </div>
                         ` : ''}
@@ -150,7 +150,7 @@ class BookingCard extends HTMLElement {
                     font-weight: 600;
                     color: #2c3e50;
                     font-style: italic;
-                    min-width: 70px;
+                    min-width: 90px;
                 }
 
                 .value {
@@ -269,7 +269,7 @@ class BookingCard extends HTMLElement {
                     }
 
                     .label {
-                        min-width: 60px;
+                        min-width: 80px;
                     }
                 }
 
@@ -310,7 +310,6 @@ class BookingCard extends HTMLElement {
         // Click on card to view details (optional)
         this.querySelector('.booking-card-compact')?.addEventListener('click', () => {
             console.log('Card clicked:', this.booking);
-            // Can add modal or detail view here
         });
     }
 
@@ -318,6 +317,8 @@ class BookingCard extends HTMLElement {
         const booking = this.booking;
         
         if (confirm(`"${booking.salon}" салонд "${booking.service}" үйлчилгээг дахин захиалах уу?`)) {
+            console.log('🔄 Creating reorder dialog...');
+            
             // Create booking dialog with pre-filled data
             const bookingDialog = document.createElement('booking-dialog');
             
@@ -329,13 +330,19 @@ class BookingCard extends HTMLElement {
             bookingDialog.setAttribute('salon-name', booking.salon || '');
             bookingDialog.setAttribute('salon-id', booking.salonId || booking.salon || '');
             
-            // Set available dates (next 30 days)
-            const availableDates = this.generateAvailableDates();
-            bookingDialog.setAttribute('available-dates', JSON.stringify(availableDates));
+            // ✅ ТАНАЙ CALENDAR АШИГЛАХ: Available weekdays
+            // Салоны ажлын өдрүүд (default: Даваа-Баасан)
+            const availableDays = this.getSalonWorkingDays(booking.salonId);
+            bookingDialog.setAttribute('available-days', JSON.stringify(availableDays));
+            console.log('📅 Available days:', availableDays);
+            
+            // ✅ Min date = өнөөдөр (өнгөрсөн өдрүүд идэвхгүй)
+            bookingDialog.setAttribute('min-date', new Date().toISOString());
             
             // Set available times (9:00 - 22:00)
             const availableTimes = this.generateAvailableTimes();
             bookingDialog.setAttribute('available-times', JSON.stringify(availableTimes));
+            console.log('🕐 Available times:', availableTimes.length);
             
             // Add to body
             document.body.appendChild(bookingDialog);
@@ -343,10 +350,11 @@ class BookingCard extends HTMLElement {
             // Show dialog after a brief delay
             setTimeout(() => {
                 bookingDialog.show();
+                console.log('✅ Dialog shown');
             }, 100);
             
             // Show notification
-            this.showNotification('Дахин захиалах цонх нээгдэж байна...', 'success');
+            this.showNotification('🔄 Дахин захиалах цонх нээгдэж байна...', 'success');
             
             // Dispatch reorder event
             this.dispatchEvent(new CustomEvent('booking-reorder', {
@@ -357,18 +365,23 @@ class BookingCard extends HTMLElement {
         }
     }
 
-    generateAvailableDates() {
-        const dates = [];
-        const today = new Date();
+    getSalonWorkingDays(salonId) {
+        // ✅ Салон бүрийн ажлын өдрүүд (weekdays/гарагууд)
         
-        // Generate next 30 days
-        for (let i = 0; i < 30; i++) {
-            const date = new Date(today);
-            date.setDate(today.getDate() + i);
-            dates.push(date.toISOString().split('T')[0]);
-        }
+        // Хувилбар 1: Бүх салон Даваа-Баасан ажиллана
+        return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         
-        return dates;
+        // Хувилбар 2: Салон бүрийн өөр хуваарь
+        // const salonSchedules = {
+        //     'beauty-salon': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        //     'halo-salon': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        //     'luxury-spa': ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        // };
+        // return salonSchedules[salonId] || ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        
+        // Хувилбар 3: API-аас татах
+        // const schedule = await fetch(`/api/salons/${salonId}/schedule`);
+        // return schedule.workingDays;
     }
 
     generateAvailableTimes() {
