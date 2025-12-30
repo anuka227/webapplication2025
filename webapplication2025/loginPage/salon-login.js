@@ -123,13 +123,12 @@ class SalonLogin extends HTMLElement {
                     localStorage.setItem('user', JSON.stringify(data.user));
                     localStorage.setItem('token', data.token);
                     
+                    // ✅ Dispatch event
+                    window.dispatchEvent(new Event('user-logged-in'));
+                    
+                    // ✅ Navigate to profile
                     setTimeout(() => {
-                        const salonProfile = document.querySelector('salon-profile');
-                        if (salonProfile) {
-                            salonProfile.innerHTML = '<profile-info></profile-info>';
-                        } else {
-                            window.location.hash = '#/profile';
-                        }
+                        window.location.hash = '#/profile';
                     }, 1000);
                 } else {
                     message.className = 'message error show';
@@ -183,13 +182,12 @@ class SalonLogin extends HTMLElement {
                     localStorage.setItem('user', JSON.stringify(data.user));
                     localStorage.setItem('token', data.token);
                     
+                    // ✅ Dispatch event
+                    window.dispatchEvent(new Event('user-logged-in'));
+                    
+                    // ✅ Navigate to profile
                     setTimeout(() => {
-                        const salonProfile = document.querySelector('salon-profile');
-                        if (salonProfile) {
-                            salonProfile.innerHTML = '<profile-info></profile-info>';
-                        } else {
-                            window.location.hash = '#/profile';
-                        }
+                        window.location.hash = '#/profile';
                     }, 1000);
                 } else {
                     message.className = 'message error show';
