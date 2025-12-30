@@ -286,6 +286,100 @@ class OrderOuter extends HTMLElement {
             </div>
         `;
     }
+    handleBookingClick(e) {
+    const row = e.target.closest('.subservice-row');
+    const card = e.target.closest('.salon-card, .artist-card');
+    
+    if (!row || !card) return;
+    
+    // ✅ 1. Огноо/Цаг сонгосон эсэхийг шалгах
+    const orderData = window.orderManager?.getData();
+    
+    if (!orderData || !orderData.date) {
+        alert('⚠️ Огноогоо сонгоно уу!');
+        // Огноо сонгох dropdown руу анхаарал төвлөрүүлэх
+        const dateDropdown = document.querySelector('order-date');
+        if (dateDropdown) {
+            dateDropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+    }
+    
+    if (!orderData.time) {
+        alert('⚠️ Цагаа сонгоно уу!');
+        // Цаг сонгох dropdown руу анхаарал төвлөрүүлэх
+        const timeDropdown = document.querySelector('order-time');
+        if (timeDropdown) {
+            timeDropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+    }
+    
+    // ✅ 2. Service мэдээлэл цуглуулах
+    const serviceName = row.querySelector('.subservice-name')?.textContent || '';
+    const duration = row.querySelector('.subservice-duration')?.textContent || '';
+    const price = row.querySelector('.subservice-price')?.textContent.replace('₮', '') || '';
+    
+    const nameElement = card.querySelector('.name strong, .top p strong');
+    const salonName = nameElement?.textContent || '';
+    
+    // ✅ 3. Full data олох
+    let fullData = null;
+    let serviceCategory = null;
+    
+    if (card.classList.contains('salon-card')) {
+        fullData = this.salonsData.salons.find(s => s.name === salonName);
+    } else {
+        const independent = this.salonsData.salons.find(s => s.id === 'independent');
+        fullData = independent?.artists.find(a => a.name === salonName);
+    }
+    
+    // ✅ 4. Category олох
+    if (fullData && fullData.service) {
+        fullData.service.forEach(serviceGroup => {
+            if (serviceGroup.subservice) {
+                const foundSub = serviceGroup.subservice.find(sub => 
+                    sub.name === serviceName || sub.id === serviceName
+                );
+                if (foundSub) {
+                    serviceCategory = serviceGroup.type;
+                }
+            }
+        });
+    }
+    
+    // ✅ 5. BookingManager ашиглах (эсвэл openBookingDialog)
+    if (fullData) {
+        // Хэрэв BookingManager байвал
+        if (window.BookingManager) {
+            window.BookingManager.openBookingDialog({
+                serviceName: serviceName,
+                serviceCategory: serviceCategory || 'Үйлчилгээ',
+                serviceDuration: duration,
+                servicePrice: price,
+                salonName: salonName,
+                salonId: fullData.id,
+                availableDates: fullData.date || [],
+                availableTimes: fullData.time || fullData.hours || []
+            });
+        } else {
+            // Эсвэл өөрөө нээх
+            this.openBookingDialog({
+                serviceName: serviceName,
+                serviceCategory: serviceCategory || 'Үйлчилгээ',
+                duration: duration,
+                price: price,
+                salonName: salonName,
+                salonId: fullData.id,
+                availableDates: fullData.date || [],
+                availableTimes: fullData.time || fullData.hours || []
+            });
+        }
+    } else {
+        console.error('❌ Salon/Artist not found:', salonName);
+        alert('❌ Алдаа гарлаа. Дахин оролдоно уу.');
+    }
+}
 }
 
 window.customElements.define('order-outer', OrderOuter);

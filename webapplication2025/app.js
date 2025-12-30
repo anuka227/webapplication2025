@@ -49,3 +49,4 @@ import './profilePage/profile-info.js';
 
 import './profilePage/booking-list.js';
 import './profilePage/booking-card.js';
+import './orderPage/js/components/booking-manager.js';

@@ -1,0 +1,240 @@
+// orderPage/js/managers/BookingManager.js
+
+class BookingManager {
+    /**
+     * Захиалгын dialog нээх
+     * @param {Object} data - Service мэдээлэл
+     */
+    static openBookingDialog(data) {
+        console.log('🎫 Opening booking dialog:', data);
+        
+        // ✅ 1. Нэвтрэлт шалгах
+        if (!BookingManager.checkAuth()) {
+            BookingManager.showAuthPrompt();
+            return;
+        }
+
+        // ✅ 2. Validation
+        if (!data.serviceName || !data.salonName) {
+            console.error('❌ Missing required fields:', data);
+            alert('❌ Алдаа: Үйлчилгээний мэдээлэл дутуу байна');
+            return;
+        }
+
+        // ✅ 3. Dialog үүсгэх
+        const dialog = document.createElement('booking-dialog');
+        dialog.setAttribute('service-name', data.serviceName);
+        dialog.setAttribute('service-category', data.serviceCategory || 'Үйлчилгээ');
+        dialog.setAttribute('service-duration', data.serviceDuration || '');
+        dialog.setAttribute('service-price', data.servicePrice || '');
+        dialog.setAttribute('salon-name', data.salonName);
+        dialog.setAttribute('salon-id', data.salonId || data.salonName);
+        dialog.setAttribute('available-dates', JSON.stringify(data.availableDates || []));
+        dialog.setAttribute('available-times', JSON.stringify(data.availableTimes || []));
+        
+        document.body.appendChild(dialog);
+    }
+
+    /**
+     * Нэвтэрсэн эсэхийг шалгах
+     */
+    static checkAuth() {
+        const user = localStorage.getItem('user');
+        return !!user;
+    }
+
+    /**
+     * Нэвтрэх prompt харуулах
+     */
+    static showAuthPrompt() {
+        const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
+        
+        if (shouldLogin) {
+            window.location.hash = '#/login';
+        }
+    }
+
+    /**
+     * Захиалга хадгалах (localStorage)
+     */
+    static saveBooking(bookingData) {
+        try {
+            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            
+            const newBooking = {
+                id: Date.now().toString(),
+                ...bookingData,
+                timestamp: new Date().toISOString(),
+                status: 'upcoming'
+            };
+            
+            bookings.push(newBooking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            
+            console.log('💾 Booking saved:', newBooking);
+            
+            // ✅ Event dispatch
+            window.dispatchEvent(new CustomEvent('booking-added', {
+                detail: newBooking
+            }));
+            
+            return newBooking;
+        } catch (error) {
+            console.error('❌ Error saving booking:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Захиалгууд авах
+     */
+    static getBookings() {
+        try {
+            return JSON.parse(localStorage.getItem('bookings') || '[]');
+        } catch (error) {
+            console.error('❌ Error loading bookings:', error);
+            return [];
+        }
+    }
+
+    /**
+     * Тухайн өдрийн захиалагдсан цагууд
+     */
+    static getBookedTimesForDate(date, salonId) {
+        try {
+            const bookings = BookingManager.getBookings();
+            const dateString = new Date(date).toISOString().split('T')[0];
+            
+            return bookings
+                .filter(booking => {
+                    const bookingDate = new Date(booking.date).toISOString().split('T')[0];
+                    const salonMatch = booking.salonId === salonId || booking.salon === salonId;
+                    return salonMatch && 
+                        bookingDate === dateString && 
+                        booking.status === 'upcoming';
+                })
+                .map(booking => booking.time);
+        } catch (error) {
+            console.error('❌ Error getting booked times:', error);
+            return [];
+        }
+    }
+
+    /**
+     * Өнгөрсөн өдөр эсэхийг шалгах
+     */
+    static isPastDate(date) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const checkDate = new Date(date);
+        checkDate.setHours(0, 0, 0, 0);
+        
+        return checkDate < today;
+    }
+
+    /**
+     * Өнгөрсөн цагууд олох (зөвхөн өнөөдрийн хувьд)
+     */
+    static getPastTimesForDate(date, allTimes) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const selectedDate = new Date(date);
+        selectedDate.setHours(0, 0, 0, 0);
+        
+        // Өнөөдөр биш бол хоосон
+        if (selectedDate.getTime() !== today.getTime()) {
+            return [];
+        }
+        
+        // Өнөөдрийн өнгөрсөн цагууд
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+        
+        return allTimes.filter(time => {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours < currentHour || (hours === currentHour && minutes <= currentMinute);
+        });
+    }
+
+    /**
+     * Profile хуудас руу очих
+     */
+    static navigateToProfile() {
+        window.location.hash = '#/profile';
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+    }
+
+    /**
+     * Notification харуулах
+     */
+    static showNotification(message, type = 'success') {
+        // Хуучин notification устгах
+        const existingNotif = document.querySelector('.booking-notification');
+        if (existingNotif) {
+            existingNotif.remove();
+        }
+        
+        // Шинэ notification үүсгэх
+        const notification = document.createElement('div');
+        notification.className = `booking-notification notification-${type}`;
+        notification.innerHTML = `
+            <div class="notification-content">
+                <span class="notification-icon">${type === 'success' ? '✓' : '⚠'}</span>
+                <span class="notification-message">${message}</span>
+            </div>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#4CAF50' : '#ff5252'};
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10001;
+            animation: slideInRight 0.3s ease-out;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // 3 секундийн дараа устгах
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease-out';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    /**
+     * Огноо/Цаг сонгосон эсэхийг шалгах (Home page-н хувьд)
+     */
+    static validateDateTime(date, time) {
+        if (!date) {
+            alert('⚠️ Огноогоо сонгоно уу!');
+            return false;
+        }
+        
+        if (!time) {
+            alert('⚠️ Цагаа сонгоно уу!');
+            return false;
+        }
+        
+        return true;
+    }
+}
+
+// ✅ Global-д export хийх
+window.BookingManager = BookingManager;
+
+console.log('✅ BookingManager loaded');
