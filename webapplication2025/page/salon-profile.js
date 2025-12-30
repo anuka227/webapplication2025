@@ -43,13 +43,20 @@ class SalonProfile extends HTMLElement {
 
                 .profile-grid {
                     display: grid;
-                    grid-template-columns: 300px 1fr;
+                    grid-template-columns: 1fr 340px;
                     gap: 30px;
                     align-items: start;
                 }
 
-                /* Profile Card */
+                /* Bookings Section - Left (1fr) */
+                .bookings-section {
+                    grid-column: 1;
+                    min-height: 500px;
+                }
+
+                /* Profile Card - Right (340px) */
                 .profile-card {
+                    grid-column: 2;
                     background: white;
                     padding: 30px;
                     border-radius: 20px;
@@ -146,11 +153,6 @@ class SalonProfile extends HTMLElement {
 
                 .logout-btn:hover {
                     background: #fce4ec;
-                }
-
-                /* Bookings Section */
-                .bookings-section {
-                    min-height: 500px;
                 }
 
                 /* Edit Dialog */
@@ -269,15 +271,27 @@ class SalonProfile extends HTMLElement {
                         gap: 20px;
                     }
                     
+                    .bookings-section {
+                        grid-column: 1;
+                        order: 2;
+                    }
+                    
                     .profile-card {
+                        grid-column: 1;
                         position: static;
+                        order: 1;
                     }
                 }
             </style>
 
             <div class="profile-page">
                 <div class="profile-grid">
-                    <!-- Profile Card -->
+                    <!-- Bookings Section (Left - 1fr) -->
+                    <div class="bookings-section">
+                        <booking-list></booking-list>
+                    </div>
+
+                    <!-- Profile Card (Right - 340px) -->
                     <div class="profile-card">
                         <img 
                             src="${user.avatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'}" 
@@ -289,11 +303,11 @@ class SalonProfile extends HTMLElement {
                         
                         <ul class="profile-info">
                             <li>
-                                <span class="label">📱 Утас</span>
+                                <span class="label">Утас</span>
                                 <span class="value">${user.phone || '-'}</span>
                             </li>
                             <li>
-                                <span class="label">📧 Email</span>
+                                <span class="label">Email</span>
                                 <span class="value">${user.email || '-'}</span>
                             </li>
                         </ul>
@@ -305,11 +319,6 @@ class SalonProfile extends HTMLElement {
                         <button class="logout-btn" id="logoutBtn">
                             🚪 Гарах
                         </button>
-                    </div>
-
-                    <!-- Bookings Section -->
-                    <div class="bookings-section">
-                        <booking-list></booking-list>
                     </div>
                 </div>
             </div>

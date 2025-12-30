@@ -286,18 +286,21 @@ class OrderOuter extends HTMLElement {
             </div>
         `;
     }
-    handleBookingClick(e) {
-    const row = e.target.closest('.subservice-row');
-    const card = e.target.closest('.salon-card, .artist-card');
-    
-    if (!row || !card) return;
-    
-    // ✅ 1. Огноо/Цаг сонгосон эсэхийг шалгах
+handleBookingClick(e) {
+    const currentUser = localStorage.getItem('user');
+    if (!currentUser) {
+        const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
+        if (shouldLogin) {
+            window.location.hash = '#/login';
+        }
+        return;
+    }
     const orderData = window.orderManager?.getData();
     
+    console.log('📋 Order data from home page:', orderData);
+    
     if (!orderData || !orderData.date) {
-        alert('⚠️ Огноогоо сонгоно уу!');
-        // Огноо сонгох dropdown руу анхаарал төвлөрүүлэх
+        alert('⚠️ Эхлээд огноогоо сонгоно уу!');
         const dateDropdown = document.querySelector('order-date');
         if (dateDropdown) {
             dateDropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -306,8 +309,7 @@ class OrderOuter extends HTMLElement {
     }
     
     if (!orderData.time) {
-        alert('⚠️ Цагаа сонгоно уу!');
-        // Цаг сонгох dropdown руу анхаарал төвлөрүүлэх
+        alert('⚠️ Эхлээд цагаа сонгоно уу!');
         const timeDropdown = document.querySelector('order-time');
         if (timeDropdown) {
             timeDropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -315,7 +317,12 @@ class OrderOuter extends HTMLElement {
         return;
     }
     
-    // ✅ 2. Service мэдээлэл цуглуулах
+    // ✅ 2. SERVICE МЭДЭЭЛЭЛ ЦУГЛУУЛАХ
+    const row = e.target.closest('.subservice-row');
+    const card = e.target.closest('.salon-card, .artist-card');
+    
+    if (!row || !card) return;
+    
     const serviceName = row.querySelector('.subservice-name')?.textContent || '';
     const duration = row.querySelector('.subservice-duration')?.textContent || '';
     const price = row.querySelector('.subservice-price')?.textContent.replace('₮', '') || '';
@@ -323,7 +330,7 @@ class OrderOuter extends HTMLElement {
     const nameElement = card.querySelector('.name strong, .top p strong');
     const salonName = nameElement?.textContent || '';
     
-    // ✅ 3. Full data олох
+    // ✅ 3. FULL DATA ОЛОХ
     let fullData = null;
     let serviceCategory = null;
     
@@ -334,7 +341,7 @@ class OrderOuter extends HTMLElement {
         fullData = independent?.artists.find(a => a.name === salonName);
     }
     
-    // ✅ 4. Category олох
+    // ✅ 4. CATEGORY ОЛОХ
     if (fullData && fullData.service) {
         fullData.service.forEach(serviceGroup => {
             if (serviceGroup.subservice) {
@@ -348,32 +355,41 @@ class OrderOuter extends HTMLElement {
         });
     }
     
-    // ✅ 5. BookingManager ашиглах (эсвэл openBookingDialog)
+    // ✅ 5. ШУУД ХАДГАЛАХ (Dialog нээхгүй)
     if (fullData) {
-        // Хэрэв BookingManager байвал
+        // Booking data бэлтгэх
+        const bookingData = {
+            service: serviceName,
+            category: serviceCategory || 'Үйлчилгээ',
+            duration: duration,
+            price: price,
+            date: new Date(orderData.date).toISOString(),
+            dateFormatted: new Date(orderData.date).toLocaleDateString('mn-MN'),
+            time: orderData.time,
+            salon: salonName,
+            salonId: fullData.id
+        };
+        
+        console.log('💾 Saving booking directly:', bookingData);
+        
+        // ✅ BookingManager ашиглан хадгалах
         if (window.BookingManager) {
-            window.BookingManager.openBookingDialog({
-                serviceName: serviceName,
-                serviceCategory: serviceCategory || 'Үйлчилгээ',
-                serviceDuration: duration,
-                servicePrice: price,
-                salonName: salonName,
-                salonId: fullData.id,
-                availableDates: fullData.date || [],
-                availableTimes: fullData.time || fullData.hours || []
-            });
+            const saved = window.BookingManager.saveBooking(bookingData);
+            
+            if (saved) {
+                // ✅ Profile руу очих
+                window.BookingManager.navigateToProfile();
+                
+                // ✅ Notification харуулах
+                setTimeout(() => {
+                    window.BookingManager.showNotification('✅ Захиалга баталгаажсан', 'success');
+                }, 400);
+            } else {
+                alert('❌ Алдаа гарлаа. Дахин оролдоно уу.');
+            }
         } else {
-            // Эсвэл өөрөө нээх
-            this.openBookingDialog({
-                serviceName: serviceName,
-                serviceCategory: serviceCategory || 'Үйлчилгээ',
-                duration: duration,
-                price: price,
-                salonName: salonName,
-                salonId: fullData.id,
-                availableDates: fullData.date || [],
-                availableTimes: fullData.time || fullData.hours || []
-            });
+            console.error('❌ BookingManager not loaded');
+            alert('❌ Систем ачааллаж байна. Түр хүлээнэ үү.');
         }
     } else {
         console.error('❌ Salon/Artist not found:', salonName);

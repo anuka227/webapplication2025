@@ -1063,14 +1063,14 @@ salon-all-list .salon-detail.active {
     color: #666;
 }
 
-
+/* 
 salon-profile .profile-container {
     display: grid;
     grid-template-columns: 1fr 340px;
     padding: 40px;
     gap: 40px;
-    align-items: start;
-}
+    align-items: end;
+} */
 
 #profile {
     background: white;

@@ -161,12 +161,12 @@ confirmBooking() {
     const selectedTime = timePicker ? timePicker.getSelectedTime() : null;
     
     if (!selectedDate) {
-        alert('Огноогоо сонгоно уу!');
+        alert('⚠️ Огноогоо сонгоно уу!');
         return;
     }
     
     if (!selectedTime) {
-        alert('Цагаа сонгоно уу!');
+        alert('⚠️ Цагаа сонгоно уу!');
         return;
     }
     
@@ -179,34 +179,33 @@ confirmBooking() {
         dateFormatted: selectedDate.toLocaleDateString('mn-MN'),
         time: selectedTime,
         salon: this.salonName,
-        salonId: this.salonId,
-        timestamp: new Date().toISOString(),
-        status: 'upcoming'
+        salonId: this.salonId
     };
-    
-    this.saveBooking(bookingData);
-    
-    this.dispatchEvent(new CustomEvent('booking-confirmed', {
-        detail: bookingData,
-        bubbles: true,
-        composed: true
-    }));
-    
-    window.dispatchEvent(new CustomEvent('booking-added', {
-        detail: bookingData
-    }));
     
     console.log('✅ Booking confirmed:', bookingData);
     
-    this.close();
-    
-    setTimeout(() => {
-        this.navigateToProfile();
-        setTimeout(() => {
-            this.showNotification('Захиалга баталгаажсан', 'success');
-        }, 400);
-    }, 200);
+    // ✅ BookingManager ашиглах (userId автоматаар нэмэгдэнэ)
+    if (window.BookingManager) {
+        const saved = window.BookingManager.saveBooking(bookingData);
+        
+        if (saved) {
+            this.close();
+            
+            setTimeout(() => {
+                window.BookingManager.navigateToProfile();
+                setTimeout(() => {
+                    window.BookingManager.showNotification('✅ Захиалга баталгаажсан', 'success');
+                }, 400);
+            }, 200);
+        } else {
+            alert('❌ Алдаа гарлаа. Дахин оролдоно уу.');
+        }
+    } else {
+        console.error('❌ BookingManager not loaded');
+        alert('❌ Систем ачааллаж байна. Түр хүлээнэ үү.');
+    }
 }
+
 
 // ... (navigateToProfile, showNotification, saveBooking, show, close нь өмнөх шигээ)
 navigateToProfile() {
@@ -253,20 +252,7 @@ navigateToProfile() {
         }, 3000);
     }
 
-    saveBooking(bookingData) {
-            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-            
-            const newBooking = {
-                id: Date.now().toString(),
-                ...bookingData
-            };
-            
-            bookings.push(newBooking);
-            localStorage.setItem('bookings', JSON.stringify(bookings));
-            
-            console.log('💾 Booking saved:', newBooking);
 
-    }
 
     show() {
         const dialog = this.querySelector('.booking-dialog');

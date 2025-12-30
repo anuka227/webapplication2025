@@ -57,68 +57,104 @@ class BookingManager {
     /**
      * Захиалга хадгалах (localStorage)
      */
-    static saveBooking(bookingData) {
-        try {
-            let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-            
-            const newBooking = {
-                id: Date.now().toString(),
-                ...bookingData,
-                timestamp: new Date().toISOString(),
-                status: 'upcoming'
-            };
-            
-            bookings.push(newBooking);
-            localStorage.setItem('bookings', JSON.stringify(bookings));
-            
-            console.log('💾 Booking saved:', newBooking);
-            
-            // ✅ Event dispatch
-            window.dispatchEvent(new CustomEvent('booking-added', {
-                detail: newBooking
-            }));
-            
-            return newBooking;
-        } catch (error) {
-            console.error('❌ Error saving booking:', error);
+static saveBooking(bookingData) {
+    try {
+        // ✅ Current user олох
+        const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+        const userId = currentUser.id || currentUser.email || 'anonymous';
+        
+        let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+        
+        // ✅ Давхцал шалгах (энэ хэрэглэгчийн хувьд)
+        const isDuplicate = bookings.some(b => 
+            b.userId === userId &&
+            b.date === bookingData.date &&
+            b.time === bookingData.time &&
+            b.salonId === bookingData.salonId &&
+            b.service === bookingData.service &&
+            b.status === 'upcoming'
+        );
+        
+        if (isDuplicate) {
+            console.warn('⚠️ Duplicate booking detected, skipping save');
             return null;
         }
+        
+        const newBooking = {
+            id: Date.now().toString() + '-' + Math.random().toString(36).substr(2, 9),
+            userId: userId, // ✅ User ID нэмэх
+            userName: currentUser.name || 'Хэрэглэгч', // ✅ Debug-н тулд
+            ...bookingData,
+            timestamp: new Date().toISOString(),
+            status: 'upcoming'
+        };
+        
+        bookings.push(newBooking);
+        localStorage.setItem('bookings', JSON.stringify(bookings));
+        
+        console.log('💾 Booking saved with userId:', newBooking);
+        
+        // ✅ Event dispatch
+        window.dispatchEvent(new CustomEvent('booking-added', {
+            detail: newBooking
+        }));
+        
+        return newBooking;
+    } catch (error) {
+        console.error('❌ Error saving booking:', error);
+        return null;
     }
+}
 
-    /**
-     * Захиалгууд авах
-     */
-    static getBookings() {
-        try {
-            return JSON.parse(localStorage.getItem('bookings') || '[]');
-        } catch (error) {
-            console.error('❌ Error loading bookings:', error);
-            return [];
-        }
+static getBookings() {
+    try {
+        return JSON.parse(localStorage.getItem('bookings') || '[]');
+    } catch (error) {
+        console.error('❌ Error loading bookings:', error);
+        return [];
     }
+}
 
-    /**
-     * Тухайн өдрийн захиалагдсан цагууд
-     */
-    static getBookedTimesForDate(date, salonId) {
-        try {
-            const bookings = BookingManager.getBookings();
-            const dateString = new Date(date).toISOString().split('T')[0];
-            
-            return bookings
-                .filter(booking => {
-                    const bookingDate = new Date(booking.date).toISOString().split('T')[0];
-                    const salonMatch = booking.salonId === salonId || booking.salon === salonId;
-                    return salonMatch && 
-                        bookingDate === dateString && 
-                        booking.status === 'upcoming';
-                })
-                .map(booking => booking.time);
-        } catch (error) {
-            console.error('❌ Error getting booked times:', error);
-            return [];
-        }
+/**
+ * Зөвхөн тухайн хэрэглэгчийн захиалгууд
+ */
+static getUserBookings() {
+    try {
+        const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+        const userId = currentUser.id || currentUser.email || 'anonymous';
+        
+        const allBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+        
+        // ✅ Зөвхөн энэ хэрэглэгчийн захиалгууд
+        return allBookings.filter(b => b.userId === userId);
+    } catch (error) {
+        console.error('❌ Error loading user bookings:', error);
+        return [];
     }
+}
+
+/**
+ * Тухайн өдрийн захиалагдсан цагууд (БҮХ хэрэглэгч)
+ */
+static getBookedTimesForDate(date, salonId) {
+    try {
+        const bookings = BookingManager.getBookings(); // ✅ БҮХ хэрэглэгчийн
+        const dateString = new Date(date).toISOString().split('T')[0];
+        
+        return bookings
+            .filter(booking => {
+                const bookingDate = new Date(booking.date).toISOString().split('T')[0];
+                const salonMatch = booking.salonId === salonId || booking.salon === salonId;
+                return salonMatch && 
+                    bookingDate === dateString && 
+                    booking.status === 'upcoming';
+            })
+            .map(booking => booking.time);
+    } catch (error) {
+        console.error('❌ Error getting booked times:', error);
+        return [];
+    }
+}
 
     /**
      * Өнгөрсөн өдөр эсэхийг шалгах
