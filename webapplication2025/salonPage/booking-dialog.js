@@ -160,6 +160,7 @@ confirmBooking() {
     const selectedDate = calendarPicker ? calendarPicker.getSelectedDate() : null;
     const selectedTime = timePicker ? timePicker.getSelectedTime() : null;
     
+    // ✅ Validation
     if (!selectedDate) {
         alert('⚠️ Огноогоо сонгоно уу!');
         return;
@@ -182,13 +183,14 @@ confirmBooking() {
         salonId: this.salonId
     };
     
-    console.log('✅ Booking confirmed:', bookingData);
+    console.log('💾 Confirming booking:', bookingData);
     
-    // ✅ BookingManager ашиглах (userId автоматаар нэмэгдэнэ)
     if (window.BookingManager) {
         const saved = window.BookingManager.saveBooking(bookingData);
         
         if (saved) {
+            // ✅ Амжилттай
+            console.log('✅ Booking saved:', saved);
             this.close();
             
             setTimeout(() => {
@@ -198,7 +200,14 @@ confirmBooking() {
                 }, 400);
             }, 200);
         } else {
-            alert('❌ Алдаа гарлаа. Дахин оролдоно уу.');
+            // ❌ saved === null
+            // BookingManager.saveBooking() дотор аль хэдийн мессеж өгсөн
+            // Энд дахиад мессеж ӨГӨХГҮЙ
+            console.warn('⚠️ Booking was not saved (duplicate or auth issue)');
+            this.close();
+            // Dialog хаах эсэхийг шийднэ
+            // Хэрэв давхар бол dialog хаана
+            // Хэрэв auth бол login руу шилжинэ (BookingManager-аас болсон)
         }
     } else {
         console.error('❌ BookingManager not loaded');

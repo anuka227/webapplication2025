@@ -1,17 +1,34 @@
 // orderPage/js/managers/BookingManager.js
 
 class BookingManager {
+
+static checkAuth() {
+        const user = localStorage.getItem('user');
+        console.log('🔐 Auth check:', user ? '✅ Logged in' : '❌ Not logged in');
+        return !!user;
+    }
+
+    /**
+     * Нэвтрэх prompt харуулах
+     */
+    static showAuthPrompt() {
+        const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
+        
+        if (shouldLogin) {
+            window.location.hash = '#/login';
+        }
+    }
+
     /**
      * Захиалгын dialog нээх
-     * @param {Object} data - Service мэдээлэл
      */
     static openBookingDialog(data) {
         console.log('🎫 Opening booking dialog:', data);
         
-        // ✅ 1. Нэвтрэлт шалгах
+        // ✅ 1. НЭВТРЭЛТ ШАЛГАХ - ЭНД!
         if (!BookingManager.checkAuth()) {
             BookingManager.showAuthPrompt();
-            return;
+            return; // ❌ Dialog нээхгүй
         }
 
         // ✅ 2. Validation
@@ -36,36 +53,24 @@ class BookingManager {
     }
 
     /**
-     * Нэвтэрсэн эсэхийг шалгах
+     * Захиалга хадгалах
      */
-    static checkAuth() {
-        const user = localStorage.getItem('user');
-        return !!user;
-    }
-
-    /**
-     * Нэвтрэх prompt харуулах
-     */
-    static showAuthPrompt() {
-        const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
-        
-        if (shouldLogin) {
-            window.location.hash = '#/login';
-        }
-    }
-
-    /**
-     * Захиалга хадгалах (localStorage)
-     */
-static saveBooking(bookingData) {
+    static saveBooking(bookingData) {
     try {
-        // ✅ Current user олох
+        // ✅ 1. USER ШАЛГАХ
         const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
-        const userId = currentUser.id || currentUser.email || 'anonymous';
+        if (!currentUser.id && !currentUser.email) {
+            console.error('❌ No user found');
+            // ✅ Нэвтрээгүй бол login руу
+            BookingManager.showAuthPrompt();
+            return null;
+        }
+        
+        const userId = currentUser.id || currentUser.email;
         
         let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
         
-        // ✅ Давхцал шалгах (энэ хэрэглэгчийн хувьд)
+        // ✅ 2. ДАВХЦАЛ ШАЛГАХ
         const isDuplicate = bookings.some(b => 
             b.userId === userId &&
             b.date === bookingData.date &&
@@ -76,14 +81,16 @@ static saveBooking(bookingData) {
         );
         
         if (isDuplicate) {
-            console.warn('⚠️ Duplicate booking detected, skipping save');
+            console.warn('⚠️ Duplicate booking');
+            alert('⚠️ Энэ цагт аль хэдийн захиалга хийсэн байна!');
             return null;
         }
         
+        // ✅ 3. ХАДГАЛАХ
         const newBooking = {
             id: Date.now().toString() + '-' + Math.random().toString(36).substr(2, 9),
-            userId: userId, // ✅ User ID нэмэх
-            userName: currentUser.name || 'Хэрэглэгч', // ✅ Debug-н тулд
+            userId: userId,
+            userName: currentUser.name || 'Хэрэглэгч',
             ...bookingData,
             timestamp: new Date().toISOString(),
             status: 'upcoming'
@@ -92,9 +99,8 @@ static saveBooking(bookingData) {
         bookings.push(newBooking);
         localStorage.setItem('bookings', JSON.stringify(bookings));
         
-        console.log('💾 Booking saved with userId:', newBooking);
+        console.log('💾 Booking saved:', newBooking);
         
-        // ✅ Event dispatch
         window.dispatchEvent(new CustomEvent('booking-added', {
             detail: newBooking
         }));
@@ -102,6 +108,7 @@ static saveBooking(bookingData) {
         return newBooking;
     } catch (error) {
         console.error('❌ Error saving booking:', error);
+        alert('❌ Системд алдаа гарлаа. Дахин оролдоно уу.');
         return null;
     }
 }

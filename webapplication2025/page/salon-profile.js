@@ -33,7 +33,7 @@ class SalonProfile extends HTMLElement {
     renderProfile() {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         
-        this.innerHTML = `
+        this.innerHTML = /*html*/`
             <style>
                 .profile-page {
                     max-width: 1400px;
@@ -316,7 +316,7 @@ class SalonProfile extends HTMLElement {
                              Засах
                         </button>
                         
-                        <button class="logout-btn" id="logoutBtn">
+                        <button class="logout-btn" id="logoutBtn" style="display:none">
                             Гарах
                         </button>
                     </div>

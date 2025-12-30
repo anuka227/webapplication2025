@@ -286,18 +286,26 @@ class OrderOuter extends HTMLElement {
             </div>
         `;
     }
+// components/orderOuter.js
+
 handleBookingClick(e) {
-    const currentUser = localStorage.getItem('user');
-    if (!currentUser) {
-        const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
-        if (shouldLogin) {
-            window.location.hash = '#/login';
+    // ✅ 0. НЭВТРЭЛТ ШАЛГАХ - НЭГ Л УДАА ALERT
+    if (!window.BookingManager || !window.BookingManager.checkAuth()) {
+        // ✅ Зөвхөн showAuthPrompt() - энэ нь confirm() харуулна
+        if (window.BookingManager) {
+            window.BookingManager.showAuthPrompt();
+        } else {
+            // BookingManager байхгүй бол
+            const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
+            if (shouldLogin) {
+                window.location.hash = '#/login';
+            }
         }
-        return;
+        return; // ❌ ЗОГСОХ
     }
-    const orderData = window.orderManager?.getData();
     
-    console.log('📋 Order data from home page:', orderData);
+    // ✅ 1. ОГНОО/ЦАГ ШАЛГАХ
+    const orderData = window.orderManager?.getData();
     
     if (!orderData || !orderData.date) {
         alert('⚠️ Эхлээд огноогоо сонгоно уу!');
@@ -317,7 +325,7 @@ handleBookingClick(e) {
         return;
     }
     
-    // ✅ 2. SERVICE МЭДЭЭЛЭЛ ЦУГЛУУЛАХ
+    // ✅ 2. SERVICE МЭДЭЭЛЭЛ
     const row = e.target.closest('.subservice-row');
     const card = e.target.closest('.salon-card, .artist-card');
     
@@ -330,7 +338,7 @@ handleBookingClick(e) {
     const nameElement = card.querySelector('.name strong, .top p strong');
     const salonName = nameElement?.textContent || '';
     
-    // ✅ 3. FULL DATA ОЛОХ
+    // ✅ 3. FULL DATA
     let fullData = null;
     let serviceCategory = null;
     
@@ -341,7 +349,7 @@ handleBookingClick(e) {
         fullData = independent?.artists.find(a => a.name === salonName);
     }
     
-    // ✅ 4. CATEGORY ОЛОХ
+    // ✅ 4. CATEGORY
     if (fullData && fullData.service) {
         fullData.service.forEach(serviceGroup => {
             if (serviceGroup.subservice) {
@@ -355,9 +363,8 @@ handleBookingClick(e) {
         });
     }
     
-    // ✅ 5. ШУУД ХАДГАЛАХ (Dialog нээхгүй)
+    // ✅ 5. ХАДГАЛАХ
     if (fullData) {
-        // Booking data бэлтгэх
         const bookingData = {
             service: serviceName,
             category: serviceCategory || 'Үйлчилгээ',
@@ -370,31 +377,53 @@ handleBookingClick(e) {
             salonId: fullData.id
         };
         
-        console.log('💾 Saving booking directly:', bookingData);
+        console.log('💾 Saving booking:', bookingData);
         
-        // ✅ BookingManager ашиглан хадгалах
         if (window.BookingManager) {
             const saved = window.BookingManager.saveBooking(bookingData);
             
             if (saved) {
-                // ✅ Profile руу очих
                 window.BookingManager.navigateToProfile();
-                
-                // ✅ Notification харуулах
                 setTimeout(() => {
                     window.BookingManager.showNotification('✅ Захиалга баталгаажсан', 'success');
                 }, 400);
-            } else {
-                alert('❌ Алдаа гарлаа. Дахин оролдоно уу.');
             }
+            // ✅ saved === null бол BookingManager-аас мессеж өгсөн байна
         } else {
             console.error('❌ BookingManager not loaded');
-            alert('❌ Систем ачааллаж байна. Түр хүлээнэ үү.');
         }
     } else {
         console.error('❌ Salon/Artist not found:', salonName);
-        alert('❌ Алдаа гарлаа. Дахин оролдоно уу.');
     }
+}
+
+openBookingDialog(data) {
+    console.log('🎫 Opening booking dialog:', data);
+    
+    // ✅ НЭГ Л УДАА ALERT
+    if (!window.BookingManager || !window.BookingManager.checkAuth()) {
+        if (window.BookingManager) {
+            window.BookingManager.showAuthPrompt();
+        } else {
+            const shouldLogin = confirm('⚠️ Захиалга хийхийн тулд нэвтэрнэ үү?');
+            if (shouldLogin) {
+                window.location.hash = '#/login';
+            }
+        }
+        return;
+    }
+    
+    const dialog = document.createElement('booking-dialog');
+    dialog.setAttribute('service-name', data.serviceName);
+    dialog.setAttribute('service-category', data.serviceCategory);
+    dialog.setAttribute('service-duration', data.duration);
+    dialog.setAttribute('service-price', data.price);
+    dialog.setAttribute('salon-name', data.salonName);
+    dialog.setAttribute('salon-id', data.salonId);
+    dialog.setAttribute('available-dates', JSON.stringify(data.availableDates));
+    dialog.setAttribute('available-times', JSON.stringify(data.availableTimes));
+    
+    document.body.appendChild(dialog);
 }
 }
 
