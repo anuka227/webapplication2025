@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresha - Book Beauty Services</title>
+    <style>
+        :root {
+            --color-order: #fc8eac;
+            --color-white: #ffffff;
+            --color-hover-gray: rgba(0, 0, 0, 0.05);
+            --color-border: rgba(236, 64, 122, 0.2);
+            --color-salon: rgba(236, 64, 122, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            overflow-x: hidden;
+            font-size: 16px; /* Base font size */
+        }
+
+        /* Hero Section with Gradient Background */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, 
+                var(--color-white) 0%,
+                #fff5f8 8%,
+                #ffeaf0 16%,
+                #ffe0e8 24%,
+                #ffd5e0 32%,
+                #ffcad8 40%,
+                #ffc0d0 48%,
+                #ffb5c8 56%,
+                #feaac0 64%,
+                #fe9fb8 72%,
+                #fd95b0 80%,
+                var(--color-order) 100%
+            );
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem;
+        }
+
+        /* Animated Gradient Background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 245, 248, 0.9) 8%, 
+                rgba(255, 234, 240, 0.85) 16%, 
+                rgba(255, 224, 232, 0.8) 24%, 
+                rgba(255, 213, 224, 0.75) 32%, 
+                rgba(255, 202, 216, 0.7) 40%, 
+                rgba(255, 192, 208, 0.65) 48%, 
+                rgba(255, 181, 200, 0.6) 56%, 
+                rgba(254, 170, 192, 0.55) 64%, 
+                rgba(254, 159, 184, 0.5) 72%, 
+                rgba(253, 149, 176, 0.45) 80%, 
+                rgba(252, 142, 172, 0.4) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        /* Floating Images */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(0px);
+            animation: float 20s infinite ease-in-out;
+            box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+        }
+
+        /* Зургийн URL-ууд (өөрийн зургаар солино уу) */
+        .shape:nth-child(1) {
+            width: 11.25rem;
+            height: 11.25rem;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400');
+        }
+
+        .shape:nth-child(2) {
+            width: 13.75rem;
+            height: 13.75rem;
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+            background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400');
+        }
+
+        .shape:nth-child(3) {
+            width: 8.75rem;
+            height: 8.75rem;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 6s;
+            background-image: url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400');
+        }
+
+        .shape:nth-child(4) {
+            width: 12.5rem;
+            height: 12.5rem;
+            top: 30%;
+            right: 25%;
+            animation-delay: 9s;
+            background-image: url('https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?w=400');
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -30px) rotate(90deg);
+            }
+            50% {
+                transform: translate(-20px, 20px) rotate(180deg);
+            }
+            75% {
+                transform: translate(40px, 10px) rotate(270deg);
+            }
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 3.75rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-style: italic;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .list-business {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-white);
+            border: 2px solid var(--color-border);
+            border-radius: 1.875rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0.125rem 0.625rem var(--color-salon);
+        }
+
+        .list-business:hover {
+            transform: translateY(-0.125rem);
+            box-shadow: 0 0.25rem 0.9375rem var(--color-border);
+            background: var(--color-salon);
+        }
+
+        .profile-btn {
+            width: 2.8125rem;
+            height: 2.8125rem;
+            border-radius: 50%;
+            background: #5d4e6d;
+            color: white;
+            border: none;
+            font-size: 1.125rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding: 2.5rem 1.25rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+            color: #1a1a1a;
+            letter-spacing: -0.125rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #4a4a4a;
+            text-align: center;
+            margin-bottom: 3.75rem;
+            max-width: 56.25rem;
+            line-height: 1.6;
+        }
+
+        /* Search Box */
+        .search-container {
+            background: var(--color-white);
+            border-radius: 3.125rem;
+            padding: 0.625rem;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            max-width: 68.75rem;
+            width: 100%;
+            box-shadow: 0 0.625rem 2.5rem var(--color-border);
+            margin-bottom: 2.5rem;
+            border: 2px solid var(--color-salon);
+        }
+
+        .search-input {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.125rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            min-width: 0;
+        }
+
+        .search-input input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            width: 100%;
+            background: transparent;
+        }
+
+        .search-icon {
+            color: var(--color-order);
+            font-size: 1.25rem;
+        }
+
+        .search-divider {
+            width: 1px;
+            height: 2.5rem;
+            background: var(--color-salon);
+        }
+
+        .search-btn {
+            padding: 1.125rem 2.5rem;
+            background: var(--color-order);
+            color: var(--color-white);
+            border: none;
+            border-radius: 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background: #ec407a;
+            transform: scale(1.05);
+            box-shadow: 0 0.5rem 1.25rem var(--color-border);
+        }
+
+        /* Stats */
+        .stats {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: #333;
+            margin-bottom: 1.875rem;
+        }
+
+        .stats strong {
+            font-weight: 700;
+        }
+
+        /* Get App Button */
+        .get-app {
+            padding: 1rem 2rem;
+            background: var(--color-white);
+            border: 2px solid var(--color-order);
+            border-radius: 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            transition: all 0.3s ease;
+            color: var(--color-order);
+        }
+
+        .get-app:hover {
+            background: var(--color-order);
+            color: var(--color-white);
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.625rem 1.875rem var(--color-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header {
+                padding: 1.25rem 2.5rem;
+            }
+
+            .shape:nth-child(1) {
+                width: 8.75rem;
+                height: 8.75rem;
+            }
+
+            .shape:nth-child(2) {
+                width: 10rem;
+                height: 10rem;
+            }
+
+            .shape:nth-child(3) {
+                width: 6.25rem;
+                height: 6.25rem;
+            }
+
+            .shape:nth-child(4) {
+                width: 8.75rem;
+                height: 8.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.9375rem 1.25rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .list-business {
+                padding: 0.625rem 1.125rem;
+                font-size: 0.875rem;
+            }
+
+            .profile-btn {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                border-radius: 1.25rem;
+                padding: 0.9375rem;
+            }
+
+            .search-input {
+                padding: 0.75rem 1rem;
+                width: 100%;
+            }
+
+            .search-divider {
+                width: 100%;
+                height: 1px;
+            }
+
+            .search-btn {
+                width: 100%;
+                padding: 0.875rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 2.5rem;
+                padding: 0 1.25rem;
+            }
+
+            .stats {
+                font-size: 1rem;
+            }
+
+            /* Зургуудыг жижигрүүлэх mobile дээр */
+            .shape:nth-child(1) {
+                width: 6.25rem;
+                height: 6.25rem;
+                top: 8%;
+                left: 5%;
+            }
+
+            .shape:nth-child(2) {
+                width: 7.5rem;
+                height: 7.5rem;
+                top: 65%;
+                right: 5%;
+            }
+
+            .shape:nth-child(3) {
+                width: 5rem;
+                height: 5rem;
+                bottom: 15%;
+                left: 10%;
+            }
+
+            .shape:nth-child(4) {
+                width: 6.25rem;
+                height: 6.25rem;
+                top: 35%;
+                right: 10%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.625rem 0.9375rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .list-business {
+                padding: 0.5rem 0.875rem;
+                font-size: 0.8125rem;
+            }
+
+            h1 {
+                margin-bottom: 0.9375rem;
+                padding: 0 0.625rem;
+            }
+
+            .subtitle {
+                margin-bottom: 1.875rem;
+                padding: 0 0.9375rem;
+            }
+
+            .search-container {
+                margin-bottom: 1.875rem;
+            }
+
+            .get-app {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9375rem;
+            }
+
+            /* Зургуудыг илүү жижиг болгох жижиг утсанд */
+            .shape:nth-child(1) {
+                width: 4.375rem;
+                height: 4.375rem;
+            }
+
+            .shape:nth-child(2) {
+                width: 5.625rem;
+                height: 5.625rem;
+            }
+
+            .shape:nth-child(3) {
+                width: 3.75rem;
+                height: 3.75rem;
+            }
+
+            .shape:nth-child(4) {
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+
+        /* Landscape orientation - утас хэвтээ байх үед */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 0.625rem 1.25rem;
+            }
+
+            .content {
+                padding: 1.25rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .subtitle {
+                font-size: 0.875rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .search-container {
+                margin-bottom: 1.25rem;
+            }
+
+            .stats {
+                font-size: 0.875rem;
+                margin-bottom: 0.9375rem;
+            }
+
+            /* Зургууд landscape дээр илүү бага */
+            .shape {
+                opacity: 0.6;
+            }
+
+            .shape:nth-child(1),
+            .shape:nth-child(2),
+            .shape:nth-child(3),
+            .shape:nth-child(4) {
+                width: 3.75rem;
+                height: 3.75rem;
+            }
+        }
+
+        /* Touch device optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .search-btn,
+            .list-business,
+            .get-app,
+            .profile-btn {
+                min-height: 2.75rem;
+                min-width: 2.75rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <header class="header">
+            <div class="logo">fresha</div>
+            <div class="header-right">
+                <button class="list-business">List your business</button>
+                <button class="profile-btn">N ▼</button>
+            </div>
+        </header>
+
+        <div class="content">
+            <h1>Book local selfcare services</h1>
+            <p class="subtitle">
+                Discover top-rated salons, barbers, medspas, wellness studios and beauty experts trusted by millions worldwide
+            </p>
+
+            <div class="search-container">
+                <div class="search-input">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="All treatments and venues">
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-input">
+                    <span class="search-icon">📍</span>
+                    <input type="text" placeholder="Current location">
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-input">
+                    <span class="search-icon">📅</span>
+                    <input type="text" placeholder="Any time">
+                </div>
+                <button class="search-btn">Search</button>
+            </div>
+
+            <p class="stats">
+                <strong>309,949</strong> appointments booked today
+            </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresha - Book Beauty Services</title>
+    <style>
+        :root {
+            --color-order: #fc8eac;
+            --color-white: #ffffff;
+            --color-hover-gray: rgba(0, 0, 0, 0.05);
+            --color-border: rgba(236, 64, 122, 0.2);
+            --color-salon: rgba(236, 64, 122, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            overflow-x: hidden;
+            font-size: 16px; /* Base font size */
+        }
+
+        /* Hero Section with Gradient Background */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, 
+                var(--color-white) 0%,
+                #fff5f8 8%,
+                #ffeaf0 16%,
+                #ffe0e8 24%,
+                #ffd5e0 32%,
+                #ffcad8 40%,
+                #ffc0d0 48%,
+                #ffb5c8 56%,
+                #feaac0 64%,
+                #fe9fb8 72%,
+                #fd95b0 80%,
+                var(--color-order) 100%
+            );
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem;
+        }
+
+        /* Animated Gradient Background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 245, 248, 0.9) 8%, 
+                rgba(255, 234, 240, 0.85) 16%, 
+                rgba(255, 224, 232, 0.8) 24%, 
+                rgba(255, 213, 224, 0.75) 32%, 
+                rgba(255, 202, 216, 0.7) 40%, 
+                rgba(255, 192, 208, 0.65) 48%, 
+                rgba(255, 181, 200, 0.6) 56%, 
+                rgba(254, 170, 192, 0.55) 64%, 
+                rgba(254, 159, 184, 0.5) 72%, 
+                rgba(253, 149, 176, 0.45) 80%, 
+                rgba(252, 142, 172, 0.4) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        /* Floating Images */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(0px);
+            animation: float 20s infinite ease-in-out;
+            box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+        }
+
+        /* Зургийн URL-ууд (өөрийн зургаар солино уу) */
+        .shape:nth-child(1) {
+            width: 11.25rem;
+            height: 11.25rem;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400');
+        }
+
+        .shape:nth-child(2) {
+            width: 13.75rem;
+            height: 13.75rem;
+            top: 60%;
+            right: 15%;
+            animation-delay: 3s;
+            background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400');
+        }
+
+        .shape:nth-child(3) {
+            width: 8.75rem;
+            height: 8.75rem;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 6s;
+            background-image: url('https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400');
+        }
+
+        .shape:nth-child(4) {
+            width: 12.5rem;
+            height: 12.5rem;
+            top: 30%;
+            right: 25%;
+            animation-delay: 9s;
+            background-image: url('https://images.unsplash.com/photo-1519415387722-a1c3bbef716c?w=400');
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -30px) rotate(90deg);
+            }
+            50% {
+                transform: translate(-20px, 20px) rotate(180deg);
+            }
+            75% {
+                transform: translate(40px, 10px) rotate(270deg);
+            }
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 3.75rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-style: italic;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .list-business {
+            padding: 0.75rem 1.5rem;
+            background: var(--color-white);
+            border: 2px solid var(--color-border);
+            border-radius: 1.875rem;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0.125rem 0.625rem var(--color-salon);
+        }
+
+        .list-business:hover {
+            transform: translateY(-0.125rem);
+            box-shadow: 0 0.25rem 0.9375rem var(--color-border);
+            background: var(--color-salon);
+        }
+
+        .profile-btn {
+            width: 2.8125rem;
+            height: 2.8125rem;
+            border-radius: 50%;
+            background: #5d4e6d;
+            color: white;
+            border: none;
+            font-size: 1.125rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding: 2.5rem 1.25rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.25rem;
+            line-height: 1.1;
+            color: #1a1a1a;
+            letter-spacing: -0.125rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #4a4a4a;
+            text-align: center;
+            margin-bottom: 3.75rem;
+            max-width: 56.25rem;
+            line-height: 1.6;
+        }
+
+        /* Search Box */
+        .search-container {
+            background: var(--color-white);
+            border-radius: 3.125rem;
+            padding: 0.625rem;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            max-width: 68.75rem;
+            width: 100%;
+            box-shadow: 0 0.625rem 2.5rem var(--color-border);
+            margin-bottom: 2.5rem;
+            border: 2px solid var(--color-salon);
+        }
+
+        .search-input {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.125rem 1.5rem;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            min-width: 0;
+        }
+
+        .search-input input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            width: 100%;
+            background: transparent;
+        }
+
+        .search-icon {
+            color: var(--color-order);
+            font-size: 1.25rem;
+        }
+
+        .search-divider {
+            width: 1px;
+            height: 2.5rem;
+            background: var(--color-salon);
+        }
+
+        .search-btn {
+            padding: 1.125rem 2.5rem;
+            background: var(--color-order);
+            color: var(--color-white);
+            border: none;
+            border-radius: 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background: #ec407a;
+            transform: scale(1.05);
+            box-shadow: 0 0.5rem 1.25rem var(--color-border);
+        }
+
+        /* Stats */
+        .stats {
+            font-size: clamp(1.125rem, 2vw, 1.375rem);
+            color: #333;
+            margin-bottom: 1.875rem;
+        }
+
+        .stats strong {
+            font-weight: 700;
+        }
+
+        /* Get App Button */
+        .get-app {
+            padding: 1rem 2rem;
+            background: var(--color-white);
+            border: 2px solid var(--color-order);
+            border-radius: 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            transition: all 0.3s ease;
+            color: var(--color-order);
+        }
+
+        .get-app:hover {
+            background: var(--color-order);
+            color: var(--color-white);
+            transform: translateY(-0.1875rem);
+            box-shadow: 0 0.625rem 1.875rem var(--color-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header {
+                padding: 1.25rem 2.5rem;
+            }
+
+            .shape:nth-child(1) {
+                width: 8.75rem;
+                height: 8.75rem;
+            }
+
+            .shape:nth-child(2) {
+                width: 10rem;
+                height: 10rem;
+            }
+
+            .shape:nth-child(3) {
+                width: 6.25rem;
+                height: 6.25rem;
+            }
+
+            .shape:nth-child(4) {
+                width: 8.75rem;
+                height: 8.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.9375rem 1.25rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .list-business {
+                padding: 0.625rem 1.125rem;
+                font-size: 0.875rem;
+            }
+
+            .profile-btn {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1rem;
+            }
+
+            .search-container {
+                flex-direction: column;
+                border-radius: 1.25rem;
+                padding: 0.9375rem;
+            }
+
+            .search-input {
+                padding: 0.75rem 1rem;
+                width: 100%;
+            }
+
+            .search-divider {
+                width: 100%;
+                height: 1px;
+            }
+
+            .search-btn {
+                width: 100%;
+                padding: 0.875rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 2.5rem;
+                padding: 0 1.25rem;
+            }
+
+            .stats {
+                font-size: 1rem;
+            }
+
+            /* Зургуудыг жижигрүүлэх mobile дээр */
+            .shape:nth-child(1) {
+                width: 6.25rem;
+                height: 6.25rem;
+                top: 8%;
+                left: 5%;
+            }
+
+            .shape:nth-child(2) {
+                width: 7.5rem;
+                height: 7.5rem;
+                top: 65%;
+                right: 5%;
+            }
+
+            .shape:nth-child(3) {
+                width: 5rem;
+                height: 5rem;
+                bottom: 15%;
+                left: 10%;
+            }
+
+            .shape:nth-child(4) {
+                width: 6.25rem;
+                height: 6.25rem;
+                top: 35%;
+                right: 10%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.625rem 0.9375rem;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .list-business {
+                padding: 0.5rem 0.875rem;
+                font-size: 0.8125rem;
+            }
+
+            h1 {
+                margin-bottom: 0.9375rem;
+                padding: 0 0.625rem;
+            }
+
+            .subtitle {
+                margin-bottom: 1.875rem;
+                padding: 0 0.9375rem;
+            }
+
+            .search-container {
+                margin-bottom: 1.875rem;
+            }
+
+            .get-app {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.9375rem;
+            }
+
+            /* Зургуудыг илүү жижиг болгох жижиг утсанд */
+            .shape:nth-child(1) {
+                width: 4.375rem;
+                height: 4.375rem;
+            }
+
+            .shape:nth-child(2) {
+                width: 5.625rem;
+                height: 5.625rem;
+            }
+
+            .shape:nth-child(3) {
+                width: 3.75rem;
+                height: 3.75rem;
+            }
+
+            .shape:nth-child(4) {
+                width: 5rem;
+                height: 5rem;
+            }
+        }
+
+        /* Landscape orientation - утас хэвтээ байх үед */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 0.625rem 1.25rem;
+            }
+
+            .content {
+                padding: 1.25rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .subtitle {
+                font-size: 0.875rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .search-container {
+                margin-bottom: 1.25rem;
+            }
+
+            .stats {
+                font-size: 0.875rem;
+                margin-bottom: 0.9375rem;
+            }
+
+            /* Зургууд landscape дээр илүү бага */
+            .shape {
+                opacity: 0.6;
+            }
+
+            .shape:nth-child(1),
+            .shape:nth-child(2),
+            .shape:nth-child(3),
+            .shape:nth-child(4) {
+                width: 3.75rem;
+                height: 3.75rem;
+            }
+        }
+
+        /* Touch device optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .search-btn,
+            .list-business,
+            .get-app,
+            .profile-btn {
+                min-height: 2.75rem;
+                min-width: 2.75rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <header class="header">
+            <div class="logo">fresha</div>
+            <div class="header-right">
+                <button class="list-business">List your business</button>
+                <button class="profile-btn">N ▼</button>
+            </div>
+        </header>
+
+        <div class="content">
+            <h1>Book local selfcare services</h1>
+            <p class="subtitle">
+                Discover top-rated salons, barbers, medspas, wellness studios and beauty experts trusted by millions worldwide
+            </p>
+
+            <div class="search-container">
+                <div class="search-input">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="All treatments and venues">
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-input">
+                    <span class="search-icon">📍</span>
+                    <input type="text" placeholder="Current location">
+                </div>
+                <div class="search-divider"></div>
+                <div class="search-input">
+                    <span class="search-icon">📅</span>
+                    <input type="text" placeholder="Any time">
+                </div>
+                <button class="search-btn">Search</button>
+            </div>
+
+            <p class="stats">
+                <strong>309,949</strong> appointments booked today
+            </p>
+
+            <button class="get-app">
+                Get the app
+                <span>📱</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+            <button class="get-app">
+                Get the app
+                <span>📱</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

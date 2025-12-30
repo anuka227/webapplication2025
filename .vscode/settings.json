@@ -1,3 +1,13 @@
 {
-    "liveServer.settings.port": 5502
+  "files.exclude": {
+    // Comment out or remove these lines to show folders
+    // "node_modules": false,
+    // "package-lock.json": false,
+    // ".git": false
+  },
+  "search.exclude": {
+    // Keep node_modules excluded from search (for performance)
+    "node_modules": true,
+    "package-lock.json": true
+  }
 }
