@@ -378,7 +378,7 @@ salon-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--color-salon);
+    background-color: var(--color-pink-default);
     border-radius: 25px;
     padding: 25px 30px;
     gap: 10px;
@@ -390,7 +390,7 @@ salon-info {
 .searchbar input {
     border: none;
     outline: none;
-    background: var(--color-salon);
+    background: var(--color-pink-default);
     display: flex;
     justify-content: space-between;
     font-size: 15px;
@@ -398,7 +398,7 @@ salon-info {
 }
 
 .searchbar button {
-    background: var(--color-salon);
+    background: var(--color-pink-default);
     border: none;
     cursor: pointer;
     display: flex;
@@ -449,9 +449,9 @@ salon-description[type="minimum"] article {
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex: 0 0 calc(25% - 15px);
+    flex: 0 0 calc((100% - 60px)/4);
     min-width: 250px;
-    max-width: calc(25% - 15px);
+    max-width: calc((100% - 60px)/4);
 }
 
 .salon-list.column-mode salon-description[type="minimum"] article,
@@ -485,6 +485,29 @@ salon-description[type="minimum"] .rating {
     align-items: center;
     gap: 3px;
     font-size: 14px;
+}
+@media (max-width: 1600px) {
+    /* 3 багана */
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc((100% - 40px) / 3);  /* 2 gap × 20px = 40px */
+        max-width: calc((100% - 40px) / 3);
+    }
+}
+
+@media (max-width: 1200px) {
+    /* 2 багана */
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc((100% - 20px) / 2);  /* 1 gap × 20px = 20px */
+        max-width: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 768px) {
+    /* 1 багана */
+    salon-description[type="minimum"] article {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
 
 /* =====================================================
@@ -1063,200 +1086,10 @@ salon-all-list .salon-detail.active {
     color: #666;
 }
 
-/* 
-salon-profile .profile-container {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    padding: 40px;
-    gap: 40px;
-    align-items: end;
-} */
-
-#profile {
-    background: white;
-    border-radius: 24px;
-    padding: 20px;
-    width: 300px;
-    min-width: 300px;
-    height: fit-content;
-    position: relative;
-    margin-top: 60px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#profile:hover {
-    box-shadow: var(--box-shadow);
-    transform: translateY(-4px);
-}
-
-#profile img {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto 20px;
-    border: 4px solid white;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease;
-}
-
-#profile img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
-}
-
-#profile p {
-    text-align: center;
-    font: var(--font-special);
-    font-size: 26px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #1a1a1a;
-    letter-spacing: -0.5px;
-}
-
-#profile ul {
-    list-style: none;
-    color: #4a4a4a;
-    line-height: 2.2;
-    font-size: 15px;
-}
-
-#profile ul li {
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    font: var(--font-order-info);
-    transition: all 0.3s ease;
-}
-
-#profile ul li:hover {
-    background: rgba(255, 255, 255, 0.8);
-    transform: translateX(4px);
-}
-
-#profile button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#profile button:hover {
-    background: #f0f0f0;
-    border-radius: 5px;
-}
-
-/* Profile Edit Dialog */
-dialog {
-    border: none;
-    border-radius: 15px;
-    padding: 0px;
-    max-width: 700px;
-    width: 90%;
-    box-shadow: var(--box-shadow);
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.dialog-content {
-    padding: 40px;
-}
-
-.dialog-header {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.form-group.full {
-    grid-column: 1 / -1;
-}
-
-.form-group label {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.form-group input,
-.form-group select {
-    padding: 12px 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 15px;
-    font-family: inherit;
-}
-
-.phone-group {
-    display: flex;
-    gap: 10px;
-}
-
-.phone-group select {
-    width: 100px;
-}
-
-.phone-group input {
-    flex: 1;
-}
-
-.date-group {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    gap: 10px;
-}
-
-.save-btn {
-    width: 100%;
-    background: #1a1a2e;
-    color: white;
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background 0.3s;
-}
-
-.save-btn:hover {
-    background: #2a2a3e;
-}
-
-.profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    display: block;
-    object-fit: cover;
-}
-
 /* =====================================================
    ORDERS & BOOKING LIST
    ===================================================== */
-#orders {
+/* #orders {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -1337,7 +1170,7 @@ dialog::backdrop {
 }
 
 /* History Cards */
-.history-header h1 {
+/* .history-header h1 {
     font: var(--font-special);
     font-size: 22px;
 }
@@ -1363,7 +1196,7 @@ dialog::backdrop {
 }
 
 /* Rating */
-.rating {
+/* .rating {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -1382,10 +1215,10 @@ dialog::backdrop {
     margin-left: 8px;
     font-size: 16px;
     font-weight: bold;
-}
+} */
 
 /* Empty State */
-.booking-list-empty {
+/* .booking-list-empty {
     text-align: center;
     padding: 60px 20px;
     color: #666;
@@ -1405,10 +1238,10 @@ dialog::backdrop {
 .booking-list-empty p {
     margin: 0;
     font-size: 16px;
-}
+} */
 
 /* Booking List Container */
-.booking-list-container {
+/* .booking-list-container {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
@@ -1439,10 +1272,10 @@ dialog::backdrop {
     display: flex;
     flex-direction: column;
     gap: 16px;
-}
+} */
 
 /* Booking Card */
-.booking-card {
+/* .booking-card {
     background: white;
     border-radius: 12px;
     padding: 20px;
@@ -1576,7 +1409,7 @@ dialog::backdrop {
 .price-highlight {
     color: #4CAF50;
     font-size: 16px;
-}
+}  */ 
 
 /* =====================================================
    SIDEBAR NAVIGATION (ASIDE)

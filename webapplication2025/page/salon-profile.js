@@ -72,7 +72,7 @@ class SalonProfile extends HTMLElement {
                     border-radius: 50%;
                     object-fit: cover;
                     margin: 0 auto 20px;
-                    border: 4px solid #ec407a;
+                    border: 4px solid #fc88afff;
                     box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
                 }
 
@@ -121,7 +121,7 @@ class SalonProfile extends HTMLElement {
                 .edit-profile-btn {
                     width: 100%;
                     padding: 14px;
-                    background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
                     color: white;
                     border: none;
                     border-radius: 25px;
@@ -133,7 +133,7 @@ class SalonProfile extends HTMLElement {
                 }
 
                 .edit-profile-btn:hover {
-                    background: linear-gradient(135deg, #d81b60 0%, #ec407a 100%);
+                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
                     transform: translateY(-2px);
                 }
 
@@ -141,8 +141,8 @@ class SalonProfile extends HTMLElement {
                     width: 100%;
                     padding: 14px;
                     background: #fff;
-                    color: #ec407a;
-                    border: 2px solid #ec407a;
+                    color: #fc8eac;
+                    border: 2px solid #f594b6;
                     border-radius: 25px;
                     font-size: 14px;
                     font-weight: 600;
@@ -196,7 +196,7 @@ class SalonProfile extends HTMLElement {
                 }
 
                 .close-dialog-btn:hover {
-                    color: #ec407a;
+                    color: #white;
                 }
 
                 .form-group {
@@ -223,7 +223,7 @@ class SalonProfile extends HTMLElement {
 
                 .form-group input:focus {
                     outline: none;
-                    border-color: #ec407a;
+                    border-color: #fce4ec;
                 }
 
                 .form-group input:disabled {
@@ -248,7 +248,7 @@ class SalonProfile extends HTMLElement {
                 .save-profile-btn {
                     width: 100%;
                     padding: 16px;
-                    background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
                     color: white;
                     border: none;
                     border-radius: 25px;
@@ -260,7 +260,7 @@ class SalonProfile extends HTMLElement {
                 }
 
                 .save-profile-btn:hover {
-                    background: linear-gradient(135deg, #d81b60 0%, #ec407a 100%);
+                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
                     transform: scale(1.02);
                 }
 
@@ -313,11 +313,11 @@ class SalonProfile extends HTMLElement {
                         </ul>
                         
                         <button class="edit-profile-btn" id="editProfileBtn">
-                            ✏️ Засах
+                             Засах
                         </button>
                         
                         <button class="logout-btn" id="logoutBtn">
-                            🚪 Гарах
+                            Гарах
                         </button>
                     </div>
                 </div>

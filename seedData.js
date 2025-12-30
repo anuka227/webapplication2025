@@ -598,7 +598,7 @@ const salonsData = {
     },
     {
       "id": "salon6",
-      "name": "SkinCare Pro клиник",
+      "name": "SkinCare ",
       "img": "./IMG/salon/skinprocli.jpg",
       "description": "Арьсны эмчилгээ, deep cleaning, laser treatment, freckles removal зэрэг үйлчилгээ үзүүлдэг мэргэжлийн клиник салон.",
       "mission": "Илүү эрүүл, гэрэлтсэн арьсыг шинжлэх ухааны аргаар бий болгох.",
