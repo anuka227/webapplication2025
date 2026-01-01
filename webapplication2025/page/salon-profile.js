@@ -82,13 +82,6 @@ class SalonProfile extends HTMLElement {
                     color: #333;
                     margin-bottom: 8px;
                 }
-
-                .profile-email {
-                    font-size: 14px;
-                    color: #999;
-                    margin-bottom: 20px;
-                }
-
                 .profile-info {
                     list-style: none;
                     padding: 0;
@@ -299,8 +292,6 @@ class SalonProfile extends HTMLElement {
                             class="profile-image">
                         
                         <div class="profile-name">${user.name || 'Хэрэглэгч'}</div>
-                        <div class="profile-email">${user.email || 'email@example.com'}</div>
-                        
                         <ul class="profile-info">
                             <li>
                                 <span class="label">Утас</span>

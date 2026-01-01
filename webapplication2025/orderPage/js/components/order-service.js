@@ -289,9 +289,6 @@ class OrderService extends HTMLElement {
 
         this.innerHTML = `
             <ul class="service">
-                <li class="service-header">
-                    <p>Үйлчилгээ</p>
-                </li>
                 ${categoriesHTML}
             </ul>`;
     }

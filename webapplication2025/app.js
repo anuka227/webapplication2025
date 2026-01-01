@@ -1,6 +1,7 @@
 
 // External Libraries
 import 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+import './salon-notification.js';
 
 // Order Components
 import './orderPage/js/components/order-manager.js';
@@ -43,6 +44,8 @@ import './salon-routes.js';
 
 
 //login
+import './loginPage/auth-form.js';
+import './loginPage/login-modal.js';
 import './loginPage/salon-login.js';
 // import './profilePage/profile-info.js';
 

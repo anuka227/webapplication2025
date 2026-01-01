@@ -1,6 +1,5 @@
-// components/orderOuter.js
 import { SalonFilter } from '../utils/salonFilter.js';
-
+import { showNotification } from '../../../salon-notification.js';
 class OrderOuter extends HTMLElement {
     constructor() {
         super();
@@ -50,7 +49,7 @@ class OrderOuter extends HTMLElement {
   							&lt;path d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z" fill="#0F0F0F"/&gt;'>
 					<order-time></order-time>
 				</order-inner>
-				<button class="search">Search</button>
+				<button class="search">Хайх</button>
             </div>
             <div class="detailedContainer"></div>
         `;
@@ -308,7 +307,7 @@ handleBookingClick(e) {
     const orderData = window.orderManager?.getData();
     
     if (!orderData || !orderData.date) {
-        alert('⚠️ Эхлээд огноогоо сонгоно уу!');
+        showNotification('Огноогоо сонгоно уу');
         const dateDropdown = document.querySelector('order-date');
         if (dateDropdown) {
             dateDropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -317,7 +316,7 @@ handleBookingClick(e) {
     }
     
     if (!orderData.time) {
-        alert('⚠️ Эхлээд цагаа сонгоно уу!');
+        showNotification('Цагаа сонгоно уу');
         const timeDropdown = document.querySelector('order-time');
         if (timeDropdown) {
             timeDropdown.scrollIntoView({ behavior: 'smooth', block: 'center' });

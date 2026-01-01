@@ -1,5 +1,3 @@
-// orderPage/js/components/time-picker.js
-
 class TimePicker extends HTMLElement {
     constructor() {
         super();

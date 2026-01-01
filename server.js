@@ -30,8 +30,8 @@ app.use(express.static(__dirname));
 
 // MongoDB
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('✅ MongoDB холбогдлоо'))
-  .catch(err => console.error('❌ MongoDB холболтын алдаа:', err));
+  .then(() => console.log('MongoDB холбогдлоо'))
+  .catch(err => console.error('MongoDB холболтын алдаа:', err));
 
 // Auth routes
 app.use('/api/auth', authRoutes);
@@ -74,5 +74,5 @@ app.get('/api/independent-artists', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server http://localhost:${PORT} дээр ажиллаж байна`);
+  console.log(`Server http://localhost:${PORT} дээр ажиллаж байна`);
 });
