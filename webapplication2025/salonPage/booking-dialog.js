@@ -186,7 +186,6 @@ class BookingDialog extends HTMLElement {
             salonId: this.salonId
         };
         
-        console.log('💾 Confirming booking:', bookingData);
         
         if (window.BookingManager) {
             const saved = window.BookingManager.saveBooking(bookingData);
@@ -198,14 +197,14 @@ class BookingDialog extends HTMLElement {
                     window.BookingManager.navigateToProfile();
                     
                     setTimeout(() => {
-                        showNotification('Захиалга баталгаажсан'); // ✅ IMPORT
+                        showNotification('Захиалга баталгаажсан'); 
                     }, 400);
                 }, 200);
             } else {
                 this.close();
             }
         } else {
-            console.error('❌ BookingManager not loaded');
+           
             showNotification('Систем ачааллаж байна'); // ✅ IMPORT
         }
     }
