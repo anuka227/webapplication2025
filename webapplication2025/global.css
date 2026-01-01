@@ -2777,6 +2777,28 @@ artist-description .artistsection img {
 }
 
 
+.see-more-btn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+    color: white;
+    border: none;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.see-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.4);
+}
+
+.see-more-btn:active {
+    transform: translateY(0);
+}
+
 @media (max-width: 768px) {
     salon-app {
         grid-template-areas: 

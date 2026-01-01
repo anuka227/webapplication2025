@@ -1,10 +1,11 @@
+// salonPage/artist-special-list.js
+
 class ArtistSpecialList extends HTMLElement {
     constructor() {
         super();
         this.salons = [];
         this.independentArtists = [];
-        this.artists = [];
-        this.specialArtists = [];
+        this.specialIndependentArtists = []; // ✅ Зөвхөн independent
     }
 
     async connectedCallback() {
@@ -16,63 +17,41 @@ class ArtistSpecialList extends HTMLElement {
     async loadArtists() {
         try {
             const response = await fetch('http://localhost:3000/api/salons');
-            // ./json/salon.json
             const data = await response.json();
             this.salons = data.salons || [];
             
-            // Independent салоныг олох
+            // ✅ ЗӨВХӨН Independent салон
             const independentSalon = this.salons.find(s => s.id === 'independent');
             if (independentSalon && independentSalon.artists) {
                 this.independentArtists = independentSalon.artists;
+                
+                // ✅ Independent артистуудад metadata нэмэх
+                this.independentArtists.forEach(artist => {
+                    artist.type = 'independent';
+                    artist.salon_name = 'Бие даасан';
+                    artist.salon_location = artist.location;
+                    
+                    // Schedule үүсгэх
+                    if (artist.date && artist.date.length > 0) {
+                        artist.schedule = `${artist.date.join(', ')}`;
+                    } else {
+                        artist.schedule = 'Цагийн хуваарь байхгүй';
+                    }
+                });
             }
             
-            // Бүх салонуудаас артистуудыг цуглуулах (independent-г эс тооцвол)
-            this.salons.forEach(salon => {
-                if (salon.id === 'independent') return; // Independent-г давтахгүй
-                
-                if (salon.artists && Array.isArray(salon.artists)) {
-                    salon.artists.forEach(artist => {
-                        // Салоны мэдээллийг артист дээр нэмж өгөх
-                        artist.salon_name = salon.name;
-                        artist.salon_id = salon.id;
-                        artist.type = 'salon'; // Салоны артист гэдгийг тэмдэглэх
-                        
-                        // Салбарын мэдээлэл олох
-                        if (artist.branch_id && salon.branches) {
-                            const branch = salon.branches.find(b => b.branch_id === artist.branch_id);
-                            if (branch) {
-                                artist.salon_location = branch.location;
-                                artist.schedule = branch.schedule;
-                            }
-                        }
-                        
-                        this.artists.push(artist);
-                    });
-                }
-            });
+            // ✅ ЗӨВХӨН special independent артистууд
+            this.specialIndependentArtists = this.independentArtists.filter(
+                artist => artist.special === "True"
+            );
             
-            // Independent артистуудыг нэмэх
-            this.independentArtists.forEach(artist => {
-                artist.type = 'independent'; // Independent артист гэдгийг тэмдэглэх
-                artist.salon_name = 'Бие даасан'; // Салоны нэр байхгүй
-                artist.salon_location = artist.location; // location шууд байна
-                // schedule нь date + hours-аас үүсгэх
-                if (artist.date && artist.date.length > 0) {
-                    artist.schedule = `${artist.date.join(', ')}`;
-                }
-                this.artists.push(artist);
-            });
-            
-            // Special артистуудыг шүүх (салон болон independent хоёуланд байна)
-            this.specialArtists = this.artists.filter(artist => artist.special === "True");
-            
-            console.log('All Artists:', this.artists);
-            console.log('Special Artists:', this.specialArtists);
+            console.log('Independent Artists:', this.independentArtists);
+            console.log('Special Independent Artists:', this.specialIndependentArtists);
             
         } catch (error) {
             console.error('Артистын өгөгдөл татахад алдаа:', error);
-            this.artists = [];
-            this.specialArtists = [];
+            this.independentArtists = [];
+            this.specialIndependentArtists = [];
         }
     }
 
@@ -83,7 +62,7 @@ class ArtistSpecialList extends HTMLElement {
                 <div class="artistsections">
                     <button class="snav prev" aria-label="Өмнөх">‹</button>
                     <div class="artistsection">
-                        ${this.specialArtists.map(artist => {
+                        ${this.specialIndependentArtists.map(artist => {
                             const location = artist.salon_location || artist.location || 'Байршил тодорхойгүй';
                             const schedule = artist.schedule || 'Цагийн хуваарь байхгүй';
                             const experience = artist.experience || '';
@@ -93,7 +72,7 @@ class ArtistSpecialList extends HTMLElement {
                                 <artist-description 
                                     type="special" 
                                     data="${artist.artist_id || artist.id}"
-                                    artistType="${artist.type}"
+                                    artistType="independent"
                                     name="${artist.name}"
                                     img="${img}"
                                     rating="${artist.rating}"
@@ -117,14 +96,11 @@ class ArtistSpecialList extends HTMLElement {
             a.addEventListener('click', () => {
                 const dlg = this.querySelector("#ArtistDetailInfo");
                 const artistId = a.getAttribute("data");
-                const artistType = a.getAttribute("artistType");
                 
-                let artist;
-                if (artistType === 'independent') {
-                    artist = this.independentArtists.find(art => art.artist_id === artistId || art.id === artistId);
-                } else {
-                    artist = this.artists.find(art => (art.id === artistId || art.artist_id === artistId));
-                }
+                // ✅ ЗӨВХӨН independent артистаас хайх
+                const artist = this.independentArtists.find(
+                    art => art.artist_id === artistId || art.id === artistId
+                );
                 
                 if (artist) {
                     const location = artist.salon_location || artist.location || 'Байршил тодорхойгүй';
@@ -132,36 +108,33 @@ class ArtistSpecialList extends HTMLElement {
                     const experience = artist.experience || 'Туршлага тодорхойгүй';
                     const img = artist.img || 'https://picsum.photos/300/300';
                     
+                    // ✅ Independent артистын зургууд
                     let artImg = [];
-                    
-                    if (artist.type === 'independent') {
-                        // Independent артистын зургууд
-                        if (artist.art_pic && Array.isArray(artist.art_pic)) {
-                            artImg = artist.art_pic.map(pic => {
-                                // art_pic нь {img: "...", alt: "..."} гэсэн format байна
-                                return pic.img || pic[Object.keys(pic)[0]];
-                            });
-                        }
-                    } else {
-                        // Салоны creative зургууд - салоныг олох
-                        const salon = this.salons.find(s => s.id === artist.salon_id);
-                        if (salon && salon.creative && Array.isArray(salon.creative)) {
-                            artImg = salon.creative;
-                        }
+                    if (artist.art_pic && Array.isArray(artist.art_pic)) {
+                        artImg = artist.art_pic.map(pic => {
+                            if (typeof pic === 'object' && pic.img) {
+                                return pic.img;
+                            } else if (typeof pic === 'string') {
+                                return pic;
+                            }
+                            return pic;
+                        });
                     }
                     
-                    dlg.innerHTML = `<artist-description 
-                        type="medium" 
-                        data="${artist.artist_id || artist.id}"
-                        name="${artist.name}"
-                        img="${img}"
-                        rating="${artist.rating}"
-                        profession="${artist.profession}"
-                        experience="${experience}"
-                        location="${location}"
-                        schedule="${schedule}"
-                        artImg='${JSON.stringify(artImg)}'>
-                        </artist-description>`;
+                    dlg.innerHTML = `
+                        <artist-description 
+                            type="medium" 
+                            data="${artist.artist_id || artist.id}"
+                            name="${artist.name}"
+                            img="${img}"
+                            rating="${artist.rating}"
+                            profession="${artist.profession}"
+                            experience="${experience}"
+                            location="${location}"
+                            schedule="${schedule}"
+                            artImg='${JSON.stringify(artImg)}'>
+                        </artist-description>
+                    `;
                     dlg.showModal();
                 }
             });
