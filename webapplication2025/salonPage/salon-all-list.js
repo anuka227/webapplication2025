@@ -95,10 +95,10 @@ class SalonAllList extends HTMLElement {
                     <salon-description 
                         type="minimum" 
                         data-type="salon"
-                        data="${item.id}"
-                        name="${item.name}"
-                        img="${item.img}"
-                        rating="${item.rating}">
+                        data="${escapeAttr(item.id)}"
+                        name="${escapeAttr(item.name)}"
+                        img="${escapeAttr(item.img)}"
+                        rating="${escapeAttr(item.rating)}">
                     </salon-description>
                 `;
             } else {
@@ -106,11 +106,11 @@ class SalonAllList extends HTMLElement {
                     <salon-description 
                         type="minimum" 
                         data-type="artist"
-                        data="${item.id}"
-                        name="${item.name}"
-                        img="${item.img}"
-                        rating="${item.rating}"
-                        profession="${item.profession}">
+                        data="${escapeAttr(item.id)}"
+                        name="${escapeAttr(item.name)}"
+                        img="${escapeAttr(item.img)}"
+                        rating="${escapeAttr(item.rating)}"
+                        profession="${escapeAttr(item.profession)}">
                     </salon-description>
                 `;
             }

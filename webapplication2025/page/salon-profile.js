@@ -29,7 +29,8 @@ class SalonProfile extends HTMLElement {
 
     renderProfile() {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
-        
+        const safeName = sanitizeText(user.name || 'Хэрэглэгч', 100);
+
         this.innerHTML = /*html*/`
             <div class="profile-page">
                 <div class="profile-grid">
@@ -42,7 +43,7 @@ class SalonProfile extends HTMLElement {
                             alt="Profile" 
                             class="profile-image">
                         
-                        <div class="profile-name">${user.name || 'Хэрэглэгч'}</div>
+                        <div class="profile-name">${safeName}</div>
                         <ul class="profile-info">
                             <li>
                                 <span class="label">Утас</span>
