@@ -1,9 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
+@font-face {
+    font-family: 'Marck Script';
+    src: url('./fonts/Marck_Script/MarckScript-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
-/* =====================================================
-   ROOT VARIABLES
-   ===================================================== */
 :root {
     --color-bg: #fff8fa;
     --color-pr: #ffedfb;
@@ -32,7 +34,9 @@
    ===================================================== */
 body {
     margin: 0;
+    height: 100%;
 }
+
 
 salon-app {
     display: grid;
@@ -40,9 +44,13 @@ salon-app {
         "as main"
         "as ft";
     grid-template-columns: 100px 1fr;
+    grid-template-rows: 1fr 80px;
     margin: 0;
     background-color: var(--color-bg);
+    background-size: cover;
     height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
 }
 
 #content {
@@ -60,9 +68,6 @@ salon-home {
     z-index: 1;
 }
 
-/* =====================================================
-   ANIMATIONS - KEYFRAMES
-   ===================================================== */
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(10px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -274,6 +279,8 @@ salon-home h2 {
     height: 190px;
     border-radius: 10%;
     cursor: pointer;
+    object-fit: cover;
+    object-position: center;
     transition: 
         width 0.3s ease,
         height 0.3s ease,
@@ -296,6 +303,8 @@ artist-description img {
     height: 190px;
     border-radius: 50%;
     cursor: pointer;
+    object-fit: cover;
+    object-position: center;
     transition: 
         width 0.3s ease,
         height 0.3s ease,
@@ -480,6 +489,8 @@ salon-description[type="minimum"] img {
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
+    object-fit: cover;
+    object-position: center;
 }
 
 salon-description[type="minimum"] h4 {
@@ -577,6 +588,8 @@ salon-all-list .salon-detail.active {
     border-radius: 30px;
     object-fit: cover;
     flex-shrink: 0;
+    object-fit: cover;
+    object-position: center;
 }
 
 .information address {
@@ -1061,6 +1074,8 @@ salon-all-list .salon-detail.active {
     object-fit: cover;
     margin-bottom: 10px;
     border: 3px solid var(--color-order);
+    object-fit: cover;
+    object-position: center;
 }
 
 .artist h3 {
@@ -1092,6 +1107,8 @@ aside-nav img {
     padding: 10px;
     margin: 0;
     transition: box-shadow 0.4s ease;
+    object-fit: cover;
+    object-position: center;
 }
 
 aside-nav svg {
@@ -1147,6 +1164,18 @@ salon-footer {
     color: #666;
     background: var(--color-bg);
     border-top: 1px solid rgba(238, 133, 185, 0.2);
+    
+    height: 80px;
+    min-height: 80px;
+    max-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    contain: layout size;
+    content-visibility: auto;
+    contain-intrinsic-size: 100% 80px;
 }
 
 /* =====================================================
@@ -1263,6 +1292,8 @@ salon-footer {
     height: 8rem;
     object-fit: cover;
     border-radius: 0.5rem;
+    object-fit: cover;
+    object-position: center;
 }
 
 #ArtistDetailInfo {
@@ -1340,6 +1371,8 @@ salon-footer {
     object-fit: cover;
     border: 3px solid var(--color-order);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    object-position: center;
 }
 
 .artistMedium .main .left p {
@@ -1422,6 +1455,8 @@ salon-footer {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     flex-shrink: 0;
+    object-fit: cover;
+    object-position: center;
 }
 
 .artistMedium .main .creative img:hover {
@@ -1496,6 +1531,8 @@ salon-footer {
     flex-shrink: 0;
     border: 3px solid var(--color-pink-default);
     margin-right: 4px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .selected-information .info-text {
@@ -2172,9 +2209,7 @@ auth-form .message.success {
     color: #3c3;
 }
 
-/* =====================================================
-   LOGIN MODAL
-   ===================================================== */
+
 login-modal .login-modal-dialog {
     border: none;
     border-radius: 15px;
@@ -2189,9 +2224,7 @@ login-modal .login-modal-dialog::backdrop {
     backdrop-filter: blur(8px);
 }
 
-/* =====================================================
-   PROFILE PAGE
-   ===================================================== */
+
 salon-profile .profile-page {
     max-width: 1400px;
     margin: 0 auto;
@@ -2896,8 +2929,159 @@ salon-notification .salon-notification.closing {
         display: none;
     }
 
-    /* Header - CSS Animation */
     salon-header {
+        height: 36vh;
+    }
+
+    salon-description[type="minimum"] article {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    booking-card .booking-card-compact {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    booking-card .card-left {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    booking-card .card-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    booking-card .booking-info {
+        width: 100%;
+    }
+
+    booking-card .card-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    booking-card .salon-name {
+        font-size: 16px;
+    }
+
+    booking-card .info-row {
+        font-size: 13px;
+        display: flex;
+    }
+
+    booking-card .label {
+        min-width: 80px;
+
+    }
+    
+    booking-list .booking-list-container {
+        padding: 16px;
+    }
+
+    booking-list .booking-list-title {
+        font-size: 22px;
+    }
+
+    booking-list .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    booking-list .tab {
+        min-width: 120px;
+        flex: 0 0 auto;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    auth-form .auth-container.page-style {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+    
+    auth-form .auth-container.modal-style {
+        padding: 30px 20px;
+    }
+    
+    auth-form .logo h1 {
+        font-size: 28px;
+    }
+    
+    auth-form .tab {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    login-modal .login-modal-dialog {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px 24px 0 0;
+        position: fixed;
+        bottom: 0;
+    }
+    
+    salon-notification .salon-notification {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        min-width: auto;
+        padding: 14px 20px;
+    }
+    
+    salon-notification .notification-message {
+        font-size: 14px;
+    }
+    
+    salon-notification .notification-close {
+        width: 24px;
+        height: 24px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    salon-header {
+        .header {
+            width:100%;
+        }
+    }
+    salon-header #paragraph-one {
+        font-size: 1.5rem;
+        left: 2vw;
+        top: 4vh;
+    }
+
+    salon-header #paragraph-two {
+        font-size: 3rem;
+        left: 10vw;
+        top: -2vh;
+    }
+
+    .tab {
+        padding: 12px 20px;
+        font-size: 11px;
+    }
+    
+    booking-card .info-row {
+        display: flex;
+        gap: 2px;
+    }
+    
+    booking-card .label {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    salon-header {
+        .header {
+            width:100%;
+        }
         height: 28vh;
         position: relative;
         overflow: hidden;
@@ -2905,12 +3089,16 @@ salon-notification .salon-notification.closing {
     }
     
     salon-header #paragraph-one {
+        top: 4vh;
+        left: 12vw;
         font-size: 2.5rem;
         z-index: 10;
         position: relative;
     }
     
     salon-header #paragraph-two {
+        top : -8vh;
+        left: 24vw;
         font-size: 5rem;
         z-index: 10;
         position: relative;
@@ -2980,7 +3168,18 @@ salon-notification .salon-notification.closing {
         }
     }
     
-    /* Home sections */
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        50% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+    }
+    
+    /* Home sections heading */
     salon-home h2 {
         padding: 10px 0 10px 20px;
         font-size: 18px;
@@ -3121,7 +3320,6 @@ salon-notification .salon-notification.closing {
         z-index: 1000;
     }
     
-    /* Available Data */
     .availableData {
         flex-direction: column;
         padding: 16px;
@@ -3592,7 +3790,6 @@ salon-notification .salon-notification.closing {
         color: #666;
     }
     
-    /* Orders */
     .Orders {
         width: 95%;
         gap: 6px;
@@ -3608,7 +3805,6 @@ salon-notification .salon-notification.closing {
         letter-spacing: 1px;
     }
     
-    /* Available Data */
     .artist-card,
     .salon-card {
         padding: 10px;

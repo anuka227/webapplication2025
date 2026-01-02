@@ -13,12 +13,9 @@ class SalonSpecialList extends HTMLElement {
 
     async loadSalons() {
         try {
-            const response = await fetch('http://localhost:3000/api/salons');
-            const data = await response.json();
-            this.salons = data.salons || [];
-            
-            this.specialSalons = this.salons.filter(salon => salon.special === "True");
-            
+            await salonService.fetchData();
+            this.salons = salonService.getSalons();
+            this.specialSalons = salonService.getSpecialSalons();  
         } catch (error) {
             console.error('Салоны өгөгдөл татахад алдаа:', error);
             this.salons = [];
@@ -67,7 +64,7 @@ class SalonSpecialList extends HTMLElement {
             s.addEventListener('click', () => {
                 const dlg = this.querySelector("#detailInfo");
                 const salonId = s.getAttribute("data");
-                const salon = this.salons.find(sal => sal.id === salonId);
+                const salon = salonService.getSalonById(salonId);
                 
                 if (salon) {
                     const location = salon.branches && salon.branches.length > 0 
