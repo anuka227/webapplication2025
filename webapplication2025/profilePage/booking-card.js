@@ -18,22 +18,13 @@ class BookingCard extends HTMLElement {
             }
         }
     }
-
-    // ✅ Үнийн формат нэгтгэх helper function
     formatPrice(price) {
         if (!price) return '';
-        
-        // Хэрэв аль хэдийн "₮" агуулсан бол шууд буцаах
         if (price.toString().includes('₮')) {
             return price;
         }
-        
-        // Тоог format хийх (1000 -> "1,000")
         const numericPrice = typeof price === 'number' ? price : parseFloat(price.replace(/[^\d]/g, ''));
-        
         if (isNaN(numericPrice)) return price;
-        
-        // Таслалтай болгох
         const formatted = numericPrice.toLocaleString('en-US');
         
         return `${formatted}₮`;
@@ -102,206 +93,7 @@ class BookingCard extends HTMLElement {
                         </div>
                     `}
                 </div>
-            </div>
-
-            <style>
-                booking-card {
-                    display: block;
-                    width: 100%;
-                }
-
-                .booking-card-compact {
-                    background: #fce4ec;
-                    border-radius: 25px;
-                    padding: 16px 24px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 16px;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 2px 8px rgba(236, 64, 122, 0.15);
-                    margin-bottom: 12px;
-                }
-
-                .booking-card-compact:hover {
-                    transform: translateX(4px);
-                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.25);
-                }
-
-                .card-left {
-                    flex-shrink: 0;
-                    min-width: 120px;
-                }
-
-                .salon-name {
-                    font-size: 18px;
-                    font-weight: 600;
-                    color: #2c3e50;
-                    font-style: italic;
-                }
-
-                .card-right {
-                    flex: 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 16px;
-                }
-
-                .booking-info {
-                    flex: 1;
-                }
-
-                .info-row {
-                    display: flex;
-                    gap: 8px;
-                    margin-bottom: 4px;
-                    font-size: 14px;
-                }
-
-                .info-row:last-child {
-                    margin-bottom: 0;
-                }
-
-                .label {
-                    font-weight: 600;
-                    color: #2c3e50;
-                    font-style: italic;
-                    min-width: 90px;
-                }
-
-                .value {
-                    color: #555;
-                    flex: 1;
-                }
-
-                .price-row {
-                    margin-top: 6px;
-                    padding-top: 6px;
-                    border-top: 1px solid rgba(236, 64, 122, 0.2);
-                }
-
-                .price-value {
-                    font-weight: 700;
-                    color: #fc8eac;
-                    font-size: 15px;
-                }
-
-                .card-actions {
-                    display: flex;
-                    gap: 8px;
-                    flex-shrink: 0;
-                    align-items: center;
-                }
-
-                .action-btn {
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 20px;
-                    font-size: 14px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    white-space: nowrap;
-                }
-
-                .btn-reorder {
-                    background: linear-gradient(135deg, #fc8eac 0%, #f594b6 100%);
-                    color: white;
-                    box-shadow: 0 2px 8px rgba(252, 142, 172, 0.3);
-                }
-
-                .btn-reorder:hover {
-                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(252, 142, 172, 0.4);
-                }
-
-                .btn-reorder:active {
-                    transform: translateY(0);
-                }
-
-                .action-icon {
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 50%;
-                    border: none;
-                    background: rgba(255, 255, 255, 0.7);
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 16px;
-                    transition: all 0.3s;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-
-                .action-icon:hover {
-                    background: white;
-                    transform: scale(1.1);
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-                }
-
-                .action-icon:active {
-                    transform: scale(0.95);
-                }
-
-                /* Mobile responsive */
-                @media (max-width: 768px) {
-                    .booking-card-compact {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        padding: 16px;
-                    }
-
-                    .card-left {
-                        width: 100%;
-                        margin-bottom: 8px;
-                    }
-
-                    .card-right {
-                        width: 100%;
-                        flex-direction: column;
-                        gap: 12px;
-                    }
-
-                    .booking-info {
-                        width: 100%;
-                    }
-
-                    .card-actions {
-                        width: 100%;
-                        justify-content: flex-end;
-                    }
-
-                    .salon-name {
-                        font-size: 16px;
-                    }
-
-                    .info-row {
-                        font-size: 13px;
-                    }
-
-                    .label {
-                        min-width: 80px;
-                    }
-                }
-
-                @media (max-width: 480px) {
-                    .info-row {
-                        flex-direction: column;
-                        gap: 2px;
-                    }
-                    
-                    .label {
-                        min-width: auto;
-                    }
-                }
-            </style>
-        `;
+            </div>`;
     }
 
     attachEvents() {
@@ -338,14 +130,12 @@ class BookingCard extends HTMLElement {
             bookingDialog.setAttribute('service-category', booking.category || '');
             bookingDialog.setAttribute('service-duration', booking.duration || '');
             
-            // ✅ Үнийг format хийж дамжуулах
             const formattedPrice = this.formatPrice(booking.price);
             bookingDialog.setAttribute('service-price', formattedPrice);
             
             bookingDialog.setAttribute('salon-name', booking.salon || '');
             bookingDialog.setAttribute('salon-id', booking.salonId || booking.salon || '');
             
-            // Салоны ажлын өдрүүд
             const availableDays = this.getSalonWorkingDays(booking.salonId);
             bookingDialog.setAttribute('available-days', JSON.stringify(availableDays));
             bookingDialog.setAttribute('min-date', new Date().toISOString());
@@ -357,7 +147,6 @@ class BookingCard extends HTMLElement {
             
             setTimeout(() => {
                 bookingDialog.show();
-                console.log('✅ Dialog shown');
             }, 100);
             
             this.showNotification('🔄 Дахин захиалах цонх нээгдэж байна...', 'success');
@@ -371,7 +160,6 @@ class BookingCard extends HTMLElement {
     }
 
     getSalonWorkingDays(salonId) {
-        // Салон бүрийн ажлын өдрүүд
         return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     }
 
