@@ -2911,10 +2911,12 @@ salon-notification .salon-notification.closing {
 
     booking-card .info-row {
         font-size: 13px;
+        display: flex;
     }
 
     booking-card .label {
         min-width: 80px;
+
     }
     
     booking-list .booking-list-container {
@@ -3007,7 +3009,7 @@ salon-notification .salon-notification.closing {
     }
     
     booking-card .info-row {
-        flex-direction: column;
+        display: flex;
         gap: 2px;
     }
     
@@ -3442,7 +3444,7 @@ salon-notification .salon-notification.closing {
     
     /* Booking card */
     booking-card .info-row {
-        flex-direction: column;
+        display: flex;
         gap: 2px;
     }
     
