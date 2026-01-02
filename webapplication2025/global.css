@@ -501,7 +501,7 @@ artist-description img {
     .prev, .next {
         flex-shrink: 0;
     }
-}
+
 
 .salonsection img:hover {
     transform: scale(1.05);
