@@ -1,35 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
-
-/* =====================================================
-   ROOT VARIABLES
-   ===================================================== */
-:root {
-    --color-bg: #fff8fa;
-    --color-pr: #ffedfb;
-    --color-nav: #0b123e;
-    --color-order: #fc8eac;
-    --color-pink-default: #fce4ec;
-    --color-pink-selected: #f594b6;
-    --color-white: #ffffff;
-    --color-hover-gray: rgba(0, 0, 0, 0.05);
-    --color-border: rgba(236, 64, 122, 0.2);
-    --color-salon: rgba(236, 64, 122, 0.08);
-    
-    --font-home: "Roboto Mono";
-    --font-control: italic 100 0.4rem "Shadows Into Light", cursive;
-    --font-logo: italic 200 1.8rem "Marck Script", cursive;
-    --font-h2: italic 400 1rem "Shadows Into Light", cursive;
-    --font-order-info: italic 400 1rem "Nunito", sans-serif;
-    --font-special: italic 600 1rem "Edu NSW ACT Hand Pre", cursive;
-    
-    --box-shadow: 8px 16px 32px rgba(236, 64, 122, 0.15);
-    --animation-main: fadeSlide 0.8s ease-out;
+  @font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* =====================================================
-   BASE LAYOUT
-   ===================================================== */
+  :root {
+        --color-bg: #fff8fa;
+        --color-mobile-background: #8451f5;
+        --color-pr: #ffedfb;
+        --color-nav: #0b123e;
+        --color-order: #fc8eac;
+        --color-pink-default: #fce4ec;
+        --color-pink-selected:  #f594b6;
+        --color-white: #ffffff;
+        --color-hover-gray: rgba(0, 0, 0, 0.05);
+        --color-border: rgba(236, 64, 122, 0.2);
+        --color-salon: rgba(236, 64, 122, 0.08);
+       --font-mono: "Geist Mono", monospace;
+    }
 body {
     margin: 0;
 }
