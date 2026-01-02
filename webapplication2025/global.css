@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap'); */
 
-/* =====================================================
-   ROOT VARIABLES
-   ===================================================== */
+@font-face {
+    font-family: 'Marck Script';
+    src: url('./fonts/Marck_Script/MarckScript-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --color-bg: #fff8fa;
     --color-pr: #ffedfb;
