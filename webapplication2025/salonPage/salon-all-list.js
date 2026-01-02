@@ -146,23 +146,21 @@ class SalonAllList extends HTMLElement {
         this.attachItemEvents();
     }
 
-    attachItemEvents() {
-        this.querySelectorAll('salon-description[type="minimum"]').forEach(card => {
-            const article = card.querySelector('article');
-            if (article) {
-                article.addEventListener('click', () => {
-                    const cardType = card.getAttribute('data-type');
-                    console.log('Clicked:', card.getAttribute('name'), 'Type:', cardType);
-                    
-                    if (cardType === 'salon') {
-                        this.showSalonDetail(card);
-                    } else if (cardType === 'artist') {
-                        this.showArtistDetail(card);
-                    }
-                });
+attachItemEvents() {
+    this.querySelectorAll('salon-description[type="minimum"]').forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const cardType = card.getAttribute('data-type');
+            if (cardType === 'salon') {
+                this.showSalonDetail(card);
+            } else if (cardType === 'artist') {
+                this.showArtistDetail(card);
             }
         });
-    }
+    });
+}
+
 
     switchTab(tab) {
         this.currentFilter = tab;

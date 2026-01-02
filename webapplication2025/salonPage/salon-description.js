@@ -2,9 +2,9 @@ import { salonService } from '../salon-service.js';
 class SalonDescription extends HTMLElement {
     constructor() {
         super();
-        this.salonData = null; 
+        this.salonData = null;
     }
-
+ 
      async connectedCallback() {
         this.name = this.getAttribute("name") || "Unknown Salon";
         this.img = this.getAttribute("img") || "https://picsum.photos/300/200";
@@ -13,28 +13,28 @@ class SalonDescription extends HTMLElement {
         this.location = this.getAttribute("location");
         this.schedule = this.getAttribute("schedule");
         this.branch = this.getAttribute("branch");
-
+ 
         let branches = [];
         const branchAttri = this.getAttribute("branches");
         if(branchAttri) {
             branches = JSON.parse(branchAttri);
         }
         this.branches = branches;
-
+ 
         let artists = [];
         const artistAttri = this.getAttribute("artists");
         if(artistAttri) {
             artists = JSON.parse(artistAttri);
         }
         this.artists = artists;
-
+ 
         let services = [];
         const serviceAttri = this.getAttribute("services");
         if(serviceAttri) {
             services = JSON.parse(serviceAttri);
         }
         this.services = services;
-
+ 
         let fullServices = [];
         const fullServicesAttri = this.getAttribute("fullservices");
         if(fullServicesAttri) {
@@ -43,16 +43,16 @@ class SalonDescription extends HTMLElement {
             console.log('Parsed full services:', fullServices);
         }
         this.fullServices = fullServices;
-
+ 
         let creative = [];
         const creativeAttri = this.getAttribute("creative");
         if(creativeAttri) {
             creative = JSON.parse(creativeAttri);
         }
         this.creative = creative;
-
+ 
         await this.loadFullSalonData();
-
+ 
         switch (this.type) {
             case "special":
                 this.specialSalon();
@@ -68,21 +68,21 @@ class SalonDescription extends HTMLElement {
                 break;
         }
     }
-
+ 
     async loadFullSalonData() {
         const salonId = this.getAttribute("data");
         await salonService.fetchData();
         this.salonData = salonService.getSalonById(salonId);
-        
+       
         console.log('Loaded full salon data from cache:', this.salonData);
     }
-
+ 
     decodeHTMLEntities(text) {
         const textarea = document.createElement('textarea');
         textarea.innerHTML = text;
         return textarea.value;
     }
-
+ 
     specialSalon() {
         this.innerHTML = /*html*/`
             <article>
@@ -91,10 +91,10 @@ class SalonDescription extends HTMLElement {
             </article>
         `;
     }
-
+ 
     salonMinimum() {
         const stars = this.getStarsHTML(parseFloat(this.rating));
-        
+       
         this.innerHTML = `
             <article>
                 <img src="${this.img}" alt="${this.name}">
@@ -108,22 +108,22 @@ class SalonDescription extends HTMLElement {
             </article>
         `;
     }
-
+ 
     getStarsHTML(rating) {
         const fullStars = Math.floor(rating);
         const emptyStars = 5 - Math.ceil(rating);
         let html = '';
-        
+       
         for (let i = 0; i < fullStars; i++) {
             html += '<span style="color: #ffd700;">★</span>';
         }
         for (let i = 0; i < emptyStars; i++) {
             html += '<span style="color: #ddd;">★</span>';
         }
-        
+       
         return html;
     }
-
+ 
     salonDetailed() {
         this.innerHTML = /*html*/ `
         <div class="salonMedium">
@@ -154,7 +154,7 @@ class SalonDescription extends HTMLElement {
                 </div>
             </div>
         `;
-
+ 
         const closeBtn = this.querySelector('.close-btn');
         if (closeBtn) {
             closeBtn.addEventListener('click', (e) => {
@@ -165,7 +165,7 @@ class SalonDescription extends HTMLElement {
                 }
             });
         }
-
+ 
         const seeMoreBtn = this.querySelector('.see-more-btn');
         if (seeMoreBtn) {
         seeMoreBtn.addEventListener('click', (e) => {
@@ -174,7 +174,7 @@ class SalonDescription extends HTMLElement {
         });
     }
 }
-
+ 
     navigateToSalonPage() {
         const salonId = this.getAttribute('data');
         const dialog = document.querySelector('#detailInfo');
@@ -182,17 +182,17 @@ class SalonDescription extends HTMLElement {
             dialog.close();
         }
         sessionStorage.setItem('selectedSalonId', salonId);
-        sessionStorage.setItem('selectedSalonType', 'salon'); 
+        sessionStorage.setItem('selectedSalonType', 'salon');
         window.location.hash = '#/info';
 }
-
+ 
     salonMaximum() {
         this.innerHTML = /*html*/`
             <div class="information">
                 <div class="information-header">
                     <h1>${this.name}</h1>
                 </div>
-                
+               
                 <article>
                     <img src="${this.img}" alt="${this.name}">
                     <address>
@@ -208,13 +208,13 @@ class SalonDescription extends HTMLElement {
                         `}
                     </address>
                 </article>
-                
+               
                 <section class="services-section">
                     <h2>Үйлчилгээнүүд</h2>
                     <div class="services-container" id="servicesContainer">
                     </div>
                 </section>
-                
+               
                 ${this.artists && this.artists.length > 0 ? `
                     <section>
                         <h2>Артистууд</h2>
@@ -232,13 +232,13 @@ class SalonDescription extends HTMLElement {
             </div>
             <dialog id="artistDetailDialog"></dialog>
         `;
-        
+       
         setTimeout(() => {
             this.loadAndRenderServices();
             this.attachArtistEvents();
         }, 100);
     }
-
+ 
     attachArtistEvents() {
         this.querySelectorAll('.artist-card').forEach(card => {
             card.addEventListener('click', () => {
@@ -247,20 +247,20 @@ class SalonDescription extends HTMLElement {
             });
         });
     }
-
+ 
     async showArtistDialog(artistId) {
         const artist = this.artists.find(a => a.id === artistId || a.artist_id === artistId);
-        
+       
         if (!artist) {
             console.error('Artist not found:', artistId);
             return;
         }
-
+ 
         const dialog = this.querySelector('#artistDetailDialog');
-        
+       
         let location = artist.location || this.location || 'Байршил тодорхойгүй';
         let schedule = artist.schedule || this.schedule || 'Цагийн хуваарь байхгүй';
-        
+       
         if (artist.branch_id && this.branches) {
             const branch = this.branches.find(b => b.branch_id === artist.branch_id);
             if (branch) {
@@ -268,18 +268,18 @@ class SalonDescription extends HTMLElement {
                 schedule = branch.schedule;
             }
         }
-        
+       
         const experience = artist.experience || 'Туршлага тодорхойгүй';
         const img = artist.img || 'https://picsum.photos/300/300';
-        
+       
         let artImg = [];
         if (this.creative && Array.isArray(this.creative)) {
             artImg = this.creative;
         }
-        
+       
         dialog.innerHTML = `
-            <artist-description 
-                type="medium" 
+            <artist-description
+                type="medium"
                 data="${artistId}"
                 name="${artist.name}"
                 img="${img}"
@@ -291,9 +291,9 @@ class SalonDescription extends HTMLElement {
                 artImg='${JSON.stringify(artImg)}'>
             </artist-description>
         `;
-        
+       
         dialog.showModal();
-        
+       
         setTimeout(() => {
             const closeBtn = dialog.querySelector('.close-btn');
             if (closeBtn) {
@@ -303,7 +303,7 @@ class SalonDescription extends HTMLElement {
                 });
             }
         }, 50);
-
+ 
         dialog.addEventListener('click', (e) => {
             const rect = dialog.getBoundingClientRect();
             if (
@@ -316,18 +316,18 @@ class SalonDescription extends HTMLElement {
             }
         });
     }
-
+ 
     async loadAndRenderServices() {
         const container = this.querySelector('#servicesContainer');
         if (!container) return;
-        
+       
         let servicesToRender = this.fullServices;
-        
+       
         if (!servicesToRender || servicesToRender.length === 0) {
             container.innerHTML = `<div class="loading-message">Үйлчилгээ байхгүй байна.</div>`;
             return;
         }
-        
+       
         container.innerHTML = servicesToRender.map((serviceCategory, index) => `
             <div class="service-category" data-category-index="${index}">
                 <div class="service-category-header">
@@ -354,14 +354,14 @@ class SalonDescription extends HTMLElement {
                 </div>
             </div>
         `).join('');
-
+ 
         this.attachServiceEvents();
     }
-
+ 
     formatPrice(price) {
         return parseInt(price).toLocaleString('mn-MN') + '₮';
     }
-
+ 
     attachServiceEvents() {
         this.querySelectorAll('.service-category-header').forEach(header => {
             header.addEventListener('click', (e) => {
@@ -369,7 +369,7 @@ class SalonDescription extends HTMLElement {
                 category.classList.toggle('expanded');
             });
         });
-
+ 
         this.querySelectorAll('.book-button').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -378,11 +378,11 @@ class SalonDescription extends HTMLElement {
             });
         });
     }
-
+ 
     handleBooking(serviceId) {
         let selectedService = null;
         let selectedCategory = null;
-        
+       
         // Үйлчилгээ олох
         this.fullServices.forEach(category => {
             const service = category.subservice?.find(s => s.id === serviceId);
@@ -391,18 +391,18 @@ class SalonDescription extends HTMLElement {
                 selectedCategory = category.type;
             }
         });
-        
+       
         if (!selectedService) return;
-        
+       
         // Боломжит огноо, цаг авах
         let availableDates = [];
         let availableTimes = [];
-        
+       
         if (this.salonData) {
             availableDates = this.salonData.date || [];
             availableTimes = this.salonData.time || [];
         }
-        
+       
         // Booking dialog үүсгэх
         const bookingDialog = document.createElement('booking-dialog');
         bookingDialog.setAttribute('service-name', selectedService.name);
@@ -412,27 +412,28 @@ class SalonDescription extends HTMLElement {
         bookingDialog.setAttribute('salon-name', this.name);
         bookingDialog.setAttribute('available-dates', JSON.stringify(availableDates));
         bookingDialog.setAttribute('available-times', JSON.stringify(availableTimes));
-        
+       
         document.body.appendChild(bookingDialog);
-        
+       
         setTimeout(() => {
             bookingDialog.show();
         }, 100);
-        
+       
         // Dialog хаагдах үед цэвэрлэх
         bookingDialog.addEventListener('dialog-closed', () => {
             bookingDialog.remove();
         });
     }
-
+ 
     disconnectedCallback() {
     }
-
+ 
     attributeChangedCallback(name, oldVal, newVal) {
     }
-
+ 
     adoptedCallback() {
     }
 }
-
+ 
 window.customElements.define('salon-description', SalonDescription);
+console. Error
