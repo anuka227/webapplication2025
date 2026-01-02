@@ -5,7 +5,20 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: "Alex Brush";
+  src: url("./fonts/Alex\ Brush\ Regular.woff2") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+    font-family: "NotoSerif";
+    src: url("/fonts/NotoSerif-Italic-VariableFont_wdthwght.woff") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
   :root {
         --color-bg: #fff8fa;
         --color-mobile-background: #8451f5;
@@ -18,7 +31,8 @@
         --color-hover-gray: rgba(0, 0, 0, 0.05);
         --color-border: rgba(236, 64, 122, 0.2);
         --color-salon: rgba(236, 64, 122, 0.08);
-       --font-mono: "Geist Mono", monospace;
+        --font-mono: "Geist Mono", monospace;
+        --font-logo: "Alex Brush", cursive;
     }
 body {
     margin: 0;
