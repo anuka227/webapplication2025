@@ -1,6 +1,4 @@
-// salonPage/booking-dialog.js
-import { showNotification } from '../salon-notification.js'; // ✅ IMPORT
-
+import { showNotification } from '../salon-notification.js';
 class BookingDialog extends HTMLElement {
     constructor() {
         super();

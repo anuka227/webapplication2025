@@ -6,7 +6,6 @@ import { authenticateToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// БҮРТГҮҮЛЭХ
 router.post('/register', [
   body('name').trim().notEmpty().withMessage('Нэр оруулна уу'),
   body('email').isEmail().withMessage('Зөв и-мэйл хаяг оруулна уу'),
