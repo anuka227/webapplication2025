@@ -1,5 +1,3 @@
-// salonPage/salon-all-list.js
-
 class SalonAllList extends HTMLElement {
     constructor() {
         super();
@@ -14,10 +12,7 @@ class SalonAllList extends HTMLElement {
         this.renderTabs();
         this.render();
         this.attachEvents();
-        this.attachSearchEvent();
-        
-        // ✅ Сонгосон салон шалгах
-        this.checkSelectedSalon();
+        this.attachSearchEvent(); 
     }
 
     async loadSalons() {
@@ -63,12 +58,12 @@ class SalonAllList extends HTMLElement {
     renderItems(filter) {
         let items = [];
         
+        // Filter-ээр салон эсвэл артистуудыг сонгох
         if (filter === 'all' || filter === 'salons') {
             items = [...items, ...this.salons.map(salon => ({
                 ...salon,
                 type: 'salon'
-            }))];
-        }
+            }))];        }
         
         if (filter === 'all' || filter === 'artists') {
             items = [...items, ...this.independentArtists.map(artist => ({
@@ -77,6 +72,7 @@ class SalonAllList extends HTMLElement {
             }))];
         }
         
+        // Search query-гаар шүүх
         if (this.searchQuery) {
             items = items.filter(item => {
                 const name = item.name?.toLowerCase() || '';
@@ -90,10 +86,12 @@ class SalonAllList extends HTMLElement {
             });
         }
         
+        // Хоосон үр дүн
         if (items.length === 0) {
             return '<div class="no-results"><p>Илэрц олдсонгүй</p></div>';
         }
         
+        // HTML үүсгэх
         return items.map(item => {
             if (item.type === 'salon') {
                 return `
@@ -179,143 +177,104 @@ class SalonAllList extends HTMLElement {
         this.updateList();
     }
 
-    // ✅ ШИНЭ МЕТОД: SessionStorage-с сонгосон салон шалгах
-    checkSelectedSalon() {
-        const selectedSalonId = sessionStorage.getItem('selectedSalonId');
-        const selectedType = sessionStorage.getItem('selectedSalonType');
-        
-        if (selectedSalonId) {
-            console.log('📌 Auto-selecting salon:', selectedSalonId, 'Type:', selectedType);
-            
-            // sessionStorage цэвэрлэх
-            sessionStorage.removeItem('selectedSalonId');
-            sessionStorage.removeItem('selectedSalonType');
-            
-            // Delay-тай maximum харуулах
-            setTimeout(() => {
-                if (selectedType === 'salon') {
-                    this.showSalonDetailById(selectedSalonId);
-                } else if (selectedType === 'artist') {
-                    this.showArtistDetailById(selectedSalonId);
-                }
-            }, 300);
+   showSalonDetail(salonCard) {
+    const salonId = salonCard.getAttribute("data");
+    const salon = this.salons.find(sal => sal.id === salonId);
+    
+    if (!salon) return;
+    
+    const salonList = this.querySelector('#salonList');
+    salonList.classList.add('column-mode');
+    
+    const detailContainer = this.querySelector('#salonDetail');
+    const detailContent = this.querySelector('#detailContent');
+
+    const location = salon.branches ? salon.branches[0].location : salon.location || '?';
+    const schedule = salon.branches ? salon.branches[0].schedule : salon.schedule || '?';
+
+    const serviceTypes = salon.service?.map(s => s.type) || [];
+    const branches = salon.branches || [];
+    const artists = salon.artists || [];
+    const services = salon.service || []; 
+    const creative = salon.creative || [];
+    
+    detailContent.innerHTML = `
+        <salon-description 
+            type="maximum" 
+            data="${salon.id}"
+            name="${salon.name}"
+            img="${salon.img}"
+            rating="${salon.rating}"
+            location="${location}"
+            schedule="${schedule}"
+            services='${JSON.stringify(serviceTypes)}'
+            fullservices='${this.escapeJSON(JSON.stringify(services))}'
+            branches='${this.escapeJSON(JSON.stringify(branches))}'
+            artists='${this.escapeJSON(JSON.stringify(artists))}'
+            creative='${this.escapeJSON(JSON.stringify(creative))}'>
+        </salon-description>
+    `;
+    
+    detailContainer.classList.add('active');
+    
+    // Header дотор буцах button нэмэх
+    setTimeout(() => {
+        const infoHeader = detailContent.querySelector('.information-header');
+        if (infoHeader && !infoHeader.querySelector('.back-btn')) {
+            const backBtn = document.createElement('button');
+            backBtn.className = 'back-btn';
+            backBtn.textContent = 'Буцах';
+            backBtn.addEventListener('click', () => this.hideDetail());
+            infoHeader.insertBefore(backBtn, infoHeader.firstChild);
         }
-    }
+    }, 50);
+}
 
-    // ✅ ШИНЭ МЕТОД: ID-гаар салон харуулах
-    showSalonDetailById(salonId) {
-        const salon = this.salons.find(sal => sal.id === salonId);
-        
-        if (!salon) {
-            console.error('Salon not found:', salonId);
-            return;
+showArtistDetail(artistCard) {
+    const artistId = artistCard.getAttribute("data");
+    const artist = this.independentArtists.find(art => art.id === artistId);
+    
+    if (!artist) return;
+    
+    const salonList = this.querySelector('#salonList');
+    salonList.classList.add('column-mode');
+    
+    const detailContainer = this.querySelector('#salonDetail');
+    const detailContent = this.querySelector('#detailContent');
+
+    const services = artist.service || [];
+    const artPics = artist.art_pic || [];
+    
+    detailContent.innerHTML = `
+        <salon-description 
+            type="maximum" 
+            data="${artist.id}"
+            name="${artist.name}"
+            img="${artist.img}"
+            rating="${artist.rating}"
+            location="${artist.location}"
+            schedule="${artist.schedule}"
+            profession="${artist.profession}"
+            experience="${artist.experience}"
+            fullservices='${this.escapeJSON(JSON.stringify(services))}'
+            creative='${this.escapeJSON(JSON.stringify(artPics))}'>
+        </salon-description>
+    `;
+    
+    detailContainer.classList.add('active');
+    
+    // Header дотор буцах button нэмэх
+    setTimeout(() => {
+        const infoHeader = detailContent.querySelector('.information-header');
+        if (infoHeader && !infoHeader.querySelector('.back-btn')) {
+            const backBtn = document.createElement('button');
+            backBtn.className = 'back-btn';
+            backBtn.textContent = 'Буцах';
+            backBtn.addEventListener('click', () => this.hideDetail());
+            infoHeader.insertBefore(backBtn, infoHeader.firstChild);
         }
-        
-        const salonList = this.querySelector('#salonList');
-        salonList.classList.add('column-mode');
-        
-        const detailContainer = this.querySelector('#salonDetail');
-        const detailContent = this.querySelector('#detailContent');
-
-        const location = salon.branches?.[0]?.location || salon.location || '?';
-        const schedule = salon.branches?.[0]?.schedule || salon.schedule || '?';
-
-        const serviceTypes = salon.service?.map(s => s.type) || [];
-        const branches = salon.branches || [];
-        const artists = salon.artists || [];
-        const services = salon.service || [];
-        const creative = salon.creative || [];
-        
-        detailContent.innerHTML = `
-            <salon-description 
-                type="maximum" 
-                data="${salon.id}"
-                name="${salon.name}"
-                img="${salon.img}"
-                rating="${salon.rating}"
-                location="${location}"
-                schedule="${schedule}"
-                services='${JSON.stringify(serviceTypes)}'
-                fullservices='${this.escapeJSON(JSON.stringify(services))}'
-                branches='${this.escapeJSON(JSON.stringify(branches))}'
-                artists='${this.escapeJSON(JSON.stringify(artists))}'
-                creative='${this.escapeJSON(JSON.stringify(creative))}'>
-            </salon-description>
-        `;
-        
-        detailContainer.classList.add('active');
-        
-        // Буцах button
-        setTimeout(() => {
-            const infoHeader = detailContent.querySelector('.information-header');
-            if (infoHeader && !infoHeader.querySelector('.back-btn')) {
-                const backBtn = document.createElement('button');
-                backBtn.className = 'back-btn';
-                backBtn.textContent = 'Буцах';
-                backBtn.addEventListener('click', () => this.hideDetail());
-                infoHeader.insertBefore(backBtn, infoHeader.firstChild);
-            }
-        }, 50);
-    }
-
-    // ✅ ШИНЭ МЕТОД: ID-гаар артист харуулах
-    showArtistDetailById(artistId) {
-        const artist = this.independentArtists.find(art => art.id === artistId);
-        
-        if (!artist) {
-            console.error('Artist not found:', artistId);
-            return;
-        }
-        
-        const salonList = this.querySelector('#salonList');
-        salonList.classList.add('column-mode');
-        
-        const detailContainer = this.querySelector('#salonDetail');
-        const detailContent = this.querySelector('#detailContent');
-
-        const services = artist.service || [];
-        const artPics = artist.art_pic || [];
-        
-        detailContent.innerHTML = `
-            <salon-description 
-                type="maximum" 
-                data="${artist.id}"
-                name="${artist.name}"
-                img="${artist.img}"
-                rating="${artist.rating}"
-                location="${artist.location}"
-                schedule="${artist.schedule}"
-                profession="${artist.profession}"
-                experience="${artist.experience}"
-                fullservices='${this.escapeJSON(JSON.stringify(services))}'
-                creative='${this.escapeJSON(JSON.stringify(artPics))}'>
-            </salon-description>
-        `;
-        
-        detailContainer.classList.add('active');
-        
-        setTimeout(() => {
-            const infoHeader = detailContent.querySelector('.information-header');
-            if (infoHeader && !infoHeader.querySelector('.back-btn')) {
-                const backBtn = document.createElement('button');
-                backBtn.className = 'back-btn';
-                backBtn.textContent = 'Буцах';
-                backBtn.addEventListener('click', () => this.hideDetail());
-                infoHeader.insertBefore(backBtn, infoHeader.firstChild);
-            }
-        }, 50);
-    }
-
-    showSalonDetail(salonCard) {
-        const salonId = salonCard.getAttribute("data");
-        this.showSalonDetailById(salonId);
-    }
-
-    showArtistDetail(artistCard) {
-        const artistId = artistCard.getAttribute("data");
-        this.showArtistDetailById(artistId);
-    }
-
+    }, 50);
+}
     escapeJSON(jsonString) {
         return jsonString
             .replace(/"/g, '&quot;')
