@@ -70,7 +70,7 @@ class SalonDescription extends HTMLElement {
 
     async loadFullSalonData() {
         const salonId = this.getAttribute("data");
-        const response = await fetch('./salonPage/json/salon.json');
+        const response = await fetch('http://localhost:3000/api/salons');
         const data = await response.json();
         this.salonData = data.salons?.find(s => s.id === salonId);
         console.log('Loaded full salon data:', this.salonData);

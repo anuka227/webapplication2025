@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
 
 :root {
     --color-bg: #fff8fa;
-    --color-mobile-background: #8451f5;
     --color-pr: #ffedfb;
     --color-nav: #0b123e;
     --color-order: #fc8eac;
     --color-pink-default: #fce4ec;
-    --color-pink-selected:  #f594b6;
+    --color-pink-selected: #f594b6;
     --color-white: #ffffff;
     --color-hover-gray: rgba(0, 0, 0, 0.05);
     --color-border: rgba(236, 64, 122, 0.2);
@@ -16,20 +16,18 @@
     --font-home: "Roboto Mono";
     --font-control: italic 100 0.4rem "Shadows Into Light", cursive;
     --font-logo: italic 200 1.8rem "Marck Script", cursive;
-    --font-h2: italic 600 1rem "Shadows Into Light";
-    --font-booking: italic 400 1rem "Nunito", sans-serif;
-    --font-map: 'Courier New', monospace;
-
-    /* --font-h2: italic 600 1rem "Shadows Into Light", cursive; */
+    --font-h2: italic 400 1rem "Shadows Into Light", cursive;
     --font-order-info: italic 400 1rem "Nunito", sans-serif;
-    --font-special: italic 400 1rem "Edu NSW ACT Hand Pre", cursive;
+    --font-special: italic 600 1rem "Edu NSW ACT Hand Pre", cursive;
     
     --box-shadow: 8px 16px 32px rgba(236, 64, 122, 0.15);
     --animation-main: fadeSlide 0.8s ease-out;
 }
+
 body {
     margin: 0;
 }
+
 salon-app {
     display: grid;
     grid-template-areas:
@@ -56,6 +54,60 @@ salon-home {
     z-index: 1;
 }
 
+/* =====================================================
+   ANIMATIONS - KEYFRAMES
+   ===================================================== */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes moveFade {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes moveFade-two {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes fadeSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+/* =====================================================
+   HEADER & LOGO
+   ===================================================== */
 salon-header {
     display: flex;
     height: 48vh;
@@ -85,7 +137,6 @@ salon-header #paragraph-two {
     animation: fadeIn 2s ease forwards;
 }
 
-/* Logo Elements Animation */
 salon-header .logo {
     z-index: -1;
 }
@@ -163,57 +214,6 @@ salon-header .logo :nth-child(7) {
 }
 
 /* =====================================================
-   ANIMATIONS - KEYFRAMES
-   ===================================================== */
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes moveFade {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-@keyframes moveFade-two {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes fadeSlide {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutRight {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-}
-
-/* =====================================================
    HOME PAGE - SALON & ARTIST SECTIONS
    ===================================================== */
 salon-home h2 {
@@ -262,7 +262,6 @@ salon-home h2 {
     font-size: 16px;
 }
 
-/* Salon Images */
 .salonsection img {
     width: 290px;
     height: 190px;
@@ -280,7 +279,8 @@ salon-home h2 {
     border-color: var(--color-border);
 }
 
-.salonsection::-webkit-scrollbar {
+.salonsection::-webkit-scrollbar,
+.artistsection::-webkit-scrollbar {
     display: none;
 }
 
@@ -301,9 +301,6 @@ artist-description img {
     border-color: var(--color-border);
 }
 
-.artistsection::-webkit-scrollbar {
-    display: none;
-}
 .snav {
     background-color: var(--color-bg);
     border: none;
@@ -344,7 +341,6 @@ salon-info {
     margin-bottom: 30px;
 }
 
-/* Tabs */
 .tabs {
     display: flex;
     align-items: center;
@@ -376,7 +372,6 @@ salon-info {
     background: rgba(236, 64, 122, 0.15);
 }
 
-/* Searchbar */
 .searchbar {
     display: flex;
     align-items: center;
@@ -442,7 +437,6 @@ salon-all-list .salon-list.column-mode {
     flex: none;
 }
 
-/* 4 Column Layout - 25% each */
 salon-description[type="minimum"] article {
     display: flex;
     align-items: center;
@@ -488,29 +482,6 @@ salon-description[type="minimum"] .rating {
     align-items: center;
     gap: 3px;
     font-size: 14px;
-}
-@media (max-width: 1600px) {
-    /* 3 багана */
-    salon-description[type="minimum"] article {
-        flex: 0 0 calc((100% - 40px) / 3);  /* 2 gap × 20px = 40px */
-        max-width: calc((100% - 40px) / 3);
-    }
-}
-
-@media (max-width: 1200px) {
-    /* 2 багана */
-    salon-description[type="minimum"] article {
-        flex: 0 0 calc((100% - 20px) / 2);  /* 1 gap × 20px = 20px */
-        max-width: calc((100% - 20px) / 2);
-    }
-}
-
-@media (max-width: 768px) {
-    /* 1 багана */
-    salon-description[type="minimum"] article {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
 }
 
 /* =====================================================
@@ -606,7 +577,7 @@ salon-all-list .salon-detail.active {
 }
 
 .information address h3 {
-    color: var(--color-pink-selected);
+    color: #ec407a;
     margin-bottom: 15px;
     font-size: 20px;
 }
@@ -767,7 +738,9 @@ salon-all-list .salon-detail.active {
     color: white;
 }
 
-
+/* =====================================================
+   BOOKING DIALOG
+   ===================================================== */
 .booking-dialog {
     border: none;
     border-radius: 20px;
@@ -845,10 +818,10 @@ salon-all-list .salon-detail.active {
     font-size: 18px;
 }
 
-
 .order-time-pick {
     padding: 20px;
 }
+
 .time-picker-container {
     display: flex;
     flex-direction: column;
@@ -944,8 +917,9 @@ salon-all-list .salon-detail.active {
     background: var(--color-salon);
 }
 
+/* Calendar Picker */
 .calendar-picker {
-    font-family: var(--font-booking);
+    font-family: 'Nunito', sans-serif;
     background: white;
     border-radius: 25px;
     padding: 25px;
@@ -1090,331 +1064,6 @@ salon-all-list .salon-detail.active {
 }
 
 /* =====================================================
-   ORDERS & BOOKING LIST
-   ===================================================== */
-/* #orders {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: none;
-}
-
-.order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.order-header h1 {
-    font: var(--font-special);
-    font-size: 22px;
-    color: #1a1a1a;
-    margin-bottom: 25px;
-    letter-spacing: -0.5px;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-.order-header h1::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: var(--color-nav);
-    border-radius: 2px;
-}
-
-.order-header p {
-    background: #d4edda;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.order-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.order-card {
-    display: flex;
-    flex-direction: column;
-    background: var(--color-white);
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 10px rgba(238, 133, 185, 0.1);
-    border: 2px solid rgba(238, 133, 185, 0.2);
-    transition: all 0.3s ease;
-}
-
-.order-card:hover {
-    box-shadow: 0 4px 20px rgba(238, 133, 185, 0.25);
-    transform: translateY(-2px);
-}
-
-.order-card h3 {
-    margin: 0;
-    font: var(--font-special);
-    font-size: 1.5rem;
-    color: var(--color-order);
-    letter-spacing: 1px;
-}
-
-.order-card p {
-    font: var(--font-order-info);
-    font-size: 1.1rem;
-    font-weight: 600;
-    flex: 1;
-}
-
-/* History Cards */
-/* .history-header h1 {
-    font: var(--font-special);
-    font-size: 22px;
-}
-
-.history-cards {
-    display: flex;
-    justify-content: space-between;
-    background: var(--color-white);
-    border-radius: 16px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 10px rgba(238, 133, 185, 0.1);
-    border: 2px solid rgba(238, 133, 185, 0.2);
-    transition: all 0.3s ease;
-}
-
-.history-cards:hover {
-    box-shadow: 0 4px 20px rgba(238, 133, 185, 0.25);
-    transform: translateY(-2px);
-}
-
-.history-cards h3 {
-    font: var(--font-order-info);
-}
-
-/* Rating */
-/* .rating {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.star {
-    color: #ffd700;
-    font-size: 20px;
-}
-
-.star.empty {
-    color: #333;
-}
-
-.rating-number {
-    margin-left: 8px;
-    font-size: 16px;
-    font-weight: bold;
-} */
-
-/* Empty State */
-/* .booking-list-empty {
-    text-align: center;
-    padding: 60px 20px;
-    color: #666;
-}
-
-.empty-icon {
-    font-size: 64px;
-    margin-bottom: 20px;
-}
-
-.booking-list-empty h3 {
-    margin: 0 0 10px 0;
-    font-size: 24px;
-    color: #333;
-}
-
-.booking-list-empty p {
-    margin: 0;
-    font-size: 16px;
-} */
-
-/* Booking List Container */
-/* .booking-list-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.booking-list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
-
-.booking-list-header h2 {
-    margin: 0;
-    font-size: 28px;
-}
-
-.booking-count {
-    background: #4CAF50;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.booking-items {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-} */
-
-/* Booking Card */
-/* .booking-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-left: 4px solid #4CAF50;
-}
-
-.booking-card:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-}
-
-.booking-card.past {
-    opacity: 0.7;
-    border-left-color: #999;
-}
-
-.booking-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 16px;
-}
-
-.booking-salon h3 {
-    margin: 0 0 8px 0;
-    font-size: 20px;
-    color: #333;
-}
-
-.booking-status {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.status-upcoming {
-    background: #e8f5e9;
-    color: #2e7d32;
-}
-
-.status-past {
-    background: #f5f5f5;
-    color: #666;
-}
-
-.booking-delete-btn {
-    background: none;
-    border: none;
-    color: #f44336;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    transition: background 0.2s;
-}
-
-.booking-delete-btn:hover {
-    background: #ffebee;
-}
-
-.booking-card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.booking-service {
-    display: flex;
-    gap: 8px;
-    font-size: 16px;
-}
-
-.booking-service .label {
-    color: #666;
-    font-weight: 500;
-}
-
-.booking-service .value {
-    color: #333;
-    font-weight: 600;
-}
-
-.booking-datetime {
-    display: flex;
-    gap: 24px;
-}
-
-.booking-date,
-.booking-time {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #666;
-}
-
-.booking-date svg,
-.booking-time svg {
-    color: #4CAF50;
-}
-
-.booking-details {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 12px;
-    border-top: 1px solid #eee;
-}
-
-.booking-duration,
-.booking-price {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.booking-details .label {
-    font-size: 12px;
-    color: #999;
-    text-transform: uppercase;
-}
-
-.booking-details .value {
-    font-size: 14px;
-    color: #333;
-    font-weight: 600;
-}
-
-.price-highlight {
-    color: #4CAF50;
-    font-size: 16px;
-}  */ 
-
-/* =====================================================
    SIDEBAR NAVIGATION (ASIDE)
    ===================================================== */
 aside-nav {
@@ -1505,51 +1154,6 @@ salon-footer {
 
 ::-webkit-scrollbar-track {
     background: transparent;
-}
-
-/* =====================================================
-   SALON & ARTIST DESCRIPTION COMPONENTS
-   ===================================================== */
-salon-description .salonsection {
-    display: flex;
-    width: auto;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 1rem 20px 1rem;
-    flex: 1;
-}
-
-salon-description .salonsection h4 {
-    font: var(--font-special);
-    margin: 4px;
-    font-size: 16px;
-}
-
-artist-description .artistsection {
-    display: flex;
-    gap: 64px;
-    width: auto;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 1rem 20px 1rem;
-    flex: 1;
-}
-
-artist-description .artistsection h4 {
-    font: var(--font-special);
-    margin: 4px;
-    font-size: 16px;
-}
-
-artist-description .artistsection img {
-    width: 190px;
-    height: 190px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 
-        width 0.3s ease,
-        height 0.3s ease,
-        box-shadow 0.4s ease;
 }
 
 /* =====================================================
@@ -1650,7 +1254,6 @@ artist-description .artistsection img {
     border-radius: 0.5rem;
 }
 
-/* Artist Detail Dialog */
 #ArtistDetailInfo {
     border: none;
     border-radius: 16px;
@@ -1814,6 +1417,10 @@ artist-description .artistsection img {
     transform: scale(1.02);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
+
+/* =====================================================
+   AVAILABLE DATA & ORDER RESULTS
+   ===================================================== */
 .availableData {
     display: flex;
     gap: 30px;
@@ -1835,37 +1442,21 @@ artist-description .artistsection img {
 .leftSalons, 
 .rightArtist {
     flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
 }
 
 .leftSalons h2, 
 .rightArtist h2 {
+    grid-column: 1 / -1;
     margin-bottom: 20px;
     color: #333;
 }
 
-/* 2 Column Grid for Salons & Artists */
-.leftSalons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    align-items: start;
-}
-
-.leftSalons h2 {
-    grid-column: 1 / -1;
-}
-
-.rightArtist {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    align-items: start;
-}
-
-.rightArtist h2 {
-    grid-column: 1 / -1;
-}
-.artist-card, .salon-card{
+.artist-card, 
+.salon-card {
     background: white;
     border-radius: 20px;
     margin: 4px;
@@ -1875,7 +1466,8 @@ artist-description .artistsection img {
     width: 18rem;
 }
 
-.Artist:hover {
+.artist-card:hover,
+.salon-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(236, 64, 122, 0.2);
 }
@@ -1883,31 +1475,35 @@ artist-description .artistsection img {
 .selected-information {
     display: flex;
     align-items: flex-start;
-    img {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-        object-fit: cover;
-        flex-shrink: 0;
-        border: 3px solid var(--color-pink-default);
-        margin-right: 4px;
-    }
-    .info-text {
-        display: flex;
-        flex-direction: column;
-        .top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            p.name {
-                margin:0;
-                padding: 8px 4px;
-                font-size: 16px;
-                color: #333;
-            }
-        }
-    }
+}
+
+.selected-information img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 3px solid var(--color-pink-default);
+    margin-right: 4px;
+}
+
+.selected-information .info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.selected-information .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.selected-information .top p.name {
+    margin: 0;
+    padding: 8px 4px;
+    font-size: 16px;
+    color: #333;
 }
 
 .selected-information .top p:last-child {
@@ -1916,11 +1512,13 @@ artist-description .artistsection img {
     color: var(--color-pink-selected);
     white-space: nowrap;
 }
+
 .selected-information p:last-child {
     margin: 0;
     font-size: 12px;
     padding: 0 4px;
 }
+
 .subservices-list {
     list-style: none;
     padding: 0;
@@ -1936,8 +1534,6 @@ artist-description .artistsection img {
     display: none;
 }
 
-
-/* Subservice Row */
 .subservice-row {
     display: flex;
     justify-content: space-between;
@@ -1950,7 +1546,6 @@ artist-description .artistsection img {
 .subservice-row:last-child {
     border-bottom: none;
 }
-
 
 .subservice-left {
     flex: 1;
@@ -1988,7 +1583,6 @@ artist-description .artistsection img {
     text-align: right;
 }
 
-/* Захиалах Button */
 .subservice-book-btn {
     padding: 10px 20px;
     background: var(--color-pink-default);
@@ -2007,7 +1601,6 @@ artist-description .artistsection img {
     transform: scale(1.05);
 }
 
-/* No Service Message */
 .no-service {
     padding: 40px 20px;
     text-align: center;
@@ -2016,8 +1609,9 @@ artist-description .artistsection img {
     font-size: 15px;
 }
 
-
-
+/* =====================================================
+   ORDER CONTROLS
+   ===================================================== */
 .Orders {
     background-color: var(--color-order);
     display: flex;
@@ -2116,7 +1710,6 @@ artist-description .artistsection img {
     list-style: none;
 }
 
-/* Service Header */
 .hidden-content .service-header {
     pointer-events: none;
     margin-bottom: 4px;
@@ -2130,7 +1723,6 @@ artist-description .artistsection img {
     padding-left: 16px;
 }
 
-/* Service Category */
 .hidden-content .service-category {
     position: relative;
     display: block;
@@ -2170,7 +1762,6 @@ artist-description .artistsection img {
     text-transform: uppercase;
 }
 
-/* Subservice Accordion */
 .hidden-content .subservice {
     position: relative;
     display: block;
@@ -2235,7 +1826,6 @@ artist-description .artistsection img {
     direction: ltr;
 }
 
-
 .loading-message {
     text-align: center;
     padding: 40px;
@@ -2245,30 +1835,12 @@ artist-description .artistsection img {
 /* =====================================================
    ORDER LOCATION - DROPDOWN STYLES
    ===================================================== */
-
-/* Location list container */
 .hidden-content .locations {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* Location header */
-.hidden-content .locations .service-header {
-    pointer-events: none;
-    margin-bottom: 4px;
-}
-
-.hidden-content .locations .service-header p {
-    color: #999 !important;
-    font-size: 12px !important;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    padding-left: 16px;
-    margin: 0;
-}
-
-/* Get Location (Map button) */
 .hidden-content .get-location {
     display: flex;
     align-items: center;
@@ -2304,7 +1876,6 @@ artist-description .artistsection img {
     text-transform: uppercase;
 }
 
-/* Add Location (Dropdown) */
 .hidden-content .add-location {
     display: flex;
     align-items: center;
@@ -2355,6 +1926,9 @@ artist-description .artistsection img {
     padding: 10px;
 }
 
+/* =====================================================
+   MAP CONTAINER
+   ===================================================== */
 .map-container {
     position: fixed;
     left: 50%;
@@ -2411,7 +1985,7 @@ artist-description .artistsection img {
     margin: 5px 0;
     font-size: 14px;
     color: #333;
-    font-family: var(--font-booking);
+    font-family: 'Nunito', sans-serif;
 }
 
 .map-container .coords-box strong {
@@ -2420,7 +1994,7 @@ artist-description .artistsection img {
 }
 
 .map-container .coords-text {
-    font-family: var(--font-map);
+    font-family: 'Courier New', monospace;
     font-size: 13px;
     color: #555;
     line-height: 1.6;
@@ -2432,106 +2006,650 @@ artist-description .artistsection img {
     justify-content: center;
     height: 100%;
     margin: 0;
-    font-family: var(--font-booking);
+    font-family: 'Nunito', sans-serif;
     font-size: 16px;
 }
 
-
-
-/* ==================== BOOKING LIST STYLES ==================== */
-
-.booking-list-container {
+/* =====================================================
+   AUTH FORM
+   ===================================================== */
+auth-form .auth-container {
     background: white;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    position: relative;
 }
 
-.booking-list-header {
+auth-form .auth-container.page-style {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+auth-form .auth-container.modal-style {
+    padding: 40px;
+}
+
+auth-form .close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+auth-form .close-modal-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+    color: #333;
+}
+
+auth-form .logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+auth-form .logo p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+auth-form .tabs {
+    display: flex;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 30px;
+}
+
+auth-form .tab {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    color: #999;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+auth-form .tab.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+}
+
+auth-form .form-content {
+    display: none;
+}
+
+auth-form .form-content.active {
+    display: block;
+}
+
+auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+auth-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+auth-form .form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+auth-form .form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+auth-form .btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+auth-form .btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+auth-form .message {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+
+auth-form .message.show {
+    display: block;
+}
+
+auth-form .message.error {
+    background: #fee;
+    color: #c33;
+}
+
+auth-form .message.success {
+    background: #efe;
+    color: #3c3;
+}
+
+/* =====================================================
+   LOGIN MODAL
+   ===================================================== */
+login-modal .login-modal-dialog {
+    border: none;
+    border-radius: 15px;
+    padding: 0;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+login-modal .login-modal-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+/* =====================================================
+   PROFILE PAGE
+   ===================================================== */
+salon-profile .profile-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+salon-profile .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 30px;
+    align-items: start;
+}
+
+salon-profile .bookings-section {
+    grid-column: 1;
+    min-height: 500px;
+}
+
+salon-profile .profile-card {
+    grid-column: 2;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    position: sticky;
+    top: 20px;
+}
+
+salon-profile .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 4px solid #fc88afff;
+    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
+}
+
+salon-profile .profile-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+salon-profile .profile-info {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+}
+
+salon-profile .profile-info li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+salon-profile .profile-info li:last-child {
+    border-bottom: none;
+}
+
+salon-profile .profile-info .label {
+    color: #999;
+    font-weight: 500;
+}
+
+salon-profile .profile-info .value {
+    color: #333;
+    font-weight: 600;
+}
+
+salon-profile .edit-profile-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+}
+
+salon-profile .edit-profile-btn:hover {
+    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
+    transform: translateY(-2px);
+}
+
+salon-profile .logout-btn {
+    width: 100%;
+    padding: 14px;
+    background: #fff;
+    color: #fc8eac;
+    border: 2px solid #f594b6;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 12px;
+}
+
+salon-profile .logout-btn:hover {
+    background: #fce4ec;
+}
+
+salon-profile .edit-dialog {
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+salon-profile .edit-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+salon-profile .dialog-content {
+    padding: 40px;
+}
+
+salon-profile .dialog-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
 }
 
-.booking-list-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #333;
+salon-profile .dialog-header h2 {
     margin: 0;
+    font-size: 24px;
+    color: #333;
 }
 
-.booking-count {
-    font-size: 14px;
-    color: #999;
-    background: #fce4ec;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-}
-
-/* Filter Tabs */
-.filter-tabs {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.filter-tab {
-    padding: 12px 24px;
-    background: #f5f5f5;
-    border: 2px solid transparent;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #666;
+salon-profile .close-dialog-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
     cursor: pointer;
-    transition: all 0.3s;
+    color: #999;
+    transition: color 0.3s;
 }
 
-.filter-tab:hover {
-    background: #fce4ec;
-    color: #ec407a;
-}
-
-.filter-tab.active {
-    background: #ec407a;
+salon-profile .close-dialog-btn:hover {
     color: white;
-    border-color: #ec407a;
 }
 
-/* Bookings Grid */
-.bookings-grid {
-    display: grid;
-    gap: 20px;
-}
-
-/* Empty State */
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    background: #f9f9f9;
-    border-radius: 16px;
-}
-
-.empty-icon {
-    font-size: 64px;
+salon-profile .form-group {
     margin-bottom: 20px;
 }
 
-.empty-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #333;
+salon-profile .form-group label {
+    display: block;
     margin-bottom: 8px;
-}
-
-.empty-message {
+    color: #666;
+    font-weight: 600;
     font-size: 14px;
-    color: #999;
 }
 
+salon-profile .form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+salon-profile .form-group input:focus {
+    outline: none;
+    border-color: #fce4ec;
+}
+
+salon-profile .form-group input:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+salon-profile .phone-group {
+    display: flex;
+    gap: 10px;
+}
+
+salon-profile .phone-group select {
+    width: 100px;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+salon-profile .save-profile-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+salon-profile .save-profile-btn:hover {
+    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
+    transform: scale(1.02);
+}
+
+booking-card {
+    display: block;
+    width: 100%;
+}
+
+booking-card .booking-card-compact {
+    background: #fce4ec;
+    border-radius: 25px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(236, 64, 122, 0.15);
+    margin-bottom: 12px;
+}
+
+booking-card .booking-card-compact:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.25);
+}
+
+booking-card .card-left {
+    flex-shrink: 0;
+    min-width: 120px;
+}
+
+booking-card .salon-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-style: italic;
+}
+
+booking-card .card-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+booking-card .booking-info {
+    flex: 1;
+}
+
+booking-card .info-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+booking-card .info-row:last-child {
+    margin-bottom: 0;
+}
+
+booking-card .label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-style: italic;
+    min-width: 90px;
+}
+
+booking-card .value {
+    color: #555;
+    flex: 1;
+}
+
+booking-card .price-row {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(236, 64, 122, 0.2);
+}
+
+booking-card .price-value {
+    font-weight: 700;
+    color: #fc8eac;
+    font-size: 15px;
+}
+
+booking-card .card-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+booking-card .action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+booking-card .btn-reorder {
+    background: linear-gradient(135deg, #fc8eac 0%, #f594b6 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(252, 142, 172, 0.3);
+}
+
+booking-card .btn-reorder:hover {
+    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(252, 142, 172, 0.4);
+}
+
+booking-card .btn-reorder:active {
+    transform: translateY(0);
+}
+
+booking-card .action-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+booking-card .action-icon:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+booking-card .action-icon:active {
+    transform: scale(0.95);
+}
+
+/* =====================================================
+   BOOKING LIST
+   ===================================================== */
+booking-list .booking-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+booking-list .booking-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--color-border);
+}
+
+booking-list .booking-list-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+booking-list .filter-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+booking-list .tab {
+    flex: 1;
+    min-width: 150px;
+    padding: 14px 24px;
+    background: var(--color-white);
+    border: 2px solid var(--color-border);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+booking-list .tab:hover {
+    background: var(--color-hover-gray);
+    border-color: var(--color-pink-selected);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.2);
+}
+
+booking-list .tab.active {
+    background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
+}
+
+booking-list .bookings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+booking-list .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--color-pink-default);
+    border-radius: 16px;
+    border: 2px dashed var(--color-border);
+}
+
+booking-list .empty-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+booking-list .empty-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+booking-list .empty-message {
+    font-size: 16px;
+    color: #7f8c8d;
+}
 
 .see-more-btn {
     padding: 10px 20px;
@@ -2555,866 +2673,123 @@ artist-description .artistsection img {
     transform: translateY(0);
 }
 
-auth-form {
-    .auth-container {
-                    background: white;
-                    border-radius: 15px;
-                    position: relative;
-                }
-                
-                .auth-container.page-style {
-                    max-width: 450px;
-                    margin: 50px auto;
-                    padding: 40px;
-                    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-                }
-                
-                /* Modal style */
-                .auth-container.modal-style {
-                    padding: 40px;
-                }
-                
-                .close-modal-btn {
-                    position: absolute;
-                    top: 15px;
-                    right: 15px;
-                    background: rgba(0, 0, 0, 0.05);
-                    border: none;
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 50%;
-                    font-size: 24px;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #999;
-                }
-                
-                .close-modal-btn:hover {
-                    background: rgba(0, 0, 0, 0.1);
-                    transform: rotate(90deg);
-                    color: #333;
-                }
-                
-                .logo {
-                    text-align: center;
-                    margin-bottom: 30px;
-                }
-                
-                .logo p {
-                    margin: 0;
-                    color: #666;
-                    font-size: 14px;
-                }
-                
-                .tabs {
-                    display: flex;
-                    border-bottom: 2px solid #f0f0f0;
-                    margin-bottom: 30px;
-                }
-                
-                .tab {
-                    flex: 1;
-                    text-align: center;
-                    padding: 15px;
-                    cursor: pointer;
-                    color: #999;
-                    font-weight: 600;
-                    border-bottom: 3px solid transparent;
-                    transition: all 0.3s;
-                }
-                
-                .tab.active {
-                    color: #667eea;
-                    border-bottom-color: #667eea;
-                }
-                
-                .form-content {
-                    display: none;
-                }
-                
-                .form-content.active {
-                    display: block;
-                }
-                
-                .form-group {
-                    margin-bottom: 20px;
-                }
-                
-                .form-group label {
-                    display: block;
-                    margin-bottom: 8px;
-                    color: #555;
-                    font-weight: 500;
-                }
-                
-                .form-group input {
-                    width: 100%;
-                    padding: 14px;
-                    border: 2px solid #e0e0e0;
-                    border-radius: 8px;
-                    font-size: 15px;
-                    box-sizing: border-box;
-                    transition: border-color 0.3s;
-                }
-                
-                .form-group input:focus {
-                    outline: none;
-                    border-color: #667eea;
-                }
-                
-                .btn {
-                    width: 100%;
-                    padding: 15px;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                    border: none;
-                    border-radius: 8px;
-                    font-size: 16px;
-                    cursor: pointer;
-                    font-weight: 600;
-                    transition: all 0.3s;
-                }
-                
-                .btn:hover {
-                    opacity: 0.9;
-                    transform: translateY(-2px);
-                }
-                
-                .message {
-                    margin-top: 15px;
-                    padding: 12px;
-                    border-radius: 8px;
-                    text-align: center;
-                    display: none;
-                }
-                
-                .message.show {
-                    display: block;
-                }
-                
-                .message.error {
-                    background: #fee;
-                    color: #c33;
-                }
-                
-                .message.success {
-                    background: #efe;
-                    color: #3c3;
-                }
-                
-                /* Mobile */
-                @media (max-width: 768px) {
-                    .auth-container.page-style {
-                        margin: 20px;
-                        padding: 30px 20px;
-                    }
-                    
-                    .auth-container.modal-style {
-                        padding: 30px 20px;
-                    }
-                    
-                    .logo h1 {
-                        font-size: 28px;
-                    }
-                    
-                    .tab {
-                        padding: 12px;
-                        font-size: 14px;
-                    }
-                }
+/* =====================================================
+   NOTIFICATION
+   ===================================================== */
+salon-notification .salon-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(236, 64, 122, 0.4);
+    z-index: 99999;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    min-width: 300px;
+    max-width: 500px;
+    animation: slideIn 0.3s ease-out;
+    pointer-events: auto;
 }
 
-login-modal {
-    .login-modal-dialog {
-                    border: none;
-                    border-radius: 15px;
-                    padding: 0;
-                    max-width: 450px;
-                    width: 90%;
-                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-                }
-                
-                .login-modal-dialog::backdrop {
-                    background: rgba(0, 0, 0, 0.6);
-                    backdrop-filter: blur(8px);
-                }
-                
-                /* Mobile */
-                @media (max-width: 768px) {
-                    .login-modal-dialog {
-                        max-width: 100%;
-                        width: 100%;
-                        margin: 0;
-                        border-radius: 24px 24px 0 0;
-                        position: fixed;
-                        bottom: 0;
-                    }
-                }
+salon-notification .notification-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-
-salon-profile {
-    .profile-page {
-                    max-width: 1400px;
-                    margin: 0 auto;
-                    padding: 40px 20px;
-                }
-
-                .profile-grid {
-                    display: grid;
-                    grid-template-columns: 1fr 340px;
-                    gap: 30px;
-                    align-items: start;
-                }
-
-                .bookings-section {
-                    grid-column: 1;
-                    min-height: 500px;
-                }
-
-                .profile-card {
-                    grid-column: 2;
-                    background: white;
-                    padding: 30px;
-                    border-radius: 20px;
-                    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-                    text-align: center;
-                    position: sticky;
-                    top: 20px;
-                }
-
-                .profile-image {
-                    width: 120px;
-                    height: 120px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                    margin: 0 auto 20px;
-                    border: 4px solid #fc88afff;
-                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
-                }
-
-                .profile-name {
-                    font-size: 24px;
-                    font-weight: 700;
-                    color: #333;
-                    margin-bottom: 8px;
-                }
-                .profile-info {
-                    list-style: none;
-                    padding: 0;
-                    margin: 20px 0;
-                    text-align: left;
-                }
-
-                .profile-info li {
-                    padding: 12px 0;
-                    border-bottom: 1px solid #f0f0f0;
-                    display: flex;
-                    justify-content: space-between;
-                    font-size: 14px;
-                }
-
-                .profile-info li:last-child {
-                    border-bottom: none;
-                }
-
-                .profile-info .label {
-                    color: #999;
-                    font-weight: 500;
-                }
-
-                .profile-info .value {
-                    color: #333;
-                    font-weight: 600;
-                }
-
-                .edit-profile-btn {
-                    width: 100%;
-                    padding: 14px;
-                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
-                    color: white;
-                    border: none;
-                    border-radius: 25px;
-                    font-size: 14px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    margin-top: 20px;
-                }
-
-                .edit-profile-btn:hover {
-                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
-                    transform: translateY(-2px);
-                }
-
-                .logout-btn {
-                    width: 100%;
-                    padding: 14px;
-                    background: #fff;
-                    color: #fc8eac;
-                    border: 2px solid #f594b6;
-                    border-radius: 25px;
-                    font-size: 14px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    margin-top: 12px;
-                }
-
-                .logout-btn:hover {
-                    background: #fce4ec;
-                }
-
-                .edit-dialog {
-                    border: none;
-                    border-radius: 20px;
-                    padding: 0;
-                    max-width: 600px;
-                    width: 90%;
-                    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-                }
-
-                .edit-dialog::backdrop {
-                    background: rgba(0, 0, 0, 0.5);
-                }
-
-                .dialog-content {
-                    padding: 40px;
-                }
-
-                .dialog-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 30px;
-                }
-
-                .dialog-header h2 {
-                    margin: 0;
-                    font-size: 24px;
-                    color: #333;
-                }
-
-                .close-dialog-btn {
-                    background: none;
-                    border: none;
-                    font-size: 28px;
-                    cursor: pointer;
-                    color: #999;
-                    transition: color 0.3s;
-                }
-
-                .close-dialog-btn:hover {
-                    color: white;
-                }
-
-                .form-group {
-                    margin-bottom: 20px;
-                }
-
-                .form-group label {
-                    display: block;
-                    margin-bottom: 8px;
-                    color: #666;
-                    font-weight: 600;
-                    font-size: 14px;
-                }
-
-                .form-group input {
-                    width: 100%;
-                    padding: 14px;
-                    border: 2px solid #e0e0e0;
-                    border-radius: 10px;
-                    font-size: 14px;
-                    box-sizing: border-box;
-                    transition: border-color 0.3s;
-                }
-
-                .form-group input:focus {
-                    outline: none;
-                    border-color: #fce4ec;
-                }
-
-                .form-group input:disabled {
-                    background: #f5f5f5;
-                    cursor: not-allowed;
-                }
-
-                .phone-group {
-                    display: flex;
-                    gap: 10px;
-                }
-
-                .phone-group select {
-                    width: 100px;
-                    padding: 14px;
-                    border: 2px solid #e0e0e0;
-                    border-radius: 10px;
-                    font-size: 14px;
-                    cursor: pointer;
-                }
-
-                .save-profile-btn {
-                    width: 100%;
-                    padding: 16px;
-                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
-                    color: white;
-                    border: none;
-                    border-radius: 25px;
-                    font-size: 16px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    margin-top: 10px;
-                }
-
-                .save-profile-btn:hover {
-                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
-                    transform: scale(1.02);
-                }
-                @media (max-width: 1024px) {
-                    .profile-grid {
-                        grid-template-columns: 1fr;
-                        gap: 20px;
-                    }
-                    
-                    .bookings-section {
-                        grid-column: 1;
-                        order: 2;
-                    }
-                    
-                    .profile-card {
-                        grid-column: 1;
-                        position: static;
-                        order: 1;
-                    }
-                }
+salon-notification .notification-message {
+    flex: 1;
+    font-weight: 500;
 }
 
-booking-card {
-    display: block;
-    width: 100%;
-    .booking-card-compact {
-                    background: #fce4ec;
-                    border-radius: 25px;
-                    padding: 16px 24px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 16px;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 2px 8px rgba(236, 64, 122, 0.15);
-                    margin-bottom: 12px;
-                }
-
-                .booking-card-compact:hover {
-                    transform: translateX(4px);
-                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.25);
-                }
-
-                .card-left {
-                    flex-shrink: 0;
-                    min-width: 120px;
-                }
-
-                .salon-name {
-                    font-size: 18px;
-                    font-weight: 600;
-                    color: #2c3e50;
-                    font-style: italic;
-                }
-
-                .card-right {
-                    flex: 1;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    gap: 16px;
-                }
-
-                .booking-info {
-                    flex: 1;
-                }
-
-                .info-row {
-                    display: flex;
-                    gap: 8px;
-                    margin-bottom: 4px;
-                    font-size: 14px;
-                }
-
-                .info-row:last-child {
-                    margin-bottom: 0;
-                }
-
-                .label {
-                    font-weight: 600;
-                    color: #2c3e50;
-                    font-style: italic;
-                    min-width: 90px;
-                }
-
-                .value {
-                    color: #555;
-                    flex: 1;
-                }
-
-                .price-row {
-                    margin-top: 6px;
-                    padding-top: 6px;
-                    border-top: 1px solid rgba(236, 64, 122, 0.2);
-                }
-
-                .price-value {
-                    font-weight: 700;
-                    color: #fc8eac;
-                    font-size: 15px;
-                }
-
-                .card-actions {
-                    display: flex;
-                    gap: 8px;
-                    flex-shrink: 0;
-                    align-items: center;
-                }
-
-                .action-btn {
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 20px;
-                    font-size: 14px;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    white-space: nowrap;
-                }
-
-                .btn-reorder {
-                    background: linear-gradient(135deg, #fc8eac 0%, #f594b6 100%);
-                    color: white;
-                    box-shadow: 0 2px 8px rgba(252, 142, 172, 0.3);
-                }
-
-                .btn-reorder:hover {
-                    background: linear-gradient(135deg, #f594b6 0%, #fc8eac 100%);
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(252, 142, 172, 0.4);
-                }
-
-                .btn-reorder:active {
-                    transform: translateY(0);
-                }
-
-                .action-icon {
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 50%;
-                    border: none;
-                    background: rgba(255, 255, 255, 0.7);
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 16px;
-                    transition: all 0.3s;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-
-                .action-icon:hover {
-                    background: white;
-                    transform: scale(1.1);
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-                }
-
-                .action-icon:active {
-                    transform: scale(0.95);
-                }
-
-                /* Mobile responsive */
-                @media (max-width: 768px) {
-                    .booking-card-compact {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        padding: 16px;
-                    }
-
-                    .card-left {
-                        width: 100%;
-                        margin-bottom: 8px;
-                    }
-
-                    .card-right {
-                        width: 100%;
-                        flex-direction: column;
-                        gap: 12px;
-                    }
-
-                    .booking-info {
-                        width: 100%;
-                    }
-
-                    .card-actions {
-                        width: 100%;
-                        justify-content: flex-end;
-                    }
-
-                    .salon-name {
-                        font-size: 16px;
-                    }
-
-                    .info-row {
-                        font-size: 13px;
-                    }
-
-                    .label {
-                        min-width: 80px;
-                    }
-                }
-
-                @media (max-width: 480px) {
-                    .info-row {
-                        flex-direction: column;
-                        gap: 2px;
-                    }
-                    
-                    .label {
-                        min-width: auto;
-                    }
-                }
+salon-notification .notification-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s;
+    flex-shrink: 0;
 }
 
-booking-list {
-    .booking-list-container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 25px;
-                }
-
-                .booking-list-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 24px;
-                    padding-bottom: 16px;
-                    border-bottom: 2px solid var(--color-border);
-                }
-
-                .booking-list-title {
-                    font-size: 28px;
-                    font-weight: 700;
-                    color: #2c3e50;
-                    margin: 0;
-                }
-
-                .filter-tabs {
-                    display: flex;
-                    gap: 12px;
-                    margin-bottom: 24px;
-                    overflow-x: auto;
-                    padding-bottom: 8px;
-                }
-
-                .tab {
-                    flex: 1;
-                    min-width: 150px;
-                    padding: 14px 24px;
-                    background: var(--color-white);
-                    border: 2px solid var(--color-border);
-                    border-radius: 20px;
-                    cursor: pointer;
-                    transition: all 0.3s;
-                    font-family: var(--font-order-info);
-                    font-size: 15px;
-                    font-weight: 600;
-                    color: #2c3e50;
-                }
-
-                .tab:hover {
-                    background: var(--color-hover-gray);
-                    border-color: var(--color-pink-selected);
-                    transform: translateY(-2px);
-                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.2);
-                }
-
-                .tab.active {
-                    background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
-                    border-color: transparent;
-                    color: white;
-                    box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
-                }
-
-                .bookings-grid {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 12px;
-                    animation: fadeIn 0.5s ease-in;
-                }
-
-                @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                .empty-state {
-                    text-align: center;
-                    padding: 60px 20px;
-                    background: var(--color-pink-default);
-                    border-radius: 16px;
-                    border: 2px dashed var(--color-border);
-                }
-
-                .empty-icon {
-                    font-size: 80px;
-                    margin-bottom: 20px;
-                    opacity: 0.5;
-                }
-
-                .empty-title {
-                    font-size: 24px;
-                    font-weight: 600;
-                    color: #2c3e50;
-                    margin-bottom: 12px;
-                }
-
-                .empty-message {
-                    font-size: 16px;
-                    color: #7f8c8d;
-                }
-
-                @media (max-width: 768px) {
-                    .booking-list-container {
-                        padding: 16px;
-                    }
-
-                    .booking-list-title {
-                        font-size: 22px;
-                    }
-
-                    .filter-tabs {
-                        flex-wrap: nowrap;
-                        overflow-x: auto;
-                    }
-
-                    .tab {
-                        min-width: 120px;
-                        flex: 0 0 auto;
-                        padding: 12px 20px;
-                        font-size: 14px;
-                    }
-                }
+salon-notification .notification-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }
 
-
-salon-notification {
-    .salon-notification {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: linear-gradient(135deg, #ec407a 0%, #f06292 100%);
-                    color: white;
-                    padding: 16px 24px;
-                    border-radius: 12px;
-                    box-shadow: 0 8px 24px rgba(236, 64, 122, 0.4);
-                    z-index: 99999;
-                    font-family: var(--font-order-info);
-                    font-size: 15px;
-                    min-width: 300px;
-                    max-width: 500px;
-                    animation: slideIn 0.3s ease-out;
-                    pointer-events: auto;
-                }
-                
-                .notification-content {
-                    display: flex;
-                    align-items: center;
-                    gap: 16px;
-                }
-                
-                .notification-message {
-                    flex: 1;
-                    font-weight: 500;
-                }
-                
-                .notification-close {
-                    background: rgba(255, 255, 255, 0.2);
-                    border: none;
-                    color: white;
-                    font-size: 22px;
-                    cursor: pointer;
-                    padding: 0;
-                    width: 28px;
-                    height: 28px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    transition: all 0.3s;
-                    flex-shrink: 0;
-                }
-                
-                .notification-close:hover {
-                    background: rgba(255, 255, 255, 0.3);
-                    transform: rotate(90deg);
-                }
-                
-                @keyframes slideIn {
-                    from {
-                        opacity: 0;
-                        transform: translateX(100px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
-                }
-                
-                @keyframes slideOut {
-                    from {
-                        opacity: 1;
-                    }
-                    to {
-                        opacity: 0;
-                        transform: translateY(-20px);
-                    }
-                }
-                
-                .salon-notification.closing {
-                    animation: slideOut 0.3s ease-out;
-                }
-                
-                /* Mobile */
-                @media (max-width: 768px) {
-                    .salon-notification {
-                        left: 10px;
-                        right: 10px;
-                        top: 10px;
-                        min-width: auto;
-                        padding: 14px 20px;
-                    }
-                    
-                    .notification-message {
-                        font-size: 14px;
-                    }
-                    
-                    .notification-close {
-                        width: 24px;
-                        height: 24px;
-                        font-size: 20px;
-                    }
-                }
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+salon-notification .salon-notification.closing {
+    animation: slideOut 0.3s ease-out;
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+/* Tablet & Below */
+@media (max-width: 1600px) {
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc((100% - 40px) / 3);
+        max-width: calc((100% - 40px) / 3);
+    }
+}
+
+@media (max-width: 1200px) {
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc((100% - 20px) / 2);
+        max-width: calc((100% - 20px) / 2);
+    }
+}
+
+@media (max-width: 1024px) {
+    salon-profile .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    salon-profile .bookings-section {
+        grid-column: 1;
+        order: 2;
+    }
+    
+    salon-profile .profile-card {
+        grid-column: 1;
+        position: static;
+        order: 1;
+    }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
     salon-app {
         grid-template-areas: 
@@ -3475,6 +2850,114 @@ salon-notification {
     salon-header {
         height: 36vh;
     }
+
+    salon-description[type="minimum"] article {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    booking-card .booking-card-compact {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    booking-card .card-left {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    booking-card .card-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    booking-card .booking-info {
+        width: 100%;
+    }
+
+    booking-card .card-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    booking-card .salon-name {
+        font-size: 16px;
+    }
+
+    booking-card .info-row {
+        font-size: 13px;
+    }
+
+    booking-card .label {
+        min-width: 80px;
+    }
+    
+    booking-list .booking-list-container {
+        padding: 16px;
+    }
+
+    booking-list .booking-list-title {
+        font-size: 22px;
+    }
+
+    booking-list .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    booking-list .tab {
+        min-width: 120px;
+        flex: 0 0 auto;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    auth-form .auth-container.page-style {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+    
+    auth-form .auth-container.modal-style {
+        padding: 30px 20px;
+    }
+    
+    auth-form .logo h1 {
+        font-size: 28px;
+    }
+    
+    auth-form .tab {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    login-modal .login-modal-dialog {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 24px 24px 0 0;
+        position: fixed;
+        bottom: 0;
+    }
+    
+    salon-notification .salon-notification {
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        min-width: auto;
+        padding: 14px 20px;
+    }
+    
+    salon-notification .notification-message {
+        font-size: 14px;
+    }
+    
+    salon-notification .notification-close {
+        width: 24px;
+        height: 24px;
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3491,5 +2974,14 @@ salon-notification {
     .tab {
         padding: 12px 20px;
         font-size: 11px;
+    }
+    
+    booking-card .info-row {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    booking-card .label {
+        min-width: auto;
     }
 }
