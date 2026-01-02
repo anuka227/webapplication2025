@@ -1,6 +1,4 @@
-// orderPage/js/managers/BookingManager.js
-import { showNotification } from '../../../salon-notification.js'; // ✅ IMPORT
-
+import { showNotification } from '../../../salon-notification.js';
 class BookingManager {
     static checkAuth() {
         const user = localStorage.getItem('user');
@@ -21,8 +19,7 @@ class BookingManager {
         }
 
         if (!data.serviceName || !data.salonName) {
-            console.error('❌ Missing required fields:', data);
-            showNotification('Үйлчилгээний мэдээлэл дутуу байна'); // ✅ IMPORT
+            showNotification('Үйлчилгээний мэдээлэл дутуу байна');
             return;
         }
 
@@ -43,21 +40,16 @@ class BookingManager {
         try {
             return JSON.parse(localStorage.getItem('bookings') || '[]');
         } catch (error) {
-            console.error('❌ Error loading bookings:', error);
             return [];
         }
     }
-
     static getUserBookings() {
         try {
             const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
             const userId = currentUser.id || currentUser.email || 'anonymous';
-            
             const allBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
-            
             return allBookings.filter(b => b.userId === userId);
         } catch (error) {
-            console.error('❌ Error loading user bookings:', error);
             return [];
         }
     }
@@ -77,7 +69,6 @@ class BookingManager {
                 })
                 .map(booking => booking.time);
         } catch (error) {
-            console.error('❌ Error getting booked times:', error);
             return [];
         }
     }
@@ -121,23 +112,16 @@ class BookingManager {
     }
 
     static showNotification(message, duration = 3000, position = 'top-right') {
-        showNotification(message, duration, position); // ✅ IMPORT ашиглах
+        showNotification(message, duration, position);
     }
     
     static saveBooking(bookingData) {
         try {
             const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
             if (!currentUser.id && !currentUser.email) {
-                console.error('❌ No user found');
-                
                 document.querySelectorAll('booking-dialog').forEach(d => {
-                    try {
-                        d.remove();
-                    } catch(e) {
-                        console.error('Error removing dialog:', e);
-                    }
+                    d.remove();
                 });
-                
                 BookingManager.showAuthPrompt();
                 return null;
             }
@@ -155,8 +139,8 @@ class BookingManager {
             );
             
             if (isDuplicate) {
-                console.warn('⚠️ Duplicate booking');
-                showNotification('Энэ цагт аль хэдийн захиалга хийсэн байна'); // ✅ IMPORT
+                console.warn('Duplicate booking');
+                showNotification('Энэ цагт аль хэдийн захиалга хийсэн байна');
                 return null;
             }
             
@@ -171,21 +155,16 @@ class BookingManager {
             
             bookings.push(newBooking);
             localStorage.setItem('bookings', JSON.stringify(bookings));
-            
-            console.log('💾 Booking saved:', newBooking);
-            
+            showNotification('Захиалга амжилттай хадгалагдлаа');
             window.dispatchEvent(new CustomEvent('booking-added', {
                 detail: newBooking
             }));
-            
             return newBooking;
         } catch (error) {
-            console.error('❌ Error saving booking:', error);
-            showNotification('Системд алдаа гарлаа'); // ✅ IMPORT
+            showNotification('Системд алдаа гарлаа');
             return null;
         }
     }
 }
 
 window.BookingManager = BookingManager;
-console.log('✅ BookingManager loaded');

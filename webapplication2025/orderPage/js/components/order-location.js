@@ -176,9 +176,6 @@ class OrderLocation extends HTMLElement {
         this.selectedCoords = { lat, lng };
         this.updateCoords(container, lat, lng);
         btnText.textContent = 'СОНГОСОН БАЙРШИЛ';
-        
-        console.log('🗺️ Map-аас сонгосон:', { lat, lng });
-
         window.orderManager?.updateLocation({
             name: 'Сонгосон байршил',
             coordinates: { lat, lng }

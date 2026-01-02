@@ -1,5 +1,3 @@
-// orderPage/js/components/order-time.js
-
 class OrderTime extends HTMLElement {
     constructor() {
         super();
@@ -11,7 +9,6 @@ class OrderTime extends HTMLElement {
     }
 
     render() {
-        // Default time slots
         const defaultTimes = [];
         for (let hour = 9; hour <= 22; hour++) {
             defaultTimes.push(`${hour.toString().padStart(2, '0')}:00`);

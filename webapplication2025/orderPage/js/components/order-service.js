@@ -17,13 +17,12 @@ class OrderService extends HTMLElement {
             
             const servicesMap = new Map();
             
-            // ✅ Салонуудаас service цуглуулах
             data.salons.forEach(salon => {
-                if (salon.id === 'independent') return; // Бие даасан артистууд хойш хийнэ
+                if (salon.id === 'independent') return;
                 
                 if (salon.service && Array.isArray(salon.service)) {
                     salon.service.forEach(serviceGroup => {
-                        const serviceType = serviceGroup.type; // "Үс", "Хумс", "Гоо сайхан" гэх мэт
+                        const serviceType = serviceGroup.type; 
                         
                         if (!servicesMap.has(serviceType)) {
                             servicesMap.set(serviceType, new Set());
@@ -60,16 +59,15 @@ class OrderService extends HTMLElement {
                 });
             }
             
-            // Set → Array
             this.servicesData = {};
             servicesMap.forEach((subserviceSet, serviceType) => {
                 this.servicesData[serviceType] = Array.from(subserviceSet);
             });
             
-            console.log('✅ Services loaded:', this.servicesData);
+            console.log('Services loaded:', this.servicesData);
             
         } catch (error) {
-            console.error('❌ JSON ачаалах алдаа:', error);
+            console.error('JSON ачаалах алдаа:', error);
         }
     }
 

@@ -1,9 +1,7 @@
-// utils/salonFilter.js
 import { DistanceCalculator } from './calculateDistance.js';
 export class SalonFilter {
     constructor(salonsData) {
         this.allData = salonsData.salons;
-        console.log('📊 Салоны тоо:', this.allData.length);
     }
 
     filterByLocation(salons, userLocation, maxDistance = 2) {
@@ -35,9 +33,6 @@ export class SalonFilter {
                 salon.coordinates.lat, 
                 salon.coordinates.lng
             );
-            
-            console.log(`  🏢 ${salon.name}: ${distance.toFixed(2)}км`);
-            
             if (distance <= maxDistance) {
                 return { ...salon, distance };
             }
@@ -52,12 +47,8 @@ export class SalonFilter {
 
 filterByService(salons, serviceId) {
     if (!serviceId || serviceId === 'Үйлчилгээ') {
-        console.log('⚠️ Үйлчилгээ сонгоогүй');
         return salons;
     }
-
-    console.log('📋 Үйлчилгээгээр шүүж байна:', serviceId);
-
     return salons.map(salon => {
         if (salon.id === 'independent') {
             const filteredArtists = salon.artists.filter(artist => {
@@ -70,7 +61,6 @@ filterByService(salons, serviceId) {
                     return serviceGroup.subservice.some(sub => {
                         const match = sub.id === serviceId;
                         if (match) {
-                            console.log(`  ✅ ${artist.name}: ${sub.id} тохирлоо`);
                         }
                         return match;
                     });
@@ -79,13 +69,11 @@ filterByService(salons, serviceId) {
                 return hasService;
             });
             
-            console.log(`  📊 Бие даасан артист: ${filteredArtists.length} олдлоо`);
             return { ...salon, artists: filteredArtists };
         } 
         
         else {
             if (!salon.service) {
-                console.log(`  ⚠️ ${salon.name}: service байхгүй`);
                 return null;
             }
             
@@ -94,9 +82,6 @@ filterByService(salons, serviceId) {
                 
                 return serviceGroup.subservice.some(sub => {
                     const match = sub.id === serviceId;
-                    if (match) {
-                        console.log(`  ✅ ${salon.name}: ${sub.id} тохирлоо`);
-                    }
                     return match;
                 });
             });
@@ -117,12 +102,8 @@ filterByService(salons, serviceId) {
 
     filterByDate(salons, selectedDate) {
         if (!selectedDate) return salons;
-
         const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const dayName = dayNames[selectedDate.getDay()];
-        
-        console.log('📅 Огноо:', dayName);
-
         return salons.map(salon => {
             if (salon.id === 'independent') {
                 const filteredArtists = salon.artists.filter(artist => 
@@ -145,7 +126,7 @@ filterByTime(salons, selectedTime) {
             const filteredArtists = salon.artists.filter(artist => {
                 const hasTime = artist.hours && artist.hours.includes(selectedTime);
                 if (artist.hours) {
-                    console.log(`  👤 ${artist.name}: ${artist.hours} → includes "${selectedTime}"? ${hasTime}`);
+                    console.log(`${artist.name}: ${artist.hours} → includes "${selectedTime}"? ${hasTime}`);
                 }
                 return hasTime;
             });
@@ -175,13 +156,13 @@ filterByTime(salons, selectedTime) {
         if (filters.location) {
             results = this.filterByLocation(results, filters.location, filters.maxDistance);
         }
-        // if (filters.location && filters.location.coordinates) {
-        //     results.sort((a, b) => {
-        //         const distA = a.distance || (a.id === 'independent' ? 999 : 0);
-        //         const distB = b.distance || (b.id === 'independent' ? 999 : 0);
-        //         return distA - distB;
-        //     });
-        // }
+        if (filters.location && filters.location.coordinates) {
+            results.sort((a, b) => {
+                const distA = a.distance || (a.id === 'independent' ? 999 : 0);
+                const distB = b.distance || (b.id === 'independent' ? 999 : 0);
+                return distA - distB;
+            });
+        }
         return results;
     }
 }

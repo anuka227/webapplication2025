@@ -24,10 +24,9 @@ export class OrderManager {
         this.orderData.time = time;
         if (typeof time === 'string' && time.length > 0) {
         this.filters.time = time;
-        console.log('✅ Time saved:', this.filters.time);
         this.applyFilters();
     } else {
-        console.error('❌ Invalid time:', time);
+        console.error('Invalid time:', time);
     }
     }
     

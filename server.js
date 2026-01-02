@@ -17,26 +17,20 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(cors({
   origin: true,
   credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
-
-// ✅ Static files үйлчлүүлэх (frontend файлууд)
 app.use(express.static(__dirname));
 
-// MongoDB
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB холбогдлоо'))
   .catch(err => console.error('MongoDB холболтын алдаа:', err));
 
-// Auth routes
 app.use('/api/auth', authRoutes);
 
-// Salons API
 app.get('/api/salons', async (req, res) => {
   try {
     const salons = await Salon.find();

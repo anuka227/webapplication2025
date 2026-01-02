@@ -37,7 +37,6 @@ import './page/salon-info.js';
 import './page/salon-profile.js';
 
 // Routing
-import './salon-link.js';
 import './salon-route.js';
 import './salon-router.js';
 import './salon-routes.js';

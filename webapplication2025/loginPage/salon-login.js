@@ -1,5 +1,3 @@
-// components/salon-login.js
-
 class SalonLogin extends HTMLElement {
     constructor() {
         super();
