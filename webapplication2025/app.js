@@ -1,6 +1,3 @@
-
-// External Libraries
-import 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
 import './salon-notification.js';
 
 // Order Components
@@ -21,10 +18,6 @@ import './salonPage/salon-description.js';
 import './salonPage/artist-description.js';
 import './salonPage/artist-special-list.js';
 import './salonPage/booking-dialog.js';
-
-// Profile Components
-// import './profilePage/profile-booking-list.js';
-// import './profilePage/profile-edit-dialog.js';
 
 // Layout Components
 import './salon-header.js';
