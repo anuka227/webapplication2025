@@ -1,6 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap'); */
-
 @font-face {
     font-family: 'Marck Script';
     src: url('./fonts/Marck_Script/MarckScript-Regular.ttf') format('truetype');
@@ -63,9 +60,6 @@ salon-home {
     z-index: 1;
 }
 
-/* =====================================================
-   ANIMATIONS - KEYFRAMES
-   ===================================================== */
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(10px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -307,7 +301,7 @@ artist-description img {
 }
 
 .snav {
-    background-color: #fce4ec;
+    background-color: var(--color-bg);
     border: none;
     font-size: 40px;
     cursor: pointer;
@@ -2159,9 +2153,7 @@ auth-form .message.success {
     color: #3c3;
 }
 
-/* =====================================================
-   LOGIN MODAL
-   ===================================================== */
+
 login-modal .login-modal-dialog {
     border: none;
     border-radius: 15px;
@@ -2972,7 +2964,7 @@ salon-notification .salon-notification.closing {
     salon-header #paragraph-two {
         font-size: 3rem;
         left: 10vw;
-        top: -4vh;
+        top: -2vh;
     }
 
     .tab {
@@ -2992,6 +2984,9 @@ salon-notification .salon-notification.closing {
 
 @media (max-width: 768px) {
     salon-header {
+        .header {
+            width:100%;
+        }
         height: 28vh;
         position: relative;
         overflow: hidden;
@@ -2999,12 +2994,16 @@ salon-notification .salon-notification.closing {
     }
     
     salon-header #paragraph-one {
+        top: 4vh;
+        left: 12vw;
         font-size: 2.5rem;
         z-index: 10;
         position: relative;
     }
     
     salon-header #paragraph-two {
+        top : -8vh;
+        left: 24vw;
         font-size: 5rem;
         z-index: 10;
         position: relative;
@@ -3058,7 +3057,6 @@ salon-notification .salon-notification.closing {
         }
     }
     
-    /* Morph shape animation */
     @keyframes morphShape {
         0%, 100% {
             transform: rotate(0deg) scale(1);
@@ -3078,7 +3076,6 @@ salon-notification .salon-notification.closing {
         }
     }
     
-    /* Нэмэлт жижиг dots - sparkle эффект */
     @keyframes sparkle {
         0%, 100% {
             opacity: 0;
@@ -3211,7 +3208,6 @@ salon-notification .salon-notification.closing {
         z-index: 1000;
     }
     
-    /* Available Data - Нэг эгнээ болгох */
     .availableData {
         flex-direction: column;
         padding: 16px;
@@ -3371,7 +3367,6 @@ salon-notification .salon-notification.closing {
         font-size: 12px;
     }
     
-    /* Orders - 2x2 grid багасгах */
     .Orders {
         width: 95%;
         gap: 6px;
@@ -3387,7 +3382,6 @@ salon-notification .salon-notification.closing {
         letter-spacing: 1px;
     }
     
-    /* Available Data салон картууд */
     .artist-card,
     .salon-card {
         padding: 10px;
