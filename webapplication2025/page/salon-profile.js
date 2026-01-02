@@ -28,8 +28,15 @@ class SalonProfile extends HTMLElement {
     }
 
     renderProfile() {
-        const user = JSON.parse(localStorage.getItem('user') || '{}');
-        const safeName = sanitizeText(user.name || 'Хэрэглэгч', 100);
+        const rawUser = JSON.parse(localStorage.getItem('user') || '{}');
+
+    const user = {
+        name: sanitizeText(rawUser.name || 'Хэрэглэгч', 100),
+        phone: sanitizePhone(rawUser.phone || ''),
+        email: sanitizeEmail(rawUser.email || ''),
+        avatar: sanitizeURL(rawUser.avatar) || 
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'
+    };
 
         this.innerHTML = /*html*/`
             <div class="profile-page">
@@ -39,11 +46,11 @@ class SalonProfile extends HTMLElement {
                     </div>
                     <div class="profile-card">
                         <img 
-                            src="${user.avatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'}" 
+                            src="${escapeAttr(user.avatar)}" 
                             alt="Profile" 
                             class="profile-image">
                         
-                        <div class="profile-name">${safeName}</div>
+                        <div class="profile-name">${user.name}</div>
                         <ul class="profile-info">
                             <li>
                                 <span class="label">Утас</span>
@@ -95,7 +102,7 @@ class SalonProfile extends HTMLElement {
                             <input type="email" id="editEmail" value="${user.email || ''}" disabled>
                         </div>
 
-                        <button type="submit" class="save-profile-btn">💾 Хадгалах</button>
+                        <button type="submit" class="save-profile-btn">Хадгалах</button>
                     </form>
                 </div>
             </dialog>
@@ -150,9 +157,7 @@ class SalonProfile extends HTMLElement {
                 
                 if (response.ok) {
                     localStorage.setItem('user', JSON.stringify(data.user));
-                    
                     showNotification('Өөрчлөлт амжилттай хадгалагдлаа!');
-                    
                     editDialog.close();
                     this.renderProfile();
                 } else {
