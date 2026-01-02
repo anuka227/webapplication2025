@@ -27,12 +27,10 @@
     --box-shadow: 8px 16px 32px rgba(236, 64, 122, 0.15);
     --animation-main: fadeSlide 0.8s ease-out;
 }
-
 body {
     margin: 0;
     height: 100%;
 }
-
 salon-app {
     display: grid;
     grid-template-areas:
@@ -566,7 +564,6 @@ salon-home {
         }
     }
 }
-
 order-outer {
     .availableData {
         display: flex;
@@ -759,12 +756,10 @@ order-outer {
     0% { opacity: 0; transform: translateY(10px); }
     100% { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes moveFade {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
 }
-
 @keyframes moveFade-two {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -799,8 +794,6 @@ order-outer {
         opacity: 0;
     }
 }
-
-
 salon-info {
     margin: 60px;
     display: flex;
@@ -815,16 +808,12 @@ salon-info {
         margin-bottom: 30px;
     }
 }
-
-
-
 .tabs {
     display: flex;
     align-items: center;
     background: var(--color-salon);
     border-radius: 25px;
 }
-
 .tab {
     padding: 25px 80px;
     border: none;
@@ -838,17 +827,14 @@ salon-info {
     font: var(--font-h2);
     white-space: nowrap;
 }
-
 .tab.active {
     background: linear-gradient(135deg, #ecc2d0 0%, #eba7ac 100%);
     color: white;
     box-shadow: 0 4px 12px rgba(236, 64, 122, 0.3);
 }
-
 .tab:hover:not(.active) {
     background: rgba(236, 64, 122, 0.15);
 }
-
 .searchbar {
     display: flex;
     align-items: center;
@@ -861,7 +847,6 @@ salon-info {
     max-width: 60%;
     font: var(--font-h2);
 }
-
 .searchbar input {
     border: none;
     outline: none;
@@ -871,7 +856,6 @@ salon-info {
     font-size: 15px;
     padding: 0;
 }
-
 .searchbar button {
     background: var(--color-pink-default);
     border: none;
@@ -882,10 +866,6 @@ salon-info {
     gap: 5px;
     padding: 0;
 }
-
-/* =====================================================
-   SALON LIST - 2 COLUMN GRID LAYOUT
-   ===================================================== */
 .salon-content-wrapper,
 salon-all-list .salon-content-wrapper {
     display: flex;
@@ -893,7 +873,6 @@ salon-all-list .salon-content-wrapper {
     flex: 1;
     transition: all 0.3s ease;
 }
-
 .salon-list,
 salon-all-list .salon-list {
     display: flex;
@@ -904,7 +883,6 @@ salon-all-list .salon-list {
     flex: 1;
     transition: all 0.3s ease;
 }
-
 .salon-list.column-mode,
 salon-all-list .salon-list.column-mode {
     flex-direction: column;
@@ -914,7 +892,6 @@ salon-all-list .salon-list.column-mode {
     flex: none;
 }
 
-/* Desktop - 2 багана, ХЭВТЭЭ layout (зураг зүүн, текст баруун) */
 salon-description[type="minimum"] article {
     display: flex;
     flex-direction: row;
@@ -931,7 +908,6 @@ salon-description[type="minimum"] article {
     max-width: calc((100% - 20px) / 2);
 }
 
-/* Column mode - хэвээр row */
 .salon-list.column-mode salon-description[type="minimum"] article,
 salon-all-list .salon-list.column-mode salon-description[type="minimum"] article {
     flex: 1 1 100%;
@@ -2661,64 +2637,19 @@ booking-list {
     }
 }
 
-
-
-@media (min-width: 481px) and (max-width: 768px) {
-    /* Salon Cards - 3 багана, column layout */
-    salon-description[type="minimum"] article {
-        flex: 0 0 calc((100% - 40px) / 3);
-        max-width: calc((100% - 40px) / 3);
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .salon-list.column-mode salon-description[type="minimum"] article,
-    salon-all-list .salon-list.column-mode salon-description[type="minimum"] article {
-        flex-direction: row;
-        text-align: left;
-    }
-    
-    salon-description[type="minimum"] img {
-        width: 50px;
-        height: 50px;
-    }
-    
-    salon-description[type="minimum"] h4 {
-        font-size: 13px;
-        margin: 0;
-    }
-    
-    salon-description[type="minimum"] .rating {
-        font-size: 11px;
-    }
-    
-    .leftSalons,
-    .rightArtist {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .Orders {
-        width: 85%;
-    }
-    .hidden-content {
-        position: absolute;
-        width: 22rem;
-        max-height: 480px;
-        border-radius: 16px;
-        bottom: auto;
-        top: 100%;
-        left: 0;
-    }
-}
-
-
 @media (max-width: 768px) {
+    /* Scrollbar нуух */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* App Layout */
     salon-app {
         grid-template-areas: 
             "main"
             "as";
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: 1fr auto;
     }
 
     #content {
@@ -2742,242 +2673,102 @@ booking-list {
         background: var(--color-order);
         box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-    }
-
-    aside-nav nav {
-        flex-direction: row;
-        height: 100%;
-        justify-content: space-around;
-        align-items: center;
-        padding: 0;
-    }
-
-    aside-nav nav ul {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-around;
-        margin: 0;
-        padding: 0;
-    }
-
-    aside-nav nav ul li {
-        padding: 0;
-        margin: 0;
-    }
-
-    aside-nav nav .logout {
-        display: none;
-    }
-
-    salon-header {
-        height: 36vh;
-    }
-
-    salon-description[type="minimum"] article {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-    
-    booking-card .booking-card-compact {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px;
-    }
-
-    booking-card .card-left {
-        width: 100%;
-        margin-bottom: 8px;
-    }
-
-    booking-card .card-right {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    booking-card .booking-info {
-        width: 100%;
-    }
-
-    booking-card .card-actions {
-        width: 100%;
-        justify-content: flex-end;
-    }
-
-    booking-card .salon-name {
-        font-size: 16px;
-    }
-
-    booking-card .info-row {
-        font-size: 13px;
-        display: flex;
-    }
-
-    booking-card .label {
-        min-width: 80px;
-
-    }
-    
-    booking-list .booking-list-container {
-        padding: 16px;
-    }
-
-    booking-list .booking-list-title {
-        font-size: 22px;
-    }
-
-    booking-list .filter-tabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-    }
-
-    booking-list .tab {
-        min-width: 120px;
-        flex: 0 0 auto;
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-    
-    auth-form .auth-container.page-style {
-        margin: 20px;
-        padding: 30px 20px;
-    }
-    
-    auth-form .auth-container.modal-style {
-        padding: 30px 20px;
-    }
-    
-    auth-form .logo h1 {
-        font-size: 28px;
-    }
-    
-    auth-form .tab {
-        padding: 12px;
-        font-size: 14px;
-    }
-    
-    login-modal .login-modal-dialog {
-        max-width: 100%;
-        width: 100%;
-        margin: 0;
-        border-radius: 24px 24px 0 0;
-        position: fixed;
-        bottom: 0;
-    }
-    
-    salon-notification .salon-notification {
-        left: 10px;
-        right: 10px;
-        top: 10px;
-        min-width: auto;
-        padding: 14px 20px;
-    }
-    
-    salon-notification .notification-message {
-        font-size: 14px;
-    }
-    
-    salon-notification .notification-close {
-        width: 24px;
-        height: 24px;
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    salon-header {
-        .header {
-            width:100%;
+        
+        nav {
+            flex-direction: row;
+            height: 100%;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0;
+            
+            ul {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+                margin: 0;
+                padding: 0;
+                
+                li {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+            
+            .logout {
+                display: none;
+            }
         }
     }
-    salon-header #paragraph-one {
-        font-size: 1.5rem;
-        left: 2vw;
-        top: 4vh;
-    }
 
-    salon-header #paragraph-two {
-        font-size: 3rem;
-        left: 10vw;
-        top: -2vh;
-    }
-
-    .tab {
-        padding: 12px 20px;
-        font-size: 11px;
-    }
-    
-    booking-card .info-row {
-        display: flex;
-        gap: 2px;
-    }
-    
-    booking-card .label {
-        min-width: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    ::-webkit-scrollbar {
-    display: none;
-}
-    salon-header {
-        .header {
-            width:100%;
+    /* Header Styling */
+    salon-home {
+        salon-header {
+            display: flex;
+            height: 28vh;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff8fa 0%, #fce4ec 50%, #fff8fa 100%);
+            
+            .header {
+                width: 100%;
+            }
+            
+            #paragraph-one {
+                top: 4vh;
+                left: 12vw;
+                font-size: 2.5rem;
+                z-index: 10;
+                position: relative;
+            }
+            
+            #paragraph-two {
+                top: -8vh;
+                left: 24vw;
+                font-size: 5rem;
+                z-index: 10;
+                position: relative;
+            }
+            
+            .logo {
+                display: none;
+            }
+            
+            &::before {
+                content: '';
+                position: absolute;
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, rgba(236, 64, 122, 0.1) 0%, rgba(244, 143, 177, 0.15) 100%);
+                top: -40px;
+                right: -30px;
+                animation: floatBubble 8s ease-in-out infinite;
+                z-index: 1;
+            }
+            
+            &::after {
+                content: '';
+                position: absolute;
+                width: 120px;
+                height: 120px;
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                background: linear-gradient(135deg, rgba(252, 142, 172, 0.12) 0%, rgba(245, 148, 182, 0.18) 100%);
+                bottom: -30px;
+                left: -25px;
+                animation: morphShape 6s ease-in-out infinite;
+                z-index: 1;
+            }
         }
-        height: 28vh;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, #fff8fa 0%, #fce4ec 50%, #fff8fa 100%);
+        
+        h2 {
+            padding: 10px 0 10px 20px;
+            font-size: 18px;
+            margin: 15px 0 10px 0;
+        }
     }
     
-    salon-header #paragraph-one {
-        top: 4vh;
-        left: 12vw;
-        font-size: 2.5rem;
-        z-index: 10;
-        position: relative;
-    }
-    
-    salon-header #paragraph-two {
-        top : -8vh;
-        left: 24vw;
-        font-size: 5rem;
-        z-index: 10;
-        position: relative;
-    }
-    
-    salon-header .logo {
-        display: none;
-    }
-    
-    salon-header::before {
-        content: '';
-        position: absolute;
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, rgba(236, 64, 122, 0.1) 0%, rgba(244, 143, 177, 0.15) 100%);
-        top: -40px;
-        right: -30px;
-        animation: floatBubble 8s ease-in-out infinite;
-        z-index: 1;
-    }
-    
-    salon-header::after {
-        content: '';
-        position: absolute;
-        width: 120px;
-        height: 120px;
-        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-        background: linear-gradient(135deg, rgba(252, 142, 172, 0.12) 0%, rgba(245, 148, 182, 0.18) 100%);
-        bottom: -30px;
-        left: -25px;
-        animation: morphShape 6s ease-in-out infinite;
-        z-index: 1;
-    }
-    
+    /* Animations */
     @keyframes floatBubble {
         0%, 100% {
             transform: translateY(0) translateX(0) scale(1);
@@ -3023,13 +2814,7 @@ booking-list {
         }
     }
     
-    /* Home sections heading */
-    salon-home h2 {
-        padding: 10px 0 10px 20px;
-        font-size: 18px;
-        margin: 15px 0 10px 0;
-    }
-    
+    /* Home Sections */
     .salonsection img {
         width: 220px;
         height: 145px;
@@ -3061,7 +2846,7 @@ booking-list {
         padding: 20px 25px;
     }
     
-    /* Salon Cards - 2 багана, column layout */
+    /* Salon List Layout */
     .salon-content-wrapper,
     salon-all-list .salon-content-wrapper {
         flex-direction: column;
@@ -3077,14 +2862,31 @@ booking-list {
         width: 100%;
     }
     
-    salon-description[type="minimum"] article {
-        flex: 0 0 calc((100% - 20px) / 2);
-        max-width: calc((100% - 20px) / 2);
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 12px;
-        gap: 8px;
+    /* Salon Cards - 2 column layout */
+    salon-description[type="minimum"] {
+        article {
+            flex: 0 0 calc((100% - 20px) / 2);
+            max-width: calc((100% - 20px) / 2);
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 12px;
+            gap: 8px;
+        }
+        
+        img {
+            width: 60px;
+            height: 60px;
+        }
+        
+        h4 {
+            font-size: 13px;
+            margin: 0;
+        }
+        
+        .rating {
+            font-size: 11px;
+        }
     }
     
     .salon-list.column-mode salon-description[type="minimum"] article,
@@ -3093,20 +2895,6 @@ booking-list {
         max-width: 100%;
         flex-direction: row;
         text-align: left;
-    }
-    
-    salon-description[type="minimum"] img {
-        width: 60px;
-        height: 60px;
-    }
-    
-    salon-description[type="minimum"] h4 {
-        font-size: 13px;
-        margin: 0;
-    }
-    
-    salon-description[type="minimum"] .rating {
-        font-size: 11px;
     }
     
     /* Orders - 2x2 Grid */
@@ -3118,35 +2906,35 @@ booking-list {
         grid-template-rows: auto auto;
         gap: 8px;
         padding: 8px;
-    }
-    
-    .Orders order-inner {
-        width: 100%;
-        height: 56px;
-    }
-    
-    .Orders order-inner .toggle-btn {
-        border: none;
-        border-radius: 12px;
-        justify-content: flex-start;
-        padding-left: 12px;
-    }
-    
-    .Orders order-inner button svg {
-        width: 24px;
-    }
-    
-    .Orders order-inner button p {
-        font-size: 12px;
-        letter-spacing: 2px;
-    }
-    
-    .Orders .search {
-        grid-column: 1 / -1;
-        width: calc(100% - 16px);
-        height: 48px;
-        margin: 0 8px;
-        padding: 0 24px;
+        
+        order-inner {
+            width: 100%;
+            height: 56px;
+            
+            .toggle-btn {
+                border: none;
+                border-radius: 12px;
+                justify-content: flex-start;
+                padding-left: 12px;
+                
+                svg {
+                    width: 24px;
+                }
+                
+                p {
+                    font-size: 12px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+        
+        .search {
+            grid-column: 1 / -1;
+            width: calc(100% - 16px);
+            height: 48px;
+            margin: 0 8px;
+            padding: 0 24px;
+        }
     }
     
     /* Hidden Content - Bottom Sheet */
@@ -3164,16 +2952,17 @@ booking-list {
         z-index: 1000;
     }
     
+    /* Available Data */
     .availableData {
         flex-direction: column;
         padding: 16px;
         gap: 16px;
-    }
-    
-    .availableData h2 {
-        padding: 10px 0;
-        font-size: 18px;
-        margin: 0;
+        
+        h2 {
+            padding: 10px 0;
+            font-size: 18px;
+            margin: 0;
+        }
     }
     
     .leftSalons,
@@ -3187,25 +2976,28 @@ booking-list {
         width: 100%;
         padding: 12px;
         margin: 0;
-    }
-    
-    .artist-card .selected-information img,
-    .salon-card .selected-information img {
-        width: 3rem;
-        height: 3rem;
-    }
-    
-    .selected-information .top p.name {
-        font-size: 14px;
-        padding: 4px;
-    }
-    
-    .selected-information .top p:last-child {
-        font-size: 12px;
-    }
-    
-    .selected-information p:last-child {
-        font-size: 11px;
+        
+        .selected-information {
+            img {
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .top {
+                p.name {
+                    font-size: 14px;
+                    padding: 4px;
+                }
+                
+                p:last-child {
+                    font-size: 12px;
+                }
+            }
+            
+            p:last-child {
+                font-size: 11px;
+            }
+        }
     }
     
     .subservices-list {
@@ -3234,25 +3026,25 @@ booking-list {
         font-size: 13px;
     }
     
-    /* Detail view */
+    /* Detail View */
     .information {
         padding: 20px;
         margin-left: 0;
-    }
-    
-    .information article {
-        flex-direction: column;
-    }
-    
-    .information article img {
-        width: 100%;
-        min-width: 100%;
-        height: 180px;
+        
+        article {
+            flex-direction: column;
+            
+            img {
+                width: 100%;
+                min-width: 100%;
+                height: 180px;
+            }
+        }
     }
     
     /* Booking Dialog */
-    .booking-content 
-    {   display: grid;
+    .booking-content {
+        display: grid;
         grid-template-columns: 1fr;
     }
     
@@ -3264,151 +3056,160 @@ booking-list {
     }
     
     /* Profile */
-    salon-profile .profile-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    salon-profile .bookings-section {
-        order: 2;
-    }
-    
-    salon-profile .profile-card {
-        order: 1;
-        position: static;
+    salon-profile {
+        .profile-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .bookings-section {
+            order: 2;
+        }
+        
+        .profile-card {
+            order: 1;
+            position: static;
+        }
     }
     
     /* Booking Card */
-    booking-card .booking-card-compact {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px;
-    }
+    booking-card {
+        .booking-card-compact {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 16px;
+        }
 
-    booking-card .card-left {
-        width: 100%;
-        margin-bottom: 8px;
-    }
+        .card-left {
+            width: 100%;
+            margin-bottom: 8px;
+        }
 
-    booking-card .card-right {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
-    }
+        .card-right {
+            width: 100%;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    booking-card .booking-info {
-        width: 100%;
-    }
+        .booking-info {
+            width: 100%;
+        }
 
-    booking-card .card-actions {
-        width: 100%;
-        justify-content: flex-end;
-    }
+        .card-actions {
+            width: 100%;
+            justify-content: flex-end;
+        }
 
-    booking-card .salon-name {
-        font-size: 16px;
-    }
+        .salon-name {
+            font-size: 16px;
+        }
 
-    booking-card .info-row {
-        font-size: 13px;
-        display: flex;
-    }
+        .info-row {
+            font-size: 13px;
+            display: flex;
+        }
 
-    booking-card .label {
-        min-width: 80px;
+        .label {
+            min-width: 80px;
+        }
     }
     
     /* Booking List */
-    booking-list .booking-list-container {
-        padding: 16px;
-    }
+    booking-list {
+        .booking-list-container {
+            padding: 16px;
+        }
 
-    booking-list .booking-list-title {
-        font-size: 22px;
-    }
+        .booking-list-title {
+            font-size: 22px;
+        }
 
-    booking-list .filter-tabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-    }
+        .filter-tabs {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
 
-    booking-list .tab {
-        min-width: 120px;
-        flex: 0 0 auto;
-        padding: 12px 20px;
-        font-size: 14px;
+        .tab {
+            min-width: 120px;
+            flex: 0 0 auto;
+            padding: 12px 20px;
+            font-size: 14px;
+        }
     }
     
     /* Auth Form */
-    auth-form .auth-container.page-style {
-        margin: 20px;
-        padding: 30px 20px;
-    }
-    
-    auth-form .auth-container.modal-style {
-        padding: 30px 20px;
-    }
-    
-    auth-form .logo h1 {
-        font-size: 28px;
-    }
-    
-    auth-form .tab {
-        padding: 12px;
-        font-size: 14px;
+    auth-form {
+        .auth-container {
+            &.page-style {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+            
+            &.modal-style {
+                padding: 30px 20px;
+            }
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+        }
+        
+        .tab {
+            padding: 12px;
+            font-size: 14px;
+        }
     }
     
     /* Login Modal */
-    login-modal .login-modal-dialog {
-        max-width: 100%;
-        width: 100%;
-        margin: 0;
-        border-radius: 24px 24px 0 0;
-        position: fixed;
-        bottom: 0;
+    login-modal {
+        .login-modal-dialog {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            border-radius: 24px 24px 0 0;
+            position: fixed;
+            bottom: 0;
+        }
     }
     
     /* Notification */
-    salon-notification .salon-notification {
-        left: 10px;
-        right: 10px;
-        top: 10px;
-        min-width: auto;
-        padding: 14px 20px;
-    }
-    
-    salon-notification .notification-message {
-        font-size: 14px;
-    }
-    
-    salon-notification .notification-close {
-        width: 24px;
-        height: 24px;
-        font-size: 20px;
+    salon-notification {
+        .salon-notification {
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            min-width: auto;
+            padding: 14px 20px;
+        }
+        
+        .notification-message {
+            font-size: 14px;
+        }
+        
+        .notification-close {
+            width: 24px;
+            height: 24px;
+            font-size: 20px;
+        }
     }
 }
 
-/* =====================================================
-   SMALL MOBILE (MAX 480px) - PURE CSS ACCORDION
-   Detail нь картын доороос слайдаар гарч ирнэ
-   ===================================================== */
 @media (max-width: 480px) {
-    /* Header */
-    salon-header {
+    salon-home salon-header {
         height: 24vh;
-    }
-    
-    salon-header .header {
-        width: 100%;
-    }
-    
-    salon-header #paragraph-one {
-        font-size: 1.8rem;
-        left: 8vw;
-    }
+        
+        .header {
+            width: 100%;
+        }
+        
+        #paragraph-one {
+            font-size: 1.8rem;
+            left: 8vw;
+        }
 
-    salon-header #paragraph-two {
-        font-size: 4rem;
-        left: 18vw;
+        #paragraph-two {
+            font-size: 4rem;
+            left: 18vw;
+        }
     }
     
     /* Tabs */
@@ -3427,77 +3228,151 @@ booking-list {
        ======================================== */
     
     /* Checkbox нуух */
-    salon-description[type="minimum"] input[type="checkbox"],
-    salon-description[type="minimum"] input[type="radio"] {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
+    salon-description[type="minimum"] {
+        flex: 0 0 calc((100% - 10px) / 2);
+        max-width: calc((100% - 10px) / 2);
+        transition: all 0.4s ease;
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        article {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: visible;
+            min-width: 150px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            
+            label {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                gap: 6px;
+                cursor: pointer;
+                transition: all 0.4s ease;
+            }
+        }
+        
+        &:has(input:checked) {
+            flex: 0 0 100%;
+            max-width: 100%;
+            z-index: 10;
+        }
+        
+        input:checked + article {
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(236, 64, 122, 0.25);
+            min-height: 200px;
+            
+            label {
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: left;
+                gap: 12px;
+                padding: 16px;
+                background: var(--color-pink-default);
+                border-radius: 12px;
+                width: 100%;
+                animation: expandLabel 0.4s ease;
+                
+                img {
+                    width: 80px;
+                    height: 80px;
+                    flex-shrink: 0;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+                
+                & > *:not(img) {
+                    flex: 1;
+                }
+                
+                h4 {
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                }
+                
+                .rating {
+                    font-size: 14px;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                }
+            }
+            
+            &::before {
+                content: '✕';
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                width: 32px;
+                height: 32px;
+                background: rgba(236, 64, 122, 0.1);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                color: #ec407a;
+                cursor: pointer;
+                z-index: 10;
+                transition: all 0.3s ease;
+                animation: fadeIn 0.3s ease 0.2s both;
+                
+                &:hover {
+                    background: rgba(236, 64, 122, 0.2);
+                    transform: scale(1.1);
+                }
+            }
+        }
+        
+        img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        h4 {
+            font-size: 12px;
+            margin: 0;
+            color: #333;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .rating {
+            font-size: 10px;
+            pointer-events: none;
+            color: #666;
+            transition: all 0.3s ease;
+        }
     }
     
-    /* Салон жагсаалт */
     .salon-list,
     salon-all-list .salon-list {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-    }
-    
-    /* Salon Cards - анхны 2 багана */
-    salon-description[type="minimum"] {
-        flex: 0 0 calc((100% - 10px) / 2);
-        max-width: calc((100% - 10px) / 2);
-        transition: all 0.4s ease;
-    }
-    
-    salon-description[type="minimum"] article {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 10px;
-        border-radius: 16px;
-        cursor: pointer;
-        position: relative;
-        overflow: visible;
-        min-width: 150px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Label - minimum view */
-    salon-description[type="minimum"] article label {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        gap: 6px;
-        cursor: pointer;
-        transition: all 0.4s ease;
-    }
-    
-    salon-description[type="minimum"]:has(input:checked) {
-        flex: 0 0 100%;
-        max-width: 100%;
-        z-index: 10;
-    }
-    
-    salon-description[type="minimum"] input:checked + article {
-        padding: 20px;
-        box-shadow: 0 8px 24px rgba(236, 64, 122, 0.25);
-        min-height: 200px;
-    }
-    
-    salon-description[type="minimum"] input:checked + article label {
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: left;
-        gap: 12px;
-        padding: 16px;
-        background: var(--color-pink-default);
-        border-radius: 12px;
-        width: 100%;
-        animation: expandLabel 0.4s ease;
+        
+        &:has(input:checked) salon-description[type="minimum"]:not(:has(input:checked)) {
+            display: none;
+        }
     }
     
     @keyframes expandLabel {
@@ -3511,60 +3386,6 @@ booking-list {
         }
     }
     
-    salon-description[type="minimum"] input:checked + article label img {
-        width: 80px;
-        height: 80px;
-        flex-shrink: 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    salon-description[type="minimum"] input:checked + article label > *:not(img) {
-        flex: 1;
-    }
-    
-    salon-description[type="minimum"] input:checked + article label h4 {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 4px;
-    }
-    
-    salon-description[type="minimum"] input:checked + article label .rating {
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-    
-    .salon-list:has(input:checked) salon-description[type="minimum"]:not(:has(input:checked)),
-    salon-all-list .salon-list:has(input:checked) salon-description[type="minimum"]:not(:has(input:checked)) {
-        display: none;
-    }
-    
-    salon-description[type="minimum"] input:checked + article::before {
-        content: '✕';
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        width: 32px;
-        height: 32px;
-        background: rgba(236, 64, 122, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        color: #ec407a;
-        cursor: pointer;
-        z-index: 10;
-        transition: all 0.3s ease;
-        animation: fadeIn 0.3s ease 0.2s both;
-    }
-    
-    salon-description[type="minimum"] input:checked + article::before:hover {
-        background: rgba(236, 64, 122, 0.2);
-        transform: scale(1.1);
-    }
-    
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -3576,58 +3397,35 @@ booking-list {
         }
     }
     
-    salon-description[type="minimum"] img {
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        object-fit: cover;
-        pointer-events: none;
-        transition: all 0.3s ease;
-    }
-    
-    salon-description[type="minimum"] h4 {
-        font-size: 12px;
-        margin: 0;
-        color: #333;
-        pointer-events: none;
-        transition: all 0.3s ease;
-    }
-    
-    salon-description[type="minimum"] .rating {
-        font-size: 10px;
-        pointer-events: none;
-        color: #666;
-        transition: all 0.3s ease;
-    }
-    
+    /* Orders */
     .Orders {
         width: 95%;
         gap: 6px;
         padding: 6px;
+        
+        order-inner {
+            height: 52px;
+            
+            button p {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+        }
     }
     
-    .Orders order-inner {
-        height: 52px;
-    }
-    
-    .Orders order-inner button p {
-        font-size: 11px;
-        letter-spacing: 1px;
-    }
-    
+    /* Cards */
     .artist-card,
     .salon-card {
         padding: 10px;
-    }
-    
-    .artist-card .selected-information img,
-    .salon-card .selected-information img {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    
-    .selected-information .top p.name {
-        font-size: 13px;
+        
+        .selected-information img {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        
+        .top p.name {
+            font-size: 13px;
+        }
     }
     
     .subservice-name {
@@ -3639,34 +3437,18 @@ booking-list {
         font-size: 12px;
     }
     
-    booking-card .info-row {
-        flex-direction: column;
-        gap: 2px;
-    }
-    
-    booking-card .label {
-        min-width: auto;
-    }
-    
-    booking-card .salon-name {
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 1024px) {
-    salon-profile .profile-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    salon-profile .bookings-section {
-        grid-column: 1;
-        order: 2;
-    }
-    
-    salon-profile .profile-card {
-        grid-column: 1;
-        position: static;
-        order: 1;
+    booking-card {
+        .info-row {
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .label {
+            min-width: auto;
+        }
+        
+        .salon-name {
+            font-size: 15px;
+        }
     }
 }
