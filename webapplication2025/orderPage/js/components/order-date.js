@@ -1,5 +1,3 @@
-// orderPage/js/components/order-date.js
-
 class OrderDate extends HTMLElement {
     constructor() {
         super();
@@ -24,7 +22,6 @@ class OrderDate extends HTMLElement {
         const btnText = btn?.querySelector('p');
         const contentDiv = orderInner.querySelector('.hidden-content');
 
-        // calendar-picker-ын event-ийг сонсох
         calendarPicker.addEventListener('date-selected', (e) => {
             const selectedDate = e.detail.formatted;
             const dateObj = e.detail.date;
@@ -37,7 +34,6 @@ class OrderDate extends HTMLElement {
                 contentDiv.classList.remove('show');
             }
             
-            // OrderManager руу илгээх
             if (window.orderManager) {
                 window.orderManager.updateDate(dateObj);
             }

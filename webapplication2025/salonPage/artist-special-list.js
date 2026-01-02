@@ -20,18 +20,15 @@ class ArtistSpecialList extends HTMLElement {
             const data = await response.json();
             this.salons = data.salons || [];
             
-            // ✅ ЗӨВХӨН Independent салон
             const independentSalon = this.salons.find(s => s.id === 'independent');
             if (independentSalon && independentSalon.artists) {
                 this.independentArtists = independentSalon.artists;
                 
-                // ✅ Independent артистуудад metadata нэмэх
                 this.independentArtists.forEach(artist => {
                     artist.type = 'independent';
                     artist.salon_name = 'Бие даасан';
                     artist.salon_location = artist.location;
                     
-                    // Schedule үүсгэх
                     if (artist.date && artist.date.length > 0) {
                         artist.schedule = `${artist.date.join(', ')}`;
                     } else {
@@ -39,8 +36,6 @@ class ArtistSpecialList extends HTMLElement {
                     }
                 });
             }
-            
-            // ✅ ЗӨВХӨН special independent артистууд
             this.specialIndependentArtists = this.independentArtists.filter(
                 artist => artist.special === "True"
             );
@@ -97,7 +92,6 @@ class ArtistSpecialList extends HTMLElement {
                 const dlg = this.querySelector("#ArtistDetailInfo");
                 const artistId = a.getAttribute("data");
                 
-                // ✅ ЗӨВХӨН independent артистаас хайх
                 const artist = this.independentArtists.find(
                     art => art.artist_id === artistId || art.id === artistId
                 );
@@ -108,7 +102,6 @@ class ArtistSpecialList extends HTMLElement {
                     const experience = artist.experience || 'Туршлага тодорхойгүй';
                     const img = artist.img || 'https://picsum.photos/300/300';
                     
-                    // ✅ Independent артистын зургууд
                     let artImg = [];
                     if (artist.art_pic && Array.isArray(artist.art_pic)) {
                         artImg = artist.art_pic.map(pic => {

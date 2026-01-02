@@ -46,11 +46,12 @@ salon-app {
     grid-template-columns: 100px 1fr;
     margin: 0;
     background-color: var(--color-bg);
-    height: 100vh;
+    background-size: cover;
+    height: 100%;
 }
 
+
 #content {
-    background-color: var(--color-bg);
     grid-area: main;
     margin: 0;
     padding: 0;
@@ -115,9 +116,7 @@ salon-home {
     }
 }
 
-/* =====================================================
-   HEADER & LOGO
-   ===================================================== */
+
 salon-header {
     display: flex;
     height: 48vh;
@@ -223,9 +222,6 @@ salon-header .logo :nth-child(7) {
     animation-delay: 4s;
 }
 
-/* =====================================================
-   HOME PAGE - SALON & ARTIST SECTIONS
-   ===================================================== */
 salon-home h2 {
     margin: 1rem 0 1rem 0;
     padding: 10px 0 10px 160px;
@@ -272,6 +268,7 @@ salon-home h2 {
     font-size: 16px;
 }
 
+/* Desktop хэмжээ - анхны */
 .salonsection img {
     width: 290px;
     height: 190px;
@@ -312,7 +309,7 @@ artist-description img {
 }
 
 .snav {
-    background-color: var(--color-bg);
+    background-color: #fce4ec;
     border: none;
     font-size: 40px;
     cursor: pointer;
@@ -1135,16 +1132,12 @@ aside-nav img:hover {
     background-color: var(--color-bg);
 }
 
-/* =====================================================
-   FOOTER
-   ===================================================== */
 salon-footer {
     grid-area: ft;
     text-align: center;
     padding: 1rem;
     font: var(--font-order-info);
     color: #666;
-    background: var(--color-bg);
     border-top: 1px solid rgba(238, 133, 185, 0.2);
 }
 
@@ -1689,9 +1682,6 @@ salon-footer {
     letter-spacing: 2px;
 }
 
-/* =====================================================
-   HIDDEN CONTENT DROPDOWN (ORDER CONTROLS)
-   ===================================================== */
 .hidden-content {
     display: none;
     position: absolute;
@@ -2411,6 +2401,9 @@ salon-profile .save-profile-btn:hover {
     transform: scale(1.02);
 }
 
+/* =====================================================
+   BOOKING CARD
+   ===================================================== */
 booking-card {
     display: block;
     width: 100%;
@@ -2762,11 +2755,7 @@ salon-notification .salon-notification.closing {
     animation: slideOut 0.3s ease-out;
 }
 
-/* =====================================================
-   RESPONSIVE DESIGN
-   ===================================================== */
 
-/* Tablet & Below */
 @media (max-width: 1600px) {
     salon-description[type="minimum"] article {
         flex: 0 0 calc((100% - 40px) / 3);
@@ -2971,14 +2960,21 @@ salon-notification .salon-notification.closing {
 }
 
 @media (max-width: 480px) {
+    salon-header {
+        .header {
+            width:100%;
+        }
+    }
     salon-header #paragraph-one {
         font-size: 1.5rem;
-        left: 5vw;
+        left: 2vw;
+        top: 4vh;
     }
 
     salon-header #paragraph-two {
         font-size: 3rem;
-        left: 15vw;
+        left: 10vw;
+        top: -4vh;
     }
 
     .tab {
@@ -2993,5 +2989,442 @@ salon-notification .salon-notification.closing {
     
     booking-card .label {
         min-width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    salon-header {
+        height: 28vh;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fff8fa 0%, #fce4ec 50%, #fff8fa 100%);
+    }
+    
+    salon-header #paragraph-one {
+        font-size: 2.5rem;
+        z-index: 10;
+        position: relative;
+    }
+    
+    salon-header #paragraph-two {
+        font-size: 5rem;
+        z-index: 10;
+        position: relative;
+
+    }
+    
+    salon-header .logo {
+        display: none;
+    }
+    
+    /* CSS-ээр animated shapes үүсгэх */
+    salon-header::before {
+        content: '';
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(236, 64, 122, 0.1) 0%, rgba(244, 143, 177, 0.15) 100%);
+        top: -40px;
+        right: -30px;
+        animation: floatBubble 8s ease-in-out infinite;
+        z-index: 1;
+    }
+    
+    salon-header::after {
+        content: '';
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        background: linear-gradient(135deg, rgba(252, 142, 172, 0.12) 0%, rgba(245, 148, 182, 0.18) 100%);
+        bottom: -30px;
+        left: -25px;
+        animation: morphShape 6s ease-in-out infinite;
+        z-index: 1;
+    }
+    
+    /* Floating bubble animation */
+    @keyframes floatBubble {
+        0%, 100% {
+            transform: translateY(0) translateX(0) scale(1);
+            border-radius: 50%;
+        }
+        33% {
+            transform: translateY(-15px) translateX(10px) scale(1.05);
+            border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+        }
+        66% {
+            transform: translateY(-25px) translateX(-5px) scale(0.95);
+            border-radius: 50% 50% 45% 55% / 45% 55% 45% 55%;
+        }
+    }
+    
+    /* Morph shape animation */
+    @keyframes morphShape {
+        0%, 100% {
+            transform: rotate(0deg) scale(1);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        25% {
+            transform: rotate(5deg) scale(1.1);
+            border-radius: 50% 50% 60% 40% / 50% 60% 40% 50%;
+        }
+        50% {
+            transform: rotate(-3deg) scale(0.95);
+            border-radius: 60% 40% 50% 50% / 60% 50% 40% 50%;
+        }
+        75% {
+            transform: rotate(3deg) scale(1.05);
+            border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%;
+        }
+    }
+    
+    /* Нэмэлт жижиг dots - sparkle эффект */
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        50% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+    }
+    
+    /* Home sections heading */
+    salon-home h2 {
+        padding: 10px 0 10px 20px;
+        font-size: 18px;
+        margin: 15px 0 10px 0;
+    }
+    
+    /* Home салон зургууд жижигрүүлэх */
+    .salonsection img {
+        width: 220px;
+        height: 145px;
+    }
+    
+    /* Артист зургууд жижигрүүлэх */
+    artist-description img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    /* Навигацын сумууд нуух */
+    .snav {
+        display: none;
+    }
+    
+    .prev, 
+    .next {
+        display: none;
+    }
+    
+    /* Salon Info page */
+    salon-info {
+        margin: 20px 16px;
+    }
+    
+    .main-top {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .searchbar {
+        max-width: 100%;
+        padding: 20px 25px;
+    }
+    
+    /* Salon list - 3 багана */
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc((100% - 40px) / 3);
+        max-width: calc((100% - 40px) / 3);
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    salon-description[type="minimum"] img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    salon-description[type="minimum"] h4 {
+        font-size: 13px;
+    }
+    
+    salon-description[type="minimum"] .rating {
+        font-size: 11px;
+    }
+    
+    /* Orders Section - 2x2 grid */
+    .Orders {
+        width: 90%;
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+        padding: 8px;
+    }
+    
+    .Orders order-inner {
+        width: 100%;
+        height: 56px;
+    }
+    
+    .Orders order-inner .toggle-btn {
+        border: none;
+        border-radius: 12px;
+        justify-content: flex-start;
+        padding-left: 12px;
+    }
+    
+    .Orders order-inner button svg {
+        width: 24px;
+    }
+    
+    .Orders order-inner button p {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+    
+    /* Orders section search button */
+    .Orders .search {
+        grid-column: 1 / -1;
+        width: calc(100% - 16px);
+        height: 48px;
+        margin: 0 8px;
+        padding: 0 24px;
+    }
+    
+    /* Hidden Content - Bottom Sheet */
+    .hidden-content {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        max-height: 70vh;
+        margin: 0;
+        border-radius: 20px 20px 0 0;
+        z-index: 1000;
+    }
+    
+    /* Available Data - Нэг эгнээ болгох */
+    .availableData {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .availableData h2 {
+        padding: 10px 0;
+        font-size: 18px;
+        margin: 0;
+    }
+    
+    .leftSalons,
+    .rightArtist {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .artist-card,
+    .salon-card {
+        width: 100%;
+        padding: 12px;
+        margin: 0;
+    }
+    
+    .artist-card .selected-information img,
+    .salon-card .selected-information img {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .selected-information .top p.name {
+        font-size: 14px;
+        padding: 4px;
+    }
+    
+    .selected-information .top p:last-child {
+        font-size: 12px;
+    }
+    
+    .selected-information p:last-child {
+        font-size: 11px;
+    }
+    
+    .subservices-list {
+        height: 180px;
+    }
+    
+    .subservice-row {
+        padding: 12px 0;
+    }
+    
+    .subservice-name {
+        font-size: 14px;
+    }
+    
+    .subservice-duration {
+        font-size: 12px;
+    }
+    
+    .subservice-price {
+        font-size: 13px;
+        min-width: 60px;
+    }
+    
+    .subservice-book-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    /* Detail view */
+    .information {
+        padding: 20px;
+        margin-left: 0;
+    }
+    
+    .information article {
+        flex-direction: column;
+    }
+    
+    .information article img {
+        width: 100%;
+        min-width: 100%;
+        height: 180px;
+    }
+    
+    /* Booking Dialog */
+    .booking-content {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Dialogs */
+    .salonMedium,
+    .artistMedium {
+        width: 95%;
+        height: 85vh;
+    }
+    
+    /* Profile grid */
+    salon-profile .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    salon-profile .bookings-section {
+        order: 2;
+    }
+    
+    salon-profile .profile-card {
+        order: 1;
+        position: static;
+    }
+}
+
+/* =====================================================
+   SMALL MOBILE (< 480px)
+   ===================================================== */
+@media (max-width: 480px) {
+    /* Header - Илүү бага */
+    salon-header {
+        height: 24vh;
+    }
+    
+    salon-header #paragraph-one {
+        font-size: 1.8rem;
+        left: 8vw;
+    }
+
+    salon-header #paragraph-two {
+        font-size: 4rem;
+        left: 18vw;
+    }
+    
+    /* Tabs */
+    .tab {
+        padding: 10px 16px;
+        font-size: 11px;
+    }
+    
+    /* Salon Info */
+    salon-info {
+        margin: 16px 12px;
+    }
+    
+    /* Salon list - 2 багана (том дэлгэцээс бага болгох) */
+    salon-description[type="minimum"] article {
+        flex: 0 0 calc((100% - 20px) / 2);
+        max-width: calc((100% - 20px) / 2);
+        padding: 10px;
+    }
+    
+    salon-description[type="minimum"] img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    salon-description[type="minimum"] h4 {
+        font-size: 12px;
+    }
+    
+    /* Orders - 2x2 grid багасгах */
+    .Orders {
+        width: 95%;
+        gap: 6px;
+        padding: 6px;
+    }
+    
+    .Orders order-inner {
+        height: 52px;
+    }
+    
+    .Orders order-inner button p {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+    
+    /* Available Data салон картууд */
+    .artist-card,
+    .salon-card {
+        padding: 10px;
+    }
+    
+    .artist-card .selected-information img,
+    .salon-card .selected-information img {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    .selected-information .top p.name {
+        font-size: 13px;
+    }
+    
+    .subservice-name {
+        font-size: 13px;
+    }
+    
+    .subservice-book-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    /* Booking card */
+    booking-card .info-row {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    booking-card .label {
+        min-width: auto;
+    }
+    
+    booking-card .salon-name {
+        font-size: 15px;
     }
 }

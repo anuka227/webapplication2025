@@ -81,7 +81,6 @@ class CalendarPicker extends HTMLElement {
     }
 
     isDayAvailable(date) {
-        // Хэрэв availableDates null бол бүх өдөр боломжтой
         if (!this.availableDates || this.availableDates.length === 0) {
             return true;
         }
@@ -108,13 +107,11 @@ class CalendarPicker extends HTMLElement {
         
         let calendarHTML = '';
         
-        // Эхний хоосон өдрүүд
         const emptyDays = startDay === 0 ? 6 : startDay - 1;
         for (let i = 0; i < emptyDays; i++) {
             calendarHTML += '<div class="calendar-day empty"></div>';
         }
         
-        // Сарын өдрүүд
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month, day);
             date.setHours(0, 0, 0, 0);
@@ -176,10 +173,6 @@ class CalendarPicker extends HTMLElement {
             dayEl.addEventListener('click', () => {
                 const dateISO = dayEl.getAttribute('data-date');
                 this.selectedDate = new Date(dateISO);
-                
-                console.log('📅 Calendar selected:', this.selectedDate);
-                
-                // ✅ Event dispatch
                 this.dispatchEvent(new CustomEvent('date-selected', {
                     detail: {
                         date: this.selectedDate,
@@ -207,7 +200,6 @@ class CalendarPicker extends HTMLElement {
         }
     }
 
-    // Public methods
     getSelectedDate() {
         return this.selectedDate;
     }

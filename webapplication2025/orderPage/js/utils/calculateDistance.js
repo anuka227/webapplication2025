@@ -1,4 +1,3 @@
-// utils/distanceCalculator.js
 export class DistanceCalculator {
     static calculateDistance(lat1, lng1, lat2, lng2) {
         const R = 6371;

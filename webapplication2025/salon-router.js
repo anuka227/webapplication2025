@@ -19,10 +19,7 @@ export class SalonRouter extends HTMLElement {
     async navigate(hash) {
         const target = document.getElementById('content');
         
-        // ✅ Өмнөх content-ийг БҮРЭН устгах
         target.innerHTML = '';
-        
-        // ✅ 10ms delay өгөөд шинэ component үүсгэх (browser-д render хийх цаг өгнө)
         setTimeout(() => {
             switch(hash) {
                 case '#/':
@@ -45,7 +42,6 @@ export class SalonRouter extends HTMLElement {
     }
     
     connectedCallback() {
-        // ✅ Hash өөрчлөгдөхөд
         window.addEventListener('hashchange', async () => {
             const hash = window.location.hash;
             await this.navigate(hash);
@@ -62,7 +58,6 @@ export class SalonRouter extends HTMLElement {
             credentials: 'include'
         });
         
-        // ✅ User болон Token устгах
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         

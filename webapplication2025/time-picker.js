@@ -92,12 +92,12 @@ class TimePicker extends HTMLElement {
                     html += `<button class="${btnClass}" data-time="${time}" ${isDisabled ? 'disabled' : ''}>${time}</button>`;
                 });
                 
-                html += '</div>'; // time-buttons
-                html += '</div>'; // time-group
+                html += '</div>'; 
+                html += '</div>'; 
             }
         });
         
-        html += '</div>'; // time-picker-container
+        html += '</div>'; 
         
         this.innerHTML = html;
     }

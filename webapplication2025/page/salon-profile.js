@@ -178,8 +178,6 @@ class SalonProfile extends HTMLElement {
             }
         });
     }
-
-
     disconnectedCallback() {}
     attributeChangedCallback(name, oldVal, newVal) {}
     adoptedCallback() {}
