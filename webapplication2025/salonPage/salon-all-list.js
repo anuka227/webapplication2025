@@ -1,5 +1,5 @@
-// salonPage/salon-all-list.js
-
+import { salonService } from '../salon-service.js';
+import { escapeAttr } from '../sanitize.js';
 class SalonAllList extends HTMLElement {
     constructor() {
         super();

@@ -1,11 +1,11 @@
 // salonPage/artist-special-list.js
-
+import { salonService } from '../salon-service.js';
 class ArtistSpecialList extends HTMLElement {
     constructor() {
         super();
         this.salons = [];
         this.independentArtists = [];
-        this.specialIndependentArtists = []; // ✅ Зөвхөн independent
+        this.specialIndependentArtists = [];
     }
 
     async connectedCallback() {

@@ -1,3 +1,4 @@
+import './app.js'
 class SalonApp extends HTMLElement {
     constructor() {
         super();

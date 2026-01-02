@@ -37,7 +37,8 @@ router.post('/register', [
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      secure: process.env.NODE_ENV === 'production'
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
     });
 
     res.status(201).json({
@@ -48,7 +49,7 @@ router.post('/register', [
         email: user.email,
         phone: user.phone
       },
-      token  // ✅ Token нэмэх
+      token
     });
 
   } catch (error) {
@@ -57,7 +58,6 @@ router.post('/register', [
   }
 });
 
-// НЭВТРЭХ
 router.post('/login', [
   body('email').isEmail().withMessage('Зөв и-мэйл хаяг оруулна уу'),
   body('password').notEmpty().withMessage('Нууц үг оруулна уу')
@@ -89,7 +89,8 @@ router.post('/login', [
     res.cookie('token', token, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      secure: process.env.NODE_ENV === 'production'
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
     });
 
     res.json({
@@ -100,7 +101,7 @@ router.post('/login', [
         email: user.email,
         phone: user.phone
       },
-      token  // ✅ Token нэмэх
+      token  
     });
 
   } catch (error) {
@@ -109,36 +110,68 @@ router.post('/login', [
   }
 });
 
-// ГАРАХ
 router.post('/logout', (req, res) => {
   res.clearCookie('token');
   res.json({ message: 'Амжилттай гарлаа' });
 });
 
-// Хэрэглэгчийн мэдээлэл авах
 router.get('/me', authenticateToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select('-password');
-    res.json(user);
+    if (!user) {
+      return res.status(404).json({ error: 'Хэрэглэгч олдсонгүй' });
+    }
+    res.json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone
+    });
   } catch (error) {
+    console.error('Me error:', error);
     res.status(500).json({ error: 'Серверийн алдаа гарлаа' });
   }
 });
 
-// Хэрэглэгчийн мэдээлэл шинэчлэх
-router.put('/update', authenticateToken, async (req, res) => {
+router.put('/update', authenticateToken, [
+  body('name').optional().trim().notEmpty().withMessage('Нэр хоосон байж болохгүй'),
+  body('phone').optional().trim()
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   try {
+    const userId = req.user.userId;
     const { name, phone } = req.body;
-    
+
+    const updateData = {};
+    if (name) updateData.name = name;
+    if (phone) updateData.phone = phone;
+
     const user = await User.findByIdAndUpdate(
-      req.user.userId,
-      { name, phone },
-      { new: true }
+      userId,
+      updateData,
+      { new: true, runValidators: true }
     ).select('-password');
-    
-    res.json({ message: 'Мэдээлэл шинэчлэгдлээ', user });
-  } catch (error) {
-    res.status(500).json({ error: 'Серверийн алдаа гарлаа' });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Хэрэглэгч олдсонгүй' });
+    }
+
+    res.json({ 
+      message: 'Амжилттай шинэчлэгдлээ',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone
+      }
+    });
+  } catch (err) {
+    console.error('Update error:', err);
+    res.status(500).json({ error: 'Шинэчлэлт амжилтгүй боллоо' });
   }
 });
 

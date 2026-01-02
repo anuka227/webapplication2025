@@ -1,5 +1,6 @@
 import './salon-notification.js';
-
+import './sanitize.js'
+import './salon-service.js';
 // Order Components
 import './orderPage/js/components/order-manager.js';
 import './orderPage/js/components/order-inner.js';

@@ -1,3 +1,4 @@
+import { salonService } from '../salon-service.js';
 class SalonDescription extends HTMLElement {
     constructor() {
         super();
