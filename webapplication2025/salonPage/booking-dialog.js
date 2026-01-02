@@ -161,12 +161,10 @@ class BookingDialog extends HTMLElement {
         const selectedDate = calendarPicker ? calendarPicker.getSelectedDate() : null;
         const selectedTime = timePicker ? timePicker.getSelectedTime() : null;
         
-        // ✅ IMPORT ашиглах
         if (!selectedDate) {
             showNotification('Огноогоо сонгоно уу');
             return;
         }
-        
         if (!selectedTime) {
             showNotification('Цагаа сонгоно уу');
             return;
@@ -203,7 +201,7 @@ class BookingDialog extends HTMLElement {
             }
         } else {
            
-            showNotification('Систем ачааллаж байна'); // ✅ IMPORT
+            showNotification('Систем ачааллаж байна');
         }
     }
 

@@ -1,25 +1,32 @@
-  @font-face {
-  font-family: "Geist Mono";
-  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
+
+/* =====================================================
+   ROOT VARIABLES
+   ===================================================== */
+:root {
+    --color-bg: #fff8fa;
+    --color-pr: #ffedfb;
+    --color-nav: #0b123e;
+    --color-order: #fc8eac;
+    --color-pink-default: #fce4ec;
+    --color-pink-selected: #f594b6;
+    --color-white: #ffffff;
+    --color-hover-gray: rgba(0, 0, 0, 0.05);
+    --color-border: rgba(236, 64, 122, 0.2);
+    --color-salon: rgba(236, 64, 122, 0.08);
+
+    --font-home: "Roboto Mono";
+    --font-control: italic 100 0.4rem "Shadows Into Light", cursive;
+    --font-logo: italic 200 1.8rem "Marck Script", cursive;
+    --font-h2: italic 400 1rem "Shadows Into Light", cursive;
+    --font-order-info: italic 400 1rem "Nunito", sans-serif;
+    --font-special: italic 600 1rem "Edu NSW ACT Hand Pre", cursive;
+
+    --box-shadow: 8px 16px 32px rgba(236, 64, 122, 0.15);
+    --animation-main: fadeSlide 0.8s ease-out;
 }
 
-  :root {
-        --color-bg: #fff8fa;
-        --color-mobile-background: #8451f5;
-        --color-pr: #ffedfb;
-        --color-nav: #0b123e;
-        --color-order: #fc8eac;
-        --color-pink-default: #fce4ec;
-        --color-pink-selected:  #f594b6;
-        --color-white: #ffffff;
-        --color-hover-gray: rgba(0, 0, 0, 0.05);
-        --color-border: rgba(236, 64, 122, 0.2);
-        --color-salon: rgba(236, 64, 122, 0.08);
-       --font-mono: "Geist Mono", monospace;
-    }
 body {
     margin: 0;
 }
@@ -32,11 +39,12 @@ salon-app {
     grid-template-columns: 100px 1fr;
     margin: 0;
     background-color: var(--color-bg);
-    height: 100vh;
+    background-size: cover;
+    height: 100%;
 }
 
+
 #content {
-    background-color: var(--color-bg);
     grid-area: main;
     margin: 0;
     padding: 0;
@@ -101,9 +109,7 @@ salon-home {
     }
 }
 
-/* =====================================================
-   HEADER & LOGO
-   ===================================================== */
+
 salon-header {
     display: flex;
     height: 48vh;
@@ -209,9 +215,6 @@ salon-header .logo :nth-child(7) {
     animation-delay: 4s;
 }
 
-/* =====================================================
-   HOME PAGE - SALON & ARTIST SECTIONS
-   ===================================================== */
 salon-home h2 {
     margin: 1rem 0 1rem 0;
     padding: 10px 0 10px 160px;
@@ -258,6 +261,7 @@ salon-home h2 {
     font-size: 16px;
 }
 
+/* Desktop хэмжээ - анхны */
 .salonsection img {
     width: 290px;
     height: 190px;
@@ -298,7 +302,7 @@ artist-description img {
 }
 
 .snav {
-    background-color: var(--color-bg);
+    background-color: #fce4ec;
     border: none;
     font-size: 40px;
     cursor: pointer;
@@ -1121,16 +1125,12 @@ aside-nav img:hover {
     background-color: var(--color-bg);
 }
 
-/* =====================================================
-   FOOTER
-   ===================================================== */
 salon-footer {
     grid-area: ft;
     text-align: center;
     padding: 1rem;
     font: var(--font-order-info);
     color: #666;
-    background: var(--color-bg);
     border-top: 1px solid rgba(238, 133, 185, 0.2);
 }
 
@@ -1675,9 +1675,6 @@ salon-footer {
     letter-spacing: 2px;
 }
 
-/* =====================================================
-   HIDDEN CONTENT DROPDOWN (ORDER CONTROLS)
-   ===================================================== */
 .hidden-content {
     display: none;
     position: absolute;
@@ -2751,11 +2748,7 @@ salon-notification .salon-notification.closing {
     animation: slideOut 0.3s ease-out;
 }
 
-/* =====================================================
-   RESPONSIVE DESIGN
-   ===================================================== */
 
-/* Tablet & Below */
 @media (max-width: 1600px) {
     salon-description[type="minimum"] article {
         flex: 0 0 calc((100% - 40px) / 3);
@@ -2960,14 +2953,21 @@ salon-notification .salon-notification.closing {
 }
 
 @media (max-width: 480px) {
+    salon-header {
+        .header {
+            width:100%;
+        }
+    }
     salon-header #paragraph-one {
         font-size: 1.5rem;
-        left: 5vw;
+        left: 2vw;
+        top: 4vh;
     }
 
     salon-header #paragraph-two {
         font-size: 3rem;
-        left: 15vw;
+        left: 10vw;
+        top: -4vh;
     }
 
     .tab {
@@ -2985,21 +2985,104 @@ salon-notification .salon-notification.closing {
     }
 }
 
-/* =====================================================
-   MOBILE RESPONSIVE (768px AND BELOW)
-   ===================================================== */
 @media (max-width: 768px) {
-    /* Header - Хэмжээ багасгах */
     salon-header {
         height: 28vh;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fff8fa 0%, #fce4ec 50%, #fff8fa 100%);
     }
     
     salon-header #paragraph-one {
         font-size: 2.5rem;
+        z-index: 10;
+        position: relative;
     }
     
     salon-header #paragraph-two {
         font-size: 5rem;
+        z-index: 10;
+        position: relative;
+
+    }
+    
+    salon-header .logo {
+        display: none;
+    }
+    
+    /* CSS-ээр animated shapes үүсгэх */
+    salon-header::before {
+        content: '';
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(236, 64, 122, 0.1) 0%, rgba(244, 143, 177, 0.15) 100%);
+        top: -40px;
+        right: -30px;
+        animation: floatBubble 8s ease-in-out infinite;
+        z-index: 1;
+    }
+    
+    salon-header::after {
+        content: '';
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        background: linear-gradient(135deg, rgba(252, 142, 172, 0.12) 0%, rgba(245, 148, 182, 0.18) 100%);
+        bottom: -30px;
+        left: -25px;
+        animation: morphShape 6s ease-in-out infinite;
+        z-index: 1;
+    }
+    
+    /* Floating bubble animation */
+    @keyframes floatBubble {
+        0%, 100% {
+            transform: translateY(0) translateX(0) scale(1);
+            border-radius: 50%;
+        }
+        33% {
+            transform: translateY(-15px) translateX(10px) scale(1.05);
+            border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+        }
+        66% {
+            transform: translateY(-25px) translateX(-5px) scale(0.95);
+            border-radius: 50% 50% 45% 55% / 45% 55% 45% 55%;
+        }
+    }
+    
+    /* Morph shape animation */
+    @keyframes morphShape {
+        0%, 100% {
+            transform: rotate(0deg) scale(1);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        25% {
+            transform: rotate(5deg) scale(1.1);
+            border-radius: 50% 50% 60% 40% / 50% 60% 40% 50%;
+        }
+        50% {
+            transform: rotate(-3deg) scale(0.95);
+            border-radius: 60% 40% 50% 50% / 60% 50% 40% 50%;
+        }
+        75% {
+            transform: rotate(3deg) scale(1.05);
+            border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%;
+        }
+    }
+    
+    /* Нэмэлт жижиг dots - sparkle эффект */
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        50% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
     }
     
     /* Home sections heading */
@@ -3007,6 +3090,28 @@ salon-notification .salon-notification.closing {
         padding: 10px 0 10px 20px;
         font-size: 18px;
         margin: 15px 0 10px 0;
+    }
+    
+    /* Home салон зургууд жижигрүүлэх */
+    .salonsection img {
+        width: 220px;
+        height: 145px;
+    }
+    
+    /* Артист зургууд жижигрүүлэх */
+    artist-description img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    /* Навигацын сумууд нуух */
+    .snav {
+        display: none;
+    }
+    
+    .prev, 
+    .next {
+        display: none;
     }
     
     /* Salon Info page */
