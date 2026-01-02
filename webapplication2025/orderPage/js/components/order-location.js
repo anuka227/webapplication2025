@@ -4,7 +4,6 @@ class OrderLocation extends HTMLElement {
         this.selectedCoords = null;
         this.map = null;
         this.marker = null;
-
         this.locationsData = {
             "Офицер": { lat: 47.9155352, lng: 106.9686054},
             "Зүүн 4 зам": { lat: 47.9189213, lng: 106.9412899 },
@@ -135,7 +134,6 @@ class OrderLocation extends HTMLElement {
     initMap(container, lat, lng, btnText) {
         const mapDiv = container.querySelector('.map-view');
         setTimeout(() => {
-            // Map үүсгэх
             this.map = L.map(mapDiv.id).setView([lat, lng], 16);
             L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
@@ -148,8 +146,6 @@ class OrderLocation extends HTMLElement {
                 iconAnchor: [9, 9]
             });
             L.marker([lat, lng], { icon: userIcon }).addTo(this.map);
-
-            // Координат харуулах
             this.updateCoords(container, lat, lng);
             btnText.textContent = 'ОДООГИЙН БАЙРШИЛ';
             
