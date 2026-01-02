@@ -4,7 +4,7 @@ class SalonDescription extends HTMLElement {
         this.salonData = null; 
     }
 
-    connectedCallback() {
+     async connectedCallback() {
         this.name = this.getAttribute("name") || "Unknown Salon";
         this.img = this.getAttribute("img") || "https://picsum.photos/300/200";
         this.rating = this.getAttribute("rating") || "0.0";
@@ -50,7 +50,7 @@ class SalonDescription extends HTMLElement {
         }
         this.creative = creative;
 
-        this.loadFullSalonData();
+        await this.loadFullSalonData();
 
         switch (this.type) {
             case "special":
@@ -70,10 +70,10 @@ class SalonDescription extends HTMLElement {
 
     async loadFullSalonData() {
         const salonId = this.getAttribute("data");
-        const response = await fetch('http://localhost:3000/api/salons');
-        const data = await response.json();
-        this.salonData = data.salons?.find(s => s.id === salonId);
-        console.log('Loaded full salon data:', this.salonData);
+        await salonService.fetchData();
+        this.salonData = salonService.getSalonById(salonId);
+        
+        console.log('Loaded full salon data from cache:', this.salonData);
     }
 
     decodeHTMLEntities(text) {

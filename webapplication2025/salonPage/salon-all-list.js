@@ -21,15 +21,11 @@ class SalonAllList extends HTMLElement {
 
     async loadSalons() {
         try {
-            const response = await fetch('http://localhost:3000/api/salons');
-            const data = await response.json();
-            
-            this.salons = data.salons.filter(salon => salon.id !== 'independent');
-            
-            const independentData = data.salons.find(salon => salon.id === 'independent');
-            this.independentArtists = independentData ? independentData.artists : [];
-            
+            await salonService.fetchData();
+            this.salons = salonService.getSalons();
+            this.independentArtists = salonService.getIndependentArtists();
         } catch (error) {
+            console.error('Өгөгдөл татахад алдаа:', error);
             this.salons = [];
             this.independentArtists = [];
         }
@@ -197,7 +193,7 @@ class SalonAllList extends HTMLElement {
     }
 
     showSalonDetailById(salonId) {
-        const salon = this.salons.find(sal => sal.id === salonId);
+        const salon = salonService.getSalonById(salonId);
         
         if (!salon) {
             console.error('Salon not found:', salonId);
@@ -251,7 +247,7 @@ class SalonAllList extends HTMLElement {
     }
 
     showArtistDetailById(artistId) {
-        const artist = this.independentArtists.find(art => art.id === artistId);
+        const artist = salonService.getArtistById(artistId);
         
         if (!artist) {
             console.error('Artist not found:', artistId);

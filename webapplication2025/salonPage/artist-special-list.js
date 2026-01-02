@@ -14,42 +14,30 @@ class ArtistSpecialList extends HTMLElement {
         this.attachEvents();
     }
 
-    async loadArtists() {
+ async loadArtists() {
         try {
-            const response = await fetch('http://localhost:3000/api/salons');
-            const data = await response.json();
-            this.salons = data.salons || [];
+            await salonService.fetchData();
             
-            const independentSalon = this.salons.find(s => s.id === 'independent');
-            if (independentSalon && independentSalon.artists) {
-                this.independentArtists = independentSalon.artists;
+            this.independentArtists = salonService.getIndependentArtists();
+            this.specialIndependentArtists = salonService.getSpecialIndependentArtists();
+            
+            this.independentArtists.forEach(artist => {
+                artist.type = 'independent';
+                artist.salon_name = 'Бие даасан';
+                artist.salon_location = artist.location;
                 
-                this.independentArtists.forEach(artist => {
-                    artist.type = 'independent';
-                    artist.salon_name = 'Бие даасан';
-                    artist.salon_location = artist.location;
-                    
-                    if (artist.date && artist.date.length > 0) {
-                        artist.schedule = `${artist.date.join(', ')}`;
-                    } else {
-                        artist.schedule = 'Цагийн хуваарь байхгүй';
-                    }
-                });
-            }
-            this.specialIndependentArtists = this.independentArtists.filter(
-                artist => artist.special === "True"
-            );
-            
-            console.log('Independent Artists:', this.independentArtists);
-            console.log('Special Independent Artists:', this.specialIndependentArtists);
-            
+                if (artist.date?.length > 0) {
+                    artist.schedule = artist.date.join(', ');
+                } else {
+                    artist.schedule = 'Цагийн хуваарь байхгүй';
+                }
+            });
         } catch (error) {
             console.error('Артистын өгөгдөл татахад алдаа:', error);
             this.independentArtists = [];
             this.specialIndependentArtists = [];
         }
     }
-
     render() {
         this.innerHTML = /*html*/`
             <section class="artist-special-list">
@@ -91,10 +79,7 @@ class ArtistSpecialList extends HTMLElement {
             a.addEventListener('click', () => {
                 const dlg = this.querySelector("#ArtistDetailInfo");
                 const artistId = a.getAttribute("data");
-                
-                const artist = this.independentArtists.find(
-                    art => art.artist_id === artistId || art.id === artistId
-                );
+                const artist = salonService.getArtistById(artistId);
                 
                 if (artist) {
                     const location = artist.salon_location || artist.location || 'Байршил тодорхойгүй';
