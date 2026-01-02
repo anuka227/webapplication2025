@@ -149,7 +149,7 @@ class BookingCard extends HTMLElement {
                 bookingDialog.show();
             }, 100);
             
-            this.showNotification('🔄 Дахин захиалах цонх нээгдэж байна...', 'success');
+            this.showNotification('Дахин захиалах цонх нээгдэж байна...', 'success');
             
             this.dispatchEvent(new CustomEvent('booking-reorder', {
                 detail: { originalBooking: booking },
