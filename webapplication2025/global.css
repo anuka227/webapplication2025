@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@400..700&family=Marck+Script&family=Momo+Signature&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
 
 :root {
     --color-bg: #fff8fa;
@@ -17,9 +16,13 @@
     --font-home: "Roboto Mono";
     --font-control: italic 100 0.4rem "Shadows Into Light", cursive;
     --font-logo: italic 200 1.8rem "Marck Script", cursive;
-    --font-h2: italic 400 1rem "Shadows Into Light", cursive;
+    --font-h2: italic 600 1rem "Shadows Into Light";
+    --font-booking: italic 400 1rem "Nunito", sans-serif;
+    --font-map: 'Courier New', monospace;
+
+    /* --font-h2: italic 600 1rem "Shadows Into Light", cursive; */
     --font-order-info: italic 400 1rem "Nunito", sans-serif;
-    --font-special: italic 600 1rem "Edu NSW ACT Hand Pre", cursive;
+    --font-special: italic 400 1rem "Edu NSW ACT Hand Pre", cursive;
     
     --box-shadow: 8px 16px 32px rgba(236, 64, 122, 0.15);
     --animation-main: fadeSlide 0.8s ease-out;
@@ -603,7 +606,7 @@ salon-all-list .salon-detail.active {
 }
 
 .information address h3 {
-    color: #ec407a;
+    color: var(--color-pink-selected);
     margin-bottom: 15px;
     font-size: 20px;
 }
@@ -942,7 +945,7 @@ salon-all-list .salon-detail.active {
 }
 
 .calendar-picker {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-booking);
     background: white;
     border-radius: 25px;
     padding: 25px;
@@ -2408,7 +2411,7 @@ artist-description .artistsection img {
     margin: 5px 0;
     font-size: 14px;
     color: #333;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-booking);
 }
 
 .map-container .coords-box strong {
@@ -2417,7 +2420,7 @@ artist-description .artistsection img {
 }
 
 .map-container .coords-text {
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-map);
     font-size: 13px;
     color: #555;
     line-height: 1.6;
@@ -2429,7 +2432,7 @@ artist-description .artistsection img {
     justify-content: center;
     height: 100%;
     margin: 0;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-booking);
     font-size: 16px;
 }
 
@@ -3226,7 +3229,7 @@ booking-list {
                     border-radius: 20px;
                     cursor: pointer;
                     transition: all 0.3s;
-                    font-family: inherit;
+                    font-family: var(--font-order-info);
                     font-size: 15px;
                     font-weight: 600;
                     color: #2c3e50;
@@ -3325,7 +3328,7 @@ salon-notification {
                     border-radius: 12px;
                     box-shadow: 0 8px 24px rgba(236, 64, 122, 0.4);
                     z-index: 99999;
-                    font-family: system-ui, -apple-system, sans-serif;
+                    font-family: var(--font-order-info);
                     font-size: 15px;
                     min-width: 300px;
                     max-width: 500px;

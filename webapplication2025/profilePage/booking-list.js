@@ -149,8 +149,8 @@ class BookingList extends HTMLElement {
         };
 
         const icons = {
-            'all': '📅',
-            'history': '📋'
+            'all': '',
+            'history': ''
         };
 
         return `

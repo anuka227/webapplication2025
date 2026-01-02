@@ -52,8 +52,6 @@ class BookingCard extends HTMLElement {
         }
         
         const timeDisplay = this.booking.time || '-';
-        
-        // ✅ Үнийг format хийх
         const formattedPrice = this.formatPrice(this.booking.price);
         
         this.innerHTML = `
