@@ -8,12 +8,10 @@ class SalonProfile extends HTMLElement {
 renderProfile() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     
-    // Extract phone without country code for display in edit form
     let phoneForEdit = user.phone || '';
     if (phoneForEdit.startsWith('+976')) {
-        phoneForEdit = phoneForEdit.substring(4); // Remove +976
+        phoneForEdit = phoneForEdit.substring(4);
     } else if (phoneForEdit.startsWith('+')) {
-        // Find where digits start after country code
         const match = phoneForEdit.match(/^\+\d+/);
         if (match) {
             phoneForEdit = phoneForEdit.substring(match[0].length);
@@ -48,7 +46,7 @@ renderProfile() {
                         </li>
                     </ul>
                     <button class="edit-profile-btn" id="editProfileBtn">Засах</button>
-                    <button class="logout-btn" id="logoutBtn">Гарах</button>
+                    <button class="logout-btn" id="logoutBtn" style="display: none;">Гарах</button>
                 </div>
             </div>
         </div>
